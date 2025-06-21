@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIGHTLEARN - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Navigation - Updated Structure -->
+        <nav class="left-nav">
+            <div class="nav-header">
+                <div class="logo-container">
+                    <img src="BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="#" class="active">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>DASHBOARD</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-book-open"></i>
+                        <span>COURSES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-history"></i>
+                        <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-question-circle"></i>
+                        <span>HELP</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- Separated Logout Container -->
+            <div class="logout-container">
+                <a href="#" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>LOGOUT</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content (No Changes) -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="top-icons">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    <i class="fas fa-bell notification-icon"></i>
+                    <div class="profile-dropdown">
+                        <i class="fas fa-user-circle profile-icon"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <div class="welcome-section">
+                    <h1>Welcome back, <span class="student-name">Student Name</span>!</h1>
+                    <p>Continue your learning journey</p>
+                </div>
+
+                <!-- Learning Overview -->
+                <div class="content-section">
+                    <div class="learning-overview">
+                        <h3>LEARNING OVERVIEW</h3>
+                        <div class="progress-chart">
+                            <canvas id="progressChart"></canvas>
+                        </div>
+                        <div class="progress-details">
+                            <p>• Overall: 65%</p>
+                            <p>• Trend: ↗ 12%</p>
+                        </div>
+                    </div>
+                    
+                    <div class="quick-stats">
+                        <h3>QUICK STATS</h3>
+                        <ul>
+                            <li>• Total Courses: 3</li>
+                            <li>• Completed: 410/1600 (25%)</li>
+                            <li>• Avg. Score: 78% (Passing)</li>
+                            <li>• Streak: 5 days 🔥</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Courses and Activity -->
+                <div class="content-section">
+                    <div class="your-courses">
+                        <h3>YOUR COURSES</h3>
+                        <div class="course-cards">
+                            <div class="course-card math">
+                                <div class="course-icon">🧮</div>
+                                <h4>MATH</h4>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 69%;"></div>
+                                </div>
+                                <p>Progress: 69%</p>
+                                <p>Last: 82%</p>
+                            </div>
+                            
+                            <div class="course-card english">
+                                <div class="course-icon">🖊️</div>
+                                <h4>ENGLISH</h4>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 42%;"></div>
+                                </div>
+                                <p>Progress: 42%</p>
+                                <p>Last: 68%</p>
+                            </div>
+                            
+                            <div class="course-card history">
+                                <div class="course-icon">🏛️</div>
+                                <h4>HISTORY</h4>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 32%;"></div>
+                                </div>
+                                <p>Progress: 32%</p>
+                                <p>Last: 91%</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="recent-activity">
+                        <h3>RECENT ACTIVITY</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <span class="activity-date">Jun 20</span>
+                                <span class="activity-course">Math Quiz</span>
+                                <span class="activity-score passed">82% ✅</span>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-date">Jun 18</span>
+                                <span class="activity-course">Algebra</span>
+                                <span class="activity-score warning">32% ⚠️</span>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-date">Jun 15</span>
+                                <span class="activity-course">History Quiz</span>
+                                <span class="activity-score passed">91% ✅</span>
+                            </div>
+                        </div>
+                        <a href="#" class="view-all">View All Activity</a>
+                    </div>
+                </div>
+
+                <!-- Continue Learning -->
+                <div class="continue-learning">
+                    <h3>CONTINUE LEARNING</h3>
+                    <div class="learning-cards">
+                        <div class="learning-card">
+                            <h4>Algebra II</h4>
+                            <p>60% Complete</p>
+                            <button>Continue</button>
+                        </div>
+                        <div class="learning-card">
+                            <h4>Essay Writing</h4>
+                            <p>New</p>
+                            <button>Start</button>
+                        </div>
+                        <div class="learning-card">
+                            <h4>Ancient Civ</h4>
+                            <p>New</p>
+                            <button>Start</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <button class="action-btn">
+                        <i class="fas fa-search"></i> Quiz Practice
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-book"></i> Review
+                    </button>
+                    <button class="action-btn">
+                        <i class="fas fa-bell"></i> Reminder
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
