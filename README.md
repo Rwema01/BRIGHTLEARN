@@ -1,6 +1,6 @@
 # BrightLearn - Interactive Learning Platform
 
-![BrightLearn Logo](frontend/BRIGHTLEARN.jpg)
+![BrightLearn Logo](Fronted/BRIGHTLEARN.jpg)
 
 BrightLearn is a web-based interactive learning platform designed to help students study core subjects (Math, English, History) through structured lessons and quizzes. The application tracks progress, provides performance feedback, and offers a personalized learning experience.
 
