@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrightLearn - History</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Navigation -->
+        <nav class="left-nav">
+            <div class="nav-header">
+                <div class="logo-container">
+                    <img src="BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>DASHBOARD</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="courses.html">
+                        <i class="fas fa-book-open"></i>
+                        <span>COURSES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="history.html" class="active">
+                        <i class="fas fa-history"></i>
+                        <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="help.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span>HELP</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="logout-container">
+                <a href="login.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>LOGOUT</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="top-icons">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <!-- Updated Notification Dropdown -->
+                    <div class="notification-dropdown">
+                        <i class="fas fa-bell notification-icon"></i>
+                        <span class="notification-badge">3</span>
+                        <div class="dropdown-content">
+                            <div class="notification-header">
+                                <h4>Notifications</h4>
+                                <button class="mark-all-read">Mark all as read</button>
+                            </div>
+                            <div class="notification-list">
+                                <div class="notification-item unread">
+                                    <div class="notification-icon"><i class="fas fa-book"></i></div>
+                                    <div class="notification-content">
+                                        <p>New assignment posted in Algebra II</p>
+                                        <span class="notification-time">2 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-icon"><i class="fas fa-check-circle"></i></div>
+                                    <div class="notification-content">
+                                        <p>Your submission for Essay Writing was graded</p>
+                                        <span class="notification-time">1 day ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="view-all">View All Notifications</a>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-dropdown">
+                        <i class="fas fa-user-circle profile-icon"></i>
+                        <div class="dropdown-content">
+                            <div class="profile-header">
+                                <img src="default-profile.jpg" alt="Profile" class="profile-pic">
+                                <div class="profile-info">
+                                    <h4>Jordan Barker</h4>
+                                    <p>Student</p>
+                                </div>
+                            </div>
+                            <div class="profile-stats">
+                                <div class="stat-item">
+                                    <span>Courses</span>
+                                    <span>5</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span>Completed</span>
+                                    <span>32%</span>
+                                </div>
+                            </div>
+                            <div class="dropdown-links">
+                                <a href="profile.html" class="profile-link"><i class="fas fa-user"></i> View Profile</a>
+                                <a href="settings.html" class="profile-link"><i class="fas fa-cog"></i> Settings</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- History Content -->
+            <div class="dashboard-content">
+                <div class="welcome-section">
+                    <h1>Your <span class="student-name">Learning History</span></h1>
+                    <p>View your past activities and results</p>
+                </div>
+
+                <!-- History Section -->
+                <div class="content-section">
+                    <div class="history-container">
+                        <h3>RECENT ACTIVITIES</h3>
+                        
+                        <div class="history-filters">
+                            <div class="filter-group">
+                                <label for="course-filter">Filter by Course:</label>
+                                <select id="course-filter">
+                                    <option value="all">All Courses</option>
+                                    <option value="math">Mathematics</option>
+                                    <option value="english">English</option>
+                                    <option value="history">History</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label for="date-filter">Filter by Date:</label>
+                                <select id="date-filter">
+                                    <option value="all">All Time</option>
+                                    <option value="week">Last Week</option>
+                                    <option value="month">Last Month</option>
+                                    <option value="year">Last Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="history-list">
+                            <!-- Math Quiz -->
+                            <div class="history-item math">
+                                <div class="history-date">Today</div>
+                                <div class="history-details">
+                                    <h4>Algebra II Quiz</h4>
+                                    <p>Completed with score of 82%</p>
+                                    <div class="history-meta">
+                                        <span class="status passed">Passed</span>
+                                        <span class="time-spent">Time: 12m 34s</span>
+                                    </div>
+                                </div>
+                                <div class="history-score">
+                                    82%
+                                </div>
+                            </div>
+                            
+                            <!-- English Quiz -->
+                            <div class="history-item english">
+                                <div class="history-date">Jun 18</div>
+                                <div class="history-details">
+                                    <h4>Grammar Quiz</h4>
+                                    <p>Completed with score of 68%</p>
+                                    <div class="history-meta">
+                                        <span class="status failed">Needs Review</span>
+                                        <span class="time-spent">Time: 8m 45s</span>
+                                    </div>
+                                </div>
+                                <div class="history-score">
+                                    68%
+                                </div>
+                            </div>
+                            
+                            <!-- History Quiz -->
+                            <div class="history-item history">
+                                <div class="history-date">Jun 15</div>
+                                <div class="history-details">
+                                    <h4>WWI Quiz</h4>
+                                    <p>Completed with score of 91%</p>
+                                    <div class="history-meta">
+                                        <span class="status passed">Passed</span>
+                                        <span class="time-spent">Time: 15m 22s</span>
+                                    </div>
+                                </div>
+                                <div class="history-score">
+                                    91%
+                                </div>
+                            </div>
+                            
+                            <!-- Math Lesson -->
+                            <div class="history-item math">
+                                <div class="history-date">Jun 12</div>
+                                <div class="history-details">
+                                    <h4>Algebra Basics Lesson</h4>
+                                    <p>Completed lesson with exercises</p>
+                                    <div class="history-meta">
+                                        <span class="status completed">Completed</span>
+                                        <span class="time-spent">Time: 25m 10s</span>
+                                    </div>
+                                </div>
+                                <div class="history-icon">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
