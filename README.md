@@ -34,6 +34,6 @@ BrightLearn is a web-based interactive learning platform designed to help studen
 | Backend Developer  | Kelly Nshuti Dushimimana        |
 | Backend Developer  | Christian Ntwali Ishimwe        |
 | UI/UX Designer     | Vestine Umukundwa               |
-| UI/UX Designer     | TTabitha Kuir                   |
+| UI/UX Designer     | Tabitha Kuir                    |
 
 ## Project Structure
