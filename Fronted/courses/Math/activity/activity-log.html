@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Log | BRIGHTLEARN</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="/Fronted/courses/courses.css">
+</head>
+<body>
+    <div class="app-container">
+        <nav class="left-nav">...</nav>
+
+        <main class="main-content">
+            <div class="activity-log">
+                <div class="breadcrumbs">
+                    <a href="/Fronted/index.html">Home</a> > 
+                    <a href="/Fronted/courses/courses.html">Courses</a> > 
+                    <span>Activity Log</span>
+                </div>
+
+                <h1><i class="fas fa-history"></i> Your Activity</h1>
+                
+                <div class="filter-controls">
+                    <select id="course-filter">
+                        <option>All Courses</option>
+                        <option>Mathematics</option>
+                        <option>English</option>
+                        <option>History</option>
+                    </select>
+                    <select id="time-filter">
+                        <option>Last 30 Days</option>
+                        <option>Last Week</option>
+                        <option>All Time</option>
+                    </select>
+                </div>
+
+                <div class="activity-timeline">
+                    <!-- June Activities -->
+                    <div class="timeline-month">
+                        <h2>June 2023</h2>
+                        <div class="timeline-items">
+                            <a href="../math/algebra-quiz.html" class="timeline-item math">
+                                <span class="date">Jun 20</span>
+                                <span class="activity">Algebra Quiz</span>
+                                <span class="score">82%</span>
+                            </a>
+                            <a href="../english/writing-exercise.html" class="timeline-item english">
+                                <span class="date">Jun 18</span>
+                                <span class="activity">Essay Writing</span>
+                                <span class="score">78%</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- May Activities -->
+                    <div class="timeline-month">
+                        <h2>May 2023</h2>
+                        <div class="timeline-items">
+                            <a href="../history/ancient-civ-lesson.html" class="timeline-item history">
+                                <span class="date">May 15</span>
+                                <span class="activity">Ancient Civilizations</span>
+                                <span class="score">91%</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/Fronted/courses/courses.js"></script>
+</body>
+</html>
