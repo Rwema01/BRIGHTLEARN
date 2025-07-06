@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIGHTLEARN - Help Center</title>
+    <link rel="stylesheet" href="help-center.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Navigation -->
+        <nav class="left-nav">
+            <div class="nav-header">
+                <div class="logo-container">
+                    <img src="/Fronted/courses/BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="/Fronted/courses/index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>DASHBOARD</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Fronted/courses/courses.html">
+                        <i class="fas fa-book-open"></i>
+                        <span>COURSES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Fronted/courses/notifications.html">
+                        <i class="fas fa-bell"></i>
+                        <span>NOTIFICATIONS</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Fronted/courses/profile/profile.html">
+                        <i class="fas fa-user-cog"></i>
+                        <span>PROFILE</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Fronted/courses/help/help-center.html" class="active">
+                        <i class="fas fa-question-circle"></i>
+                        <span>HELP CENTER</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="logout-container">
+                <a href="/Fronted/courses/auth/logout.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>LOGOUT</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="top-icons">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search help articles..." class="search-input" id="helpSearch">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    <i class="fas fa-bell notification-icon"></i>
+                    <div class="profile-dropdown">
+                        <i class="fas fa-user-circle profile-icon"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Help Center Content -->
+            <div class="help-center-container">
+                <div class="help-header">
+                    <h1>Help Center</h1>
+                    <p>Find answers to common questions or contact our support team</p>
+                </div>
+
+                <div class="help-sections">
+                    <!-- Getting Started Section -->
+                    <section class="help-section">
+                        <h2><i class="fas fa-rocket"></i> Getting Started</h2>
+                        <div class="help-articles">
+                            <article class="help-article">
+                                <h3>How to navigate the platform</h3>
+                                <p>Learn the basics of BRIGHTLEARN's interface and features</p>
+                                <button class="read-more">Read More</button>
+                            </article>
+                            <article class="help-article">
+                                <h3>Setting up your profile</h3>
+                                <p>Complete guide to personalizing your learning experience</p>
+                                <button class="read-more">Read More</button>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- Courses Section -->
+                    <section class="help-section">
+                        <h2><i class="fas fa-book"></i> Courses</h2>
+                        <div class="help-articles">
+                            <article class="help-article">
+                                <h3>Enrolling in courses</h3>
+                                <p>Step-by-step guide to finding and joining courses</p>
+                                <button class="read-more">Read More</button>
+                            </article>
+                            <article class="help-article">
+                                <h3>Tracking your progress</h3>
+                                <p>How to monitor your learning journey and achievements</p>
+                                <button class="read-more">Read More</button>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- Technical Support Section -->
+                    <section class="help-section">
+                        <h2><i class="fas fa-tools"></i> Technical Support</h2>
+                        <div class="help-articles">
+                            <article class="help-article">
+                                <h3>System requirements</h3>
+                                <p>Check if your device meets our platform specifications</p>
+                                <button class="read-more">Read More</button>
+                            </article>
+                            <article class="help-article">
+                                <h3>Troubleshooting common issues</h3>
+                                <p>Solutions for frequent technical problems</p>
+                                <button class="read-more">Read More</button>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- Contact Support Card -->
+                    <div class="contact-support-card">
+                        <div class="contact-content">
+                            <i class="fas fa-headset"></i>
+                            <h3>Still need help?</h3>
+                            <p>Our support team is available 24/7 to assist you</p>
+                            <button class="contact-btn">Contact Support</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Help Article Modal (hidden by default) -->
+    <div class="modal" id="articleModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <h2 id="modalTitle"></h2>
+            <div class="modal-body" id="modalContent">
+                <!-- Content will be loaded here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="help-center.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIGHTLEARN - Logout</title>
+    <link rel="stylesheet" href="/Fronted/courses/style.css">
+    <link rel="stylesheet" href="logout.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Navigation -->
+        <nav class="left-nav">
+            <div class="nav-header">
+                <div class="logo-container">
+                    <img src="/Fronted/courses/BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="/Fronted/courses/index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>DASHBOARD</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Fronted/courses/courses.html">
+                        <i class="fas fa-book-open"></i>
+                        <span>COURSES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Fronted/courses/notifications.html">
+                        <i class="fas fa-bell"></i>
+                        <span>NOTIFICATIONS</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Fronted/courses/profile/profile.html">
+                        <i class="fas fa-user-cog"></i>
+                        <span>PROFILE</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="logout-container">
+                <a href="/Fronted/courses/auth/logout.html" class="logout-btn active">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>LOGOUT</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="top-icons">
+                    <div class="profile-dropdown">
+                        <i class="fas fa-user-circle profile-icon"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Logout Content -->
+            <div class="logout-content">
+                <div class="logout-card">
+                    <div class="logout-icon">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </div>
+                    <h2>Ready to Leave?</h2>
+                    <p>Are you sure you want to log out of your BRIGHTLEARN account?</p>
+                    
+                    <div class="logout-actions">
+                        <button class="logout-confirm-btn" id="confirmLogout">
+                            Yes, Log Out
+                        </button>
+                        <button class="logout-cancel-btn" id="cancelLogout">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="logout.js"></script>
+</body>
+</html>

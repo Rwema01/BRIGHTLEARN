@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIGHTLEARN - My Progress</title>
+    <link rel="stylesheet" href="progress.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Navigation -->
+        <nav class="left-nav">
+            <div class="nav-header">
+                <div class="logo-container">
+                    <img src="BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo" width="160" height="40">
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>DASHBOARD</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="courses.html">
+                        <i class="fas fa-book-open"></i>
+                        <span>COURSES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="history/history-log.html">
+                        <i class="fas fa-history"></i>
+                        <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="notifications.html">
+                        <i class="fas fa-bell"></i>
+                        <span>NOTIFICATIONS</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="my-progress.html" class="active">
+                        <i class="fas fa-chart-line"></i>
+                        <span>MY PROGRESS</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="logout-container">
+                <a href="auth/logout.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>LOGOUT</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="top-icons">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search progress..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    <div class="notification-icon-container">
+                        <i class="fas fa-bell notification-icon"></i>
+                        <span class="notification-badge">2</span>
+                    </div>
+                    <div class="profile-dropdown">
+                        <a href="profile/profile.html">
+                            <i class="fas fa-user-circle profile-icon"></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Progress Content -->
+            <div class="progress-container">
+                <!-- Progress Overview -->
+                <div class="progress-overview">
+                    <div class="section-header">
+                        <h1><i class="fas fa-chart-line"></i> My Learning Progress</h1>
+                        <div class="time-filter">
+                            <select class="filter-select">
+                                <option>Last 30 Days</option>
+                                <option selected>All Time</option>
+                                <option>Last 6 Months</option>
+                                <option>This Year</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-stats-grid">
+                        <!-- Overall Completion -->
+                        <div class="stat-card overall-completion">
+                            <div class="stat-header">
+                                <i class="fas fa-trophy"></i>
+                                <h3>Overall Completion</h3>
+                            </div>
+                            <div class="circular-progress" data-progress="72">
+                                <svg class="progress-ring" width="120" height="120">
+                                    <circle class="progress-ring-circle" stroke-width="10" fill="transparent" r="52" cx="60" cy="60"/>
+                                </svg>
+                                <div class="progress-value">72%</div>
+                            </div>
+                            <p class="stat-comparison">+8% from last month</p>
+                        </div>
+                        
+                        <!-- Courses Completed -->
+                        <div class="stat-card courses-completed">
+                            <div class="stat-header">
+                                <i class="fas fa-check-circle"></i>
+                                <h3>Courses Completed</h3>
+                            </div>
+                            <div class="stat-value">5</div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 42%"></div>
+                                </div>
+                                <span>42% of your goals</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Active Courses -->
+                        <div class="stat-card active-courses">
+                            <div class="stat-header">
+                                <i class="fas fa-book-open"></i>
+                                <h3>Active Courses</h3>
+                            </div>
+                            <div class="stat-value">3</div>
+                            <div class="course-tags">
+                                <span class="course-tag math">Math</span>
+                                <span class="course-tag english">English</span>
+                                <span class="course-tag science">Science</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Time Spent -->
+                        <div class="stat-card time-spent">
+                            <div class="stat-header">
+                                <i class="fas fa-clock"></i>
+                                <h3>Time Spent</h3>
+                            </div>
+                            <div class="stat-value">36h 45m</div>
+                            <div class="time-distribution">
+                                <div class="time-category">
+                                    <span class="time-label">Learning</span>
+                                    <span class="time-hours">24h 12m</span>
+                                </div>
+                                <div class="time-category">
+                                    <span class="time-label">Practicing</span>
+                                    <span class="time-hours">9h 30m</span>
+                                </div>
+                                <div class="time-category">
+                                    <span class="time-label">Assessments</span>
+                                    <span class="time-hours">3h 03m</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Course Progress -->
+                <div class="course-progress-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-book"></i> Course Progress</h2>
+                        <a href="courses.html" class="view-all-courses">View All Courses</a>
+                    </div>
+                    
+                    <div class="course-progress-grid">
+                        <!-- Math Progress -->
+                        <div class="course-progress-card math">
+                            <div class="course-header">
+                                <div class="course-icon">
+                                    <i class="fas fa-square-root-alt"></i>
+                                </div>
+                                <h3>Mathematics</h3>
+                                <span class="completion-percent">69%</span>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 69%"></div>
+                                </div>
+                            </div>
+                            <div class="course-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Lessons Completed</span>
+                                    <span class="stat-value">12/20</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Average Score</span>
+                                    <span class="stat-value">82%</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Last Active</span>
+                                    <span class="stat-value">2 days ago</span>
+                                </div>
+                            </div>
+                            <div class="course-actions">
+                                <a href="Math/math.html" class="continue-btn">Continue Learning</a>
+                                <a href="Math/math.html#syllabus" class="view-syllabus">View Syllabus</a>
+                            </div>
+                        </div>
+                        
+                        <!-- English Progress -->
+                        <div class="course-progress-card english">
+                            <div class="course-header">
+                                <div class="course-icon">
+                                    <i class="fas fa-pen-fancy"></i>
+                                </div>
+                                <h3>English Literature</h3>
+                                <span class="completion-percent">42%</span>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 42%"></div>
+                                </div>
+                            </div>
+                            <div class="course-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Lessons Completed</span>
+                                    <span class="stat-value">8/18</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Average Score</span>
+                                    <span class="stat-value">78%</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Last Active</span>
+                                    <span class="stat-value">1 week ago</span>
+                                </div>
+                            </div>
+                            <div class="course-actions">
+                                <a href="english/english.html" class="continue-btn">Continue Learning</a>
+                                <a href="english/english.html#syllabus" class="view-syllabus">View Syllabus</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Learning Activity -->
+                <div class="learning-activity-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-calendar-alt"></i> Learning Activity</h2>
+                        <div class="activity-filter">
+                            <button class="filter-btn active">Daily</button>
+                            <button class="filter-btn">Weekly</button>
+                            <button class="filter-btn">Monthly</button>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-calendar">
+                        <div class="calendar-placeholder">
+                            <p>Your learning activity calendar will appear here</p>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-streak">
+                        <div class="streak-count">
+                            <i class="fas fa-fire"></i>
+                            <span>7 day streak</span>
+                        </div>
+                        <p>Keep it up! Learning consistently leads to better retention.</p>
+                    </div>
+                </div>
+                
+                <!-- Achievements -->
+                <div class="achievements-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-award"></i> Achievements</h2>
+                        <a href="#" class="view-all-achievements">View All</a>
+                    </div>
+                    
+                    <div class="achievements-grid">
+                        <div class="achievement-card">
+                            <div class="achievement-icon gold">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <h4>Math Whiz</h4>
+                            <p>Scored 90% or higher on 5 math quizzes</p>
+                            <span class="achievement-date">Earned: Jun 15, 2023</span>
+                        </div>
+                        
+                        <div class="achievement-card">
+                            <div class="achievement-icon silver">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <h4>Bookworm</h4>
+                            <p>Completed 10 literature reading assignments</p>
+                            <span class="achievement-date">Earned: May 28, 2023</span>
+                        </div>
+                        
+                        <div class="achievement-card">
+                            <div class="achievement-icon bronze">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h4>Quick Learner</h4>
+                            <p>Completed a course module in one sitting</p>
+                            <span class="achievement-date">Earned: May 10, 2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="progress.js"></script>
+</body>
+</html>

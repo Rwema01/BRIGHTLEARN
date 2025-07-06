@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIGHTLEARN - Profile Settings</title>
+    <link rel="stylesheet" href="/Fronted/courses/profile/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Navigation -->
+        <nav class="top-nav">
+            <div class="logo-container">
+                <img src="/Fronted/courses/BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo-img">
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="/Fronted/courses/index.html">Dashboard</a></li>
+                <li><a href="/Fronted/courses/courses.html">Courses</a></li>
+                <li><a href="/Fronted/courses/history/history-log.html">History</a></li>
+                <li><a href="/Fronted/courses/notifications.html">Notifications</a></li>
+                <li><a href="/Fronted/courses/profile/profile.html" class="active">Profile</a></li>
+            </ul>
+            
+            <div class="user-controls">
+                <i class="fas fa-bell notification-icon"></i>
+                <i class="fas fa-user-circle profile-icon"></i>
+            </div>
+        </nav>
+
+        <!-- Settings Content -->
+        <div class="settings-container">
+            <aside class="settings-sidebar">
+                <ul class="settings-menu">
+                    <li class="active"><i class="fas fa-user"></i> Personal Information</li>
+                    <li><i class="fas fa-cog"></i> Account Settings</li>
+                    <li><i class="fas fa-lock"></i> Privacy</li>
+                    <li><i class="fas fa-bell"></i> Notifications</li>
+                    <li><i class="fas fa-credit-card"></i> Billing</li>
+                </ul>
+            </aside>
+
+            <main class="settings-main">
+                <section class="settings-section">
+                    <h2 class="section-title">Personal Information</h2>
+                    
+                    <form class="profile-form">
+                        <div class="form-group">
+                            <label>Profile Picture</label>
+                            <div class="file-upload">
+                                <input type="file" id="profile-photo" accept="image/*">
+                                <label for="profile-photo" class="file-label">Choose File</label>
+                                <button type="button" class="btn btn-primary">Change Photo</button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="full-name">Full Name</label>
+                            <input type="text" id="full-name" value="John Doe">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" value="john.doe@example.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bio">Bio</label>
+                            <textarea id="bio" rows="4">Mathematics enthusiast and lifelong learner</textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <script src="profile.js"></script>
+</body>
+</html>
