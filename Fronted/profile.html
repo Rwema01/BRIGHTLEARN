@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- Left Navigation -->
+        <!-- Left Navigation (Unchanged) -->
         <nav class="left-nav">
             <div class="nav-header">
                 <div class="logo-container">
@@ -45,7 +45,7 @@
             </ul>
             
             <div class="logout-container">
-                <a href="login.html" class="logout-btn" id="logout-btn">
+                <a href="logout.html" class="logout-btn">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>LOGOUT</span>
                 </a>
@@ -54,7 +54,7 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Top Bar -->
+            <!-- Top Bar (Unchanged) -->
             <header class="top-bar">
                 <div class="top-icons">
                     <div class="search-container">
@@ -89,52 +89,156 @@
                 </div>
             </header>
 
-            <!-- Profile Content -->
+            <!-- Enhanced Profile Content -->
             <div class="dashboard-content">
+                <div class="breadcrumbs">
+                    <a href="index.html">Home</a> > <a href="profile.html">Profile</a>
                 <div class="welcome-section">
                     <h1>My Profile</h1>
-                    <p>Manage your personal information</p>
+                    <p>Manage your personal information and account settings</p>
                 </div>
 
                 <div class="content-section profile-section">
+                    <!-- Profile Card with Edit Mode -->
                     <div class="profile-card">
                         <div class="profile-header">
                             <img src="default-profile.jpg" alt="Profile" class="profile-pic-large">
-                            <button class="edit-btn">Edit Picture</button>
+                            <div class="picture-actions">
+                                <button class="edit-btn" id="edit-picture-btn">
+                                    <i class="fas fa-camera"></i> Change Picture
+                                </button>
+                                <input type="file" id="profile-picture-upload" accept="image/*" style="display: none;">
+                            </div>
                         </div>
-                        <div class="profile-details">
-                            <div class="detail-row">
-                                <span class="detail-label">Full Name:</span>
-                                <span class="detail-value">Jordan Barker</span>
+                        
+                        <div class="profile-details" id="profile-details">
+                            <!-- View Mode -->
+                            <div class="detail-view-mode">
+                                <div class="detail-row">
+                                    <span class="detail-label">Full Name:</span>
+                                    <span class="detail-value" id="display-name">Jordan Barker</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Email:</span>
+                                    <span class="detail-value" id="display-email">john.barker@example.com</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Bio:</span>
+                                    <span class="detail-value" id="display-bio">Mathematics enthusiast and lifelong learner</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Member Since:</span>
+                                    <span class="detail-value">January 2023</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">Account Type:</span>
+                                    <span class="detail-value">Student</span>
+                                </div>
                             </div>
-                            <div class="detail-row">
-                                <span class="detail-label">Email:</span>
-                                <span class="detail-value">john.barker@example.com</span>
-                            </div>
-                            <div class="detail-row">
-                                <span class="detail-label">Member Since:</span>
-                                <span class="detail-value">January 2023</span>
-                            </div>
-                            <div class="detail-row">
-                                <span class="detail-label">Account Type:</span>
-                                <span class="detail-value">Student</span>
+                            
+                            <!-- Edit Mode (Hidden by default) -->
+                            <form class="detail-edit-mode" id="profile-edit-form" style="display: none;">
+                                <div class="detail-row">
+                                    <label class="detail-label">Full Name:</label>
+                                    <input type="text" class="detail-input" id="edit-name" value="Jordan Barker">
+                                </div>
+                                <div class="detail-row">
+                                    <label class="detail-label">Email:</label>
+                                    <input type="email" class="detail-input" id="edit-email" value="john.barker@example.com">
+                                </div>
+                                <div class="detail-row">
+                                    <label class="detail-label">Bio:</label>
+                                    <textarea class="detail-input" id="edit-bio" rows="3">Mathematics enthusiast and lifelong learner</textarea>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" class="action-btn secondary" id="cancel-edit-btn">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="action-btn primary">
+                                        Save Changes
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Enhanced Profile Actions -->
+                    <div class="profile-actions">
+                        <button class="action-btn primary" id="edit-profile-btn">
+                            <i class="fas fa-pencil-alt"></i> Edit Profile
+                        </button>
+                        <div class="action-dropdown">
+                            <button class="action-btn secondary dropdown-toggle">
+                                <i class="fas fa-cog"></i> More Actions <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-item" id="change-password-btn">
+                                    <i class="fas fa-lock"></i> Change Password
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    <i class="fas fa-shield-alt"></i> Privacy Settings
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    <i class="fas fa-bell"></i> Notification Preferences
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    <i class="fas fa-credit-card"></i> Billing Information
+                                </a>
+                                <a href="#" class="dropdown-item">
+                                    <i class="fas fa-share-alt"></i> Social Connections
+                                </a>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="profile-actions">
-                        <button class="action-btn primary">
-                            <i class="fas fa-pencil-alt"></i> Edit Profile
-                        </button>
-                        <button class="action-btn secondary">
-                            <i class="fas fa-lock"></i> Change Password
-                        </button>
+                    <!-- Additional Security Section -->
+                    <div class="profile-security-section">
+                        <h3><i class="fas fa-shield-alt"></i> Security</h3>
+                        <div class="security-item">
+                            <span>Password</span>
+                            <span>Last changed 3 months ago</span>
+                            <button class="security-action-btn" id="change-password-btn-2">
+                                Change
+                            </button>
+                        </div>
+                        <div class="security-item">
+                            <span>Two-Factor Authentication</span>
+                            <span class="status-off">Off</span>
+                            <button class="security-action-btn">
+                                Enable
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </main>
     </div>
 
+    <!-- Modal for Password Change -->
+    <div class="modal" id="password-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Change Password</h2>
+            <form id="password-change-form">
+                <div class="form-group">
+                    <label for="current-password">Current Password</label>
+                    <input type="password" id="current-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-password">New Password</label>
+                    <input type="password" id="new-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm New Password</label>
+                    <input type="password" id="confirm-password" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="action-btn secondary close-modal-btn">Cancel</button>
+                    <button type="submit" class="action-btn primary">Update Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
