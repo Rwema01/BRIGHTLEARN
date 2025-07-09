@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BRIGHTLEARN - Courses</title>
-    <link rel="stylesheet" href="style.css"> <!-- Changed from courses.css to style.css for consistency -->
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="app-container">
-        <!-- Left Navigation (EXACT match from index.html) -->
+        <!-- Left Navigation -->
         <nav class="left-nav">
             <div class="nav-header">
                 <div class="logo-container">
@@ -25,7 +25,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="courses.html" class="active"> <!-- Active class added -->
+                    <a href="courses.html" class="active">
                         <i class="fas fa-book-open"></i>
                         <span>COURSES</span>
                     </a>
@@ -44,7 +44,6 @@
                 </li>
             </ul>
             
-            <!-- Separated Logout Container -->
             <div class="logout-container">
                 <a href="logout.html" class="logout-btn">
                     <i class="fas fa-sign-out-alt"></i>
@@ -55,7 +54,7 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Top Bar (EXACT match from index.html) -->
+            <!-- Top Bar -->
             <header class="top-bar">
                 <div class="top-icons">
                     <div class="search-container">
@@ -63,7 +62,6 @@
                         <i class="fas fa-search search-icon"></i>
                     </div>
                     
-                    <!-- Notification Dropdown -->
                     <div class="notification-dropdown">
                         <i class="fas fa-bell notification-icon"></i>
                         <span class="notification-badge">3</span>
@@ -121,7 +119,7 @@
                 </div>
             </header>
 
-            <!-- Courses-Specific Content (Your existing content preserved exactly) -->
+            <!-- Courses-Specific Content -->
             <div class="dashboard-content">
                 <!-- Welcome Section -->
                 <div class="welcome-section">
@@ -131,16 +129,19 @@
                     <h1><i class="fas fa-book-open"></i> ALL <span class="student-name">COURSES</span></h1>
                 </div>
                 
-                <!-- Quick Access Toolbar -->
+                <!-- Quick Access Toolbar - UPDATED with Instructor link -->
                 <div class="quick-access">
                     <a href="progress.html" class="quick-link">
                         <i class="fas fa-chart-line"></i> My Progress
                     </a>
+                    <a href="teacher.html" class="quick-link">
+                        <i class="fas fa-chalkboard-teacher"></i> Instructors
+                    </a>
+                    <a href="resources.html" class="quick-link">
+                        <i class="fas fa-book"></i> Resources
+                    </a>
                     <a href="certificates.html" class="quick-link">
                         <i class="fas fa-award"></i> Certificates
-                    </a>
-                    <a href="recommendations.html" class="quick-link">
-                        <i class="fas fa-lightbulb"></i> Recommendations
                     </a>
                 </div>
 
@@ -179,6 +180,7 @@
                                     <div class="dropdown-content">
                                         <a href="math.html"><i class="fas fa-list-ol"></i> Syllabus</a>
                                         <a href="resources.html"><i class="fas fa-book"></i> Resources</a>
+                                        <a href="instructors.html?course=math"><i class="fas fa-chalkboard-teacher"></i> Instructor</a>
                                     </div>
                                 </div>
                             </div>
@@ -212,6 +214,7 @@
                                     <div class="dropdown-content">
                                         <a href="english.html#syllabus"><i class="fas fa-list-ol"></i> Syllabus</a>
                                         <a href="resources.html"><i class="fas fa-book"></i> Resources</a>
+                                        <a href="instructors.html?course=english"><i class="fas fa-chalkboard-teacher"></i> Instructor</a>
                                     </div>
                                 </div>
                             </div>
@@ -246,6 +249,7 @@
                                     <div class="dropdown-content">
                                         <a href="history.html#syllabus"><i class="fas fa-list-ol"></i> Syllabus</a>
                                         <a href="resources.html"><i class="fas fa-book"></i> Resources</a>
+                                        <a href="instructors.html?course=history"><i class="fas fa-chalkboard-teacher"></i> Instructor</a>
                                     </div>
                                 </div>
                             </div>
