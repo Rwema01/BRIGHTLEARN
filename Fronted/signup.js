@@ -97,14 +97,34 @@ function registerUser() {
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
     btn.disabled = true;
 
-    // Simulate API call
-    setTimeout(() => {
-        // In a real app, you would send data to your backend here
-        console.log('Registration successful!');
-        
-        // Redirect to login page after 1.5 seconds
-        setTimeout(() => {
-            window.location.href = 'login.html';
-        }, 1500);
-    }, 2000);
+    const formData = {
+        fullName: document.getElementById('fullName').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        password: document.getElementById('password').value
+    };
+
+    fetch('/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            showError('emailError', data.error);
+            btn.innerHTML = '<span>Register</span><i class="fas fa-arrow-right"></i>';
+            btn.disabled = false;
+        } else {
+            console.log('Registration successful!');
+            window.location.href = data.redirectUrl || 'login.html';
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showError('emailError', 'Registration failed. Please try again.');
+        btn.innerHTML = '<span>Register</span><i class="fas fa-arrow-right"></i>';
+        btn.disabled = false;
+    });
 }
