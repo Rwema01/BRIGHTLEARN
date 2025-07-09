@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIGHTLEARN - Recommendations</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Navigation -->
+        <nav class="left-nav">
+            <div class="nav-header">
+                <div class="logo-container">
+                    <img src="BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>DASHBOARD</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="courses.html">
+                        <i class="fas fa-book-open"></i>
+                        <span>COURSES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="history.html">
+                        <i class="fas fa-history"></i>
+                        <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="help.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span>HELP</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- Separated Logout Container -->
+            <div class="logout-container">
+                <a href="logout.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>LOGOUT</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="top-icons">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <!-- Updated Notification Dropdown -->
+                    <div class="notification-dropdown">
+                        <i class="fas fa-bell notification-icon"></i>
+                        <span class="notification-badge">3</span> <!-- Badge for unread count -->
+                        <div class="dropdown-content">
+                            <div class="notification-header">
+                                <h4>Notifications</h4>
+                                <button class="mark-all-read">Mark all as read</button>
+                            </div>
+                            <div class="notification-list">
+                                <div class="notification-item unread">
+                                    <div class="notification-icon"><i class="fas fa-book"></i></div>
+                                    <div class="notification-content">
+                                        <p>New assignment posted in Algebra II</p>
+                                        <span class="notification-time">2 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-icon"><i class="fas fa-check-circle"></i></div>
+                                    <div class="notification-content">
+                                        <p>Your submission for Essay Writing was graded</p>
+                                        <span class="notification-time">1 day ago</span>
+                                    </div>
+                                </div>
+                                <!-- More notifications here -->
+                            </div>
+                            <a href="#" class="view-all">View All Notifications</a>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-dropdown">
+                        <i class="fas fa-user-circle profile-icon"></i>
+                        <div class="dropdown-content">
+                            <div class="profile-header">
+                                <img src="default-profile.jpg" alt="Profile" class="profile-pic">
+                                <div class="profile-info">
+                                    <h4>Jordan Barker</h4>
+                                    <p>Student</p>
+                                </div>
+                            </div>
+                            <div class="profile-stats">
+                                <div class="stat-item">
+                                    <span>Courses</span>
+                                    <span>5</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span>Completed</span>
+                                    <span>32%</span>
+                                </div>
+                            </div>
+                            <div class="dropdown-links">
+                                <a href="profile.html" class="profile-link"><i class="fas fa-user"></i> View Profile</a>
+                                <a href="settings.html" class="profile-link"><i class="fas fa-cog"></i> Settings</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Recommendations Content -->
+            <div class="recommendations-container">
+                <div class="breadcrumbs">
+                    <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="recommendations.html">Recommendations</a>
+                <div class="recommendations-header">
+                    <h1><i class="fas fa-lightbulb"></i> Personalized Recommendations</h1>
+                    <div class="refresh-recommendations">
+                        <button class="refresh-btn">
+                            <i class="fas fa-sync-alt"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recommendation Filters -->
+                <div class="recommendation-filters">
+                    <div class="filter-tabs">
+                        <button class="filter-tab active" data-category="all">All</button>
+                        <button class="filter-tab" data-category="courses">Courses</button>
+                        <button class="filter-tab" data-category="resources">Resources</button>
+                        <button class="filter-tab" data-category="career">Career Paths</button>
+                    </div>
+                    <div class="sort-options">
+                        <label for="sort-by">Sort by:</label>
+                        <select id="sort-by" class="sort-select">
+                            <option value="relevance">Relevance</option>
+                            <option value="popularity">Popularity</option>
+                            <option value="difficulty">Difficulty</option>
+                            <option value="newest">Newest</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Recommendations Grid -->
+                <div class="recommendations-grid">
+                    <!-- Course Recommendation 1 -->
+                    <div class="recommendation-card course" data-difficulty="intermediate" data-popularity="high">
+                        <div class="recommendation-badge">BEST MATCH</div>
+                        <div class="recommendation-image">
+                            <img src="images/advanced-math.jpg" alt="Advanced Mathematics">
+                            <div class="course-category math">Mathematics</div>
+                        </div>
+                        <div class="recommendation-content">
+                            <h3>Advanced Calculus</h3>
+                            <p class="recommendation-description">Based on your excellent performance in basic calculus, we recommend this advanced course to challenge your skills.</p>
+                            <div class="recommendation-meta">
+                                <span class="difficulty">
+                                    <i class="fas fa-chart-line"></i> Intermediate
+                                </span>
+                                <span class="duration">
+                                    <i class="far fa-clock"></i> 6 weeks
+                                </span>
+                            </div>
+                            <div class="recommendation-actions">
+                                <button class="action-btn preview-btn">
+                                    <i class="far fa-eye"></i> Preview
+                                </button>
+                                <button class="action-btn enroll-btn">
+                                    <i class="fas fa-plus"></i> Enroll
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resource Recommendation -->
+                    <div class="recommendation-card resource" data-difficulty="beginner" data-popularity="medium">
+                        <div class="recommendation-image">
+                            <img src="images/writing-guide.jpg" alt="Academic Writing Guide">
+                            <div class="resource-type">
+                                <i class="fas fa-book"></i> Study Guide
+                            </div>
+                        </div>
+                        <div class="recommendation-content">
+                            <h3>Academic Writing Mastery</h3>
+                            <p class="recommendation-description">Improve your essay writing skills with this comprehensive guide recommended based on your English course progress.</p>
+                            <div class="recommendation-meta">
+                                <span class="author">
+                                    <i class="fas fa-user-edit"></i> Prof. Sarah Johnson
+                                </span>
+                                <span class="pages">
+                                    <i class="fas fa-file-alt"></i> 85 pages
+                                </span>
+                            </div>
+                            <div class="recommendation-actions">
+                                <button class="action-btn view-btn">
+                                    <i class="fas fa-book-open"></i> View
+                                </button>
+                                <button class="action-btn download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Career Path Recommendation -->
+                    <div class="recommendation-card career" data-difficulty="advanced" data-popularity="high">
+                        <div class="recommendation-image">
+                            <img src="images/data-science.jpg" alt="Data Science Career">
+                            <div class="career-field">
+                                <i class="fas fa-briefcase"></i> Career Path
+                            </div>
+                        </div>
+                        <div class="recommendation-content">
+                            <h3>Data Science Specialist</h3>
+                            <p class="recommendation-description">Your strong math and analytical skills make you an excellent candidate for a career in data science.</p>
+                            <div class="recommendation-meta">
+                                <span class="salary">
+                                    <i class="fas fa-dollar-sign"></i> $95K average salary
+                                </span>
+                                <span class="growth">
+                                    <i class="fas fa-seedling"></i> 22% growth
+                                </span>
+                            </div>
+                            <div class="recommendation-actions">
+                                <button class="action-btn explore-btn">
+                                    <i class="fas fa-compass"></i> Explore
+                                </button>
+                                <button class="action-btn save-btn">
+                                    <i class="far fa-bookmark"></i> Save
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course Recommendation 2 -->
+                    <div class="recommendation-card course" data-difficulty="beginner" data-popularity="medium">
+                        <div class="recommendation-image">
+                            <img src="images/intro-ai.jpg" alt="Introduction to AI">
+                            <div class="course-category science">Computer Science</div>
+                        </div>
+                        <div class="recommendation-content">
+                            <h3>Introduction to Artificial Intelligence</h3>
+                            <p class="recommendation-description">Based on your interest in technology, start your AI journey with this beginner-friendly course.</p>
+                            <div class="recommendation-meta">
+                                <span class="difficulty">
+                                    <i class="fas fa-chart-line"></i> Beginner
+                                </span>
+                                <span class="duration">
+                                    <i class="far fa-clock"></i> 4 weeks
+                                </span>
+                            </div>
+                            <div class="recommendation-actions">
+                                <button class="action-btn preview-btn">
+                                    <i class="far fa-eye"></i> Preview
+                                </button>
+                                <button class="action-btn enroll-btn">
+                                    <i class="fas fa-plus"></i> Enroll
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resource Recommendation 2 -->
+                    <div class="recommendation-card resource" data-difficulty="advanced" data-popularity="low">
+                        <div class="recommendation-image">
+                            <img src="images/research-paper.jpg" alt="Advanced Research Paper">
+                            <div class="resource-type">
+                                <i class="fas fa-file-pdf"></i> Research Paper
+                            </div>
+                        </div>
+                        <div class="recommendation-content">
+                            <h3>Advanced Mathematical Models</h3>
+                            <p class="recommendation-description">Recommended reading based on your calculus performance and interest in theoretical mathematics.</p>
+                            <div class="recommendation-meta">
+                                <span class="author">
+                                    <i class="fas fa-user-edit"></i> Dr. Robert Chen
+                                </span>
+                                <span class="pages">
+                                    <i class="fas fa-file-alt"></i> 32 pages
+                                </span>
+                            </div>
+                            <div class="recommendation-actions">
+                                <button class="action-btn view-btn">
+                                    <i class="fas fa-book-open"></i> View
+                                </button>
+                                <button class="action-btn download-btn">
+                                    <i class="fas fa-download"></i> Download
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Career Path Recommendation 2 -->
+                    <div class="recommendation-card career" data-difficulty="intermediate" data-popularity="medium">
+                        <div class="recommendation-image">
+                            <img src="images/financial-analyst.jpg" alt="Financial Analyst Career">
+                            <div class="career-field">
+                                <i class="fas fa-briefcase"></i> Career Path
+                            </div>
+                        </div>
+                        <div class="recommendation-content">
+                            <h3>Financial Analyst</h3>
+                            <p class="recommendation-description">Your strong quantitative skills and interest in economics suggest this would be a good career fit.</p>
+                            <div class="recommendation-meta">
+                                <span class="salary">
+                                    <i class="fas fa-dollar-sign"></i> $82K average salary
+                                </span>
+                                <span class="growth">
+                                    <i class="fas fa-seedling"></i> 15% growth
+                                </span>
+                            </div>
+                            <div class="recommendation-actions">
+                                <button class="action-btn explore-btn">
+                                    <i class="fas fa-compass"></i> Explore
+                                </button>
+                                <button class="action-btn save-btn">
+                                    <i class="far fa-bookmark"></i> Save
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recommendations Footer -->
+                <div class="recommendations-footer">
+                    <p>Recommendations are personalized based on your learning history, performance, and interests.</p>
+                    <button class="feedback-btn">
+                        <i class="far fa-comment-alt"></i> Provide Feedback
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="recommendations.js"></script>
+</body>
+</html>
