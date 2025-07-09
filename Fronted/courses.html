@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrightLearn - Courses</title>
-    <link rel="stylesheet" href="style.css">
+    <title>BRIGHTLEARN - Courses</title>
+    <link rel="stylesheet" href="style.css"> <!-- Changed from courses.css to style.css for consistency -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="app-container">
-        <!-- Left Navigation -->
+        <!-- Left Navigation (EXACT match from index.html) -->
         <nav class="left-nav">
             <div class="nav-header">
                 <div class="logo-container">
@@ -25,7 +25,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="courses.html" class="active">
+                    <a href="courses.html" class="active"> <!-- Active class added -->
                         <i class="fas fa-book-open"></i>
                         <span>COURSES</span>
                     </a>
@@ -44,8 +44,9 @@
                 </li>
             </ul>
             
+            <!-- Separated Logout Container -->
             <div class="logout-container">
-                <a href="login.html" class="logout-btn">
+                <a href="logout.html" class="logout-btn">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>LOGOUT</span>
                 </a>
@@ -54,7 +55,7 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Top Bar -->
+            <!-- Top Bar (EXACT match from index.html) -->
             <header class="top-bar">
                 <div class="top-icons">
                     <div class="search-container">
@@ -62,6 +63,7 @@
                         <i class="fas fa-search search-icon"></i>
                     </div>
                     
+                    <!-- Notification Dropdown -->
                     <div class="notification-dropdown">
                         <i class="fas fa-bell notification-icon"></i>
                         <span class="notification-badge">3</span>
@@ -103,11 +105,11 @@
                             <div class="profile-stats">
                                 <div class="stat-item">
                                     <span>Courses</span>
-                                    <span>3</span>
+                                    <span>5</span>
                                 </div>
                                 <div class="stat-item">
                                     <span>Completed</span>
-                                    <span>48%</span>
+                                    <span>32%</span>
                                 </div>
                             </div>
                             <div class="dropdown-links">
@@ -119,73 +121,227 @@
                 </div>
             </header>
 
-            <!-- Courses Content -->
+            <!-- Courses-Specific Content (Your existing content preserved exactly) -->
             <div class="dashboard-content">
+                <!-- Welcome Section -->
                 <div class="welcome-section">
-                    <h1>Your <span class="student-name">Courses</span></h1>
-                    <p>Continue your learning journey</p>
+                    <div class="breadcrumbs">
+                        <a href="index.html">Home</a> > <a href="courses.html">Courses</a>
+                    </div>
+                    <h1><i class="fas fa-book-open"></i> ALL <span class="student-name">COURSES</span></h1>
+                </div>
+                
+                <!-- Quick Access Toolbar -->
+                <div class="quick-access">
+                    <a href="progress.html" class="quick-link">
+                        <i class="fas fa-chart-line"></i> My Progress
+                    </a>
+                    <a href="certificates.html" class="quick-link">
+                        <i class="fas fa-award"></i> Certificates
+                    </a>
+                    <a href="recommendations.html" class="quick-link">
+                        <i class="fas fa-lightbulb"></i> Recommendations
+                    </a>
                 </div>
 
                 <!-- All Courses Section -->
                 <div class="content-section">
-                    <div class="all-courses">
-                        <h3>AVAILABLE COURSES</h3>
-                        
-                        <div class="course-grid">
-                            <!-- Math Course -->
-                            <div class="course-card math">
-                                <div class="course-icon">🧮</div>
-                                <h4>Mathematics</h4>
+                    <h3>COURSES</h3>
+                    
+                    <!-- Course Cards Grid -->
+                    <div class="course-cards-grid">
+                        <!-- Math Card -->
+                        <div class="course-card math">
+                            <div class="course-badge">Most Popular</div>
+                            <div class="course-icon">
+                                <i class="fas fa-square-root-alt"></i>
+                            </div>
+                            <div class="course-details">
+                                <h3>MATHEMATICS</h3>
                                 <p class="course-description">Master algebra, geometry, and advanced math concepts</p>
                                 <div class="progress-container">
                                     <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 69%;"></div>
+                                        <div class="progress-fill" style="width: 69%"></div>
                                     </div>
                                     <span>69% Complete</span>
                                 </div>
                                 <div class="course-stats">
-                                    <span><i class="fas fa-book"></i> 24 Lessons</span>
-                                    <span><i class="fas fa-star"></i> 4.8/5</span>
+                                    <span><i class="fas fa-check-circle"></i> 12/20 Lessons</span>
+                                    <span><i class="fas fa-star"></i> 82% Avg</span>
                                 </div>
-                                <button class="course-btn">Continue</button>
                             </div>
-                            
-                            <!-- English Course -->
-                            <div class="course-card english">
-                                <div class="course-icon">🖊️</div>
-                                <h4>English</h4>
+                            <div class="course-actions">
+                                <a href="math.html" class="course-button continue-btn">
+                                    <i class="fas fa-arrow-right"></i> Continue
+                                </a>
+                                <div class="dropdown">
+                                    <button class="dropdown-btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown-content">
+                                        <a href="math.html"><i class="fas fa-list-ol"></i> Syllabus</a>
+                                        <a href="resources.html"><i class="fas fa-book"></i> Resources</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- English Card -->
+                        <div class="course-card english">
+                            <div class="course-icon">
+                                <i class="fas fa-pen-fancy"></i>
+                            </div>
+                            <div class="course-details">
+                                <h3>ENGLISH</h3>
                                 <p class="course-description">Improve grammar, vocabulary, and writing skills</p>
                                 <div class="progress-container">
                                     <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 42%;"></div>
+                                        <div class="progress-fill" style="width: 42%"></div>
                                     </div>
                                     <span>42% Complete</span>
                                 </div>
                                 <div class="course-stats">
-                                    <span><i class="fas fa-book"></i> 18 Lessons</span>
-                                    <span><i class="fas fa-star"></i> 4.6/5</span>
+                                    <span><i class="fas fa-check-circle"></i> 8/18 Lessons</span>
+                                    <span><i class="fas fa-star"></i> 78% Avg</span>
                                 </div>
-                                <button class="course-btn">Continue</button>
                             </div>
-                            
-                            <!-- History Course -->
-                            <div class="course-card history">
-                                <div class="course-icon">🏛️</div>
-                                <h4>History</h4>
+                            <div class="course-actions">
+                                <a href="resources.html" class="course-button continue-btn">
+                                    <i class="fas fa-arrow-right"></i> Continue
+                                </a>
+                                <div class="dropdown">
+                                    <button class="dropdown-btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown-content">
+                                        <a href="english.html#syllabus"><i class="fas fa-list-ol"></i> Syllabus</a>
+                                        <a href="resources.html"><i class="fas fa-book"></i> Resources</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- History Card -->
+                        <div class="course-card history">
+                            <div class="course-badge">New</div>
+                            <div class="course-icon">
+                                <i class="fas fa-landmark"></i>
+                            </div>
+                            <div class="course-details">
+                                <h3>HISTORY</h3>
                                 <p class="course-description">Explore world history from ancient to modern times</p>
                                 <div class="progress-container">
                                     <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 32%;"></div>
+                                        <div class="progress-fill" style="width: 32%"></div>
                                     </div>
                                     <span>32% Complete</span>
                                 </div>
                                 <div class="course-stats">
-                                    <span><i class="fas fa-book"></i> 16 Lessons</span>
-                                    <span><i class="fas fa-star"></i> 4.7/5</span>
+                                    <span><i class="fas fa-check-circle"></i> 5/15 Lessons</span>
+                                    <span><i class="fas fa-star"></i> 91% Avg</span>
                                 </div>
-                                <button class="course-btn">Continue</button>
+                            </div>
+                            <div class="course-actions">
+                                <a href="history.html" class="course-button continue-btn">
+                                    <i class="fas fa-arrow-right"></i> Continue
+                                </a>
+                                <div class="dropdown">
+                                    <button class="dropdown-btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown-content">
+                                        <a href="history.html#syllabus"><i class="fas fa-list-ol"></i> Syllabus</a>
+                                        <a href="resources.html"><i class="fas fa-book"></i> Resources</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Two-column layout for Recent Activity and Deadlines -->
+                <div class="two-column-layout">
+                    <!-- Recent Activity Section -->
+                    <div class="recent-activity">
+                        <div class="section-header">
+                            <h2><i class="fas fa-history"></i> Recent Activity</h2>
+                            <a href="activity-log.html" class="view-all">View Full Log</a>
+                        </div>
+                        
+                        <ul class="activity-list">
+                            <li class="activity-item">
+                                <a href="algebra-quiz.html" class="activity-link">
+                                    <div class="activity-date">
+                                        <span class="day">20</span>
+                                        <span class="month">Jun</span>
+                                    </div>
+                                    <div class="activity-content">
+                                        <h4>Algebra Quiz</h4>
+                                        <p>Chapter 2: Quadratic Equations</p>
+                                        <div class="activity-meta">
+                                            <span class="score passed">82%</span>
+                                            <span class="review-link">Click to review</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            
+                            <li class="activity-item">
+                                <a href="writing-exercise.html" class="activity-link">
+                                    <div class="activity-date">
+                                        <span class="day">18</span>
+                                        <span class="month">Jun</span>
+                                    </div>
+                                    <div class="activity-content">
+                                        <h4>Essay Writing</h4>
+                                        <p>Argumentative Essay Practice</p>
+                                        <div class="activity-meta">
+                                            <span class="score passed">78%</span>
+                                            <span class="review-link">Click to review</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            
+                            <li class="activity-item">
+                                <a href="ancient-civ-lesson.html" class="activity-link">
+                                    <div class="activity-date">
+                                        <span class="day">15</span>
+                                        <span class="month">Jun</span>
+                                    </div>
+                                    <div class="activity-content">
+                                        <h4>Ancient Civilizations</h4>
+                                        <p>Egyptian Pharaohs Lesson</p>
+                                        <div class="activity-meta">
+                                            <span class="score passed">91%</span>
+                                            <span class="review-link">Click to review</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Upcoming Deadlines -->
+                    <div class="deadlines">
+                        <h2><i class="fas fa-calendar-alt"></i> Upcoming Deadlines</h2>
+                        <ul>
+                            <li>
+                                <a href="geometry-assignment.html">
+                                    <span class="due-date">Jun 28</span>
+                                    <span class="assignment">Geometry Assignment</span>
+                                    <span class="course-tag math">Math</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="reading-assignment.html">
+                                    <span class="due-date">Jun 30</span>
+                                    <span class="assignment">Shakespeare Reading</span>
+                                    <span class="course-tag english">English</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="essay.html">
+                                    <span class="due-date">Jul 3</span>
+                                    <span class="assignment">Ancient Rome Essay</span>
+                                    <span class="course-tag history">History</span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
