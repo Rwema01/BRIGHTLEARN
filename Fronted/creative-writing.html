@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Writing Skills with Quizzes</title>
+  <style>
+    body {
+      margin-left: 200pt;
+      margin-right: 200pt;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      line-height: 1.6;
+    }
+    header {
+      background: #003366;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav {
+      background: #005599;
+      padding: 0.5rem;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+    section {
+      padding: 30px 20px;
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      margin-top: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #003366;
+    }
+    .quiz {
+      margin-top: 20px;
+      background: #eef;
+      padding: 20px;
+      border-radius: 5px;
+    }
+    .question {
+      margin-bottom: 10px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      background: #005599;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Writing Skills: Everything You Need to Know</h1>
+  </header>
+
+  <nav>
+    <a href="#page1">1. Purpose</a>
+    <a href="#page2">2. Grammar</a>
+  </nav>
+
+  <!-- Section 1 -->
+  <section id="page1">
+    <h2>1. Understanding the Purpose of Writing</h2>
+    <p>Good writing begins with a clear understanding of why you're writing. Every piece of writing has a purpose — whether it's to inform, persuade, entertain, or explain something.</p>
+    <ul>
+      <li><strong>Inform:</strong> Share knowledge or facts (e.g., news articles, reports).</li>
+      <li><strong>Persuade:</strong> Influence the reader’s thoughts or actions (e.g., opinion essays, advertisements).</li>
+      <li><strong>Entertain:</strong> Amuse the reader (e.g., stories, poems).</li>
+      <li><strong>Explain:</strong> Break down complex ideas (e.g., instructions, manuals).</li>
+    </ul>
+
+    <!-- Quiz 1 -->
+    <div class="quiz">
+      <h3>Quiz: Understanding Purpose</h3>
+      <div class="question">
+        1. What is the main purpose of a persuasive essay?<br>
+        <label><input type="radio" name="q1" value="a"> To explain a process</label><br>
+        <label><input type="radio" name="q1" value="b"> To share facts</label><br>
+        <label><input type="radio" name="q1" value="c"> To influence opinions</label><br>
+      </div>
+      <div class="question">
+        2. Which type of writing is used to amuse the reader?<br>
+        <label><input type="radio" name="q2" value="a"> Instruction manuals</label><br>
+        <label><input type="radio" name="q2" value="b"> Fiction stories</label><br>
+        <label><input type="radio" name="q2" value="c"> Reports</label><br>
+      </div>
+      <button onclick="checkQuiz1()">Check Answers</button>
+      <div class="feedback" id="feedback1"></div>
+    </div>
+  </section>
+
+  <!-- Section 2 -->
+  <section id="page2">
+    <h2>2. Grammar and Mechanics</h2>
+    <p>Correct grammar and punctuation are the foundation of clear communication.</p>
+    <ul>
+      <li><strong>Subject-Verb Agreement:</strong> Ensure subjects match their verbs in number.</li>
+      <li><strong>Tenses:</strong> Maintain consistent tense throughout.</li>
+      <li><strong>Punctuation:</strong> Use commas, periods, colons, and semicolons correctly.</li>
+      <li><strong>Capitalization:</strong> Capitalize names, places, and titles correctly.</li>
+      <li><strong>Spelling:</strong> Use a spell checker or dictionary to avoid errors.</li>
+    </ul>
+
+    <!-- Quiz 2 -->
+    <div class="quiz">
+      <h3>Quiz: Grammar Basics</h3>
+      <div class="question">
+        1. Which sentence has correct subject-verb agreement?<br>
+        <label><input type="radio" name="q3" value="a"> The dogs barks loudly.</label><br>
+        <label><input type="radio" name="q3" value="b"> The dog bark loudly.</label><br>
+        <label><input type="radio" name="q3" value="c"> The dogs bark loudly.</label><br>
+      </div>
+      <div class="question">
+        2. Which punctuation mark ends a declarative sentence?<br>
+        <label><input type="radio" name="q4" value="a"> ?</label><br>
+        <label><input type="radio" name="q4" value="b"> .</label><br>
+        <label><input type="radio" name="q4" value="c"> ,</label><br>
+      </div>
+      <button onclick="checkQuiz2()">Check Answers</button>
+      <div class="feedback" id="feedback2"></div>
+    </div>
+  </section>
+
+  <script>
+    function checkQuiz1() {
+      let score = 0;
+      if (document.querySelector('input[name="q1"]:checked')?.value === "c") score++;
+      if (document.querySelector('input[name="q2"]:checked')?.value === "b") score++;
+      document.getElementById("feedback1").innerText = `You got ${score}/2 correct.`;
+    }
+
+    function checkQuiz2() {
+      let score = 0;
+      if (document.querySelector('input[name="q3"]:checked')?.value === "c") score++;
+      if (document.querySelector('input[name="q4"]:checked')?.value === "b") score++;
+      document.getElementById("feedback2").innerText = `You got ${score}/2 correct.`;
+    }
+  </script>
+
+</body>
+</html>
