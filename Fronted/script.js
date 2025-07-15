@@ -1601,3 +1601,106 @@ function renderQuiz(quizId = 'defaultQuiz', subject = 'math') {
 
     showQuestion(current);
 }
+
+const geometryQuizData = [
+    {
+        question: "1. What is the sum of the angles in a triangle?",
+        options: ["90°", "180°", "270°", "360°"],
+        answer: 1
+    },
+    {
+        question: "2. What do you call a triangle with all sides equal?",
+        options: ["Isosceles", "Scalene", "Equilateral", "Right"],
+        answer: 2
+    },
+    {
+        question: "3. What is the area of a rectangle with length 5 and width 3?",
+        options: ["8", "15", "16", "10"],
+        answer: 1
+    },
+    {
+        question: "4. What is the name of a 6-sided polygon?",
+        options: ["Pentagon", "Hexagon", "Heptagon", "Octagon"],
+        answer: 1
+    },
+    {
+        question: "5. What is the length of the hypotenuse in a right triangle with legs 3 and 4?",
+        options: ["5", "6", "7", "8"],
+        answer: 0
+    },
+    {
+        question: "6. What is the volume of a cube with side length 3?",
+        options: ["9", "18", "27", "36"],
+        answer: 2
+    },
+    {
+        question: "7. What is the surface area of a sphere with radius 3? (Use π = 3.14)",
+        options: ["28.26", "31.42", "18.84", "37.68"],
+        answer: 1
+    },
+    {
+        question: "8. What is the circumference of a circle with diameter 10? (Use π = 3.14)",
+        options: ["31.4", "15.7", "25.12", "20"],
+        answer: 0
+    },
+    {
+        question: "9. What is the area of a triangle with base 4 and height 3?",
+        options: ["12", "6", "8", "10"],
+        answer: 1
+    },
+    {
+        question: "10. What do you call a polygon with 10 sides?",
+        options: ["Decagon", "Dodecagon", "Pentagon", "Hexadecagon"],
+        answer: 0
+    },
+    {
+        question: "11. What is the measure of each interior angle in a regular hexagon?",
+        options: ["120°", "90°", "60°", "150°"],
+        answer: 0
+    },
+    {
+        question: "12. What is the Pythagorean Theorem?",
+        options: ["a² + b² = c²", "a + b = c", "a² - b² = c²", "2ab = c²"],
+        answer: 0
+    },
+    {
+        question: "13. What is the distance between the points (3,4) and (6,8)?",
+        options: ["5", "10", "7", "8"],
+        answer: 0
+    },
+    {
+        question: "14. What is the midpoint of the line segment connecting (2,3) and (4,7)?",
+        options: ["(3,5)", "(2.5,3.5)", "(4,5)", "(3,7)"],
+        answer: 1
+    },
+    {
+        question: "15. What is the slope of the line passing through (1,2) and (3,4)?",
+        options: ["1", "2", "0.5", "3"],
+        answer: 0
+    },
+    {
+        question: "16. What is the equation of the line with slope 2 passing through the origin?",
+        options: ["y = 2x", "y = x/2", "y = 2/x", "y = x+2"],
+        answer: 0
+    },
+    {
+        question: "17. What is the area of a circle with radius 2? (Use π = 3.14)",
+        options: ["12.56", "6.28", "3.14", "25.12"],
+        answer: 0
+    },
+    {
+        question: "18. What is the circumference of a circle with radius 3? (Use π = 3.14)",
+        options: ["18.84", "12.56", "9.42", "6.28"],
+        answer: 0
+    },
+    {
+        question: "19. What is the surface area of a cube with side length 2?",
+        options: ["24", "12", "8", "16"],
+        answer: 0
+    },
+    {
+        question: "20. What is the volume of a cylinder with radius 2 and height 5? (Use π = 3.14)",
+        options: ["20π", "10π", "5π", "40π"],
+        answer: 0
+    },
+];

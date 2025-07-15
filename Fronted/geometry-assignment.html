@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry Assignment Quiz | BRIGHTLEARN</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      .bl-quiz-q {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #2d3748;
+      }
+      .bl-quiz-options {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+      }
+      .bl-quiz-options label {
+        background: #f7fafc;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        transition: background 0.2s, border 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .bl-quiz-options input[type="radio"] {
+        accent-color: #3a86ff;
+        margin-right: 0.5rem;
+      }
+      .bl-quiz-options label:hover, .bl-quiz-options label:has(input:checked) {
+        background: #e0e7ff;
+        border-color: #3a86ff;
+      }
+      .bl-quiz-nav {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+      }
+      .bl-quiz-nav button {
+        background: #3a86ff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .bl-quiz-nav button:disabled {
+        background: #a0aec0;
+        cursor: not-allowed;
+      }
+      .bl-quiz-result {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #256029;
+        margin-bottom: 1.5rem;
+      }
+      #retryQuiz {
+        background: #f59e42;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      #retryQuiz:hover {
+        background: #ffb366;
+      }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <nav class="left-nav">
+            <div class="nav-header">
+                <div class="logo-container">
+                    <img src="BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-tachometer-alt"></i><span>DASHBOARD</span></a></li>
+                <li><a href="courses.html" class="active"><i class="fas fa-book-open"></i><span>COURSES</span></a></li>
+                <li><a href="history.html"><i class="fas fa-history"></i><span>HISTORY</span></a></li>
+                <li><a href="help.html"><i class="fas fa-question-circle"></i><span>HELP</span></a></li>
+            </ul>
+            <div class="logout-container">
+                <a href="logout.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i><span>LOGOUT</span></a>
+            </div>
+        </nav>
+        <main class="main-content">
+            <div class="course-header geometry">
+                <div class="breadcrumbs">
+                    <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="math.html">Mathematics</a> > <a href="geometry-assignment.html">Geometry Assignment</a>
+                </div>
+                <h1><i class="fas fa-shapes"></i> Geometry Assignment Quiz</h1>
+            </div>
+            <div id="quiz-container"></div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+    <script>
+      function renderGeometryQuiz() {
+        if (typeof geometryQuizData === 'undefined') {
+          document.getElementById('quiz-container').innerHTML = '<div style="color:red">Quiz data not found.</div>';
+          return;
+        }
+        // Use the same renderQuiz logic but with geometryQuizData
+        let current = 0;
+        let userAnswers = Array(geometryQuizData.length).fill(null);
+        const container = document.getElementById('quiz-container');
+        function showQuestion(idx) {
+          const q = geometryQuizData[idx];
+          container.innerHTML = `
+            <div class="bl-quiz-q">${q.question}</div>
+            <div class="bl-quiz-options">
+              ${q.options.map((opt, i) => `
+                <label>
+                  <input type="radio" name="option" value="${i}" ${userAnswers[idx] === i ? 'checked' : ''}>
+                  ${opt}
+                </label>
+              `).join('')}
+            </div>
+            <div class="bl-quiz-nav">
+              <button id="prevQ" ${idx === 0 ? 'disabled' : ''}>Previous</button>
+              <button id="nextQ">${idx === geometryQuizData.length - 1 ? 'Finish' : 'Next'}</button>
+            </div>
+            <div id="quiz-feedback"></div>
+          `;
+          document.querySelectorAll('input[name="option"]').forEach(input => {
+            input.addEventListener('change', e => {
+              userAnswers[idx] = parseInt(e.target.value);
+            });
+          });
+          document.getElementById('prevQ').onclick = () => {
+            if (current > 0) {
+              current--;
+              showQuestion(current);
+            }
+          };
+          document.getElementById('nextQ').onclick = () => {
+            if (current < geometryQuizData.length - 1) {
+              current++;
+              showQuestion(current);
+            } else {
+              finishQuiz();
+            }
+          };
+        }
+        function finishQuiz() {
+          let correct = 0;
+          geometryQuizData.forEach((q, i) => {
+            if (userAnswers[i] === q.answer) correct++;
+          });
+          const percent = Math.round((correct / geometryQuizData.length) * 100);
+          container.innerHTML = `
+            <div class="bl-quiz-result">You scored ${percent}% (${correct} out of ${geometryQuizData.length})</div>
+            <button id="retryQuiz">Retry</button>
+          `;
+          document.getElementById('retryQuiz').onclick = () => {
+            userAnswers = Array(geometryQuizData.length).fill(null);
+            current = 0;
+            showQuestion(current);
+          };
+        }
+        showQuestion(current);
+      }
+      document.addEventListener('DOMContentLoaded', renderGeometryQuiz);
+    </script>
+</body>
+</html>
