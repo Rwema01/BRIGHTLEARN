@@ -115,71 +115,18 @@
                 </div>
                 <div class="quiz-header">
                     <h1>Algebra Basics Quiz</h1>
-                    <div class="quiz-info">
-                        <span><i class="fas fa-clock"></i> Time remaining: 25:00</span>
-                        <span><i class="fas fa-question-circle"></i> 5 questions remaining</span>
-                    </div>
                 </div>
 
-                <div class="quiz-progress">
-                    <div class="progress-bar" style="width: 40%;"></div>
-                </div>
-
-                <div class="quiz-question">
-                    <h2>Question 3 of 8</h2>
-                    <p>Solve for x: 2(x + 3) = 16</p>
-                    
-                    <div class="question-options">
-                        <div class="option">
-                            <input type="radio" id="option1" name="answer" value="5">
-                            <label for="option1">x = 5</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="option2" name="answer" value="6">
-                            <label for="option2">x = 6</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="option3" name="answer" value="7">
-                            <label for="option3">x = 7</label>
-                        </div>
-                        <div class="option">
-                            <input type="radio" id="option4" name="answer" value="8">
-                            <label for="option4">x = 8</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="quiz-navigation">
-                    <button class="nav-btn prev-btn">
-                        <i class="fas fa-arrow-left"></i> Previous
-                    </button>
-                    <div class="question-indicators">
-                        <span class="indicator completed">1</span>
-                        <span class="indicator completed">2</span>
-                        <span class="indicator active">3</span>
-                        <span class="indicator">4</span>
-                        <span class="indicator">5</span>
-                        <span class="indicator">6</span>
-                        <span class="indicator">7</span>
-                        <span class="indicator">8</span>
-                    </div>
-                    <button class="nav-btn next-btn">
-                        Next <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-
-                <div class="quiz-help">
-                    <button class="help-btn">
-                        <i class="fas fa-question"></i> Need Help?
-                    </button>
-                    <div class="help-content">
-                        <h3>Algebra Help</h3>
-                        <p>Remember to distribute the 2 to both terms inside the parentheses first, then solve for x.</p>
-                        <p>Example: 2(x + 3) = 2x + 6 = 16 → 2x = 10 → x = 5</p>
-                    </div>
-                </div>
+                <!-- Minimal Quiz System Container -->
+                <div id="quiz-container"></div>
             </div>
         </main>
     </div>
+    <script src="script.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        renderQuiz('algebraQuiz', 'math');
+      });
+    </script>
 </body>
 </html>
