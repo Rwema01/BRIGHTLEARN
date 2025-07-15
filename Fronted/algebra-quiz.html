@@ -182,4 +182,188 @@
         </main>
     </div>
 </body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebra Quiz | BRIGHTLEARN</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Navigation -->
+        <nav class="left-nav">
+            <div class="nav-header">
+                <div class="logo-container">
+                    <img src="BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>DASHBOARD</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="courses.html">
+                        <i class="fas fa-book-open"></i>
+                        <span>COURSES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="history.html">
+                        <i class="fas fa-history"></i>
+                        <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="help.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span>HELP</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="logout-container">
+                <a href="logout.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>LOGOUT</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="top-icons">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <div class="notification-dropdown">
+                        <i class="fas fa-bell notification-icon"></i>
+                        <span class="notification-badge">3</span>
+                        <div class="dropdown-content">
+                            <div class="notification-header">
+                                <h4>Notifications</h4>
+                                <button class="mark-all-read">Mark all as read</button>
+                            </div>
+                            <div class="notification-list">
+                                <div class="notification-item unread">
+                                    <div class="notification-icon"><i class="fas fa-book"></i></div>
+                                    <div class="notification-content">
+                                        <p>New assignment posted in Algebra II</p>
+                                        <span class="notification-time">2 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-icon"><i class="fas fa-check-circle"></i></div>
+                                    <div class="notification-content">
+                                        <p>Your submission for Essay Writing was graded</p>
+                                        <span class="notification-time">1 day ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="view-all">View All Notifications</a>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-dropdown">
+                        <i class="fas fa-user-circle profile-icon"></i>
+                        <div class="dropdown-content">
+                            <div class="profile-header">
+                                <img src="default-profile.jpg" alt="Profile Picture" class="profile-pic">
+                                <div class="profile-info">
+                                    <h4>John Doe</h4>
+                                    <p>Student</p>
+                                </div>
+                            </div>
+                            <a href="#" class="dropdown-item"><i class="fas fa-user"></i> Profile</a>
+                            <a href="#" class="dropdown-item"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="logout.html" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Quiz Content -->
+            <div class="quiz-container">
+                <div class="breadcrumbs">
+                    <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="math.html">Mathematics</a> > <a href="algebra-quiz.html">Algebra</a>
+                </div>
+                <div class="quiz-header">
+                    <h1>Algebra Basics Quiz</h1>
+                    <div class="quiz-info">
+                        <span><i class="fas fa-clock"></i> Time remaining: 25:00</span>
+                        <span><i class="fas fa-question-circle"></i> 5 questions remaining</span>
+                    </div>
+                </div>
+
+                <div class="quiz-progress">
+                    <div class="progress-bar" style="width: 40%;"></div>
+                </div>
+
+                <div class="quiz-question">
+                    <h2>Question 3 of 8</h2>
+                    <p>Solve for x: 2(x + 3) = 16</p>
+                    
+                    <div class="question-options">
+                        <div class="option">
+                            <input type="radio" id="option1" name="answer" value="5">
+                            <label for="option1">x = 5</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="option2" name="answer" value="6">
+                            <label for="option2">x = 6</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="option3" name="answer" value="7">
+                            <label for="option3">x = 7</label>
+                        </div>
+                        <div class="option">
+                            <input type="radio" id="option4" name="answer" value="8">
+                            <label for="option4">x = 8</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quiz-navigation">
+                    <button class="nav-btn prev-btn">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <div class="question-indicators">
+                        <span class="indicator completed">1</span>
+                        <span class="indicator completed">2</span>
+                        <span class="indicator active">3</span>
+                        <span class="indicator">4</span>
+                        <span class="indicator">5</span>
+                        <span class="indicator">6</span>
+                        <span class="indicator">7</span>
+                        <span class="indicator">8</span>
+                    </div>
+                    <button class="nav-btn next-btn">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="quiz-help">
+                    <button class="help-btn">
+                        <i class="fas fa-question"></i> Need Help?
+                    </button>
+                    <div class="help-content">
+                        <h3>Algebra Help</h3>
+                        <p>Remember to distribute the 2 to both terms inside the parentheses first, then solve for x.</p>
+                        <p>Example: 2(x + 3) = 2x + 6 = 16 → 2x = 10 → x = 5</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
 </html>
