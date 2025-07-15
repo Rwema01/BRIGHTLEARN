@@ -6,6 +6,77 @@
     <title>Algebra Quiz | BRIGHTLEARN</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+  .bl-quiz-q {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #2d3748;
+      }
+      .bl-quiz-options {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+      }
+      .bl-quiz-options label {
+        background: #f7fafc;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        transition: background 0.2s, border 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .bl-quiz-options input[type="radio"] {
+        accent-color: #3a86ff;
+        margin-right: 0.5rem;
+      }
+      .bl-quiz-options label:hover, .bl-quiz-options label:has(input:checked) {
+        background: #e0e7ff;
+        border-color: #3a86ff;
+      }
+      .bl-quiz-nav {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+      }
+      .bl-quiz-nav button {
+        background: #3a86ff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .bl-quiz-nav button:disabled {
+        background: #a0aec0;
+        cursor: not-allowed;
+      }
+      .bl-quiz-result {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #256029;
+        margin-bottom: 1.5rem;
+      }
+      #retryQuiz {
+        background: #f59e42;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      #retryQuiz:hover {
+        background: #ffb366;
+      }
+    </style>
 </head>
 <body>
     <div class="app-container">
