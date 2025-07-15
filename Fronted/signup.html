@@ -78,5 +78,50 @@
     </div>
 
     <script src="signup.js"></script>
+</script>
+<script>
+// Minimal localStorage signup logic
+document.getElementById('registerForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  // Get form values
+  const fullName = document.getElementById('fullName').value.trim();
+  const email = document.getElementById('email').value.trim().toLowerCase();
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  const termsChecked = document.getElementById('terms').checked;
+
+  // Error elements
+  const nameError = document.getElementById('nameError');
+  const emailError = document.getElementById('emailError');
+  const passwordError = document.getElementById('passwordError');
+  const confirmPasswordError = document.getElementById('confirmPasswordError');
+  const termsError = document.getElementById('termsError');
+
+  // Reset errors
+  nameError.textContent = emailError.textContent = passwordError.textContent = confirmPasswordError.textContent = termsError.textContent = '';
+
+  // Validation
+  let valid = true;
+  if (!fullName) { nameError.textContent = 'Full name required.'; valid = false; }
+  if (!email) { emailError.textContent = 'Email required.'; valid = false; }
+  if (!password) { passwordError.textContent = 'Password required.'; valid = false; }
+  if (password.length < 6) { passwordError.textContent = 'Password must be at least 6 characters.'; valid = false; }
+  if (password !== confirmPassword) { confirmPasswordError.textContent = 'Passwords do not match.'; valid = false; }
+  if (!termsChecked) { termsError.textContent = 'You must agree to the terms.'; valid = false; }
+  if (!valid) return;
+
+  // Get users from localStorage
+  let users = JSON.parse(localStorage.getItem('brightlearn_users') || '[]');
+  if (users.some(u => u.email === email)) {
+    emailError.textContent = 'Email already registered.';
+    return;
+  }
+  // Store user (password is stored as plain text for demo; use hashing in production)
+  users.push({ fullName, email, password });
+  localStorage.setItem('brightlearn_users', JSON.stringify(users));
+  alert('Registration successful! You can now log in.');
+  window.location.href = 'login.html';
+});
+</script>
 </body>
 </html>
