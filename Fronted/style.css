@@ -2639,7 +2639,95 @@ h3 {
 .certificates-header i {
     color: var(--accent-color);
 }
+/* DEFAULT STATE - Blue button with white text */
+.certificate-actions .download-btn {
+    background-color: rgb(4, 93, 225) !important;
+    color: white !important;
+    border: 1px solid rgb(4, 93, 225) !important;
+    transition: all 0.3s ease !important;
+}
 
+/* HOVER STATE - White button with black text */
+.certificate-actions .download-btn:hover {
+    background-color: white !important;
+    color: black !important;
+    border-color: rgb(4, 93, 225) !important;
+}
+
+/* Ensure the icon also changes color on hover */
+.certificate-actions .download-btn:hover i.fas.fa-download {
+    color: black !important;
+}
+/* FORCE the button styles - will override everything else */
+button.action-btn.download-btn {
+    background: rgb(4, 93, 225) !important;
+    color: white !important;
+    border: 1px solid rgb(4, 93, 225) !important;
+    transition: all 0.3s ease !important;
+    position: relative; /* Helps with z-index issues */
+    z-index: 1; /* Ensures button is above other elements */
+}
+
+/* FORCE the hover effect */
+button.action-btn.download-btn:hover {
+    background: white !important;
+    color: black !important;
+    border-color: rgb(255, 255, 255) !important;
+}
+
+/* FORCE the icon color change */
+button.action-btn.download-btn:hover i.fas.fa-download {
+    color: black !important;
+}
+
+/* ===== VIEW BUTTON ===== */
+button.action-btn.view-btn {
+    background: #034606 !important; /* Green background */
+    color: white !important;
+    border: 1px solid #034606  !important;
+    transition: all 0.3s ease !important;
+}
+
+button.action-btn.view-btn:hover {
+    background: white !important;
+    color: black !important;
+    border-color: #ffffff !important;
+}
+
+button.action-btn.view-btn:hover i.fas.fa-expand {
+    color: black !important;
+}
+
+/* Make all action buttons the same height */
+.certificate-actions .action-btn {
+    padding: 6px 12px !important;  /* Matches Download All/Share All height */
+    min-height: 50px !important;   /* Optional: Fixed height if needed */
+    line-height: 1.2 !important;   /* Better text alignment */
+}
+
+/* Ensure icons are properly aligned */
+.certificate-actions .action-btn i {
+    font-size: 14px !important;    /* Consistent icon size */
+    vertical-align: middle !important;
+}
+
+/* ===== SHARE BUTTON ===== */
+button.action-btn.share-btn {
+    background: #764204 !important; /* Blue background */
+    color: white !important;
+    border: 1px solid #ffffff !important;
+    transition: all 0.3s ease !important;
+}
+
+button.action-btn.share-btn:hover {
+    background: white !important;
+    color: black !important;
+    border-color: #ffffff !important;
+}
+
+button.action-btn.share-btn:hover i.fas.fa-share-alt {
+    color: black !important;
+}
 /* Replace existing .certificate-actions styles with this */
 .certificate-actions {
     display: flex;
@@ -2659,7 +2747,7 @@ h3 {
 }
 /* Force white background on hover (if default is blue) */
 .certificate-actions .download-btn:hover {
-    background: white !important; /* Override any existing hover color */
+    background: rgb(4, 93, 225) !important; /* Override any existing hover color */
     border-color: #ddd !important; /* Optional: Keep border consistent */
 }
 
@@ -2672,7 +2760,41 @@ h3 {
     color: rgb(8, 3, 3) !important; /* Icon color */
 }
 
+/* ===== DOWNLOAD ALL BUTTON ===== */
+button.action-btn.download-all {
+    background: rgb(2, 77, 9) !important; /* Your custom blue */
+    color: white !important;
+    border: 1px solid rgb(2, 77, 9) !important;
+    transition: all 0.3s ease !important;
+}
 
+button.action-btn.download-all:hover {
+    background: white !important;
+    color: black !important;
+    border-color: rgb(255, 255, 255) !important;
+}
+
+button.action-btn.download-all:hover i.fas.fa-download {
+    color: black !important;
+}
+
+/* ===== SHARE ALL BUTTON ===== */
+button.action-btn.share-all {
+    background: #023d6d !important; /* Matching blue */
+    color: white !important;
+    border: 1px solid #021f36 !important;
+    transition: all 0.3s ease !important;
+}
+
+button.action-btn.share-all:hover {
+    background: white !important;
+    color: black !important;
+    border-color: #ffffff !important;
+}
+
+button.action-btn.share-all:hover i.fas.fa-share-alt {
+    color: black !important;
+}
 
 /* Certificate Filters */
 .certificate-filters {
