@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrightLearn - Achievements</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Navigation -->
+        <nav class="left-nav">
+            <div class="nav-header">
+                <div class="logo-container">
+                    <img src="BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>DASHBOARD</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="courses.html">
+                        <i class="fas fa-book-open"></i>
+                        <span>COURSES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="history.html">
+                        <i class="fas fa-history"></i>
+                        <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="help.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span>HELP</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="logout-container">
+                <a href="logout.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>LOGOUT</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="top-icons">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <div class="notification-dropdown">
+                        <i class="fas fa-bell notification-icon"></i>
+                        <span class="notification-badge">3</span>
+                        <div class="dropdown-content">
+                            <div class="notification-header">
+                                <h4>Notifications</h4>
+                                <button class="mark-all-read">Mark all as read</button>
+                            </div>
+                            <div class="notification-list">
+                                <div class="notification-item unread">
+                                    <div class="notification-icon"><i class="fas fa-book"></i></div>
+                                    <div class="notification-content">
+                                        <p>New assignment posted in Algebra II</p>
+                                        <span class="notification-time">2 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-icon"><i class="fas fa-check-circle"></i></div>
+                                    <div class="notification-content">
+                                        <p>Your submission for Essay Writing was graded</p>
+                                        <span class="notification-time">1 day ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="view-all">View All Notifications</a>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-dropdown">
+                        <i class="fas fa-user-circle profile-icon"></i>
+                        <div class="dropdown-content">
+                            <div class="profile-header">
+                                <img src="default-profile.jpg" alt="Profile" class="profile-pic">
+                                <div class="profile-info">
+                                    <h4>Jordan Barker</h4>
+                                    <p>Student</p>
+                                </div>
+                            </div>
+                            <div class="profile-stats">
+                                <div class="stat-item">
+                                    <span>Courses</span>
+                                    <span>5</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span>Completed</span>
+                                    <span>32%</span>
+                                </div>
+                            </div>
+                            <div class="dropdown-links">
+                                <a href="profile.html" class="profile-link"><i class="fas fa-user"></i> View Profile</a>
+                                <a href="settings.html" class="profile-link"><i class="fas fa-cog"></i> Settings</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Achievements Content -->
+            <div class="dashboard-content">
+                <!-- Breadcrumbs and Header -->
+                <div class="breadcrumbs">
+                    <a href="index.html">Home</a> > <a href="history.html">History</a> > <a href="achievements.html">Achievements</a>
+                </div>
+                
+                <div class="section-header">
+                    <h1><i class="fas fa-trophy"></i> YOUR ACHIEVEMENTS</h1>
+                    <p class="subtitle">Celebrate your learning milestones and accomplishments</p>
+                </div>
+                
+                <!-- Achievements Container -->
+                <div class="achievements-container">
+                    <!-- Achievement Summary -->
+                    <div class="achievements-summary">
+                        <div class="summary-card">
+                            <div class="summary-icon gold">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="summary-content">
+                                <h3>25</h3>
+                                <p>Total Achievements</p>
+                            </div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-icon gold">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="summary-content">
+                                <h3>8</h3>
+                                <p>Gold Badges</p>
+                            </div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-icon silver">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="summary-content">
+                                <h3>12</h3>
+                                <p>Silver Badges</p>
+                            </div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-icon bronze">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div class="summary-content">
+                                <h3>5</h3>
+                                <p>Bronze Badges</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Achievements Grid -->
+                    <div class="achievements-grid">
+                        <h3 class="section-title">YOUR BADGES</h3>
+                        
+                        <!-- Course Completion Badges -->
+                        <div class="badge-category">
+                            <h4><i class="fas fa-graduation-cap"></i> Course Completion</h4>
+                            <div class="badges-row">
+                                <div class="badge gold">
+                                    <div class="badge-icon">
+                                        <i class="fas fa-book"></i>
+                                    </div>
+                                    <div class="badge-content">
+                                        <h5>Algebra Master</h5>
+                                        <p>Completed all Algebra II lessons</p>
+                                        <span class="badge-date">Earned: Jul 5, 2025</span>
+                                    </div>
+                                    <div class="badge-ribbon"></div>
+                                </div>
+                                
+                                <div class="badge silver">
+                                    <div class="badge-icon">
+                                        <i class="fas fa-pen-fancy"></i>
+                                    </div>
+                                    <div class="badge-content">
+                                        <h5>Writing Pro</h5>
+                                        <p>Finished Essay Writing course</p>
+                                        <span class="badge-date">Earned: Jun 28, 2025</span>
+                                    </div>
+                                    <div class="badge-ribbon"></div>
+                                </div>
+                                
+                                <div class="badge locked">
+                                    <div class="badge-icon">
+                                        <i class="fas fa-lock"></i>
+                                    </div>
+                                    <div class="badge-content">
+                                        <h5>Science Whiz</h5>
+                                        <p>Complete Chemistry course</p>
+                                        <span class="badge-progress">65% complete</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Performance Badges -->
+                        <div class="badge-category">
+                            <h4><i class="fas fa-chart-line"></i> Performance</h4>
+                            <div class="badges-row">
+                                <div class="badge gold">
+                                    <div class="badge-icon">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <div class="badge-content">
+                                        <h5>Quick Learner</h5>
+                                        <p>Scored 90%+ on 5 consecutive quizzes</p>
+                                        <span class="badge-date">Earned: Jul 2, 2025</span>
+                                    </div>
+                                    <div class="badge-ribbon"></div>
+                                </div>
+                                
+                                <div class="badge bronze">
+                                    <div class="badge-icon">
+                                        <i class="fas fa-undo"></i>
+                                    </div>
+                                    <div class="badge-content">
+                                        <h5>Persistent</h5>
+                                        <p>Improved score by 20% on retake</p>
+                                        <span class="badge-date">Earned: Jun 18, 2025</span>
+                                    </div>
+                                    <div class="badge-ribbon"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Consistency Badges -->
+                        <div class="badge-category">
+                            <h4><i class="fas fa-clock"></i> Consistency</h4>
+                            <div class="badges-row">
+                                <div class="badge silver">
+                                    <div class="badge-icon">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                    <div class="badge-content">
+                                        <h5>7-Day Streak</h5>
+                                        <p>Logged in 7 days in a row</p>
+                                        <span class="badge-date">Earned: Jun 30, 2025</span>
+                                    </div>
+                                    <div class="badge-ribbon"></div>
+                                </div>
+                                
+                                <div class="badge bronze">
+                                    <div class="badge-icon">
+                                        <i class="fas fa-hourglass-half"></i>
+                                    </div>
+                                    <div class="badge-content">
+                                        <h5>Marathoner</h5>
+                                        <p>Studied for 5+ hours in one day</p>
+                                        <span class="badge-date">Earned: Jun 15, 2025</span>
+                                    </div>
+                                    <div class="badge-ribbon"></div>
+                                </div>
+                                
+                                <div class="badge locked">
+                                    <div class="badge-icon">
+                                        <i class="fas fa-lock"></i>
+                                    </div>
+                                    <div class="badge-content">
+                                        <h5>30-Day Streak</h5>
+                                        <p>Log in for 30 consecutive days</p>
+                                        <span class="badge-progress">Current streak: 12 days</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

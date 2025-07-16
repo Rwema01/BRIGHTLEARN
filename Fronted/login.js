@@ -61,37 +61,26 @@ function authenticateUser(email, password) {
     const btn = document.querySelector('.auth-btn');
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
     btn.disabled = true;
-    
-    // In a real app, this would be an API call to your backend
-    // For demo purposes, we'll use a mock user database
-    const mockUsers = [
-        { email: 'user@example.com', password: 'password123' },
-        { email: 'test@test.com', password: 'test123' }
-    ];
-    
-    // Simulate API delay
+    // Fetch users from localStorage
+    const users = JSON.parse(localStorage.getItem('brightlearn_users') || '[]');
     setTimeout(() => {
-        const user = mockUsers.find(u => u.email === email && u.password === password);
-        
+        const user = users.find(u => u.email === email && u.password === password);
         if (user) {
-            // Successful login
-            // Store user session (in a real app, you'd get a token from your backend)
             if (document.getElementById('remember').checked) {
                 localStorage.setItem('rememberedEmail', email);
             } else {
                 localStorage.removeItem('rememberedEmail');
             }
-            
-            // Redirect to dashboard
+            // Optionally store session info
+            localStorage.setItem('brightlearn_current_user', JSON.stringify({ fullName: user.fullName, email: user.email }));
             window.location.href = 'index.html';
         } else {
-            // Failed login
             document.getElementById('passwordError').textContent = 'Invalid email or password';
             document.getElementById('passwordError').style.display = 'block';
             btn.innerHTML = '<span>Login</span><i class="fas fa-arrow-right"></i>';
             btn.disabled = false;
         }
-    }, 1500);
+    }, 800);
 }
 
 // Optional: Remember email functionality

@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Practice - Algebra & Geometry</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .level-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .question {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-left: 4px solid #3498db;
+            background-color: #f8f9fa;
+        }
+        .options {
+            margin-left: 20px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            display: none;
+        }
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .progress-bar {
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background-color: #28a745;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        .level-selector {
+            margin-bottom: 20px;
+        }
+        .tab {
+            display: inline-block;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #e9ecef;
+            margin-right: 5px;
+            border-radius: 4px 4px 0 0;
+        }
+        .tab.active {
+            background-color: #3498db;
+            color: white;
+        }
+        .overall-progress {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Math Practice - Algebra & Geometry</h1>
+    
+    <div class="level-selector">
+        <div class="tab active" onclick="showLevel(1)">Level 1</div>
+        <div class="tab" onclick="showLevel(2)">Level 2</div>
+        <div class="tab" onclick="showLevel(3)">Level 3</div>
+        <div class="tab" onclick="showLevel(4)">Level 4</div>
+        <div class="tab" onclick="showLevel(5)">Level 5</div>
+    </div>
+    
+    <div id="level-container"></div>
+    
+    <div class="overall-progress">
+        <h2>Overall Progress</h2>
+        <div class="progress-bar">
+            <div class="progress" id="overall-progress-bar"></div>
+        </div>
+        <p id="overall-score">Total Score: 0%</p>
+    </div>
+
+    <script>
+        // Question data in JSON format
+        const questionsData = {
+            levels: [
+                {
+                    level: 1,
+                    title: "Basic Algebra & Geometry",
+                    questions: [
+                        {
+                            question: "What is the value of x in the equation: 2x + 3 = 7?",
+                            options: ["1", "2", "3", "4"],
+                            answer: "1",
+                            explanation: "Subtract 3 from both sides: 2x = 4. Then divide both sides by 2: x = 2."
+                        },
+                        {
+                            question: "What is the area of a rectangle with length 5 and width 3?",
+                            options: ["8", "15", "16", "20"],
+                            answer: "1",
+                            explanation: "Area of rectangle = length × width = 5 × 3 = 15."
+                        },
+                        {
+                            question: "Simplify: 3(x + 2) - 2x",
+                            options: ["x + 6", "3x + 6", "x + 2", "5x"],
+                            answer: "0",
+                            explanation: "Distribute: 3x + 6 - 2x = x + 6."
+                        },
+                        {
+                            question: "What is the perimeter of a square with side length 4?",
+                            options: ["8", "12", "16", "20"],
+                            answer: "2",
+                            explanation: "Perimeter of square = 4 × side length = 4 × 4 = 16."
+                        },
+                        {
+                            question: "Solve for y: y/3 = 9",
+                            options: ["3", "12", "27", "30"],
+                            answer: "2",
+                            explanation: "Multiply both sides by 3: y = 27."
+                        },
+                        {
+                            question: "How many degrees are in a right angle?",
+                            options: ["45", "90", "180", "360"],
+                            answer: "1",
+                            explanation: "A right angle is exactly 90 degrees."
+                        },
+                        {
+                            question: "What is the next number in the sequence: 2, 4, 6, 8, ___?",
+                            options: ["9", "10", "12", "14"],
+                            answer: "1",
+                            explanation: "This is a sequence of even numbers increasing by 2 each time."
+                        },
+                        {
+                            question: "What is the volume of a cube with side length 2?",
+                            options: ["4", "6", "8", "12"],
+                            answer: "2",
+                            explanation: "Volume of cube = side length³ = 2³ = 8."
+                        },
+                        {
+                            question: "Solve: 5 - (2 + 1)",
+                            options: ["2", "3", "4", "5"],
+                            answer: "0",
+                            explanation: "First solve the parentheses: 2 + 1 = 3. Then 5 - 3 = 2."
+                        },
+                        {
+                            question: "What is the circumference of a circle with radius 7? (Use π = 22/7)",
+                            options: ["22", "44", "66", "88"],
+                            answer: "1",
+                            explanation: "Circumference = 2πr = 2 × (22/7) × 7 = 44."
+                        },
+                        {
+                            question: "If x = 3, what is the value of 2x²?",
+                            options: ["6", "9", "12", "18"],
+                            answer: "3",
+                            explanation: "2x² = 2 × (3)² = 2 × 9 = 18."
+                        },
+                        {
+                            question: "What type of triangle has all sides equal?",
+                            options: ["Isosceles", "Scalene", "Equilateral", "Right"],
+                            answer: "2",
+                            explanation: "An equilateral triangle has all sides and angles equal."
+                        }
+                    ]
+                },
+                {
+                    level: 2,
+                    title: "Intermediate Algebra & Geometry",
+                    questions: [
+                        {
+                            question: "Solve the system of equations: x + y = 5 and x - y = 1",
+                            options: ["x=2, y=3", "x=3, y=2", "x=4, y=1", "x=1, y=4"],
+                            answer: "1",
+                            explanation: "Add the equations: 2x = 6 → x=3. Substitute: 3 + y = 5 → y=2."
+                        },
+                        {
+                            question: "What is the slope of the line y = 2x + 5?",
+                            options: ["2", "5", "-2", "1/2"],
+                            answer: "0",
+                            explanation: "In y = mx + b, m is the slope. Here m = 2."
+                        },
+                        {
+                            question: "A triangle has angles measuring 45° and 45°. What is the measure of the third angle?",
+                            options: ["45°", "60°", "90°", "180°"],
+                            answer: "2",
+                            explanation: "Sum of angles in triangle is 180°. 180 - 45 - 45 = 90°."
+                        },
+                        {
+                            question: "Factor completely: x² - 9",
+                            options: ["(x-3)(x-3)", "(x+3)(x+3)", "(x-3)(x+3)", "Can't be factored"],
+                            answer: "2",
+                            explanation: "This is difference of squares: a² - b² = (a-b)(a+b)."
+                        },
+                        {
+                            question: "What is the area of a circle with diameter 14? (Use π = 22/7)",
+                            options: ["44", "88", "154", "616"],
+                            answer: "2",
+                            explanation: "Radius = 14/2 = 7. Area = πr² = (22/7)×7×7 = 154."
+                        },
+                        {
+                            question: "Solve for x: 3(x - 4) = 2x + 5",
+                            options: ["7", "12", "17", "20"],
+                            answer: "2",
+                            explanation: "3x - 12 = 2x + 5 → x - 12 = 5 → x = 17."
+                        },
+                        {
+                            question: "What is the Pythagorean theorem for a right triangle with legs a and b, and hypotenuse c?",
+                            options: ["a + b = c", "a² + b² = c²", "a × b = c", "a² + b² = c"],
+                            answer: "1",
+                            explanation: "The Pythagorean theorem states a² + b² = c²."
+                        },
+                        {
+                            question: "Simplify: (2x³)²",
+                            options: ["2x⁵", "2x⁶", "4x⁵", "4x⁶"],
+                            answer: "3",
+                            explanation: "(2x³)² = 2² × (x³)² = 4x⁶."
+                        },
+                        {
+                            question: "What is the sum of interior angles of a quadrilateral?",
+                            options: ["180°", "270°", "360°", "540°"],
+                            answer: "2",
+                            explanation: "Sum of interior angles of any quadrilateral is 360°."
+                        },
+                        {
+                            question: "Solve the inequality: 2x + 5 < 15",
+                            options: ["x < 5", "x < 10", "x > 5", "x > 10"],
+                            answer: "0",
+                            explanation: "2x + 5 < 15 → 2x < 10 → x < 5."
+                        },
+                        {
+                            question: "What is the midpoint between (2,4) and (6,10)?",
+                            options: ["(4,7)", "(3,5)", "(8,14)", "(4,5)"],
+                            answer: "0",
+                            explanation: "Midpoint = ((2+6)/2, (4+10)/2) = (4,7)."
+                        },
+                        {
+                            question: "What is the surface area of a cube with side length 3?",
+                            options: ["9", "18", "27", "54"],
+                            answer: "3",
+                            explanation: "Surface area = 6 × side² = 6 × 9 = 54."
+                        }
+                    ]
+                },
+                {
+                    level: 3,
+                    title: "Advanced Algebra & Geometry",
+                    questions: [
+                        {
+                            question: "Solve the quadratic equation: x² - 5x + 6 = 0",
+                            options: ["x=2, x=3", "x=-2, x=-3", "x=1, x=6", "x=-1, x=6"],
+                            answer: "0",
+                            explanation: "Factor: (x-2)(x-3)=0 → x=2 or x=3."
+                        },
+                        {
+                            question: "What is the equation of a line with slope -2 passing through point (1,3)?",
+                            options: ["y=-2x+5", "y=-2x+1", "y=2x+5", "y=2x+1"],
+                            answer: "0",
+                            explanation: "Point-slope form: y-3=-2(x-1) → y=-2x+2+3 → y=-2x+5."
+                        },
+                        {
+                            question: "A right circular cylinder has radius 3 and height 5. What is its volume?",
+                            options: ["15π", "30π", "45π", "90π"],
+                            answer: "2",
+                            explanation: "Volume = πr²h = π×9×5 = 45π."
+                        },
+                        {
+                            question: "Simplify: √(50) + √(18)",
+                            options: ["2√17", "8√2", "17√2", "68"],
+                            answer: "1",
+                            explanation: "√50 = 5√2, √18 = 3√2. Sum is 8√2."
+                        },
+                        {
+                            question: "What is the distance between points (1,2) and (4,6)?",
+                            options: ["3", "4", "5", "7"],
+                            answer: "2",
+                            explanation: "Distance = √[(4-1)²+(6-2)²] = √(9+16) = √25 = 5."
+                        },
+                        {
+                            question: "Solve for x: log₂(x) = 3",
+                            options: ["6", "8", "9", "12"],
+                            answer: "1",
+                            explanation: "log₂(x) = 3 → x = 2³ = 8."
+                        },
+                        {
+                            question: "What is the sine of a 30° angle?",
+                            options: ["0", "1/2", "√2/2", "√3/2"],
+                            answer: "1",
+                            explanation: "sin(30°) = 1/2."
+                        },
+                        {
+                            question: "Factor completely: x³ - 8",
+                            options: ["(x-2)(x²+2x+4)", "(x-2)³", "(x-2)(x+2)²", "Can't be factored"],
+                            answer: "0",
+                            explanation: "Difference of cubes: a³-b³=(a-b)(a²+ab+b²)."
+                        },
+                        {
+                            question: "What is the area of an equilateral triangle with side length 4?",
+                            options: ["4", "4√3", "8", "8√3"],
+                            answer: "1",
+                            explanation: "Area = (s²√3)/4 = (16√3)/4 = 4√3."
+                        },
+                        {
+                            question: "Solve the system: 2x + y = 7 and 3x - 2y = 0",
+                            options: ["x=2, y=3", "x=3, y=1", "x=1, y=5", "x=4, y=-1"],
+                            answer: "0",
+                            explanation: "First equation: y=7-2x. Substitute into second: 3x-2(7-2x)=0 → 7x=14 → x=2, y=3."
+                        },
+                        {
+                            question: "What is the vertex of the parabola y = x² - 4x + 5?",
+                            options: ["(2,1)", "(2,9)", "(-2,17)", "(4,5)"],
+                            answer: "0",
+                            explanation: "Complete the square: y=(x²-4x+4)+1=(x-2)²+1. Vertex at (2,1)."
+                        },
+                        {
+                            question: "A regular hexagon has side length 2. What is its area?",
+                            options: ["6", "6√3", "12", "12√3"],
+                            answer: "1",
+                            explanation: "Area of regular hexagon = (3√3/2)s² = (3√3/2)×4 = 6√3."
+                        }
+                    ]
+                },
+                {
+                    level: 4,
+                    title: "College Algebra & Geometry",
+                    questions: [
+                        {
+                            question: "What is the remainder when x³ - 2x² + 3x - 4 is divided by (x - 1)?",
+                            options: ["-2", "0", "1", "2"],
+                            answer: "0",
+                            explanation: "Use Remainder Theorem: f(1) = 1 - 2 + 3 - 4 = -2."
+                        },
+                        {
+                            question: "What is the equation of the circle with center (2,-3) and radius 4?",
+                            options: ["(x-2)² + (y+3)² = 4", "(x+2)² + (y-3)² = 4", "(x-2)² + (y+3)² = 16", "(x+2)² + (y-3)² = 16"],
+                            answer: "2",
+                            explanation: "Equation is (x-h)² + (y-k)² = r² → (x-2)² + (y+3)² = 16."
+                        },
+                        {
+                            question: "Solve for x: e^(2x) = 5",
+                            options: ["ln(5)/2", "ln(2)/5", "ln(5²)", "e⁵/2"],
+                            answer: "0",
+                            explanation: "Take natural log: 2x = ln(5) → x = ln(5)/2."
+                        },
+                        {
+                            question: "What is the volume of a sphere with radius 3?",
+                            options: ["9π", "18π", "27π", "36π"],
+                            answer: "3",
+                            explanation: "Volume = (4/3)πr³ = (4/3)π27 = 36π."
+                        },
+                        {
+                            question: "Find the inverse of the function f(x) = (2x + 3)/5",
+                            options: ["f⁻¹(x) = (5x - 3)/2", "f⁻¹(x) = (5x + 3)/2", "f⁻¹(x) = (2x - 5)/3", "f⁻¹(x) = 5/(2x + 3)"],
+                            answer: "0",
+                            explanation: "Swap x and y: x = (2y + 3)/5 → 5x = 2y + 3 → y = (5x - 3)/2."
+                        },
+                        {
+                            question: "What is the sum of the infinite geometric series: 4 + 2 + 1 + 0.5 + ...?",
+                            options: ["6", "8", "12", "∞"],
+                            answer: "1",
+                            explanation: "Sum = a/(1-r) = 4/(1-0.5) = 8."
+                        },
+                        {
+                            question: "What is the measure of each interior angle of a regular pentagon?",
+                            options: ["72°", "108°", "120°", "135°"],
+                            answer: "1",
+                            explanation: "Interior angle = (n-2)×180°/n = 3×180°/5 = 108°."
+                        },
+                        {
+                            question: "Solve the inequality: |2x - 5| ≤ 3",
+                            options: ["x ≤ 1 or x ≥ 4", "1 ≤ x ≤ 4", "x ≤ 4", "x ≥ 1"],
+                            answer: "1",
+                            explanation: "-3 ≤ 2x - 5 ≤ 3 → 2 ≤ 2x ≤ 8 → 1 ≤ x ≤ 4."
+                        },
+                        {
+                            question: "What is the determinant of the matrix [[2,3],[5,7]]?",
+                            options: ["-1", "1", "14", "29"],
+                            answer: "0",
+                            explanation: "Determinant = (2×7) - (3×5) = 14 - 15 = -1."
+                        },
+                        {
+                            question: "A cone has height 6 and base radius 4. What is its volume?",
+                            options: ["24π", "32π", "48π", "96π"],
+                            answer: "1",
+                            explanation: "Volume = (1/3)πr²h = (1/3)π×16×6 = 32π."
+                        },
+                        {
+                            question: "What is the domain of the function f(x) = √(4 - x²)?",
+                            options: ["x ≤ 2", "x ≥ -2", "-2 ≤ x ≤ 2", "All real numbers"],
+                            answer: "2",
+                            explanation: "4 - x² ≥ 0 → x² ≤ 4 → -2 ≤ x ≤ 2."
+                        },
+                        {
+                            question: "What is the standard form of the equation of a hyperbola opening left and right?",
+                            options: ["(x-h)²/a² + (y-k)²/b² = 1", "(x-h)²/a² - (y-k)²/b² = 1", "(y-k)²/a² - (x-h)²/b² = 1", "(x-h)² + (y-k)² = r²"],
+                            answer: "1",
+                            explanation: "Standard form for horizontal hyperbola is (x-h)²/a² - (y-k)²/b² = 1."
+                        }
+                    ]
+                },
+                {
+                    level: 5,
+                    title: "Advanced College Mathematics",
+                    questions: [
+                        {
+                            question: "What is the derivative of f(x) = x³eˣ?",
+                            options: ["3x²eˣ", "x³eˣ + 3x²eˣ", "x³eˣ", "eˣ(x³ + 3x²)"],
+                            answer: "3",
+                            explanation: "Product rule: f'(x) = eˣ(3x²) + x³eˣ = eˣ(x³ + 3x²)."
+                        },
+                        {
+                            question: "What is the integral ∫(3x² + 2x + 1) dx?",
+                            options: ["x³ + x² + x + C", "6x + 2 + C", "x³ + x² + C", "3x³ + 2x² + x + C"],
+                            answer: "0",
+                            explanation: "Integrate term by term: x³ + x² + x + C."
+                        },
+                        {
+                            question: "What is the equation of the tangent line to y = x² at x = 2?",
+                            options: ["y = 4x - 4", "y = 2x + 4", "y = 4x + 4", "y = 4x"],
+                            answer: "0",
+                            explanation: "At x=2, y=4. Slope (derivative) is 2x=4. Equation: y-4=4(x-2) → y=4x-4."
+                        },
+                        {
+                            question: "What is the cross product of vectors <1,0,0> and <0,1,0>?",
+                            options: ["<0,0,0>", "<0,0,1>", "<1,1,0>", "<1,0,1>"],
+                            answer: "1",
+                            explanation: "i j k; 1 0 0; 0 1 0 = (0×0-0×1)i - (1×0-0×0)j + (1×1-0×0)k = <0,0,1>."
+                        },
+                        {
+                            question: "What is the general solution to the differential equation dy/dx = 2y?",
+                            options: ["y = Ce²ˣ", "y = Cx²", "y = e²ˣ + C", "y = Ce^(x²)"],
+                            answer: "0",
+                            explanation: "Separate variables: dy/y = 2dx → ln|y| = 2x + C → y = Ce²ˣ."
+                        },
+                        {
+                            question: "What is the surface area of a right circular cone with radius 3 and height 4?",
+                            options: ["15π", "21π", "24π", "30π"],
+                            answer: "2",
+                            explanation: "Slant height l = √(3²+4²) = 5. Surface area = πr² + πrl = 9π + 15π = 24π."
+                        },
+                        {
+                            question: "What is the limit as x approaches 0 of (sin x)/x?",
+                            options: ["0", "1", "∞", "Undefined"],
+                            answer: "1",
+                            explanation: "This is a standard limit result equal to 1."
+                        },
+                        {
+                            question: "What is the gradient of the function f(x,y) = x²y at the point (2,3)?",
+                            options: ["<4,3>", "<12,4>", "<6,4>", "<4,6>"],
+                            answer: "1",
+                            explanation: "∇f = <∂f/∂x, ∂f/∂y> = <2xy, x²> = <12,4> at (2,3)."
+                        },
+                        {
+                            question: "What is the area bounded by y = x² and y = 4?",
+                            options: ["8", "16/3", "32/3", "16"],
+                            answer: "2",
+                            explanation: "Intersection at x=±2. Area = ∫ from -2 to 2 of (4 - x²) dx = 32/3."
+                        },
+                        {
+                            question: "What is the polar form of the complex number 1 + i?",
+                            options: ["√2 e^(iπ/4)", "2 e^(iπ/4)", "√2 e^(iπ/2)", "2 e^(iπ/2)"],
+                            answer: "0",
+                            explanation: "r = √(1²+1²) = √2, θ = π/4 → √2 e^(iπ/4)."
+                        },
+                        {
+                            question: "What is the divergence of the vector field F = <x², yz, xz>?",
+                            options: ["2x + z + x", "x² + yz + xz", "2x + z", "0"],
+                            answer: "0",
+                            explanation: "div F = ∂/∂x(x²) + ∂/∂y(yz) + ∂/∂z(xz) = 2x + z + x."
+                        },
+                        {
+                            question: "What is the equation of the plane with normal vector <1,2,3> passing through (1,0,1)?",
+                            options: ["x + 2y + 3z = 4", "x + 2y + 3z = 0", "x + y + z = 2", "2x + 3y + z = 5"],
+                            answer: "0",
+                            explanation: "1(x-1) + 2(y-0) + 3(z-1) = 0 → x + 2y + 3z = 4."
+                        }
+                    ]
+                }
+            ]
+        };
+
+        // User progress tracking
+        let userProgress = {};
+        
+        // Initialize progress tracking
+        function initializeProgress() {
+            questionsData.levels.forEach(level => {
+                if (!userProgress[level.level]) {
+                    userProgress[level.level] = {
+                        answered: 0,
+                        correct: 0,
+                        questions: Array(level.questions.length).fill(null)
+                    };
+                }
+            });
+            updateOverallProgress();
+        }
+
+        // Display a specific level
+        function showLevel(levelNum) {
+            // Update tab styling
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab')[levelNum-1].classList.add('active');
+            
+            const level = questionsData.levels.find(l => l.level === levelNum);
+            if (!level) return;
+            
+            let html = `<h2>Level ${level.level}: ${level.title}</h2>`;
+            
+            // Progress bar for this level
+            const progress = userProgress[levelNum] || { answered: 0, correct: 0 };
+            const percent = progress.answered ? Math.round((progress.correct / progress.answered) * 100) : 0;
+            html += `
+                <div class="progress-bar">
+                    <div class="progress" style="width: ${percent}%"></div>
+                </div>
+                <p>Level Score: ${percent}% (${progress.correct}/${progress.answered} correct)</p>
+            `;
+            
+            // Add all questions
+            level.questions.forEach((q, index) => {
+                const userAnswer = userProgress[levelNum]?.questions[index];
+                const isCorrect = userAnswer !== null ? (userAnswer === q.answer) : null;
+                
+                html += `<div class="question" id="q${levelNum}-${index}">`;
+                html += `<p><strong>Question ${index+1}:</strong> ${q.question}</p>`;
+                html += `<div class="options">`;
+                
+                q.options.forEach((option, optIndex) => {
+                    let checked = userAnswer === optIndex.toString() ? 'checked' : '';
+                    let disabled = userAnswer !== null ? 'disabled' : '';
+                    html += `
+                        <div>
+                            <input type="radio" name="q${levelNum}-${index}" id="q${levelNum}-${index}-${optIndex}" 
+                                   value="${optIndex}" ${checked} ${disabled}
+                                   onclick="saveAnswer(${levelNum}, ${index}, ${optIndex})">
+                            <label for="q${levelNum}-${index}-${optIndex}">${option}</label>
+                        </div>
+                    `;
+                });
+                
+                html += `</div>`;
+                
+                // Show explanation if answered
+                if (userAnswer !== null) {
+                    const resultClass = isCorrect ? 'correct' : 'incorrect';
+                    const resultText = isCorrect ? 'Correct!' : 'Incorrect!';
+                    html += `
+                        <div class="results ${resultClass}">
+                            <strong>${resultText}</strong> ${q.explanation}
+                        </div>
+                    `;
+                }
+                
+                html += `</div>`;
+            });
+            
+            document.getElementById('level-container').innerHTML = html;
+        }
+
+        // Save user's answer
+        function saveAnswer(levelNum, questionIndex, optionIndex) {
+            if (!userProgress[levelNum]) {
+                userProgress[levelNum] = {
+                    answered: 0,
+                    correct: 0,
+                    questions: Array(questionsData.levels[levelNum-1].questions.length).fill(null)
+                };
+            }
+            
+            const level = questionsData.levels.find(l => l.level === levelNum);
+            const question = level.questions[questionIndex];
+            const wasAnswered = userProgress[levelNum].questions[questionIndex] !== null;
+            
+            // Update answer
+            userProgress[levelNum].questions[questionIndex] = optionIndex.toString();
+            
+            // Update counts if not previously answered
+            if (!wasAnswered) {
+                userProgress[levelNum].answered++;
+                if (optionIndex.toString() === question.answer) {
+                    userProgress[levelNum].correct++;
+                }
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('mathPracticeProgress', JSON.stringify(userProgress));
+            
+            // Refresh display
+            showLevel(levelNum);
+            updateOverallProgress();
+        }
+
+        // Calculate and display overall progress
+        function updateOverallProgress() {
+            let totalQuestions = 0;
+            let totalAnswered = 0;
+            let totalCorrect = 0;
+            
+            questionsData.levels.forEach(level => {
+                totalQuestions += level.questions.length;
+                if (userProgress[level.level]) {
+                    totalAnswered += userProgress[level.level].answered;
+                    totalCorrect += userProgress[level.level].correct;
+                }
+            });
+            
+            const percentAnswered = totalQuestions ? Math.round((totalAnswered / totalQuestions) * 100) : 0;
+            const percentCorrect = totalAnswered ? Math.round((totalCorrect / totalAnswered) * 100) : 0;
+            
+            document.getElementById('overall-progress-bar').style.width = `${percentAnswered}%`;
+            document.getElementById('overall-score').textContent = 
+                `Total Score: ${percentCorrect}% (${totalCorrect}/${totalAnswered} correct of ${totalQuestions} total questions)`;
+        }
+
+        // Load progress from localStorage
+        function loadProgress() {
+            const savedProgress = localStorage.getItem('mathPracticeProgress');
+            if (savedProgress) {
+                userProgress = JSON.parse(savedProgress);
+            }
+            initializeProgress();
+        }
+
+        // Initialize the page
+        window.onload = function() {
+            loadProgress();
+            showLevel(1);
+        };
+    </script>
+</body>
+</html>

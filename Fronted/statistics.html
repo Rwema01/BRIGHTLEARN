@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrightLearn - Statistics</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Navigation -->
+        <nav class="left-nav">
+            <div class="nav-header">
+                <div class="logo-container">
+                    <img src="BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>DASHBOARD</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="courses.html">
+                        <i class="fas fa-book-open"></i>
+                        <span>COURSES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="history.html">
+                        <i class="fas fa-history"></i>
+                        <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="help.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span>HELP</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="logout-container">
+                <a href="logout.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>LOGOUT</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="top-icons">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <div class="notification-dropdown">
+                        <i class="fas fa-bell notification-icon"></i>
+                        <span class="notification-badge">3</span>
+                        <div class="dropdown-content">
+                            <div class="notification-header">
+                                <h4>Notifications</h4>
+                                <button class="mark-all-read">Mark all as read</button>
+                            </div>
+                            <div class="notification-list">
+                                <div class="notification-item unread">
+                                    <div class="notification-icon"><i class="fas fa-book"></i></div>
+                                    <div class="notification-content">
+                                        <p>New assignment posted in Algebra II</p>
+                                        <span class="notification-time">2 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-icon"><i class="fas fa-check-circle"></i></div>
+                                    <div class="notification-content">
+                                        <p>Your submission for Essay Writing was graded</p>
+                                        <span class="notification-time">1 day ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="view-all">View All Notifications</a>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-dropdown">
+                        <i class="fas fa-user-circle profile-icon"></i>
+                        <div class="dropdown-content">
+                            <div class="profile-header">
+                                <img src="default-profile.jpg" alt="Profile" class="profile-pic">
+                                <div class="profile-info">
+                                    <h4>Jordan Barker</h4>
+                                    <p>Student</p>
+                                </div>
+                            </div>
+                            <div class="profile-stats">
+                                <div class="stat-item">
+                                    <span>Courses</span>
+                                    <span>5</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span>Completed</span>
+                                    <span>32%</span>
+                                </div>
+                            </div>
+                            <div class="dropdown-links">
+                                <a href="profile.html" class="profile-link"><i class="fas fa-user"></i> View Profile</a>
+                                <a href="settings.html" class="profile-link"><i class="fas fa-cog"></i> Settings</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Statistics Content -->
+            <div class="dashboard-content">
+                <!-- Breadcrumbs and Header -->
+                <div class="breadcrumbs">
+                    <a href="index.html">Home</a> > <a href="history.html">History</a> > <a href="statistics.html">Statistics</a>
+                </div>
+                
+                <div class="section-header">
+                    <h1><i class="fas fa-chart-line"></i> YOUR LEARNING STATISTICS</h1>
+                    <p class="subtitle">Detailed analytics about your learning progress and performance</p>
+                </div>
+
+                <!-- Statistics Section -->
+                <div class="statistics-container">
+                    <!-- Time Period Selector -->
+                    <div class="time-period-selector">
+                        <h3>VIEW STATISTICS FOR:</h3>
+                        <div class="period-buttons">
+                            <button class="period-btn active">Last 7 Days</button>
+                            <button class="period-btn">Last 30 Days</button>
+                            <button class="period-btn">Last 3 Months</button>
+                            <button class="period-btn">All Time</button>
+                            <button class="period-btn custom">Custom Range</button>
+                        </div>
+                    </div>
+
+                    <!-- Main Statistics Grid -->
+                    <div class="statistics-grid">
+                        <!-- Time Spent Card -->
+                        <div class="stat-card large">
+                            <div class="card-header">
+                                <h3><i class="fas fa-clock"></i> TIME SPENT</h3>
+                                <div class="card-actions">
+                                    <button class="action-btn" title="Download"><i class="fas fa-download"></i></button>
+                                    <button class="action-btn" title="Expand"><i class="fas fa-expand"></i></button>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <div class="chart-placeholder">
+                                    <!-- Chart would be rendered here -->
+                                    <canvas id="timeSpentChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stat-metric">
+                                    <span class="metric-value">12h 45m</span>
+                                    <span class="metric-label">This Week</span>
+                                </div>
+                                <div class="stat-metric">
+                                    <span class="metric-value positive">+2h 10m</span>
+                                    <span class="metric-label">vs Last Week</span>
+                                </div>
+                                <div class="stat-metric">
+                                    <span class="metric-value">3.2h/day</span>
+                                    <span class="metric-label">Daily Average</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Course Progress Card -->
+                        <div class="stat-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-tasks"></i> COURSE PROGRESS</h3>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-item">
+                                    <div class="progress-info">
+                                        <span class="course-name">Algebra II</span>
+                                        <span class="progress-percent">78%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill math" style="width: 78%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-item">
+                                    <div class="progress-info">
+                                        <span class="course-name">Essay Writing</span>
+                                        <span class="progress-percent">92%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill english" style="width: 92%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-item">
+                                    <div class="progress-info">
+                                        <span class="course-name">World History</span>
+                                        <span class="progress-percent">65%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill history" style="width: 65%"></div>
+                                    </div>
+                                </div>
+                                <div class="progress-item">
+                                    <div class="progress-info">
+                                        <span class="course-name">Chemistry</span>
+                                        <span class="progress-percent">42%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill science" style="width: 42%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Performance Card -->
+                        <div class="stat-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-chart-line"></i> PERFORMANCE</h3>
+                            </div>
+                            <div class="performance-container">
+                                <div class="performance-metric">
+                                    <div class="metric-circle">
+                                        <svg class="circle-chart" viewBox="0 0 36 36">
+                                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                            <path class="circle-fill" stroke-dasharray="87, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                        </svg>
+                                        <span class="circle-value">87%</span>
+                                    </div>
+                                    <p>Average Score</p>
+                                </div>
+                                <div class="performance-metric">
+                                    <div class="metric-circle">
+                                        <svg class="circle-chart" viewBox="0 0 36 36">
+                                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                            <path class="circle-fill" stroke-dasharray="80, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                        </svg>
+                                        <span class="circle-value">24</span>
+                                    </div>
+                                    <p>Quizzes Taken</p>
+                                </div>
+                                <div class="performance-metric">
+                                    <div class="metric-circle">
+                                        <svg class="circle-chart" viewBox="0 0 36 36">
+                                            <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                            <path class="circle-fill" stroke-dasharray="73, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                        </svg>
+                                        <span class="circle-value">73%</span>
+                                    </div>
+                                    <p>Completion Rate</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Activity Heatmap -->
+                        <div class="stat-card large">
+                            <div class="card-header">
+                                <h3><i class="fas fa-calendar-alt"></i> ACTIVITY HEATMAP</h3>
+                            </div>
+                            <div class="heatmap-container">
+                                <div class="heatmap-placeholder">
+                                    <!-- Heatmap would be rendered here -->
+                                    <canvas id="activityHeatmap"></canvas>
+                                </div>
+                            </div>
+                            <div class="heatmap-legend">
+                                <div class="legend-item">
+                                    <span class="legend-color less-active"></span>
+                                    <span>Less Active</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-color active"></span>
+                                    <span>Active</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-color very-active"></span>
+                                    <span>Very Active</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Time of Day Card -->
+                        <div class="stat-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-sun"></i> PEAK STUDY TIMES</h3>
+                            </div>
+                            <div class="chart-container">
+                                <div class="chart-placeholder">
+                                    <!-- Chart would be rendered here -->
+                                    <canvas id="timeOfDayChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="peak-time">
+                                    <i class="fas fa-bolt"></i>
+                                    <span>Most productive: <strong>9:00-11:00 AM</strong></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Comparison Card -->
+                        <div class="stat-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-users"></i> CLASS COMPARISON</h3>
+                            </div>
+                            <div class="chart-container">
+                                <div class="chart-placeholder">
+                                    <!-- Chart would be rendered here -->
+                                    <canvas id="comparisonChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="comparison-metric">
+                                    <span>You're in the <strong>top 15%</strong> of your class</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

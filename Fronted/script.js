@@ -1103,6 +1103,49 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// === MINIMAL PROGRESS TRACKING ===
+const PROGRESS_KEY = 'brightlearn_progress';
+
+function loadProgress() {
+    const data = localStorage.getItem(PROGRESS_KEY);
+    return data ? JSON.parse(data) : { lessons: {}, quizzes: {} };
+}
+
+function saveProgress(progress) {
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
+}
+
+function markLessonCompleted(subject, lessonId) {
+    const progress = loadProgress();
+    if (!progress.lessons[subject]) progress.lessons[subject] = [];
+    if (!progress.lessons[subject].includes(lessonId)) {
+        progress.lessons[subject].push(lessonId);
+        saveProgress(progress);
+    }
+}
+
+function saveQuizScore(subject, quizId, score) {
+    const progress = loadProgress();
+    if (!progress.quizzes[subject]) progress.quizzes[subject] = {};
+    progress.quizzes[subject][quizId] = score;
+    saveProgress(progress);
+}
+
+function getLessonCompletion(subject, lessonId) {
+    const progress = loadProgress();
+    return progress.lessons[subject]?.includes(lessonId) || false;
+}
+
+function getQuizScore(subject, quizId) {
+    const progress = loadProgress();
+    return progress.quizzes[subject]?.[quizId] ?? null;
+}
+
+// === EXAMPLE USAGE ===
+// markLessonCompleted('math', 'lesson1');
+// saveQuizScore('english', 'quiz2', 85);
+// let completed = getLessonCompletion('math', 'lesson1');
+// let score = getQuizScore('english', 'quiz2');
 
 // Additional styles for calendar (would normally be in CSS, but included here for completeness)
 function addCalendarStyles() {
@@ -1200,3 +1243,464 @@ function addCalendarStyles() {
 
 // Add calendar styles when the page loads
 addCalendarStyles();
+
+// ===== MINIMAL QUIZ SYSTEM (WORKS WITHOUT BACKEND) =====
+// Example: Place a <div id="quiz-container"></div> in your HTML where you want the quiz.
+// You can adapt this for each subject/quiz as needed.
+
+const quizData  = [
+    {
+        question: "1. What is the solution to the equation: 2x + 5 = 15?",
+        options: ["x = 5", "x = 7.5", "x = 10", "x = 20"],
+        answer: 0
+    },
+    {
+        question: "2. Simplify: (3x²)(4x³)",
+        options: ["7x⁵", "12x⁵", "12x⁶", "7x⁶"],
+        answer: 1
+    },
+    {
+        question: "3. Factor completely: x² - 9",
+        options: ["(x-3)(x-3)", "(x+3)(x+3)", "(x-3)(x+3)", "Cannot be factored"],
+        answer: 2
+    },
+    {
+        question: "4. Solve for y: 3y - 7 = 8",
+        options: ["y = 1", "y = 5", "y = 15", "y = 45"],
+        answer: 1
+    },
+    {
+        question: "5. What is the slope of the line: y = 2x + 5?",
+        options: ["2", "5", "-2", "1/2"],
+        answer: 0
+    },
+    {
+        question: "6. Solve the system: y = 2x + 1 and y = 3x - 4",
+        options: ["(5,11)", "(-5,-9)", "(1,-1)", "(0,1)"],
+        answer: 0
+    },
+    {
+        question: "7. Expand: (x + 3)(x - 2)",
+        options: ["x² + x - 6", "x² + 5x - 6", "x² - x - 6", "x² - 5x - 6"],
+        answer: 0
+    },
+    {
+        question: "8. What is the y-intercept of y = -3x + 7?",
+        options: ["-3", "3", "7", "-7"],
+        answer: 2
+    },
+    {
+        question: "9. Solve for x: x² - 5x + 6 = 0",
+        options: ["x = 2, x = 3", "x = -2, x = -3", "x = 1, x = 6", "x = -1, x = -6"],
+        answer: 0
+    },
+    {
+        question: "10. Simplify: √(16x⁴)",
+        options: ["4x", "4x²", "8x²", "16x²"],
+        answer: 1
+    },
+    {
+        question: "11. Solve the inequality: 3x - 5 < 10",
+        options: ["x < 5", "x > 5", "x < 15", "x > 15"],
+        answer: 0
+    },
+    {
+        question: "12. What is the vertex of y = (x-2)² + 3?",
+        options: ["(-2,3)", "(2,3)", "(-3,2)", "(3,2)"],
+        answer: 1
+    },
+    {
+        question: "13. Solve for x: |2x - 3| = 7",
+        options: ["x = 5", "x = -2", "x = 5 or x = -2", "x = 2 or x = -5"],
+        answer: 2
+    },
+    {
+        question: "14. Simplify: (2x⁻³)⁻²",
+        options: ["4x⁶", "2x⁶", "(1/4)x⁶", "4/x⁶"],
+        answer: 0
+    },
+    {
+        question: "15. Which is the equation of a line with slope -2 passing through (1,4)?",
+        options: ["y = -2x + 2", "y = -2x + 6", "y = 2x + 2", "y = 2x + 6"],
+        answer: 1
+    },
+    {
+        question: "16. Factor: 2x² + 7x + 3",
+        options: ["(2x+1)(x+3)", "(2x+3)(x+1)", "(x+1)(2x+3)", "Cannot be factored"],
+        answer: 1
+    },
+    {
+        question: "17. Solve for x: 5ˣ⁻¹ = 25",
+        options: ["x = 1", "x = 2", "x = 3", "x = 4"],
+        answer: 2
+    },
+    {
+        question: "18. What is the domain of f(x) = √(x-4)?",
+        options: ["x > 4", "x ≥ 4", "All real numbers", "x ≤ 4"],
+        answer: 1
+    },
+    {
+        question: "19. Simplify: (3x²y⁻³)³",
+        options: ["9x⁵", "27x⁶/y⁹", "9x⁶y⁻⁹", "27x⁵y⁻⁶"],
+        answer: 1
+    },
+    {
+        question: "20. Solve for x: log₂(x) = 3",
+        options: ["x = 6", "x = 8", "x = 9", "x = 1/8"],
+        answer: 1
+    },
+    {
+        question: "21. What is the solution to: 4 - 2x > 10?",
+        options: ["x > -3", "x < -3", "x > 3", "x < 3"],
+        answer: 1
+    },
+    {
+        question: "22. Find the x-intercept of y = -2x + 8",
+        options: ["(8,0)", "(-4,0)", "(4,0)", "(0,8)"],
+        answer: 2
+    },
+    {
+        question: "23. Simplify: (x² - 4)/(x - 2)",
+        options: ["x - 2", "x + 2", "x² + 2", "Cannot be simplified"],
+        answer: 1
+    },
+    {
+        question: "24. Solve the system: 2x + y = 5 and x - y = 1",
+        options: ["(2,1)", "(1,2)", "(3,2)", "(2,3)"],
+        answer: 0
+    },
+    {
+        question: "25. What is f(-2) if f(x) = x³ - 2x² + 1?",
+        options: ["-15", "-7", "1", "17"],
+        answer: 1
+    },
+    {
+        question: "26. Which represents exponential growth?",
+        options: ["y = 100(0.95)ˣ", "y = 50(1.05)ˣ", "y = 200 - 5x", "y = 300/x"],
+        answer: 1
+    },
+    {
+        question: "27. Solve for x: 3/x + 1/2 = 5/x",
+        options: ["x = 4", "x = 2", "x = 1/4", "x = 1/2"],
+        answer: 0
+    },
+    {
+        question: "28. What is the range of f(x) = x² + 3?",
+        options: ["All real numbers", "y ≥ 0", "y ≥ 3", "y ≤ 3"],
+        answer: 2
+    },
+    {
+        question: "29. Simplify: (2 + √3)(2 - √3)",
+        options: ["1", "4 - 2√3", "4 + 2√3", "4 - 3"],
+        answer: 0
+    },
+    {
+        question: "30. Which is the inverse of f(x) = 2x - 5?",
+        options: ["f⁻¹(x) = (x+5)/2", "f⁻¹(x) = (x-5)/2", "f⁻¹(x) = 2/(x+5)", "f⁻¹(x) = -2x + 5"],
+        answer: 0
+    },
+    {
+        question: "31. Solve: x² + 6x + 9 = 0",
+        options: ["x = 3", "x = -3", "x = 3 or x = -3", "No real solution"],
+        answer: 1
+    },
+    {
+        question: "32. What is the midpoint between (1,3) and (5,7)?",
+        options: ["(3,5)", "(4,4)", "(6,10)", "(2.5,3.5)"],
+        answer: 0
+    },
+    {
+        question: "33. Which is a solution to x³ - 4x = 0?",
+        options: ["x = 0 only", "x = 2 only", "x = -2, 0, or 2", "No real solutions"],
+        answer: 2
+    },
+    {
+        question: "34. Simplify: i²⁰²³ (where i = √-1)",
+        options: ["1", "-1", "i", "-i"],
+        answer: 3
+    },
+    {
+        question: "35. What is the degree of 4x³ - 2x⁵ + x - 7?",
+        options: ["3", "5", "7", "1"],
+        answer: 1
+    },
+    {
+        question: "36. Solve for x: eˣ = 5 (ln5 ≈ 1.609)",
+        options: ["x ≈ 0.699", "x ≈ 1.609", "x ≈ 5", "x ≈ 0.2"],
+        answer: 1
+    },
+    {
+        question: "37. Which is the factored form of 6x² - x - 1?",
+        options: ["(2x-1)(3x+1)", "(6x+1)(x-1)", "(3x-1)(2x+1)", "Cannot be factored"],
+        answer: 2
+    },
+    {
+        question: "38. What is the solution to √(x+9) = x - 3?",
+        options: ["x = 0", "x = 7", "x = 0 or x = 7", "No solution"],
+        answer: 1
+    },
+    {
+        question: "39. Which function is odd?",
+        options: ["f(x) = x²", "f(x) = x³", "f(x) = |x|", "f(x) = 2ˣ"],
+        answer: 1
+    },
+    {
+        question: "40. Solve the inequality: x² - 4 < 0",
+        options: ["-2 < x < 2", "x < -2 or x > 2", "x < 2", "x > -2"],
+        answer: 0
+    }
+];
+
+// Add quiz CSS dynamically for quizData-rendered questions/answers
+function addQuizStyles() {
+    if (document.getElementById('quiz-style')) return;
+    const style = document.createElement('style');
+    style.id = 'quiz-style';
+    style.textContent = `
+      .bl-quiz-q {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #2d3748;
+      }
+      .bl-quiz-options {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+      }
+      .bl-quiz-options label {
+        background: #f7fafc;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        transition: background 0.2s, border 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .bl-quiz-options input[type="radio"] {
+        accent-color: #3a86ff;
+        margin-right: 0.5rem;
+      }
+      .bl-quiz-options label:hover, .bl-quiz-options label:has(input:checked) {
+        background: #e0e7ff;
+        border-color: #3a86ff;
+      }
+      .bl-quiz-nav {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+      }
+      .bl-quiz-nav button {
+        background: #3a86ff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .bl-quiz-nav button:disabled {
+        background: #a0aec0;
+        cursor: not-allowed;
+      }
+      .bl-quiz-result {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #256029;
+        margin-bottom: 1.5rem;
+      }
+      #retryQuiz {
+        background: #f59e42;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 0.5rem 1.5rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      #retryQuiz:hover {
+        background: #ffb366;
+      }
+    `;
+    document.head.appendChild(style);
+}
+
+// Call this before rendering quiz
+addQuizStyles();
+
+// Update renderQuiz to use the new class names
+function renderQuiz(quizId = 'defaultQuiz', subject = 'math') {
+    addQuizStyles();
+    const container = document.getElementById('quiz-container');
+    if (!container) return;
+    let current = 0;
+    let userAnswers = Array(quizData.length).fill(null);
+    container.innerHTML = '';
+
+    function showQuestion(idx) {
+        const q = quizData[idx];
+        container.innerHTML = `
+            <div class="bl-quiz-q">${q.question}</div>
+            <div class="bl-quiz-options">
+                ${q.options.map((opt, i) => `
+                    <label>
+                        <input type="radio" name="option" value="${i}" ${userAnswers[idx] === i ? 'checked' : ''}>
+                        ${opt}
+                    </label>
+                `).join('')}
+            </div>
+            <div class="bl-quiz-nav">
+                <button id="prevQ" ${idx === 0 ? 'disabled' : ''}>Previous</button>
+                <button id="nextQ">${idx === quizData.length - 1 ? 'Finish' : 'Next'}</button>
+            </div>
+            <div id="quiz-feedback"></div>
+        `;
+        document.querySelectorAll('input[name="option"]').forEach(input => {
+            input.addEventListener('change', e => {
+                userAnswers[idx] = parseInt(e.target.value);
+            });
+        });
+        document.getElementById('prevQ').onclick = () => {
+            if (current > 0) {
+                current--;
+                showQuestion(current);
+            }
+        };
+        document.getElementById('nextQ').onclick = () => {
+            if (current < quizData.length - 1) {
+                current++;
+                showQuestion(current);
+            } else {
+                finishQuiz();
+            }
+        };
+    }
+
+    function finishQuiz() {
+        let correct = 0;
+        quizData.forEach((q, i) => {
+            if (userAnswers[i] === q.answer) correct++;
+        });
+        const percent = Math.round((correct / quizData.length) * 100);
+        saveQuizScore(subject, quizId, percent);
+        container.innerHTML = `
+            <div class="bl-quiz-result">You scored ${percent}% (${correct} out of ${quizData.length})</div>
+            <button id="retryQuiz">Retry</button>
+        `;
+        document.getElementById('retryQuiz').onclick = () => {
+            userAnswers = Array(quizData.length).fill(null);
+            current = 0;
+            showQuestion(current);
+        };
+    }
+
+    showQuestion(current);
+}
+
+const geometryQuizData = [
+    {
+        question: "1. What is the sum of the angles in a triangle?",
+        options: ["90°", "180°", "270°", "360°"],
+        answer: 1
+    },
+    {
+        question: "2. What do you call a triangle with all sides equal?",
+        options: ["Isosceles", "Scalene", "Equilateral", "Right"],
+        answer: 2
+    },
+    {
+        question: "3. What is the area of a rectangle with length 5 and width 3?",
+        options: ["8", "15", "16", "10"],
+        answer: 1
+    },
+    {
+        question: "4. What is the name of a 6-sided polygon?",
+        options: ["Pentagon", "Hexagon", "Heptagon", "Octagon"],
+        answer: 1
+    },
+    {
+        question: "5. What is the length of the hypotenuse in a right triangle with legs 3 and 4?",
+        options: ["5", "6", "7", "8"],
+        answer: 0
+    },
+    {
+        question: "6. What is the volume of a cube with side length 3?",
+        options: ["9", "18", "27", "36"],
+        answer: 2
+    },
+    {
+        question: "7. What is the surface area of a sphere with radius 3? (Use π = 3.14)",
+        options: ["28.26", "31.42", "18.84", "37.68"],
+        answer: 1
+    },
+    {
+        question: "8. What is the circumference of a circle with diameter 10? (Use π = 3.14)",
+        options: ["31.4", "15.7", "25.12", "20"],
+        answer: 0
+    },
+    {
+        question: "9. What is the area of a triangle with base 4 and height 3?",
+        options: ["12", "6", "8", "10"],
+        answer: 1
+    },
+    {
+        question: "10. What do you call a polygon with 10 sides?",
+        options: ["Decagon", "Dodecagon", "Pentagon", "Hexadecagon"],
+        answer: 0
+    },
+    {
+        question: "11. What is the measure of each interior angle in a regular hexagon?",
+        options: ["120°", "90°", "60°", "150°"],
+        answer: 0
+    },
+    {
+        question: "12. What is the Pythagorean Theorem?",
+        options: ["a² + b² = c²", "a + b = c", "a² - b² = c²", "2ab = c²"],
+        answer: 0
+    },
+    {
+        question: "13. What is the distance between the points (3,4) and (6,8)?",
+        options: ["5", "10", "7", "8"],
+        answer: 0
+    },
+    {
+        question: "14. What is the midpoint of the line segment connecting (2,3) and (4,7)?",
+        options: ["(3,5)", "(2.5,3.5)", "(4,5)", "(3,7)"],
+        answer: 1
+    },
+    {
+        question: "15. What is the slope of the line passing through (1,2) and (3,4)?",
+        options: ["1", "2", "0.5", "3"],
+        answer: 0
+    },
+    {
+        question: "16. What is the equation of the line with slope 2 passing through the origin?",
+        options: ["y = 2x", "y = x/2", "y = 2/x", "y = x+2"],
+        answer: 0
+    },
+    {
+        question: "17. What is the area of a circle with radius 2? (Use π = 3.14)",
+        options: ["12.56", "6.28", "3.14", "25.12"],
+        answer: 0
+    },
+    {
+        question: "18. What is the circumference of a circle with radius 3? (Use π = 3.14)",
+        options: ["18.84", "12.56", "9.42", "6.28"],
+        answer: 0
+    },
+    {
+        question: "19. What is the surface area of a cube with side length 2?",
+        options: ["24", "12", "8", "16"],
+        answer: 0
+    },
+    {
+        question: "20. What is the volume of a cylinder with radius 2 and height 5? (Use π = 3.14)",
+        options: ["20π", "10π", "5π", "40π"],
+        answer: 0
+    },
+];

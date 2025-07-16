@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>English Course: Modern Novels</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin-left: 200pt;
+      margin-right: 200pt;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+    .fullscreen-frame {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      width: 100vw !important;
+      height: 100vh !important;
+      z-index: 9999;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      background: #fff;
+      border: none;
+      transition: none;
+    }
+    body.fullscreen-active {
+      overflow: hidden;
+    }
+    h1, h2 {
+      color: #1a1a1a;
+    }
+    .note {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-left: 6px solid #4CAF50;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    .book-container {
+      background: #fff;
+      margin-bottom: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+      margin-top: 10px;
+      transition: height 0.3s ease;
+    }
+    .book-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .controls button {
+      margin-left: 10px;
+      padding: 5px 10px;
+      border: none;
+      background: #4CAF50;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .controls button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Why Read Modern Novels?</h1>
+  <div class="note">
+    <p>
+      Reading modern novels is essential for developing a strong command of English. Modern literature reflects contemporary language use, culture, and real-world themes relevant to today's society. By exploring these works, learners gain:
+    </p>
+    <ul>
+      <li>Exposure to current vocabulary, idioms, and expressions.</li>
+      <li>Insights into global perspectives and human experiences.</li>
+      <li>Improved reading comprehension and analytical thinking.</li>
+      <li>Enhanced empathy, creativity, and critical engagement with texts.</li>
+    </ul>
+    <p>
+      Below are some carefully selected modern novels available for free reading. Use the buttons to expand or minimize your reading view.
+    </p>
+  </div>
+
+  <div id="books"></div>
+
+  <script>
+    const bookList = [
+      {
+        title: "After Dark",
+        url: "https://www.junkybooks.com/book/reader.php?book=thebooks/62c60132c58ed-after-dark.pdf"
+      },
+      {
+        title: "Tell Me Why",
+        url: "https://www.junkybooks.com/book/reader.php?book=thebooks/62bb5e79410ba-tell-me-why.pdf"
+      },
+      {
+        title: "Win Your Ex Back",
+        url: "https://www.junkybooks.com/book/reader.php?book=thebooks/6666b1b808f37-win-your-ex-back.pdf"
+      },
+      {
+        title: "What You Need to Know About Online Dating",
+        url: "https://www.junkybooks.com/book/reader.php?book=thebooks/what-you-need-to-know-about-online-dating%20dating.pdf"
+      }
+    ];
+
+    const booksDiv = document.getElementById("books");
+
+    bookList.forEach((book, index) => {
+      const container = document.createElement("div");
+      container.className = "book-container";
+
+      container.innerHTML = `
+        <div class="book-header">
+          <h2>${book.title}</h2>
+          <div class="controls">
+            <button onclick="resizeFrame(${index}, 300)">Minimize</button>
+            <button onclick="resizeFrame(${index}, 400)">Default</button>
+            <button onclick="resizeFrame(${index}, 'fullscreen')">Full Page</button>
+          </div>
+        </div>
+        <iframe id="book-frame-${index}" src="${book.url}"></iframe>
+      `;
+      booksDiv.appendChild(container);
+    });
+
+    function resizeFrame(index, height) {
+      const frame = document.getElementById(`book-frame-${index}`);
+      // Remove fullscreen from all iframes and body
+      document.querySelectorAll('iframe').forEach(f => f.classList.remove('fullscreen-frame'));
+      document.body.classList.remove('fullscreen-active');
+      if (height === 'fullscreen') {
+        frame.classList.add('fullscreen-frame');
+        document.body.classList.add('fullscreen-active');
+        frame.scrollIntoView({behavior: 'smooth'});
+      } else {
+        frame.classList.remove('fullscreen-frame');
+        document.body.classList.remove('fullscreen-active');
+        frame.style.height = `${height}px`;
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Writing Skills with Quizzes</title>
+  <style>
+    body {
+      margin-left: 200pt;
+      margin-right: 200pt;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      line-height: 1.6;
+    }
+    header {
+      background: #003366;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav {
+      background: #005599;
+      padding: 0.5rem;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
+    }
+    section {
+      padding: 30px 20px;
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      margin-top: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #003366;
+    }
+    .quiz {
+      margin-top: 20px;
+      background: #eef;
+      padding: 20px;
+      border-radius: 5px;
+    }
+    .question {
+      margin-bottom: 10px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      background: #005599;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Writing Skills: Everything You Need to Know</h1>
+  </header>
+
+  <nav id="navLinks">
+    <!-- Navigation links will be generated automatically -->
+  </nav>
+
+  <div id="contentContainer">
+    <!-- Content will be generated automatically -->
+  </div>
+
+  <script>
+    // JSON data structure for all content
+    const courseData = {
+      levels: [
+        {
+          id: "page1",
+          title: "1. Understanding the Purpose of Writing",
+          content: `
+            <p>Good writing begins with a clear understanding of why you're writing. Every piece of writing has a purpose — whether it's to inform, persuade, entertain, or explain something.</p>
+            <ul>
+              <li><strong>Inform:</strong> Share knowledge or facts (e.g., news articles, reports).</li>
+              <li><strong>Persuade:</strong> Influence the reader's thoughts or actions (e.g., opinion essays, advertisements).</li>
+              <li><strong>Entertain:</strong> Amuse the reader (e.g., stories, poems).</li>
+              <li><strong>Explain:</strong> Break down complex ideas (e.g., instructions, manuals).</li>
+            </ul>
+          `,
+          quiz: {
+            title: "Quiz: Understanding Purpose",
+            questions: [
+              {
+                text: "1. What is the main purpose of a persuasive essay?",
+                options: [
+                  { text: "To explain a process", value: "a" },
+                  { text: "To share facts", value: "b" },
+                  { text: "To influence opinions", value: "c", correct: true }
+                ]
+              },
+              {
+                text: "2. Which type of writing is used to amuse the reader?",
+                options: [
+                  { text: "Instruction manuals", value: "a" },
+                  { text: "Fiction stories", value: "b", correct: true },
+                  { text: "Reports", value: "c" }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          id: "page2",
+          title: "2. Grammar and Mechanics",
+          content: `
+            <p>Correct grammar and punctuation are the foundation of clear communication.</p>
+            <ul>
+              <li><strong>Subject-Verb Agreement:</strong> Ensure subjects match their verbs in number.</li>
+              <li><strong>Tenses:</strong> Maintain consistent tense throughout.</li>
+              <li><strong>Punctuation:</strong> Use commas, periods, colons, and semicolons correctly.</li>
+              <li><strong>Capitalization:</strong> Capitalize names, places, and titles correctly.</li>
+              <li><strong>Spelling:</strong> Use a spell checker or dictionary to avoid errors.</li>
+            </ul>
+          `,
+          quiz: {
+            title: "Quiz: Grammar Basics",
+            questions: [
+              {
+                text: "1. Which sentence has correct subject-verb agreement?",
+                options: [
+                  { text: "The dogs barks loudly.", value: "a" },
+                  { text: "The dog bark loudly.", value: "b" },
+                  { text: "The dogs bark loudly.", value: "c", correct: true }
+                ]
+              },
+              {
+                text: "2. Which punctuation mark ends a declarative sentence?",
+                options: [
+                  { text: "?", value: "a" },
+                  { text: ".", value: "b", correct: true },
+                  { text: ",", value: "c" }
+                ]
+              }
+            ]
+          }
+        }
+        // Add more levels here by following the same structure
+      ]
+    };
+
+    // Generate navigation links
+    function generateNavigation() {
+      const nav = document.getElementById('navLinks');
+      courseData.levels.forEach((level, index) => {
+        const link = document.createElement('a');
+        link.href = `#${level.id}`;
+        link.textContent = `${index + 1}. ${level.title.split(' ').slice(1).join(' ')}`;
+        nav.appendChild(link);
+      });
+    }
+
+    // Generate content sections
+    function generateContent() {
+      const container = document.getElementById('contentContainer');
+      
+      courseData.levels.forEach((level, levelIndex) => {
+        const section = document.createElement('section');
+        section.id = level.id;
+        
+        // Add title and content
+        section.innerHTML = `
+          <h2>${level.title}</h2>
+          ${level.content}
+        `;
+        
+        // Add quiz if it exists
+        if (level.quiz) {
+          const quizDiv = document.createElement('div');
+          quizDiv.className = 'quiz';
+          
+          let quizHTML = `<h3>${level.quiz.title}</h3>`;
+          
+          level.quiz.questions.forEach((question, qIndex) => {
+            quizHTML += `<div class="question">${question.text}<br>`;
+            
+            question.options.forEach(option => {
+              quizHTML += `
+                <label>
+                  <input type="radio" name="q${levelIndex}${qIndex}" value="${option.value}">
+                  ${option.text}
+                </label><br>
+              `;
+            });
+            
+            quizHTML += `</div>`;
+          });
+          
+          quizHTML += `
+            <button onclick="checkQuiz(${levelIndex})">Check Answers</button>
+            <div class="feedback" id="feedback${levelIndex}"></div>
+          `;
+          
+          quizDiv.innerHTML = quizHTML;
+          section.appendChild(quizDiv);
+        }
+        
+        container.appendChild(section);
+      });
+    }
+
+    // Check quiz answers
+    function checkQuiz(levelIndex) {
+      const level = courseData.levels[levelIndex];
+      let score = 0;
+      
+      level.quiz.questions.forEach((question, qIndex) => {
+        const selectedOption = document.querySelector(`input[name="q${levelIndex}${qIndex}"]:checked`);
+        
+        if (selectedOption) {
+          const selectedValue = selectedOption.value;
+          const isCorrect = question.options.some(opt => opt.value === selectedValue && opt.correct);
+          if (isCorrect) score++;
+        }
+      });
+      
+      document.getElementById(`feedback${levelIndex}`).innerText = 
+        `You got ${score}/${level.quiz.questions.length} correct.`;
+    }
+
+    // Initialize the page
+    window.onload = function() {
+      generateNavigation();
+      generateContent();
+    };
+  </script>
+
+</body>
+</html>
