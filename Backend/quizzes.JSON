@@ -1,0 +1,27 @@
+[
+  {
+    "id": "math101",
+    "title": "Math Basics",
+    "questions": [
+      { "question": "2 + 2?", "options": ["3", "4", "5"], "answer": "4" },
+      { "question": "5 - 3?", "options": ["1", "2", "3"], "answer": "2" }
+    ]
+  },
+  {
+    "id": "eng101",
+    "title": "English Basics",
+    "questions": [
+      { "question": "Synonym of 'big'?", "options": ["small", "large", "tiny"], "answer": "large" },
+      { "question": "Antonym of 'cold'?", "options": ["hot", "wet", "cool"], "answer": "hot" }
+    ]
+  },
+
+  {
+    "id": "hist101",
+    "title": "History Basics",
+    "questions": [
+      { "question": "Synonym of 'big'?", "options": ["small", "large", "tiny"], "answer": "large" },
+      { "question": "Antonym of 'cold'?", "options": ["hot", "wet", "cool"], "answer": "hot" }
+    ]
+  }
+]
