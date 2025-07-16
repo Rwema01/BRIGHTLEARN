@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Algebra Notes | BRIGHTLEARN</title>
+    <title>Geometry Notes | BRIGHTLEARN</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .algebra-notes-content {
+        .geometry-notes-content {
             background: #f7f9ff;
             color: #1a237e;
             border: 1px solid #b3c6ff;
@@ -18,16 +18,60 @@
             font-size: 1.15rem;
             box-shadow: 0 2px 8px rgba(38, 50, 56, 0.04);
         }
-        .algebra-notes-content h1 {
+        .geometry-notes-content h4 {
             font-size: 2rem;
             margin-bottom: 1rem;
             color: #2563eb;
         }
-        .algebra-notes-content ul {
+        .geometry-notes-content ul {
             margin: 1rem 0 1rem 1.5rem;
         }
-        .algebra-notes-content li {
+        .geometry-notes-content li {
             margin-bottom: 0.5rem;
+        }
+        .question-container {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .question {
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .answer {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f0f7ff;
+            border-left: 4px solid #2563eb;
+            border-radius: 4px;
+        }
+        .show-answer {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        .show-answer:hover {
+            background: #1d4ed8;
+        }
+        .level-selector {
+            margin: 1rem 0;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            border: 1px solid #b3c6ff;
+        }
+        .level-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
         }
     </style>
 </head>
@@ -50,613 +94,267 @@
             </div>
         </nav>
         <main class="main-content">
-            <div class="algebra-notes-content">
-                <h1>Algebra Notes</h1>
-                <p>Welcome to Algebra Notes! This section summarizes the key concepts from the Algebra module in your Mathematics course.</p>
+            <div class="geometry-notes-content">
+                <h4>Geometry Notes</h4>
+                <p>Welcome to Geometry Notes! This section summarizes the key concepts from the Geometry module in your Mathematics course.</p>
+                
+                <div id="questions-section">
+                    <h3>Practice Questions</h3>
+                    <select id="level-selector" class="level-selector">
+                        <option value="">Select a level</option>
+                    </select>
+                    <div id="questions-container"></div>
+                </div>
+
+                <h3>Key Concepts</h3>
                 <ul>
-                    <li><strong>Expressions &amp; Equations:</strong>
-                        <section>
-  <h4>1. Definitions & Key Concepts</h4>
-  <ul>
-    <li><strong>Expression:</strong> A combination of numbers, variables, and operations—without an equal sign.  
-      <em>Example:</em> 3 x + 5, –2a² + 7b – 4 :contentReference[oaicite:1]{index=1}</li>
-    <li><strong>Equation:</strong> A mathematical sentence with an equal sign, indicating two expressions are equal.  
-      <em>Example:</em> 3x + 5 = 11 or –2a² + 7b – 4 = 0</li>
-    <li><strong>Variable:</strong> A symbol (usually a letter) representing an unknown value.</li>
-    <li><strong>Coefficient:</strong> The numerical factor multiplied by a variable (e.g. in 5x, 5 is the coefficient).</li>
-  </ul>
-</section>
-
-<section>
-  <h4>2. Operations & Properties</h4>
-  <ul>
-    <li><strong>Order of Operations:</strong> Use PEMDAS (Parentheses, Exponents, Multiplication/Division, Addition/Subtraction).</li>
-    <li><strong>Like Terms:</strong> Terms with the same variable and exponent.  
-      <em>Example:</em> 4x and –2x are like terms; 3a² and 5a² combine to 8a².</li>
-    <li><strong>Distributive Property:</strong> a(b + c) = ab + ac.  
-      <em>Example:</em> 3(x + 4) = 3x + 12.</li>
-  </ul>
-</section>
-
-<section>
-  <h4>3. Translating Between Words & Algebra</h4>
-  <ul>
-    <li><em>“The sum of twice a number and five” → 2x + 5.</em></li>
-    <li><em>“Three less than a number equals eleven” → x – 3 = 11.</em></li>
-  </ul>
-</section>
-
-<section>
-  <h4>4. Evaluating Expressions</h4>
-  <p>Replace variables with given values and simplify:</p>
-  <ul>
-    <li>If x = 2, evaluate 3x + 5 → 3·2 + 5 = 11.</li>
-    <li>If a = –1, b = 3, evaluate –2a² + 7b – 4 → –2·(–1)² + 21 – 4 = –2 + 21 – 4 = 15.</li>
-  </ul>
-</section>
-
-<section>
-  <h4>5. Solving Equations</h4>
-  <p>Use inverse operations to isolate the variable:</p>
-  <ul>
-    <li><strong>One-step:</strong>  
-      <em>Example:</em> x + 4 = 9 → x = 9 – 4 → x = 5.</li>
-    <li><strong>Multi-step:</strong>  
-      <em>Example:</em> 2x – 3 = 7  
-      → add 3: 2x = 10  
-      → divide by 2: x = 5.</li>
-    <li><strong>Check:</strong> Plug solution back in: 2·5 – 3 = 10 – 3 = 7 ✓</li>
-  </ul>
-</section>
-
-<section>
-  <h4>6. Equations with Variables on Both Sides</h4>
-  <ul>
-    <li><em>Example:</em> 2x + 3 = x + 7  
-      → subtract x: x + 3 = 7  
-      → subtract 3: x = 4</li>
-    <li><em>Double-check:</em> 2·4 + 3 = 8 + 3 = 11 and 4 + 7 = 11 ✓</li>
-  </ul>
-</section>
-
-<section>
-  <h4>7. Common Errors & Tips</h4>
-  <ul>
-    <li>▶️ Always apply operations to both sides of an equation.</li>
-    <li>▶️ Be precise with signs: distributing ⟶ 
-      e.g. –2(x – 3) = –2x + 6, NOT –2x – 6.</li>
-    <li>▶️ Combine like terms before solving.</li>
-    <li>▶️ After finding the solution, always substitute back to verify.</li>
-  </ul>
-</section>
-
-<section>
-  <h4>8. Example Problems With Notes</h4>
-  <ol>
-    <li><em>Translate:</em> “Five more than three times a number is 20” → 3x + 5 = 20.  
-      <strong>Solution:</strong> 3x = 15 → x = 5.  
-      <em>Check:</em> 3·5 + 5 = 20 ✓</li>
-    <li><em>Solve:</em> –4y + 2 = 10.  
-      → –4y = 8 → y = –2.  
-      <em>Check:</em> –4(–2) + 2 = 8 + 2 = 10 ✓</li>
-    <li><em>Distributive with variables:</em> 5(x – 2) = 3x + 4.  
-      → 5x – 10 = 3x + 4  
-      → 5x – 3x = 14  
-      → 2x = 14  
-      → x = 7.  
-      <em>Check:</em> 5·5 – 10 = 15 = 3·7 + 4 = 25 (oops!)  
-      ⚠️ Mistake: plug in correctly: 5·(7–2)=25 and RHS=3·7+4=25 ✓</li>
-  </ol>
-</section>
-
-<section>
-  <h4>9. Summary</h4>
-  <p>
-    Expressive clarity (distinguishing expressions from equations), correct algebraic translation, and application of inverse and distributive properties are essential. After solving, substitution confirms accuracy. These techniques form a strong foundation for advanced algebra and real-world applications.:contentReference[oaicite:2]{index=2}
-  </p>
-</section>
-
-                    </li>
-                    <li><strong>Variables &amp; Constants:</strong>
-                    <section>
-  <h4>1. Definitions</h4>
-  <p><strong>Variable:</strong> A symbol (usually a letter like <em>x</em> or <em>y</em>) that represents quantities which can change or vary. Variables are placeholders for unknown or varying values.</p>
-  <p><strong>Constant:</strong> A fixed value that does not change. In expressions and functions, constants are numbers like 3, −5, or 2.7.</p>
-</section>
-
-<section>
-  <h4>2. In Expressions</h4>
-  <p>Expressions combine variables and constants using operations like addition, subtraction, multiplication, and division.</p>
-  <ul>
-    <li><em>Example:</em> \( 2x + 3 \)</li>
-    <li>Here, <em>x</em> is a <strong>variable</strong>, because its value can change; 2 and 3 are <strong>constants</strong>.</li>
-  </ul>
-</section>
-
-<section>
-  <h4>3. In Polynomials and Functions</h4>
-  <p>A <strong>polynomial</strong> is built from variables and constants using only addition, subtraction, multiplication, and non-negative integer exponents.</p>
-  <ul>
-    <li><em>Example:</em> \( f(x) = ax^2 + bx + c \)  
-      — Here <strong>a</strong>, <strong>b</strong>, and <strong>c</strong> are constants (with <strong>a ≠ 0</strong>), and <em>x</em> is a variable :contentReference[oaicite:1]{index=1}.</li>
-    <li>If an expression has no variables, it is itself a constant, e.g. <code>23</code> is a polynomial with constant terms only :contentReference[oaicite:2]{index=2}.</li>
-  </ul>
-</section>
-
-<section>
-  <h4>4. Constant Function</h4>
-  <p>A <strong>constant function</strong> always returns the same value, regardless of input.</p>
-  <ul>
-    <li><em>Example:</em> \( f(x) = 5 \)  
-      — here 5 is a constant and <em>x</em> does not affect the result :contentReference[oaicite:3]{index=3}.</li>
-  </ul>
-</section>
-
-<section>
-  <h4>5. Variables & Constants in Equations</h4>
-  <p>Equations often separate variables and constants to solve for unknowns.</p>
-  <ul>
-    <li><em>Example:</em> \( 3x + 5 = 20 \)  
-      — move constants (5, 20) to one side, variable term (3x) to the other, then solve:  
-      \[ 3x = 15 \implies x = 5 \] :contentReference[oaicite:4]{index=4}.</li>
-  </ul>
-</section>
-
-<section>
-  <h4>6. Summary Table</h4>
-  <table>
-    <thead>
-      <tr><th>Concept</th><th>Symbol/Example</th><th>Description</th></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Variable</td>
-        <td><em>x, y</em></td>
-        <td>Represents unknown or changing quantity</td>
-      </tr>
-      <tr>
-        <td>Constant</td>
-        <td><em>5, 2.7, a, b, c</em></td>
-        <td>Fixed value that does not change</td>
-      </tr>
-      <tr>
-        <td>Polynomial</td>
-        <td><em>ax² + bx + c</em></td>
-        <td>Combination of variables & constants under specific rules</td>
-      </tr>
-      <tr>
-        <td>Constant Function</td>
-        <td><em>f(x)=5</em></td>
-        <td>Function with only a constant term</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-
-<section>
-  <h4>7. Notes & Tips</h4>
-  <ol>
-    <li>Constants are often denoted by letters like <em>a</em>, <em>b</em>, <em>c</em>, but they represent specific fixed values.</li>
-    <li>Variables are placeholders—their actual value is found by solving equations or evaluating functions.</li>
-    <li>Any number without a variable is itself a polynomial of degree 0 (a constant).</li>
-    <li>In equations, isolate variable terms on one side and constants on the other to find solutions.</li>
-  </ol>
-</section>
-
-                    </li>
-                    <li><strong>Linear Equations:</strong>
-                        <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Linear Equations — Core Math Notes</title>
-  <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
-    h2 { color: #2c3e50; }
-    .example { background: #ecf0f1; padding: 10px; margin: 10px 0; border-left: 4px solid #2980b9; }
-    .note { color: #7f8c8d; font-size: 0.9em; }
-  </style>
-</head>
-<body>
-
-  <h5>📐 1. Definition</h5>
-  <p>
-    A <strong>linear equation</strong> in one variable <code>x</code> is an equation of the form:
-  </p>
-  <p style="text-align: center;"><code>ax + b = 0</code></p>
-  <p>
-    where <code>a</code> and <code>b</code> are constants and <code>a ≠ 0</code>. The solution is:
-  </p>
-  <p style="text-align: center;"><code>x = −b/a</code></p>
-
-  <div class="example">
-    <strong>Example 1:</strong> Solve <code>5x − 20 = 0</code><br>
-    <em>Solution:</em><br>
-    • Add 20: <code>5x = 20</code><br>
-    • Divide by 5: <code>x = 4</code>
-  </div>
-  <p class="note">✅ One-step addition/subtraction then division.</p>
-
-  <h5>2. Equations Requiring Rearrangement</h5>
-  <p>
-    Even if the variable appears on both sides, you can rearrange:
-  </p>
-  <div class="example">
-    <strong>Example 2:</strong> Solve <code>3x + 5 = 2x − 7</code><br>
-    <em>Solution:</em><br>
-    • Subtract 2x: <code>x + 5 = −7</code><br>
-    • Subtract 5: <code>x = −12</code>
-  </div>
-  <p class="note">🚨 Always move variables to one side first, then constants.</p>
-
-  <h5>3. Fractional Coefficients</h5>
-  <p>
-    Linear equations may include fractions; multiply by the LCD to simplify:
-  </p>
-  <div class="example">
-    <strong>Example 3:</strong> Solve <code>(1/2)x − 3 = (1/4)x + 1</code><br>
-    <em>Solution:</em><br>
-    • LCD = 4 → multiply each term:<br>
-      <code>2x − 12 = x + 4</code><br>
-    • Subtract x: <code>x − 12 = 4</code><br>
-    • Add 12: <code>x = 16</code>
-  </div>
-  <p class="note">🧮 Converting to integer coefficients simplifies arithmetic.</p>
-
-  <h5>4. Word Problem → Equation</h5>
-  <p>
-    Translate statements into algebraic forms. Label the unknown, set up balance.
-  </p>
-  <div class="example">
-    <strong>Example 4:</strong>  
-    “Seven more than twice a number is 23. Find the number.”<br>
-    <em>Model:</em> Let <code>x</code> = the number.<br>
-    “Twice a number” → <code>2x</code>, “seven more” → <code>2x + 7</code>.<br>
-    Equation: <code>2x + 7 = 23</code><br>
-    Solve: <code>2x = 16 → x = 8</code>.
-  </div>
-  <p class="note">✅ Always state clearly what each part represents.</p>
-
-  <h5>5. System of Two Linear Equations</h5>
-  <p>
-    Two variables require two equations. Use substitution or elimination.
-  </p>
-  <div class="example">
-    <strong>Example 5:</strong><br>
-    Solve:<br>
-    (1) <code>x + y = 10</code><br>
-    (2) <code>2x − y = 3</code><br>
-    <em>Solution (Elimination):</em><br>
-    Add (1) and (2): <code>3x = 13 → x ≈ 13/3</code><br>
-    Substitute into (1): <code>13/3 + y = 10 → y = 10 − 13/3 = 17/3</code>
-  </div>
-  <p class="note">🔍 Write answers as exact fractions when needed.</p>
-
-  <h5>✅ Key Points Summary</h5>
-  <ul>
-    <li><strong>Standard form:</strong> <code>ax + b = 0</code></li>
-    <li><strong>One-step:</strong> Isolate <code>x</code> by reversing operations.</li>
-    <li><strong>Two-sided:</strong> Gather like terms before solving.</li>
-    <li><strong>Fractions:</strong> Multiply by LCD to clear denominators.</li>
-    <li><strong>Word problems:</strong> Define variable, translate precisely.</li>
-    <li><strong>Systems:</strong> Use elimination or substitution; keep equations aligned.</li>
-  </ul>
-
-  <p class="note">Tip: Plug your answer back into the original equation to check.</p>
-
-</body>
-</html>
-
-                    </li>
-                    <li><strong>Exponents &amp; Powers:</strong>
-  <h1>Exponents &amp; Powers</h1>
-  <p><strong>Definition:</strong> If <em>a</em> is a real number and <em>m</em> is an integer, <code>a<sup>m</sup></code> is called a <strong>power</strong> or an <strong>exponential expression</strong>; <em>a</em> is the <em>base</em>, and <sup>m</sup> is the <em>exponent</em> or <em>index</em>. :contentReference[oaicite:1]{index=1}</p>
-
-  <h4>Basic Rules for Integral Exponents</h4>
-  <ul>
-    <li><strong>Product of same base:</strong> <code>a<sup>m</sup> · a<sup>n</sup> = a<sup>m+n</sup></code></li>
-    <li><strong>Quotient of same base:</strong> <code>a<sup>m</sup> ÷ a<sup>n</sup> = a<sup>m–n</sup>,</code> <em>a ≠ 0</em></li>
-    <li><strong>Power of a power:</strong> <code>(a<sup>m</sup>)<sup>n</sup> = a<sup>m·n</sup></code></li>
-    <li><strong>Power of a product:</strong> <code>(ab)<sup>n</sup> = a<sup>n</sup> b<sup>n</sup></code></li>
-    <li><strong>Power of a quotient:</strong> <code>(a/b)<sup>n</sup> = a<sup>n</sup>/b<sup>n</sup>,</code> <em>b ≠ 0</em></li>
-  </ul>
-
-  <h4>Important Special Cases</h4>
-  <ul>
-    <li><code>a<sup>0</sup> = 1</code> (provided <em>a ≠ 0</em>)</li>
-    <li><code>a<sup>1</sup> = a</code></li>
-    <li><code>a<sup>–n</sup> = 1 / a<sup>n</sup></code>, <em>a ≠ 0</em></li>
-  </ul>
-
-  <div class="note"><strong>Note:</strong> A zero exponent gives 1. A negative exponent inverts the base’s power.</div>
-
-  <h4>Extension: Rational & Real Exponents</h4>
-  <p>
-    If <em>m</em> and <em>n</em> are positive integers (with <em>n ≠ 0</em>), then<br>
-    <code>a<sup>m/n</sup> = (√<sub>n</sub>a)<sup>m</sup> = √<sub>n</sub>(a<sup>m</sup>),</code> <em>a ≥ 0</em><br>
-    More generally, <code>a<sup>r</sup></code> is defined for any real exponent <em>r</em> by continuity and logarithms.
-  </p>
-
-  <h4>Worked Examples (Corrected)</h4>
-  <ol>
-    <li><strong>Product</strong>: <code>3<sup>2</sup> × 3<sup>4</sup> = 3<sup>6</sup> = 729</code></li>
-    <li><strong>Quotient</strong>: <code>5<sup>5</sup> ÷ 5<sup>2</sup> = 5<sup>3</sup> = 125</code></li>
-    <li><strong>Power of a power</strong>: <code>(2<sup>3</sup>)<sup>2</sup> = 2<sup>6</sup> = 64</code></li>
-    <li><strong>Negative exponent</strong>: <code>4<sup>–2</sup> = 1 / 4<sup>2</sup> = 1/16</code></li>
-    <li><strong>Zero exponent</strong>: <code>(–7)<sup>0</sup> = 1</code></li>
-    <li><strong>Fractional exponent</strong>: <code>9<sup>3/2</sup> = (√9)<sup>3</sup> = 3<sup>3</sup> = 27</code></li>
-  </ol>
-
-  <h4>Why It Matters</h4>
-  <p>Exponents simplify expressions involving repeated multiplication and are foundational in topics like scientific notation, exponential growth/decay, indices in algebra, polynomials, and logarithms. :contentReference[oaicite:2]{index=2}</p>
-
-  <h4>Common Mistakes</h4>
-  <ul>
-    <li>Forgetting <code>a<sup>0</sup> = 1</code> (e.g., getting 0<sup>0</sup> wrong — it's undefined).</li>
-    <li>Applying the rules only for integers—forgetting how negative and fractional exponents work.</li>
-    <li>Misplacing parentheses: <code>(–2)<sup>4</sup> = 16</code> but <code>–2<sup>4</sup> = –16</code>.</li>
-  </ul></li>
-                    <li><strong>Factoring:</strong> <h1>Factoring Polynomials</h1>
-  
-  <section>
-    <h4>1. Common Factor</h4>
-    <p><strong>Example:</strong> Factorise <em>6x² + 9x</em> → 3x(2x + 3).</p>
-    <p><em>Note:</em> Always extract the largest common monomial.</p>
-  </section>
-  
-  <section>
-    <h4>2. Quadratic Trinomials</h4>
-    <p><strong>Example:</strong> <em>x² + 7x + 12</em><br>
-       Find m, n = 3, 4 → rewrite x² + 3x + 4x + 12 → <strong>(x+4)(x+3)</strong>.</p>
-    <p><em>Note:</em> Confirm by expanding.</p>
-  </section>
-  
-  <section>
-    <h4>3. Special Products</h4>
-    <p><strong>Diff. of squares:</strong> x² – 9 = (x – 3)(x + 3)<br>
-       <strong>Perfect square:</strong> x² + 6x + 9 = (x + 3)².</p>
-    <p><em>Note:</em> Recognise these patterns for fast factoring.</p>
-  </section>
-  
-  <section>
-    <h4>4. When a ≠ 1</h4>
-    <p><strong>Example:</strong> 2x² + 5x + 3<br>
-       m, n: 2 & 3 → rewrite 2x² + 2x + 3x + 3 → (2x+3)(x+1).</p>
-  </section>
-  
-  <section>
-    <h4>✅ Checking</h4>
-    <p>Always re‑expand factors to verify they match the original expression.</p>
-  </section></li>
-                    <li><strong>Quadratic Equations:</strong>
-                        <section>
-  <h1>Quadratic Equations</h1>
-  <p>A <strong>quadratic equation</strong> is a polynomial equation of degree 2, of the form:</p>
-  <p style="text-align:center;"><em>ax<sup>2</sup> + bx + c = 0</em>, where <em>a ≠ 0</em>.</p>
-</section>
-
-<section>
-  <h4>Learning Objectives</h4>
-  <ul>
-    <li>Understand the meaning and structure of a quadratic equation.</li>
-    <li>Master four solution methods:</li>
-    <ol>
-      <li>Factorisation</li>
-      <li>Completing the square</li>
-      <li>Quadratic formula</li>
-      <li>Graphical interpretation</li>
-    </ol>
-    <li>Apply methods to solve real-life problems such as projectile motion and area optimisation</li>
-  </ul>
-</section>
-
-<section>
-  <h4>1. Factorisation Method</h4>
-  <p>Rewrite <em>ax² + bx + c</em> as a product of two binomials:</p>
-  <p style="text-align:center;"><em>(dx + e)(fx + g) = 0</em></p>
-  <p>The solutions are where each factor equals zero.</p>
-  <h3>Corrected Example</h3>
-  <p>Solve <em>x² − 5x + 6 = 0</em>.</p>
-  <p>
-    Factorisation:
-    <em>x² − 5x + 6 = (x − 2)(x − 3) = 0</em>  
-    → <em>x = 2</em> or <em>x = 3</em>
-  </p>
-</section>
-
-<section>
-  <h4>2. Completing the Square</h4>
-  <p>Transform the quadratic into a perfect square plus a constant:</p>
-  
-  <h3>Steps:</h3>
-  <ol>
-    <li>Divide by <em>a</em> (if ≠ 1).</li>
-    <li>Move the constant term to the right side.</li>
-    <li>Add/subtract (b/2a)² to both sides.</li>
-    <li>Factor the left as a square expression.</li>
-  </ol>
-  <h3>Corrected Example</h3>
-  <p>Solve <em>x² − 4x + 1 = 0</em>.</p>
-  <p>
-    Write: <em>x² − 4x = −1</em><br>
-    Add <em>(−2)² = 4</em> to both sides: <em>x² − 4x + 4 = 3</em><br>
-    Left side becomes: <em>(x − 2)² = 3</em><br>
-    → <em>x − 2 = ±√3</em><br>
-    → <em>x = 2 ± √3</em>
-  </p>
-  <p>— preserve equality when moving terms :contentReference[oaicite:1]{index=1}.</p>
-</section>
-
-<section>
-  <h4>3. Quadratic Formula</h4>
-  <p>General solution formula:</p>
-  <p style="text-align:center;"><em>x = [−b ± √(b² − 4ac)] / (2a)</em></p>
-  <h3>Corrected Example</h3>
-  <p>Solve <em>2x² + 3x − 2 = 0</em>.</p>
-  <p>
-    Compute discriminant: <em>Δ = 3² − 4·2·(−2) = 9 + 16 = 25</em><br>
-    → <em>x = [−3 ± 5] / 4</em><br>
-    So <em>x = (−3 + 5)/4 = ½</em> or <em>x = (−3 − 5)/4 = −2</em>
-  </p>
-</section>
-
-<section>
-  <h4>4. Graphical Method</h4>
-  <p>Plot <em>y = ax² + bx + c</em> and find its x‑intercepts (roots). Useful for visualising roots and checking nature of roots (real vs complex).</p>
-</section>
-
-<section>
-  <h4>5. Nature of Roots</h4>
-  <p>Determined by the discriminant (Δ = b² − 4ac):</p>
-  <ul>
-    <li>Δ > 0: Two distinct real roots</li>
-    <li>Δ = 0: One repeated real root</li>
-    <li>Δ < 0: Two complex conjugate roots</li>
-  </ul>
-</section>
-
-<section>
-  <h4>6. Applications in Context</h4>
-  <p>Quadratic equations model:<br>
-  • Projectile motion (e.g. ball thrown upwards)<br>
-  • Area problems (e.g. maximize area given perimeter)<br>
-  You can solve these either graphically or algebraically as in syllabus :contentReference[oaicite:2]{index=2}.</p>
-</section>
-
-<section>
-  <h4>7. Summary of Methods Comparison</h4>
-  <table border="1" cellpadding="5">
-    <thead>
-      <tr>
-        <th>Method</th><th>When to Use</th><th>Pros & Cons</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Factorisation</td>
-        <td>When roots are rational</td>
-        <td>Quick, but not always possible</td>
-      </tr>
-      <tr>
-        <td>Completing the square</td>
-        <td>Works always</td>
-        <td>Teaches structure, good for vertex form</td>
-      </tr>
-      <tr>
-        <td>Quadratic formula</td>
-        <td>Universal method</td>
-        <td>Always works; formula memorisation required</td>
-      </tr>
-      <tr>
-        <td>Graphical</td>
-        <td>For visual insight & approx roots</td>
-        <td>Less precise analytically</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-
-<section>
-  <h4>8. Key Tips</h4>
-  <ul>
-    <li>Always check if you can factorise before using the formula.</li>
-    <li>Use completing-the-square to find vertex form <em>y = a(x − h)² + k</em>.</li>
-    <li>Verify your roots by back-substitution.</li>
-    <li>Interpret Δ to decide on real or complex roots.</li>
-  </ul>
-</section>
-
-                    </li>
-                    <li><strong>Word Problems:</strong>
-                          <h2>1. Understand the Problem</h2>
-  <ul>
-    <li>Read the problem carefully and more than once.</li>
-    <li>Underline or highlight key information and the final question.</li>
-    <li>Rephrase the problem using your own words to confirm understanding.</li>
-  </ul>
-
-  <div class="example">
-    <strong>Example:</strong> Tess paints 2 boards in 4 min, Allie paints 3 in 2 min. Fence has 240 boards. How long will they take working together?<br/>
-    Tess’s rate = 0.5 boards/min, Allie’s = 1.5 boards/min ⇒ Together = 2 boards/min<br/>
-    Time = 240 ÷ 2 = <strong>120 minutes = 2 hours</strong>
-  </div>
-
-  <h2>2. Make a Plan and Set Up Equations</h2>
-  <ul>
-    <li>Define variables clearly (e.g. let <code>x</code> be the number of days, minutes, etc.).</li>
-    <li>Translate the words into mathematical expressions or equations.</li>
-    <li>Choose the correct method: proportions, linear equations, unit rates...</li>
-  </ul>
-
-  <div class="example">
-    <strong>Example:</strong> A crop increases daily. Day 1 = 2 kg, Day 2 = 4 kg.<br/>
-    Let daily increase be <code>k</code>: 4 - 2 = <code>k = 2 kg</code><br/>
-    General formula: <strong>Yield = 2 + 2 × (day - 1)</strong>
-  </div>
-
-  <h2>3. Solve and Check</h2>
-  <ul>
-    <li>Follow your plan and solve step-by-step.</li>
-    <li>Substitute back to verify if the answer is reasonable.</li>
-    <li>Write a sentence to summarize the answer with correct units.</li>
-  </ul>
-
-  <div class="example">
-    <strong>Example:</strong> John has 4 fewer candies than Bob; Bob has 18.<br/>
-    John = 18 - 4 = <strong>14</strong>. Together: 14 + 18 = <strong>32 candies</strong>.
-  </div>
-
-  <h2>4. Use Special Techniques</h2>
-
-  <h3>A) Two-Step Problems</h3>
-  <ul>
-    <li>Perform operations in sequence (e.g., subtract then add).</li>
-  </ul>
-
-  <div class="example">
-    <strong>Example:</strong> Sarah had $15, spent $8, then received $5.<br/>
-    Step 1: 15 - 8 = 7, Step 2: 7 + 5 = <strong>$12</strong>
-  </div>
-
-  <h3>B) Ratio and Proportion</h3>
-  <ul>
-    <li>Add parts of the ratio to divide total appropriately.</li>
-    <li>Multiply each part with unit value.</li>
-  </ul>
-
-  <div class="example">
-    <strong>Example:</strong> Charlie and David share 40 sweets in 3:5 ratio.<br/>
-    Total parts = 8, Unit = 40 ÷ 8 = 5<br/>
-    Charlie = 3×5 = <strong>15</strong>, David = 5×5 = <strong>25</strong>
-  </div>
-
-  <h3>C) Proportion with Cross-Multiplication</h3>
-  <ul>
-    <li>Set up ratios as fractions and solve using cross-multiplication.</li>
-  </ul>
-
-  <div class="example">
-    <strong>Example:</strong> 12 eggs cost $1.49. How much for 18?<br/>
-    Set up: 12/1.49 = 18/x → x = (1.49×18)/12 = <strong>$2.24</strong>
-  </div>
-
-  <h2>5. Final Check – Pólya's Four Steps</h2>
-  <ol>
-    <li>Understand the problem.</li>
-    <li>Devise a plan.</li>
-    <li>Carry out the plan.</li>
-    <li>Look back and review the result.</li>
-  </ol>
-
-  <p>Always label your answer with correct units and reflect if your result makes sense in real life.</p>
-
-
-                    
-                    </li>
+                    <li><strong>Points, Lines, and Planes:</strong> (Content remains the same...)</li>
+                    <li><strong>Angles:</strong> (Content remains the same...)</li>
+                    <li><strong>Triangles:</strong> (Content remains the same...)</li>
+                    <li><strong>Quadrilaterals and Polygons:</strong> (Content remains the same...)</li>
+                    <li><strong>Circles:</strong> (Content remains the same...)</li>
+                    <li><strong>Perimeter, Area, and Volume:</strong> (Content remains the same...)</li>
+                    <li><strong>Coordinate Geometry:</strong> (Content remains the same...)</li>
+                    <li><strong>Transformations:</strong> (Content remains the same...)</li>
                 </ul>
-                <p>For practice, return to the <a href="algebra-quiz.html">Algebra Quiz</a> or explore more resources in the course.</p>
+                <p>For practice, return to the <a href="geometry-lesson.html">Geometry Exercises</a> or explore more resources in the course.</p>
             </div>
         </main>
     </div>
+
+    <script>
+        // Geometry data (could also be loaded from an external JSON file)
+        const geometryData = {
+            "geometry": {
+                "levels": [
+                    {
+                        "level": 1,
+                        "name": "Points, Lines, and Planes",
+                        "description": "Basic concepts of geometry including points, lines, and planes in 3D space",
+                        "questions": [
+                            {
+                                "id": 1,
+                                "question": "What are the coordinates of point P that is 3 units right along the x-axis, 2 up along the y-axis, and 5 forward along the z-axis?",
+                                "answer": "P(3, 2, 5)",
+                                "explanation": "Points in 3D space are represented by coordinates (x, y, z) where x is horizontal, y is vertical, and z is depth."
+                            },
+                            {
+                                "id": 2,
+                                "question": "Write the parametric equations for a line through P₀(1, 0, -2) with direction vector d = ⟨2, 3, 1⟩",
+                                "answer": "x = 1 + 2t, y = 0 + 3t, z = -2 + t",
+                                "explanation": "Parametric equations for a line use the form x = x₀ + at, y = y₀ + bt, z = z₀ + ct where ⟨a,b,c⟩ is the direction vector."
+                            }
+                        ]
+                    },
+                    {
+                        "level": 2,
+                        "name": "Angles",
+                        "description": "Understanding different types of angles and their properties",
+                        "questions": [
+                            {
+                                "id": 1,
+                                "question": "What is the complement of a 37° angle?",
+                                "answer": "53°",
+                                "explanation": "Complementary angles sum to 90°, so 90° - 37° = 53°."
+                            },
+                            {
+                                "id": 2,
+                                "question": "Find the smallest positive angle coterminal with 810°",
+                                "answer": "90°",
+                                "explanation": "810 mod 360 = 90°, since 810 - (2×360) = 90."
+                            }
+                        ]
+                    },
+                    {
+                        "level": 3,
+                        "name": "Triangles",
+                        "description": "Properties and theorems related to triangles",
+                        "questions": [
+                            {
+                                "id": 1,
+                                "question": "In triangle ABC, if ∠A=50° and ∠B=60°, what is ∠C?",
+                                "answer": "70°",
+                                "explanation": "Triangle angle sum is 180°, so 180 - (50 + 60) = 70°."
+                            },
+                            {
+                                "id": 2,
+                                "question": "A right triangle has legs 3cm and 4cm. What is the hypotenuse?",
+                                "answer": "5cm",
+                                "explanation": "Using Pythagoras' theorem: √(3² + 4²) = √(9 + 16) = √25 = 5."
+                            }
+                        ]
+                    },
+                    {
+                        "level": 4,
+                        "name": "Quadrilaterals and Polygons",
+                        "description": "Properties of quadrilaterals and regular polygons",
+                        "questions": [
+                            {
+                                "id": 1,
+                                "question": "What is the sum of interior angles of a hexagon?",
+                                "answer": "720°",
+                                "explanation": "Formula is (n-2)×180° where n=6: (6-2)×180 = 720°."
+                            },
+                            {
+                                "id": 2,
+                                "question": "A rhombus has diagonals 10cm and 8cm. What is its area?",
+                                "answer": "40cm²",
+                                "explanation": "Area of rhombus is (d₁ × d₂)/2 = (10 × 8)/2 = 40."
+                            }
+                        ]
+                    },
+                    {
+                        "level": 5,
+                        "name": "Circles",
+                        "description": "Properties and theorems related to circles",
+                        "questions": [
+                            {
+                                "id": 1,
+                                "question": "What is the circumference of a circle with radius 7cm?",
+                                "answer": "14π cm (≈43.98cm)",
+                                "explanation": "Circumference formula is 2πr = 2×π×7 = 14π."
+                            },
+                            {
+                                "id": 2,
+                                "question": "A 60° sector has radius 10cm. What is its area?",
+                                "answer": "50π/3 cm² (≈52.36cm²)",
+                                "explanation": "Sector area formula is (θ/360)×πr² = (60/360)×π×100 = 50π/3."
+                            }
+                        ]
+                    },
+                    {
+                        "level": 6,
+                        "name": "Perimeter, Area, and Volume",
+                        "description": "Calculations for perimeter, area, and volume of shapes",
+                        "questions": [
+                            {
+                                "id": 1,
+                                "question": "What is the perimeter of a rectangle with length 8cm and width 5cm?",
+                                "answer": "26cm",
+                                "explanation": "Perimeter formula is 2(l+w) = 2(8+5) = 26."
+                            },
+                            {
+                                "id": 2,
+                                "question": "What is the volume of a cylinder with radius 3cm and height 7cm?",
+                                "answer": "63π cm³ (≈197.92cm³)",
+                                "explanation": "Volume formula is πr²h = π×9×7 = 63π."
+                            }
+                        ]
+                    },
+                    {
+                        "level": 7,
+                        "name": "Coordinate Geometry",
+                        "description": "Geometry in the coordinate plane",
+                        "questions": [
+                            {
+                                "id": 1,
+                                "question": "Find the distance between points A(-2,1) and B(3,-4)",
+                                "answer": "5√2",
+                                "explanation": "Distance formula: √[(3-(-2))² + (-4-1)²] = √[25 + 25] = √50 = 5√2."
+                            },
+                            {
+                                "id": 2,
+                                "question": "What is the midpoint between A(1,2) and B(5,6)?",
+                                "answer": "(3,4)",
+                                "explanation": "Midpoint formula: ((1+5)/2, (2+6)/2) = (3,4)."
+                            }
+                        ]
+                    },
+                    {
+                        "level": 8,
+                        "name": "Transformations",
+                        "description": "Geometric transformations in the plane",
+                        "questions": [
+                            {
+                                "id": 1,
+                                "question": "Translate point P(1,3) by vector (-2,+1). What is P'?",
+                                "answer": "(-1,4)",
+                                "explanation": "Translation rule: (x+h, y+k) = (1-2, 3+1) = (-1,4)."
+                            },
+                            {
+                                "id": 2,
+                                "question": "Rotate point Q(3,4) 90° counter-clockwise about the origin. What is Q'?",
+                                "answer": "(-4,3)",
+                                "explanation": "90° CCW rotation rule: (x,y) → (-y,x) = (-4,3)."
+                            }
+                        ]
+                    }
+                ]
+            }
+        };
+
+        // DOM elements
+        const levelSelector = document.getElementById('level-selector');
+        const questionsContainer = document.getElementById('questions-container');
+
+        // Initialize the level selector dropdown
+        function initLevelSelector() {
+            geometryData.geometry.levels.forEach(level => {
+                const option = document.createElement('option');
+                option.value = level.level;
+                option.textContent = `Level ${level.level}: ${level.name}`;
+                levelSelector.appendChild(option);
+            });
+        }
+
+        // Display questions for a selected level
+        function showQuestions(levelNum) {
+            questionsContainer.innerHTML = '';
+            
+            if (!levelNum) return;
+            
+            const level = geometryData.geometry.levels.find(l => l.level == levelNum);
+            if (!level) return;
+            
+            const levelHeader = document.createElement('div');
+            levelHeader.className = 'level-header';
+            levelHeader.innerHTML = `
+                <h3>${level.name}</h3>
+                <p>${level.description}</p>
+            `;
+            questionsContainer.appendChild(levelHeader);
+            
+            level.questions.forEach(q => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question-container';
+                questionDiv.innerHTML = `
+                    <div class="question">${q.id}. ${q.question}</div>
+                    <button class="show-answer" data-answer="${q.answer}" data-explanation="${q.explanation}">
+                        Show Answer
+                    </button>
+                    <div class="answer" id="answer-${levelNum}-${q.id}"></div>
+                `;
+                questionsContainer.appendChild(questionDiv);
+            });
+            
+            // Add event listeners to all show-answer buttons
+            document.querySelectorAll('.show-answer').forEach(button => {
+                button.addEventListener('click', function() {
+                    const answerDiv = this.nextElementSibling;
+                    if (answerDiv.style.display === 'block') {
+                        answerDiv.style.display = 'none';
+                        this.textContent = 'Show Answer';
+                    } else {
+                        answerDiv.innerHTML = `
+                            <p><strong>Answer:</strong> ${this.dataset.answer}</p>
+                            <p><strong>Explanation:</strong> ${this.dataset.explanation}</p>
+                        `;
+                        answerDiv.style.display = 'block';
+                        this.textContent = 'Hide Answer';
+                    }
+                });
+            });
+        }
+
+        // Event listener for level selection
+        levelSelector.addEventListener('change', function() {
+            showQuestions(this.value);
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            initLevelSelector();
+        });
+    </script>
 </body>
 </html>

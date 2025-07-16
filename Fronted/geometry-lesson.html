@@ -29,6 +29,80 @@
         .geometry-notes-content li {
             margin-bottom: 0.5rem;
         }
+        .question-container {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .question {
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .answer {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f0f7ff;
+            border-left: 4px solid #2563eb;
+            border-radius: 4px;
+        }
+        .show-answer {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        .show-answer:hover {
+            background: #1d4ed8;
+        }
+        .level-selector {
+            margin: 1rem 0;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            border: 1px solid #b3c6ff;
+        }
+        .level-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .notes-container {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 4px solid #4f46e5;
+        }
+        .tab-container {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+        .tab {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border: 1px solid #b3c6ff;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            margin-right: 0.5rem;
+            background: #eef2ff;
+        }
+        .tab.active {
+            background: #4f46e5;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -53,708 +127,289 @@
             <div class="geometry-notes-content">
                 <h4>Geometry Notes</h4>
                 <p>Welcome to Geometry Notes! This section summarizes the key concepts from the Geometry module in your Mathematics course.</p>
-                <ul>
-                    <li><strong>Points, Lines, and Planes:</strong>  <h2>1. Points</h2>
-  <p>A <strong>point</strong> in space is indicated by a set of three coordinates,.</p>
-  <ul>
-    <li><strong>Notation:</strong> \(A(x, y, z)\)</li>
-    <li>No size or shape — simply a location.</li>
-  </ul>
-  <div class="example">
-    <strong>Example:</strong> Represent the point \(P\) that is 3 units right along the x‑axis, 2 up along the y‑axis, and 5 forward along the z‑axis.  
-    → \(P(3, 2, 5)\)
-  </div>
-
-  <h2>2. Lines</h2>
-  <p>A <strong>line</strong> in 3D is defined by:</p>
-  <ul>
-    <li>a fixed point \(P_0(x_0, y_0, z_0)\);</li>
-    <li>a direction vector \(\vec{d} = \langle a, b, c \rangle\).</li>
-  </ul>
-  <p><strong>Parametric equations</strong> express any point on the line as:</p>
-  <pre>
-x = x₀ + at  
-y = y₀ + bt  
-z = z₀ + ct  
-  </pre>
-  <p>(Here, \(t\) is the parameter.)</p>
-  <div class="example">
-    <strong>Example:</strong> Line through \(P_0(1, 0, -2)\) with direction \(\vec{d} = \langle 2, 3, 1 \rangle\).  
-    Equations:  
-    x = 1 + 2t, y = 0 + 3t, z = –2 + t
-  </div>
-
-  <h2>3. Planes</h2>
-  <p>A <strong>plane</strong> is specified by:</p>
-  <ul>
-    <li>a point \(P_0(x_0, y_0, z_0)\) on the plane;</li>
-    <li>a normal vector \(\vec{n} = \langle A, B, C \rangle\) perpendicular to it.</li>
-  </ul>
-  <p><strong>Cartesian form:</strong></p>
-  <pre>
-A(x – x₀) + B(y – y₀) + C(z – z₀) = 0
-  </pre>
-  <div class="example">
-    <strong>Example:</strong> Plane through \(Q(2, –1, 3)\) with normal \(\vec{n} = \langle 1, 4, –2 \rangle\).  
-    ⇒ 1·(x–2) + 4·(y+1) – 2·(z–3) = 0  
-    ⇒ x – 2 + 4y + 4 – 2z + 6 = 0  
-    ⇒ x + 4y – 2z + 8 = 0
-  </div>
-
-  <h3>Intersection of Line and Plane</h3>
-  <ol>
-    <li>Plug parametric line equations into the plane’s Cartesian equation.</li>
-    <li>Solve for \(t\), substitute back to find intersection point.</li>
-  </ol>
-
-  <div class="example">
-    <strong>Example:</strong> Find where the line  
-    x = 1 + 2t, y = 3t, z = –1 + t  
-    meets the plane x + y – z – 4 = 0.  
-    ⇒ Substitute: (1+2t) + (3t) – (–1 + t) – 4 = 0 →  
-    1 + 2t + 3t + 1 – t – 4 = 0 → 4t – 2 = 0 → t = ½.  
-    Point: x = 1 + 1 = 2; y = 1.5; z = –1 + 0.5 = –0.5.  
-    So intersection at \( (2,\;1.5,\;-0.5) \).
-  </div>
-
-  <h2>4. Additional Notes & Geometry Tips</h2>
-  <ul>
-    <li><strong>Direction vector</strong> of line is parallel to it; can scale freely (e.g., \(\langle2,3,1\rangle\) same as \(\langle4,6,2\rangle\)).</li>
-    <li><strong>Normal vector</strong> to plane defines its “orientation”; perpendicular to every direction within plane.</li>
-    <li><strong>Parallelism:</strong> A line is parallel to a plane if its direction vector is perpendicular to the plane’s normal vector (i.e., \(\vec{d} \cdot \vec{n} = 0\)).</li>
-    <li><strong>Containment vs Intersection:</strong> If substituting line into plane yields identity (0=0), the line lies in the plane; if it yields contradiction, the line is parallel and distinct.</li>
-    <li><strong>Angle between:</strong> Angle between two lines via their direction vectors; between a line and plane via line’s direction vector and plane normal.</li>
-  </ul>
-
-  <h2>5. Consolidated Summary Table</h2>
-  <table border="1" cellpadding="5" cellspacing="0">
-    <tr><th>Concept</th><th>Definition</th><th>Equation Form</th></tr>
-    <tr>
-      <td>Point</td>
-      <td>Single location in 3D</td>
-      <td>\(P(x, y, z)\)</td>
-    </tr>
-    <tr>
-      <td>Line</td>
-      <td>Set of points through \(P_0\), in direction \(\vec{d}\)</td>
-      <td>\(\begin{cases}x=x_0+at\\y=y_0+bt\\z=z_0+ct\end{cases}\)</td>
-    </tr>
-    <tr>
-      <td>Plane</td>
-      <td>All points satisfying perpendicularity to normal vector</td>
-      <td>\(A(x−x_0)+B(y−y_0)+C(z−z_0)=0\)</td>
-    </tr>
-  </table>
-
-  <h2>6. Practice Tips</h2>
-  <ul>
-    <li>Always write down direction/normal vectors clearly.</li>
-    <li>Check parallelism via dot‑product = 0.</li>
-    <li>To find line–plane intersection, substitute parametrics into the plane equation.</li>
-    <li>Rearrange to standard/canonical forms for clarity and grading.</li>
-  </ul>
-
-  <p>— End of summary for Points, Lines, and Planes in 3D.</p></li>
-                    <li><strong>Angles:</strong><h2>✅ What is an Angle?</h2>
-  <ul>
-    <li>An <strong>angle</strong> is the figure formed by two rays (sides) sharing a common endpoint (vertex).</li>
-    <li>Measured in <strong>degrees (°)</strong>, typically using a protractor.</li>
-  </ul>
-
-  <h2>🧭 Types of Angles</h2>
-  <ul>
-    <li><strong>Acute angle</strong>: between 0° and 90° (exclusive).</li>
-    <li><strong>Right angle</strong>: exactly 90°.</li>
-    <li><strong>Obtuse angle</strong>: between 90° and 180° (exclusive).</li>
-    <li><strong>Straight angle</strong>: exactly 180°.</li>
-    <li><strong>Reflex angle</strong>: between 180° and 360° (exclusive).</li>
-    <li><strong>Full angle (perigon)</strong>: exactly 360°.</li>
-  </ul>
-
-  <h2>📏 Special Angle Relationships</h2>
-  <ul>
-    <li><strong>Complementary angles</strong>: two angles that sum to 90°.
-      <div class="example">e.g., 30° + 60° = 90°</div>
-    </li>
-    <li><strong>Supplementary angles</strong>: two angles summing to 180°.
-      <div class="example">e.g., 110° + 70° = 180°</div>
-    </li>
-    <li><strong>Adjacent angles</strong>: share a common side and vertex, with non-overlapping interiors.</li>
-    <li><strong>Vertically opposite angles</strong>: formed by two intersecting straight lines; vertical angles are equal.
-      <div class="example">Lines AB and CD intersecting at O produce ∠AOC = ∠BOD</div>
-    </li>
-  </ul>
-
-  <h2>🔄 Angles in Standard Position</h2>
-  <ul>
-    <li>An angle is in <strong>standard position</strong> if its vertex is at the origin and its initial side lies along the positive x-axis.</li>
-    <li><strong>Coterminal angles</strong> share the same terminal side when placed in standard position:
-      <div class="example">e.g., 30°, 390° and –330° are coterminal.</div>
-    </li>
-    <li>The smallest positive angle coterminal with a given angle θ can be found by:  
-      `θmod 360°` (if θ > 360°) or `(θ + 360°)mod 360°` (if θ < 0°).
-      <div class="example">–45° → –45 + 360 = 315°</div>
-    </li>
-  </ul>
-
-  <h2>🖊️ Corrected Examples & Notes</h2>
-  <ul>
-    <li><strong>Measuring angles:</strong> Place the protractor's center over the vertex and align the base line with one ray. Read the scale at the other ray.</li>
-    <li><strong>Example:</strong> If one ray points to 0° and the other to 120°, the angle measures 120° → an <em>obtuse angle</em>.</li>
-    <li><strong>Vertically opposite:</strong> If two lines cross forming 120° at one angle, the opposite angle is also 120°.</li>
-    <li><strong>Coterminal:</strong> The smallest positive angle coterminal with 810° → 810 mod 360 = 90° (right angle).</li>
-    <li><strong>Complementary:</strong> One angle is 37°, its complement = 90 – 37 = 53°.</li>
-  </ul>
-
-  <p class="note"><em>Tip:</em> Always specify “smallest positive rotation” when finding coterminal angles to avoid ambiguity.</p>
-</li>
-                    <li><strong>Triangles:</strong>  <!-- Page 1: Basics & Angle Sum -->
-  <div class="page">
-    <h1>1. Triangle Essentials</h1>
-    <p><strong>Definition:</strong> A triangle has three sides and three interior angles summing to 180°.</p>
-    <p><strong>Angle sum property:</strong> \(∠A + ∠B + ∠C = 180°\).</p>
-    <div class="example">
-      <strong>Example:</strong> If ∠A=50°, ∠B=60°, find ∠C.  
-      <em>Solution:</em> 180 – (50+60) = 70°.
-    </div>
-    <h2>Types by Angles</h2>
-    <ul>
-      <li><strong>Acute:</strong> all angles < 90°.</li>
-      <li><strong>Right:</strong> one angle = 90°.</li>
-      <li><strong>Obtuse:</strong> one angle > 90°.</li>
-    </ul>
-    <h2>Types by Sides</h2>
-    <ul>
-      <li><strong>Equilateral:</strong> all sides equal; angles = 60°.</li>
-      <li><strong>Isosceles:</strong> 2 equal sides; base angles equal.</li>
-      <li><strong>Scalene:</strong> all sides different; all angles different.</li>
-    </ul>
-  </div>
-
-  <!-- Page 2: Pythagoras & Right Triangles -->
-  <div class="page">
-    <h1>2. Right‑Angled Triangles & Pythagoras’ Theorem</h1>
-    <p><strong>Definition:</strong> Right triangle has one 90° angle. Label hypotenuse as c, legs as a, b.</p>
-    <p><strong>Pythagoras’ Theorem:</strong> \(a^2 + b^2 = c^2\).</p>
-    <div class="example">
-      <strong>Example 1:</strong> a=3, b=4 → c = √(9+16)=5.<br>
-      <strong>Example 2:</strong> c=13, b=5 → a = √(169−25)=12.
-    </div>
-    <h2>Trigonometric Ratios</h2>
-    <p>For acute angle θ:</p>
-    <ul>
-      <li>\(\sin θ = \frac{opposite}{hypotenuse}\)</li>
-      <li>\(\cos θ = \frac{adjacent}{hypotenuse}\)</li>
-      <li>\(\tan θ = \frac{opposite}{adjacent}\)</li>
-    </ul>
-    <div class="example">
-      <strong>Example:</strong> In a right triangle with angle A = 30° and hypotenuse = 10:<br>
-      \(\sin30° = 0.5\), so opposite = 5.<br>
-      \(\cos30° ≈ 0.866\), so adjacent ≈ 8.66.
-    </div>
-  </div>
-
-  <!-- Page 3: Similarity & Applications -->
-  <div class="page">
-    <h1>3. Similar Triangles & Applications</h1>
-    <p><strong>Similar triangles:</strong> same shape, angles equal, sides proportional.</p>
-    <p>If ΔABC ∼ ΔDEF, then:</p>
-    <ul>
-      <li>\(AB/DE = BC/EF = AC/DF\)</li>
-      <li>Corresponding angles equal (Angles A = D, B = E, C = F).</li>
-    </ul>
-    <div class="example">
-      <strong>Corrected Example:</strong> ΔABC with sides 6, 8, 10; ΔDEF with 9, 12, 15. Ratio = 6/9 = 2/3.<br>
-      ✅ They are similar since 2/3 = 8/12 = 10/15.
-    </div>
-    <h2>Thales’ Theorem (Optional)</h2>
-    <p>In a semicircle, angle on the rim = 90°. If diameter AB and C point on circle, then ∠ACB = 90°.</p>
-    <div class="example">
-      <strong>Example:</strong> A circle has diameter AB=10. Point C lies on the circumference. Then AC² + BC² = AB² = 100.
-    </div>
-    <h2>Real‑life uses</h2>
-    <ul>
-      <li>Surveying: find heights with trigonometry.</li>
-      <li>Construction: ensure right angles using 3‑4‑5 triangles.</li>
-      <li>Navigation: angle-of-elevation calculations.</li>
-    </ul>
-  </div></li>
-                    <li><strong>Quadrilaterals and Polygons:</strong>   <h2>1. Definitions &amp; Key Terms</h2>
-  <ul>
-    <li><strong>Polygon:</strong> A 2D closed figure made by ≥3 straight line segments (sides), meeting only at their endpoints (vertices).</li>
-    <li><strong>Simple polygon:</strong> Edges only meet at endpoints (no crossing).</li>
-    <li><strong>Convex vs Concave:</strong> In Convex polygons, no internal angle >180°; in Concave, at least one angle >180°.</li>
-    <li><strong>Regular vs Irregular:</strong> Regular polygons have all sides and interior angles equal; irregular ones do not.</li>
-    <li><strong>Diagonal:</strong> A segment joining two non-consecutive vertices.</li>
-  </ul>
-
-  <h2>2. Angle-Side Relationships</h2>
-  <p>For any <em>n</em>-sided polygon:</p>
-  <ul>
-    <li>Sum of interior angles = <code>(n–2)×180°</code>.</li>
-    <li>Each interior angle (regular polygon) = <code>[(n−2)×180°]/n</code>.</li>
-    <li>Sum of exterior angles (one per vertex) always equals <code>360°</code>.</li>
-  </ul>
-  
-  <div class="example">
-    <strong>Example 1</strong>:  
-    Find the sum of interior angles of a hexagon.  
-    <em>n</em> = 6 ⇒ (6–2)×180° = 720°.
-  </div>
-
-  <div class="example">
-    <strong>Example 2</strong>:  
-    Regular pentagon interior angle = [(5–2)×180]/5 = 540/5 = 108°.
-  </div>
-
-  <h2>3. Types of Quadrilaterals</h2>
-  <p>All quadrilaterals are four-sided polygons with interior angles summing to 360°.</p>
-  
-  <h3>3.1 Parallelogram</h3>
-  <ul>
-    <li>Opposite sides parallel and equal.</li>
-    <li>Opposite angles equal; adjacent angles sum to 180°.</li>
-    <li>Diagonals bisect each other.</li>
-  </ul>
-
-  <div class="example">
-    If in parallelogram ABCD, ∠A = 70°, then ∠C = 70°, ∠B and ∠D = 110° each.
-  </div>
-  
-  <h3>3.2 Rectangle</h3>
-  <ul>
-    <li>All angles are 90°.</li>
-    <li>Opposite sides equal and parallel.</li>
-  </ul>
-
-  <h3>3.3 Rhombus</h3>
-  <ul>
-    <li>All sides are equal; opposite sides parallel.</li>
-    <li>Opposite angles equal; diagonals are perpendicular and bisect opposite angles.</li>
-  </ul>
-
-  <h3>3.4 Square</h3>
-  <ul>
-    <li>Has properties of both rectangle and rhombus.</li>
-    <li>All sides equal, all angles 90°, diagonals bisect at 90°.</li>
-  </ul>
-
-  <h3>3.5 Trapezoid (Trapezium)</h3>
-  <ul>
-    <li>Only two opposite sides are parallel.</li>
-    <li>Angles on the same leg are supplementary.</li>
-  </ul>
-  
-  <h2>4. Relationships among Quadrilaterals</h2>
-  <p><strong>Hierarchy:</strong> square → rhombus → parallelogram → general quadrilateral.</p>
-  <p class="note">A square is a special rhombus and rectangle; not all rectangles are squares.</p>
-
-  <div class="example">
-    Explain why a square is a rectangle but not vice versa:  
-    A square has four right angles → rectangle. But a rectangle can have unequal sides → not a square.
-  </div>
-
-  <h2>5. Diagonals &amp; Areas</h2>
-  <ul>
-    <li><strong>Parallelogram area:</strong> base × height (A = b × h).</li>
-    <li><strong>Rectangle:</strong> A = l × w.</li>
-    <li><strong>Rhombus:</strong> A = (d₁ × d₂)/2.</li>
-    <li><strong>Square:</strong> A = side² or (d₁ × d₂)/2.</li>
-    <li><strong>Trapezoid:</strong> A = ½ × (sum of parallel sides) × height.</li>
-  </ul>
-
-  <div class="example">
-    Rhombus with diagonals 10 cm and 8 cm: Area = (10 × 8)/2 = 40 cm².
-  </div>
-
-  <h2>6. Special Properties &amp; Decision Tests</h2>
-  <p>Given coordinates or angle/sides, tests to identify quadrilateral:</p>
-  <ul>
-    <li>Opposite side equality + parallelism → parallelogram.</li>
-    <li>All right angles + parallel opposite sides → rectangle.</li>
-    <li>All sides equal + parallel opposite sides → rhombus.</li>
-    <li>All sides and angles equal → square.</li>
-    <li>Exactly one pair of parallel sides → trapezoid.</li>
-  </ul>
-
-  <h2>7. Polygons Beyond 4 Sides</h2>
-  <ul>
-    <li><strong>Hexagon (6 sides): </strong>Sum = 720°; regular → 120° each.</li>
-    <li><strong>Heptagon (7 sides):</strong>Sum = 900°; regular → ≈128.57° each.</li>
-    <li>General rule applies: (n−2)×180°, exterior sum = 360°.</li>
-  </ul>
-
-  <h2>8. Important Corrections & Common Pitfalls</h2>
-  <ul>
-    <li>Interior angles sum: always (n–2)×180°, not n×180.</li>
-    <li>Square ≠ just "any quadrilateral with equal sides": must also have right angles.</li>
-    <li>Diagonals in parallelogram bisect each other but aren't necessarily equal.</li>
-    <li>Trapezoid mid-segment formula: connects legs at the midpoint:  
-      <code>mid = (base₁ + base₂)/2</code>.</li>
-  </ul>
-
-  <h2>9. Combined Problems</h2>
-  <div class="example">
-    In parallelogram ABCD, diagonals AC and BD intersect at O. Prove AO = OC and BO = OD by the property of bisected diagonals.
-  </div>
-  <div class="example">
-    A regular octagon: n = 8 → sum interior = (8−2)×180 = 1080°; each angle = 1080/8 = 135°.
-  </div>
-
-  <h2>10. Quick Reference Table</h2>
-  <table border="1" cellpadding="5" cellspacing="0">
-    <tr>
-      <th>Shape</th><th>Sides/Parallel</th><th>All Sides =</th><th>All Angles =</th><th>Diagonals</th><th>Area Formula</th>
-    </tr>
-    <tr>
-      <td>Parallelogram</td><td>4, 2 pairs</td><td>no</td><td>opp equal</td><td>bisect each other</td><td>b×h or base×height</td>
-    </tr>
-    <tr>
-      <td>Rectangle</td><td>4, 2 pairs</td><td>no</td><td>all 90°</td><td>bisect each other</td><td>l×w</td>
-    </tr>
-    <tr>
-      <td>Rhombus</td><td>4, 2 pairs</td><td>yes</td><td>opp equal</td><td>bisect & perpendicular</td><td>(d₁×d₂)/2</td>
-    </tr>
-    <tr>
-      <td>Square</td><td>4, 2 pairs</td><td>yes</td><td>all 90°</td><td>bisect & perpendicular</td><td>s² or (d₁×d₂)/2</td>
-    </tr>
-    <tr>
-      <td>Trapezoid</td><td>4, 1 pair</td><td>no</td><td>no</td><td>no special</td><td>½×(b₁+b₂)×h</td>
-    </tr>
-  </table>
-
-  <h2>11. Study Tips & Notes</h2>
-  <ul>
-    <li>Always start with: number of sides → sum of interior angles → possible shapes.</li>
-    <li>Use parallelism and side equality to classify quadrilaterals.</li>
-    <li>Practice diagonal intersection problems to master geometry proofs.</li>
-    <li>Memorize main area formulas—most numerical problems depend on them.</li>
-  </ul></li>
-                    <li><strong>Circles:</strong>   <h2>1. Basic Elements of a Circle</h2>
-  <ul>
-    <li><strong>Centre (O):</strong> The fixed point from which all points on the circle are equidistant.</li>
-    <li><strong>Radius (r):</strong> Distance from centre O to any point on the circle.</li>
-    <li><strong>Diameter (d):</strong> A chord passing through O; d = 2r.</li>
-    <li><strong>Chord:</strong> A line segment connecting two points on the circumference.</li>
-    <li><strong>Secant:</strong> A line intersecting the circle at two points.</li>
-    <li><strong>Tangent:</strong> A line touching the circle at exactly one point, ⟂ radius at the point of contact.</li>
-    <li><strong>Arc:</strong> A portion of the circumference.</li>
-    <li><strong>Sectors & Segments:</strong> Sector = region between two radii & an arc; Segment = region between chord & arc.</li>
-  </ul>
-
-  <div class="example">
-    <strong>Example:</strong>  
-    If a circle has radius <em>r = 5 cm</em>, then its diameter is <em>d = 10 cm</em>.  
-    A chord of length 8 cm is 3 cm from the centre (by perpendicular distance).
-  </div>
-
-  <h2>2. Circle Theorems & Angle Facts</h2>
-  <ol>
-    <li><strong>Radius ⟂ Tangent:</strong> Radius to point of tangency is perpendicular to the tangent.</li>
-    <li><strong>Angles in a Semicircle:</strong> Angle in a semicircle is a right angle (90°).</li>
-    <li><strong>Angle Between Tangent and Chord:</strong> Equals the angle in the opposite arc.</li>
-    <li><strong>Angles in the Same Segment:</strong> Angles in the same segment are equal.</li>
-    <li><strong>Opposite Angles in Cyclic Quadrilateral:</strong> Sum to 180°.</li>
-    <li><strong>Angles Subtended at Centre vs. Circumference:</strong> Centre angle = 2 × corresponding circumference angle.</li>
-  </ol>
-
-  <div class="example">
-    <strong>Example:</strong>  
-    In circle with centre O, chord AB subtends angle AOB = 100° at the centre. The angle on the circumference, ACB, is = ½×100° = 50°.
-  </div>
-
-  <h2>3. Equations of a Circle</h2>
-  <p>
-    In the Cartesian plane, a circle with centre (h, k) and radius r is given by:<br>
-    <code>(x − h)² + (y − k)² = r²</code><br>
-    If centred at the origin, it simplifies to <code>x² + y² = r²</code>.
-  </p>
-
-  <div class="example">
-    <strong>Example:</strong>  
-    For circle <code>x² + y² = 25</code>, centre is (0, 0) and radius r = √25 = 5.
-  </div>
-
-  <h2>4. Lengths & Areas</h2>
-  <ul>
-    <li><strong>Circumference:</strong> <code>C = 2πr</code> (equivalently <code>πd</code>).</li>
-    <li><strong>Area enclosed by circle:</strong> <code>A = πr²</code>.</li>
-    <li><strong>Arc length (θ in radians):</strong> <code>L = rθ</code>.</li>
-    <li><strong>Sector area (θ in radians):</strong> <code>A = ½r²θ</code>.</li>
-    <li><strong>Segment area:</strong> Area of sector minus area of triangular portion (½r² sin θ for central angle θ).</li>
-  </ul>
-
-  <div class="example">
-    <strong>Example:</strong>  
-    A 60° sector of a circle with radius 10 cm:<br>
-    θ = π/3 → arc length = 10×π/3 ≈ 10.472 cm; sector area = ½·100·π/3 ≈ 52.36 cm².
-  </div>
-
-  <h2>5. Constructing & Using Equations</h2>
-  <p>
-    To construct the equation of a circle from 3 non-collinear points, substitute their coordinates into <code>(x − h)² + (y − k)² = r²</code> and solve the system for h, k, r.
-  </p>
-  <div class="note">
-    Tip: Expand and compare to the general form <code>x² + y² + Dx + Ey + F = 0</code>, then complete the square to find centre (–D/2,–E/2) and radius <code>√[(D/2)² + (E/2)² - F]</code>.
-  </div>
-
-  <h2>6. Radicals & Accuracy</h2>
-  <p>
-    When circles involve √‑values (e.g., r = √2), leave final answers in exact surd form unless a decimal approximation is requested. Always specify units clearly and include a diagram when possible.
-  </p>
-
-  <hr>
-  <p class="note">🔧 For more advanced geometry (e.g. intersections of circles, power of a point, radical axis), consult the original Core and Subsidiary books.</p>
-
-</li>
-                    <li><strong>Perimeter, Area, and Volume:</strong>
-  <section>
-    <h2>Page 1: Perimeter of Polygons</h2>
-    <p><strong>Perimeter</strong> = total distance around a shape (sum of all side lengths).</p>
-    <ul>
-      <li><strong>Rectangle:</strong> P = 2 (l + w)</li>
-      <li><strong>Square:</strong> P = 4 a (where a = side length)</li>
-      <li><strong>Triangle:</strong> P = a + b + c</li>
-    </ul>
-    <div class="example">
-      <strong>Example:</strong> Rectangle with l=8 cm, w=5 cm → P=2(8+5)=26 cm.
-    </div>
-  </section>
-
-  <section>
-    <h2>Page 2: Perimeter of Circle</h2>
-    <p><strong>Circumference (perimeter) of a circle:</strong></p>
-    <ul>
-      <li>P = 2πr</li>
-      <li>P = πd</li>
-    </ul>
-    <div class="example">
-      <strong>Example:</strong> Circle r=7 cm → P=2×π×7≈43.98 cm.
-    </div>
-  </section>
-
-  <section>
-    <h2>Page 3: Area of Polygons</h2>
-    <p><strong>Area</strong> = amount of space inside a shape.</p>
-    <ul>
-      <li><strong>Rectangle:</strong> A = l × w</li>
-      <li><strong>Square:</strong> A = a²</li>
-      <li><strong>Triangle:</strong> A = ½ × b × h</li>
-      <li><strong>Parallelogram:</strong> A = b × h</li>
-    </ul>
-    <div class="example">
-      <strong>Example:</strong> Right triangle with base=6 cm, height=8 cm → A=½×6×8=24 cm².
-    </div>
-  </section>
-
-  <section>
-    <h2>Page 4: Area of Circles & Composite Figures</h2>
-    <p><strong>Circle:</strong> A = πr²</p>
-    <p><strong>Composite shapes:</strong> Combine or subtract known areas.</p>
-    <div class="example">
-      <strong>Example:</strong> Circle r=10 cm → A=π×100≈314.16 cm².
-    </div>
-  </section>
-
-  <section>
-    <h2>Page 5: Surface Area of 3D Solids</h2>
-    <ul>
-      <li><strong>Cuboid:</strong> SA = 2(lw + lh + wh)</li>
-      <li><strong>Cube:</strong> SA = 6a²</li>
-      <li><strong>Cylinder:</strong> SA = 2πr² + 2πr h</li>
-    </ul>
-    <div class="example">
-      <strong>Example:</strong> Cylinder r=3 cm, h=7 cm → SA = 2π×9 + 2π×3×7 ≈ 18π + 42π = 60π ≈ 188.5 cm².
-    </div>
-  </section>
-
-  <section>
-    <h2>Page 6: Volume of Solids</h2>
-    <ul>
-      <li><strong>Cuboid:</strong> V = l × w × h</li>
-      <li><strong>Cube:</strong> V = a³</li>
-      <li><strong>Cylinder:</strong> V = πr² h</li>
-    </ul>
-    <div class="example">
-      <strong>Example:</strong> Cuboid l=12 cm, w=5 cm, h=3 cm → V=12×5×3=180 cm³.
-    </div>
-  </section>
-
-  <section>
-    <h2>Page 7: Application Tips & Common Errors</h2>
-    <ul>
-      <li><strong>Always use correct units:</strong> Perimeter (cm, m), area (cm², m²), volume (cm³, m³).</li>
-      <li><strong>Composite shapes:</strong> Split complex shapes into familiar shapes.</li>
-      <li><strong>Recheck formulas:</strong> Use height ⟂ to base for triangles.</li>
-      <li><strong>Pi (π):</strong> Use 3.14 or symbolically until final step.</li>
-      <li><strong>Accuracy:</strong> Double-check arithmetic for surface-area vs volume mixups.</li>
-    </ul>
-  </section></li>
-                    <li><strong>Coordinate Geometry:</strong>   <h1>Coordinate Geometry – Key Concepts & Corrected Examples</h1>
-
-  <h2>1. Cartesian Coordinates & Distance Formula</h2>
-  <p>
-    A point is represented as <em>(x, y)</em> in the plane. The distance between points <em>A</em>(x₁, y₁) and <em>B</em>(x₂, y₂) is:</p>
-  <p><strong>d = √[(x₂ – x₁)² + (y₂ – y₁)²]</strong></p>
-  <div class="example">
-    <strong>Example:</strong> Find distance between A(–2, 1) and B(3, –4):  
-    d = √[(3 + 2)² + (–4 – 1)²] = √[25 + 25] = √50 = 5√2
-  </div>
-
-  <h2>2. Midpoint Formula & Section Ratio</h2>
-  <p>
-    The midpoint between A and B is:</p>
-  <p><strong>M = ((x₁ + x₂)/2, (y₁ + y₂)/2)</strong></p>
-  <p>For a point dividing the line AB in ratio m:n:</p>
-  <p><strong>P = ((n x₁ + m x₂)/(m + n), (n y₁ + m y₂)/(m + n))</strong></p>
-  <div class="example">
-    <strong>Example:</strong> Midpoint of A(1,2) and B(5,6) is M = (3, 4).
-  </div>
-
-  <h2>3. Area of Triangle by Coordinates</h2>
-  <p>
-    For A(x₁, y₁), B(x₂, y₂), C(x₃, y₃):</p>
-  <p><strong>Area = ½ |x₁(y₂ – y₃) + x₂(y₃ – y₁) + x₃(y₁ – y₂)|</strong></p>
-  <div class="example">
-    <strong>Example:</strong> A(–2,1), B(3,2), C(1,5):  
-    Area = ½ |(–2)(2–5) + 3(5–1) + 1(1–2)| = ½ |6 + 12 – 1| = ½ ×17 = 8.5
-  </div>
-
-  <h2>4. Equation of a Straight Line</h2>
-  <p>Common forms:</p>
-  <ul>
-    <li>Slope‐intercept: <strong>y = mx + c</strong></li>
-    <li>Point‐slope: <strong>y – y₁ = m(x – x₁)</strong></li>
-    <li>General: <strong>ax + by + c = 0</strong></li>
-  </ul>
-  <p>The slope between A and B is:</p>
-  <p><strong>m = (y₂ – y₁)/(x₂ – x₁)</strong></p>
-  <div class="example">
-    <strong>Example:</strong> Line through (1,2) with slope 3: y – 2 = 3(x – 1) → y = 3x – 1.
-  </div>
-
-  <h2>5. Perpendicular & Parallel Lines</h2>
-  <p>
-    Two lines y = m₁x + c₁ and y = m₂x + c₂ are:</p>
-  <ul>
-    <li><strong>Parallel</strong> if m₁ = m₂</li>
-    <li><strong>Perpendicular</strong> if m₁ × m₂ = –1</li>
-  </ul>
-
-  <h2>6. Circle & Conic Sections (Brief)</h2>
-  <p>Circle: center (h, k), radius r:</p>
-  <p><strong>(x – h)² + (y – k)² = r²</strong></p>
-  <p><em>Example:</em> Circle center (2, –1), r=3: (x – 2)² + (y + 1)² = 9.</p>
-  <p>Parabola, ellipse, hyperbola: generally in second‑degree forms (e.g.</p>
-  <p>Parabola with focus (p,0) and directrix x = –p: <strong>y² = 4px</strong></p>
-
-  <h2>7. Intersection of Lines & Circles</h2>
-  <p>To find intersection(s), solve the two equations simultaneously:</p>
-  <div class="note">
-    For example with two circles, subtract equations → linear equation → substitute back.
-  </div>
-
-  <h2>8. Locus & Regions</h2>
-  <p>
-    A locus is the set of points satisfying a geometric condition, like “distance from A twice that from B.” Often leads to circle, line, or parabola.</p>
-  <div class="example">
-    <strong>Example:</strong> Locus of P such that PA = PB is the perpendicular bisector of AB.
-  </div>
-
-  <h2>9. Quick Reference Formulas</h2>
-  <ul>
-    <li>Distance: d = √[(x₂–x₁)² + (y₂–y₁)²]</li>
-    <li>Midpoint: ((x₁+x₂)/2, (y₁+y₂)/2)</li>
-    <li>Triangle area: see section 3</li>
-    <li>Line slope: (y₂–y₁)/(x₂–x₁)</li>
-    <li>Slope‐intercept form: y = mx + c</li>
-    <li>Circle: (x–h)² + (y–k)² = r²</li>
-  </ul>
-
-  <h2>🔍 Study Tips & Notes</h2>
-  <ul>
-    <li>Always check the slope form before selecting equation style.</li>
-    <li>Plot points to confirm sign or intercepts.</li>
-    <li>Use the determinant method (triangle area) to check collinearity.</li>
-    <li>Watch for special cases: vertical lines (undefined slope), horizontal lines (slope=0).</li>
-  </ul>
-
-  <p class="note">— End of Summary —</p></li>
-                    <li><strong>Transformations:</strong><h1>Transformations – Summary</h1>
-
-  <h2>1. Translation (Slide)</h2>
-  <p>Slides a figure by vector (h, k). It's an isometry (distance preserved, orientation same).</p>
-  <p class="rule">Rule:</p>
-  <ul>
-    <li>(x, y) → (x + h, y + k)</li>
-  </ul>
-  <div class="example">
-    <strong>Example:</strong> Translate ΔA(1, 3), B(4, 6) by (–2, +1):<br>
-    A′ = (1–2, 3+1) = (–1, 4); B′ = (2, 7).
-  </div>
-
-  <h2>2. Reflection (Flip)</h2>
-  <p>Reflection overturns over a line—equidistant across it. Isometry but reverses orientation.</p>
-  <p class="rule">Coordinate rules:</p>
-  <ul>
-    <li>Over x-axis: (x, y) → (x, –y)</li>
-    <li>Over y-axis: (x, y) → (–x, y)</li>
-    <li>Over y = x: (x, y) → (y, x)</li>
-    <li>Through origin (180° flip): (x, y) → (–x, –y)</li>
-  </ul>
-  <div class="example">
-    <strong>Example:</strong> Reflect P(2, –5) over x‑axis → P′ = (2, 5).
-  </div>
-
-  <h2>3. Rotation (Turn)</h2>
-  <p>Turns figure around a point (usually the origin). Preserves size/orientation only for 360°.</p>
-  <p class="rule">About origin:</p>
-  <ul>
-    <li>90° CCW: (x, y) → (–y, x)</li>
-    <li>180°: (x, y) → (–x, –y)</li>
-    <li>270° CCW (or 90° CW): (x, y) → (y, –x)</li>
-  </ul>
-  <div class="example">
-    <strong>Example:</strong> Rotate Q(3, 4) 90° CCW → Q′ = (–4, 3).
-  </div>
-
-  <h2>4. Dilation (Resize)</h2>
-  <p>Enlarges/shrinks figure by scale factor k from a center (often origin). Not isometric unless k=±1.</p>
-  <p class="rule">Rule (from origin):</p>
-  <ul>
-    <li>(x, y) → (k × x, k × y)</li>
-  </ul>
-  <div class="example">
-    <strong>Example:</strong> Dilate R(2, –3) by k = 3 → R′ = (6, –9).
-  </div>
-
-  <h2>5. Combined & Algebraic Transformations</h2>
-  <p>Graphs of functions can be transformed using:</p>
-  <pre>y = a·f[b(x – h)] + k</pre>
-  <ul>
-    <li>h: right shift if +, left if –</li>
-    <li>k: up if +, down if –</li>
-    <li>a: vertical stretch (|a|>1) or shrink (0<|a|<1); flips if a < 0</li>
-    <li>b: horizontal shrink if |b|>1 or stretch if <1</li>
-  </ul>
-  <div class="example">
-    <strong>Example:</strong> Starting with f(x)=x²:<br>
-    y = –2·(x+3)² + 4 → shift left 3, stretch by 2, reflect over x‑axis, shift up 4.
-  </div>
-
-  <h2>Key Notes</h2>
-  <ul>
-    <li>Translations, reflections, rotations are <em>isometries</em> (preserve distance).</li>
-    <li>Dilations preserve shape (angles) but not size.</li>
-    <li>Composition of transformations follows function order (rightmost first).</li>
-  </ul>
-
-  <p><em>Compiled from standard geometry transformation rules and coordinate proofs.</em></p>
-</body></li>
-                </ul>
+                
+                <div id="questions-section">
+                    <h3>Interactive Geometry Practice</h3>
+                    <select id="level-selector" class="level-selector">
+                        <option value="">Select a level</option>
+                    </select>
+                    
+                    <div class="tab-container" id="tab-container">
+                        <div class="tab active" data-tab="notes">Notes</div>
+                        <div class="tab" data-tab="questions">Questions</div>
+                    </div>
+                    
+                    <div id="notes-container" class="tab-content active"></div>
+                    <div id="questions-container" class="tab-content"></div>
+                </div>
+
+                <h3>Key Concepts Overview</h3>
+                <ul id="key-concepts-list"></ul>
                 <p>For practice, return to the <a href="geometry-lesson.html">Geometry Exercises</a> or explore more resources in the course.</p>
             </div>
         </main>
     </div>
+
+    <script>
+        // Enhanced Geometry data with notes for each level
+        const geometryData = {
+            "geometry": {
+                "levels": [
+                    {
+                        "level": 1,
+                        "name": "Points, Lines, and Planes",
+                        "description": "Basic concepts of geometry including points, lines, and planes in 3D space",
+                        "notes": `
+                            <h2>1. Points</h2>
+                            <p>A <strong>point</strong> in space is indicated by a set of three coordinates.</p>
+                            <ul>
+                                <li><strong>Notation:</strong> \(A(x, y, z)\)</li>
+                                <li>No size or shape — simply a location.</li>
+                            </ul>
+                            <div class="example">
+                                <strong>Example:</strong> Represent the point \(P\) that is 3 units right along the x‑axis, 2 up along the y‑axis, and 5 forward along the z‑axis.  
+                                → \(P(3, 2, 5)\)
+                            </div>
+                            
+                            <h2>2. Lines</h2>
+                            <p>A <strong>line</strong> in 3D is defined by:</p>
+                            <ul>
+                                <li>a fixed point \(P_0(x_0, y_0, z_0)\);</li>
+                                <li>a direction vector \(\vec{d} = \langle a, b, c \rangle\).</li>
+                            </ul>
+                        `,
+                        "questions": [
+                            {
+                                "id": 1,
+                                "question": "What are the coordinates of point P that is 3 units right along the x-axis, 2 up along the y-axis, and 5 forward along the z-axis?",
+                                "answer": "P(3, 2, 5)",
+                                "explanation": "Points in 3D space are represented by coordinates (x, y, z) where x is horizontal, y is vertical, and z is depth."
+                            },
+                            {
+                                "id": 2,
+                                "question": "Write the parametric equations for a line through P₀(1, 0, -2) with direction vector d = ⟨2, 3, 1⟩",
+                                "answer": "x = 1 + 2t, y = 0 + 3t, z = -2 + t",
+                                "explanation": "Parametric equations for a line use the form x = x₀ + at, y = y₀ + bt, z = z₀ + ct where ⟨a,b,c⟩ is the direction vector."
+                            }
+                        ]
+                    },
+                    {
+                        "level": 2,
+                        "name": "Angles",
+                        "description": "Understanding different types of angles and their properties",
+                        "notes": `
+                            <h2>✅ What is an Angle?</h2>
+                            <ul>
+                                <li>An <strong>angle</strong> is the figure formed by two rays (sides) sharing a common endpoint (vertex).</li>
+                                <li>Measured in <strong>degrees (°)</strong>, typically using a protractor.</li>
+                            </ul>
+                            
+                            <h2>🧭 Types of Angles</h2>
+                            <ul>
+                                <li><strong>Acute angle</strong>: between 0° and 90° (exclusive).</li>
+                                <li><strong>Right angle</strong>: exactly 90°.</li>
+                                <li><strong>Obtuse angle</strong>: between 90° and 180° (exclusive).</li>
+                                <li><strong>Straight angle</strong>: exactly 180°.</li>
+                                <li><strong>Reflex angle</strong>: between 180° and 360° (exclusive).</li>
+                                <li><strong>Full angle (perigon)</strong>: exactly 360°.</li>
+                            </ul>
+                        `,
+                        "questions": [
+                            {
+                                "id": 1,
+                                "question": "What is the complement of a 37° angle?",
+                                "answer": "53°",
+                                "explanation": "Complementary angles sum to 90°, so 90° - 37° = 53°."
+                            },
+                            {
+                                "id": 2,
+                                "question": "Find the smallest positive angle coterminal with 810°",
+                                "answer": "90°",
+                                "explanation": "810 mod 360 = 90°, since 810 - (2×360) = 90."
+                            }
+                        ]
+                    },
+                    {
+                        "level": 3,
+                        "name": "Triangles",
+                        "description": "Properties and theorems related to triangles",
+                        "notes": `
+                            <h1>1. Triangle Essentials</h1>
+                            <p><strong>Definition:</strong> A triangle has three sides and three interior angles summing to 180°.</p>
+                            <p><strong>Angle sum property:</strong> \(∠A + ∠B + ∠C = 180°\).</p>
+                            <div class="example">
+                                <strong>Example:</strong> If ∠A=50°, ∠B=60°, find ∠C.  
+                                <em>Solution:</em> 180 – (50+60) = 70°.
+                            </div>
+                            <h2>Types by Angles</h2>
+                            <ul>
+                                <li><strong>Acute:</strong> all angles < 90°.</li>
+                                <li><strong>Right:</strong> one angle = 90°.</li>
+                                <li><strong>Obtuse:</strong> one angle > 90°.</li>
+                            </ul>
+                        `,
+                        "questions": [
+                            {
+                                "id": 1,
+                                "question": "In triangle ABC, if ∠A=50° and ∠B=60°, what is ∠C?",
+                                "answer": "70°",
+                                "explanation": "Triangle angle sum is 180°, so 180 - (50 + 60) = 70°."
+                            },
+                            {
+                                "id": 2,
+                                "question": "A right triangle has legs 3cm and 4cm. What is the hypotenuse?",
+                                "answer": "5cm",
+                                "explanation": "Using Pythagoras' theorem: √(3² + 4²) = √(9 + 16) = √25 = 5."
+                            }
+                        ]
+                    },
+                    // Additional levels would follow the same pattern...
+                ],
+                "keyConcepts": [
+                    {
+                        "name": "Points, Lines, and Planes",
+                        "summary": "Fundamental elements of geometry with coordinates and equations"
+                    },
+                    {
+                        "name": "Angles",
+                        "summary": "Types of angles and their relationships in geometric figures"
+                    },
+                    {
+                        "name": "Triangles",
+                        "summary": "Properties, types, and theorems related to three-sided polygons"
+                    },
+                    // More key concepts...
+                ]
+            }
+        };
+
+        // DOM elements
+        const levelSelector = document.getElementById('level-selector');
+        const questionsContainer = document.getElementById('questions-container');
+        const notesContainer = document.getElementById('notes-container');
+        const keyConceptsList = document.getElementById('key-concepts-list');
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        // Initialize the level selector dropdown
+        function initLevelSelector() {
+            geometryData.geometry.levels.forEach(level => {
+                const option = document.createElement('option');
+                option.value = level.level;
+                option.textContent = `Level ${level.level}: ${level.name}`;
+                levelSelector.appendChild(option);
+            });
+        }
+
+        // Initialize key concepts list
+        function initKeyConcepts() {
+            geometryData.geometry.keyConcepts.forEach(concept => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${concept.name}:</strong> ${concept.summary}`;
+                keyConceptsList.appendChild(li);
+            });
+        }
+
+        // Display notes for a selected level
+        function showNotes(levelNum) {
+            if (!levelNum) {
+                notesContainer.innerHTML = '<p>Select a level to view notes</p>';
+                return;
+            }
+            
+            const level = geometryData.geometry.levels.find(l => l.level == levelNum);
+            if (!level) {
+                notesContainer.innerHTML = '<p>No notes available for this level</p>';
+                return;
+            }
+            
+            notesContainer.innerHTML = `
+                <h3>${level.name}</h3>
+                <p>${level.description}</p>
+                <div class="notes-content">${level.notes}</div>
+            `;
+        }
+
+        // Display questions for a selected level
+        function showQuestions(levelNum) {
+            questionsContainer.innerHTML = '';
+            
+            if (!levelNum) {
+                questionsContainer.innerHTML = '<p>Select a level to view questions</p>';
+                return;
+            }
+            
+            const level = geometryData.geometry.levels.find(l => l.level == levelNum);
+            if (!level || !level.questions || level.questions.length === 0) {
+                questionsContainer.innerHTML = '<p>No questions available for this level</p>';
+                return;
+            }
+            
+            const levelHeader = document.createElement('div');
+            levelHeader.className = 'level-header';
+            levelHeader.innerHTML = `
+                <h3>${level.name} Practice Questions</h3>
+                <p>${level.description}</p>
+            `;
+            questionsContainer.appendChild(levelHeader);
+            
+            level.questions.forEach(q => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question-container';
+                questionDiv.innerHTML = `
+                    <div class="question">${q.id}. ${q.question}</div>
+                    <button class="show-answer" data-answer="${q.answer}" data-explanation="${q.explanation}">
+                        Show Answer
+                    </button>
+                    <div class="answer" id="answer-${levelNum}-${q.id}"></div>
+                `;
+                questionsContainer.appendChild(questionDiv);
+            });
+            
+            // Add event listeners to all show-answer buttons
+            document.querySelectorAll('.show-answer').forEach(button => {
+                button.addEventListener('click', function() {
+                    const answerDiv = this.nextElementSibling;
+                    if (answerDiv.style.display === 'block') {
+                        answerDiv.style.display = 'none';
+                        this.textContent = 'Show Answer';
+                    } else {
+                        answerDiv.innerHTML = `
+                            <p><strong>Answer:</strong> ${this.dataset.answer}</p>
+                            <p><strong>Explanation:</strong> ${this.dataset.explanation}</p>
+                        `;
+                        answerDiv.style.display = 'block';
+                        this.textContent = 'Hide Answer';
+                    }
+                });
+            });
+        }
+
+        // Tab switching functionality
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(`${tab.dataset.tab}-container`).classList.add('active');
+            });
+        });
+
+        // Event listener for level selection
+        levelSelector.addEventListener('change', function() {
+            const levelNum = this.value;
+            showNotes(levelNum);
+            showQuestions(levelNum);
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            initLevelSelector();
+            initKeyConcepts();
+            showNotes('');
+            showQuestions('');
+        });
+    </script>
 </body>
 </html>
