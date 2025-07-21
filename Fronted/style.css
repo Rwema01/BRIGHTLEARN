@@ -57,7 +57,7 @@ body {
 
 /* Left Navigation */
 .left-nav {
-    width: var(--sidebar-width);
+    width: 250px;
     background-color: var(--sidebar-bg);
     color: var(--sidebar-text);
     display: flex;
