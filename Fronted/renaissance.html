@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Historical Sources of Information</title>
+  <title>Belgian Rule in Rwanda</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -92,11 +92,17 @@
       background: #aaa;
       cursor: not-allowed;
     }
+    .activity, .timeline-event, .battle-card {
+      background-color: #f8f9fa;
+      padding: 15px;
+      margin: 10px 0;
+      border-left: 4px solid #17a2b8;
+    }
   </style>
 </head>
 <body>
 <header>
-  <h1>Historical Sources of Information</h1>
+  <h1>Belgian Rule in Rwanda</h1>
   <div>Progress:</div>
   <div class="progress-bar-container">
     <div class="progress-bar" id="progressBar"></div>
@@ -105,137 +111,54 @@
 <main id="content"></main>
 <script>
 const historyData = {
-  "Definition of History": {
-    title: "What is History?",
-    content: `History is the study of past events, particularly in human affairs. It involves the systematic collection, organization, and analysis of information about past events to understand how they have shaped our present. Historians use various sources of evidence to reconstruct and interpret the past, including written documents, oral traditions, artifacts, and more.`
+  "Unit Overview": {
+    title: "Introduction to Belgian Rule in Rwanda",
+    content: `Belgium governed Rwanda from 1916 to 1962, first as a military occupation, then as a mandate under the League of Nations, and finally under a UN trusteeship. This unit explores reforms introduced during this period, their impacts, the 1959 crisis, and Rwanda's journey to independence.`
   },
-  "Oral Tradition": {
-    title: "Oral Tradition as a Historical Source",
-    content: `1. Definition
-- Oral tradition refers to information passed by word of mouth from one generation to another
-- Includes songs, stories, legends, poems, folktales and proverbs
-- Based on eyewitness accounts about past events
-
-2. Transmission
-- Carried by traditionalists, elders with wide knowledge
-- Covers politics, economics, medicine, administration, technology, culture
-- Passed through socialization between young and old
-
-3. Importance
-- Preserves cultural heritage
-- Provides indigenous perspectives
-- Complements written records
-- Accessible to non-literate societies`
+  "Military Occupation (1916–1924)": {
+    title: "Reforms under Military Occupation",
+    content: `• Political: Undermined monarchical system, limited king’s powers.
+• Economic: Fiscal reforms abolished traditional tributes.
+• Social: Freedom of religion weakened king’s spiritual authority.`
   },
-  "Written Sources": {
-    title: "Written Historical Sources",
-    content: `1. Types of Written Sources
-- Books, diaries, newspapers, magazines
-- Journals, unpublished documents, letters
-- Inscriptions on coins, monuments
-- Official records and archives
-
-2. Locations
-- Libraries and archives
-- Museums and bookshops
-- Online digital collections
-
-3. Advantages
-- Provide precise dates and details
-- Can be preserved for long periods
-- Allow for verification and analysis
-- Offer direct accounts from past periods`
+  "Mandate Period (1924–1946)": {
+    title: "Reforms under the Belgian Mandate",
+    content: `• Political: Administrative restructuring, introduction of identity cards.
+• Economic: Ishiku system, forced food and cash crop cultivation.
+• Animal husbandry, mining (e.g., SOMUKI, GEORWANDA), and infrastructure development.
+• Social: Abolished traditional institutions, introduced formal education and medical services.`
   },
-  "Electronic Sources": {
-    title: "Audio-Visual Historical Sources",
-    content: `1. Definition
-- Information obtained through seeing and hearing
-- Includes digital databases and online publications
-- Modern source utilizing technology
-
-2. Formats
-- Audio recordings (interviews, speeches)
-- Video recordings (documentaries, news)
-- Photographs and films
-- Digital archives and websites
-
-3. Importance
-- Captures events as they happened
-- Preserves visual and auditory elements
-- Provides multimedia perspectives
-- Enables global access to information`
+  "Trusteeship Period (1946–1962)": {
+    title: "Reforms under Belgian Trusteeship",
+    content: `• Political: Consultative councils created, first elections held (1953, 1956).
+• Economic: Ten-Year Plan, Ubuhake abolition, continued Akazi.
+• Social: Expansion of schools, hospitals, Catholicism declared state religion.`
   },
-  "Archaeology": {
-    title: "Archaeological Sources",
-    content: `1. Definition
-- Study of material remains from past societies
-- Includes artifacts, buildings, tools, pottery
-- Examines sites like Ryamurari in Rwanda
-
-2. Methods
-- Excavation and dating techniques
-- Analysis of artifacts and ecofacts
-- Site preservation and interpretation
-
-3. Importance
-- Provides evidence of pre-literate societies
-- Reveals daily life and technologies
-- Helps reconstruct ancient environments
-- Supports conservation and tourism`
+  "1959 Crisis": {
+    title: "Causes and Consequences of 1959 Crisis",
+    content: `• Caused by colonial ‘divide and rule’, ethnic classification, resistance to church dominance.
+• Sparked by tensions between King Rudahigwa, elites, and Belgians.
+• Resulted in assassinations, displacement, exile, and ethnic polarization.`
   },
-  "Linguistics": {
-    title: "Linguistic Historical Sources",
-    content: `1. Definition
-- Study of languages, their evolution and relationships
-- Examines sound systems, structures and formations
-- Traces connections between related languages
-
-2. Examples
-- Bantu languages (Kinyarwanda, Luganda, Kiswahili)
-- Common roots like 'NTU' indicating shared origins
-- Dialect variations within same language
-
-3. Importance
-- Reveals migration patterns and contacts
-- Preserves cultural knowledge
-- Promotes unity through shared language
-- Helps reconstruct unwritten histories`
+  "Independence Process": {
+    title: "Steps to Independence (1948–1962)",
+    content: `• UN Trusteeship Council urged self-rule reforms.
+• 1952–1956: Statutory orders introduced elections.
+• 1957: Mise au Point memorandum demanded greater autonomy.
+• 1959–1962: Political parties formed; monarchy abolished; Republic declared.
+• July 1, 1962: Rwanda gained independence.`
   },
-  "Anthropology": {
-    title: "Anthropological Sources",
-    content: `1. Definition
-- Study of social institutions and cultural practices
-- Examines traditions, norms, values and attitudes
-- Investigates societal organization and transformation
-
-2. Applications
-- Understanding Rwanda's cultural heritage
-- Research by Institute of National Museums
-- Preservation of tangible and intangible heritage
-
-3. Importance
-- Documents diverse cultural practices
-- Promotes cultural appreciation
-- Supports heritage tourism
-- Provides holistic view of societies`
+  "Trusteeship Council Role": {
+    title: "Role of the UN Trusteeship Council",
+    content: `• Sent missions to Rwanda (1948–1960).
+• Pressured Belgium to implement reforms.
+• Supervised elections and referenda.
+• Criticized Belgium’s anti-democratic actions.
+• Oversaw transition to full autonomy.`
   },
-  "Genetics": {
-    title: "Genetic Historical Sources",
-    content: `1. Definition
-- Study of genes, heredity and genetic variation
-- Examines DNA to trace human origins and migrations
-- Helps categorize different populations
-
-2. Findings
-- Evidence for African origins of modern humans
-- Tracing of population movements
-- Understanding human diversity
-
-3. Importance
-- Provides biological evidence of history
-- Complements other historical sources
-- Helps reconstruct ancient migrations
-- Contributes to understanding human evolution`
+  "Unit Summary": {
+    title: "Summary of Belgian Rule",
+    content: `Belgian reforms in Rwanda covered political, economic, and social sectors. While modern infrastructure, education, and exports grew, forced labor, ethnic division, and political manipulation culminated in crisis and delayed independence. Independence was achieved on July 1, 1962.`
   }
 };
 
@@ -256,49 +179,48 @@ function renderContent() {
   const container = document.getElementById("content");
   const progress = getProgress();
   updateProgressBar(progress);
-  
+
   Object.entries(historyData).forEach(([section, data]) => {
     const div = document.createElement("div");
     div.className = "section";
-    
+
     const contentDiv = document.createElement("div");
     contentDiv.className = "section-content";
     contentDiv.innerHTML = `<p>${data.content.replace(/\n/g, "<br>")}</p>`;
-    
+
     const header = document.createElement("h2");
     header.innerHTML = `${section}: ${data.title}`;
-    
-    // Create button group
+
     const buttonGroup = document.createElement("div");
     buttonGroup.className = "button-group";
-    
+
     const completeBtn = document.createElement("button");
     completeBtn.className = "complete-btn";
     completeBtn.textContent = progress[section] ? "Completed" : "Mark as Complete";
     completeBtn.disabled = progress[section];
     completeBtn.onclick = () => markComplete(section);
-    
+
     const unreadBtn = document.createElement("button");
     unreadBtn.className = "unread-btn";
     unreadBtn.textContent = "Mark as Unread";
     unreadBtn.disabled = !progress[section];
     unreadBtn.onclick = () => markUnread(section);
-    
+
     buttonGroup.appendChild(completeBtn);
     buttonGroup.appendChild(unreadBtn);
-    
-    header.addEventListener("click", function() {
+
+    header.addEventListener("click", function () {
       div.classList.toggle("collapsed");
       if (!div.classList.contains("collapsed")) {
         contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
       }
     });
-    
+
     div.appendChild(header);
-    div.appendChild(buttonGroup); // Buttons now appear below title
+    div.appendChild(buttonGroup);
     div.appendChild(contentDiv);
     container.appendChild(div);
-    
+
     contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
   });
 }
