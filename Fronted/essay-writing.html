@@ -1,81 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Essay Writing Skills</title>
   <style>
     body {
-      font-family: "Segoe UI", sans-serif;
+      font-family: Arial, sans-serif;
       line-height: 1.6;
-      padding: 30px;
-      max-width: 900px;
-      margin: auto;
-      background: #f4f4f4;
-      color: #222;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+      background: #f1f1f1;
     }
-    h1, h2, h3 {
-      color: #004080;
-    }
-    h1 {
-      border-bottom: 2px solid #004080;
-      padding-bottom: 10px;
+    header {
+      background-color: #2c3e50;
+      color: #fff;
+      padding: 15px 20px;
       text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    h2 {
-      margin-top: 40px;
-      border-left: 4px solid #004080;
-      padding-left: 10px;
+    .progress-bar-container {
+      background-color: #ddd;
+      border-radius: 20px;
+      margin: 10px 0;
+      height: 20px;
+      overflow: hidden;
     }
-    ul, ol {
-      margin-left: 20px;
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: #3498db;
+      transition: width 0.4s ease-in-out;
     }
     .section {
-      background: #fff;
-      padding: 25px;
-      margin-bottom: 30px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-      border-radius: 8px;
+      background-color: #fff;
+      padding: 20px;
+      margin: 15px 0;
+      border-left: 5px solid #3498db;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
-    .level-tabs {
-      display: flex;
-      margin-bottom: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .level-tab {
-      padding: 10px 15px;
-      margin: 0 5px 10px;
-      background: #e0e0e0;
-      border-radius: 5px;
+    .section h2 {
+      margin-top: 0;
       cursor: pointer;
-      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .level-tab.active {
-      background: #004080;
+    .section h2:after {
+      content: "−";
+      font-size: 1.5em;
+    }
+    .section.collapsed h2:after {
+      content: "+";
+    }
+    .section-content {
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out;
+    }
+    .section.collapsed .section-content {
+      max-height: 0 !important;
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin: 10px 0;
+    }
+    .complete-btn {
+      background: #2ecc71;
       color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
     }
-    .hidden {
-      display: none;
+    .complete-btn:disabled {
+      background: #aaa;
+      cursor: not-allowed;
     }
-    .checklist-item {
-      margin-bottom: 8px;
+    .unread-btn {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
     }
-    .checklist-item:before {
-      content: "✅ ";
+    .unread-btn:disabled {
+      background: #aaa;
+      cursor: not-allowed;
     }
   </style>
 </head>
 <body>
-
+<header>
   <h1>Essay Writing Skills</h1>
-  
-  <div class="level-tabs" id="levelTabs"></div>
+  <div>Progress:</div>
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+</header>
+<main id="content"></main>
+<script>
+const progressKey = "essayWritingProgress";
+function getProgress() {
+  const saved = localStorage.getItem(progressKey);
+  return saved ? JSON.parse(saved) : {};
+}
+function updateProgressBar(progress) {
+  const total = essayContent.levels.length;
+  const completed = Object.values(progress).filter(v => v === true).length;
+  const percent = (completed / total) * 100;
+  document.getElementById("progressBar").style.width = percent + "%";
+}
+function renderContent() {
+  const container = document.getElementById("content");
+  const progress = getProgress();
+  updateProgressBar(progress);
+  container.innerHTML = "";
+  essayContent.levels.forEach(level => {
+    const div = document.createElement("div");
+    div.className = "section";
 
-  <div id="contentContainer"></div>
+    const header = document.createElement("h2");
+    header.innerHTML = `Level ${level.level}: ${level.title}`;
+    header.addEventListener("click", () => {
+      div.classList.toggle("collapsed");
+      if (!div.classList.contains("collapsed")) {
+        contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
+      }
+    });
 
-  <script>
-    // Essay content in JSON format for easy management and expansion
-    const essayContent = {
+    const buttonGroup = document.createElement("div");
+    buttonGroup.className = "button-group";
+
+    const completeBtn = document.createElement("button");
+    completeBtn.className = "complete-btn";
+    completeBtn.textContent = progress[level.title] ? "Completed" : "Mark as Complete";
+    completeBtn.disabled = progress[level.title];
+    completeBtn.onclick = () => markComplete(level.title);
+
+    const unreadBtn = document.createElement("button");
+    unreadBtn.className = "unread-btn";
+    unreadBtn.textContent = "Mark as Unread";
+    unreadBtn.disabled = !progress[level.title];
+    unreadBtn.onclick = () => markUnread(level.title);
+
+    buttonGroup.appendChild(completeBtn);
+    buttonGroup.appendChild(unreadBtn);
+
+    const contentDiv = document.createElement("div");
+    contentDiv.className = "section-content";
+    contentDiv.innerHTML = level.sections.map(section => `
+      <h3>${section.title}</h3>
+      ${section.content}
+    `).join('');
+
+    div.appendChild(header);
+    div.appendChild(buttonGroup);
+    div.appendChild(contentDiv);
+    container.appendChild(div);
+
+    contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
+  });
+}
+function markComplete(title) {
+  const progress = getProgress();
+  progress[title] = true;
+  localStorage.setItem(progressKey, JSON.stringify(progress));
+  renderContent();
+}
+function markUnread(title) {
+  const progress = getProgress();
+  progress[title] = false;
+  localStorage.setItem(progressKey, JSON.stringify(progress));
+  renderContent();
+}
+const essayContent = {
       levels: [
         {
           level: 1,
@@ -280,79 +383,7 @@
         }
       ]
     };
-
-    // Initialize the page
-    document.addEventListener('DOMContentLoaded', function() {
-      // Create level tabs
-      const levelTabs = document.getElementById('levelTabs');
-      essayContent.levels.forEach(level => {
-        const tab = document.createElement('div');
-        tab.className = 'level-tab';
-        if (level.level === 1) tab.classList.add('active');
-        tab.textContent = `Level ${level.level}: ${level.title}`;
-        tab.onclick = () => showLevel(level.level);
-        levelTabs.appendChild(tab);
-      });
-      
-      // Show first level by default
-      showLevel(1);
-    });
-
-    // Show selected level content
-    function showLevel(levelNum) {
-      // Update active tab
-      document.querySelectorAll('.level-tab').forEach(tab => {
-        tab.classList.remove('active');
-      });
-      document.querySelectorAll('.level-tab')[levelNum-1].classList.add('active');
-      
-      // Get level content
-      const level = essayContent.levels.find(l => l.level === levelNum);
-      if (!level) return;
-      
-      // Build HTML content
-      let html = `<h2>Level ${level.level}: ${level.title}</h2>`;
-      
-      level.sections.forEach(section => {
-        html += `
-          <div class="section">
-            <h3>${section.title}</h3>
-            ${section.content}
-          </div>
-        `;
-      });
-      
-      document.getElementById('contentContainer').innerHTML = html;
-    }
-
-    // This JSON structure makes it easy to add new levels or sections:
-    /*
-    To add a new level:
-    1. Add a new object to the levels array
-    2. Follow the same structure with level number, title, and sections
-    3. Each section has a title and content (HTML formatted)
-    
-    To add new sections to existing levels:
-    1. Find the level in the levels array
-    2. Add a new section object to its sections array
-    
-    Example of adding a new level:
-    {
-      level: 6,
-      title: "Creative Writing",
-      sections: [
-        {
-          title: "Fiction Techniques",
-          content: "<p>Content here...</p>"
-        },
-        {
-          title: "Poetry Forms",
-          content: "<ul><li>Item 1</li></ul>"
-        }
-      ]
-    }
-    */
-  </script>
-
+renderContent();
+</script>
 </body>
 </html>
