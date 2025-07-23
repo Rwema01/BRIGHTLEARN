@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .geometry-notes-content {
-            background: #f7f9ff;
-            color: #1a237e;
+            background: white;
+            color: #0b0b0b;
             border: 1px solid #b3c6ff;
             border-radius: 8px;
             padding: 2rem 2rem 1.5rem 2rem;
@@ -21,7 +21,7 @@
         .geometry-notes-content h4 {
             font-size: 2rem;
             margin-bottom: 1rem;
-            color: #2563eb;
+            color: #0a0a0a;
         }
         .geometry-notes-content ul {
             margin: 1rem 0 1rem 1.5rem;
@@ -73,6 +73,108 @@
             align-items: center;
             margin-bottom: 1rem;
         }
+        .notes-container {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 4px solid #9693d4;
+        }
+        .tab-container {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+        .tab {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border: 1px solid #b3c6ff;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            margin-right: 0.5rem;
+            background: #eef2ff;
+        }
+        .tab.active {
+            background:#2563eb;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        /* New styles for progress bar and read buttons */
+        .progress-container {
+            margin: 1.5rem 0;
+            background: #e0e7ff;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .progress-bar {
+            height: 10px;
+            background: #dbeafe;
+            border-radius: 5px;
+            margin-top: 0.5rem;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: #4f5fdb;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #e0e0e0;
+        }
+        .read-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .mark-read-btn, .mark-unread-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .mark-read-btn {
+            background: #10b981;
+            color: white;
+        }
+        .mark-read-btn:hover {
+            background: #059669;
+        }
+        .mark-unread-btn {
+            background: #ef4444;
+            color: white;
+        }
+        .mark-unread-btn:hover {
+            background: #dc2626;
+        }
+        .read-status {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .read-status i {
+            font-size: 1rem;
+        }
+        .read {
+            color: #10b981;
+        }
+        .unread {
+            color: #ef4444;
+        }
     </style>
 </head>
 <body>
@@ -95,35 +197,57 @@
         </nav>
         <main class="main-content">
             <div class="geometry-notes-content">
-                <h4>Geometry Notes</h4>
+                <h4>Algebra Notes</h4>
                 <p>Welcome to Geometry Notes! This section summarizes the key concepts from the Geometry module in your Mathematics course.</p>
                 
+                <!-- Progress Bar Section -->
+                <div class="progress-container">
+                    <h5>Your Progress</h5>
+                    <div class="progress-text">
+                        <span id="progress-percent">0%</span>
+                        <span id="progress-count">0/3 levels completed</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <div class="read-status" id="read-status">
+                        <i class="fas fa-circle unread"></i>
+                        <span>Unread</span>
+                    </div>
+                    <div class="read-buttons">
+                        <button class="mark-read-btn" id="mark-read-btn">
+                            <i class="fas fa-check"></i> Mark as Read
+                        </button>
+                        <button class="mark-unread-btn" id="mark-unread-btn">
+                            <i class="fas fa-times"></i> Mark as Unread
+                        </button>
+                    </div>
+                </div>
+                
                 <div id="questions-section">
-                    <h3>Practice Questions</h3>
+                    <h3>Interactive Geometry Practice</h3>
                     <select id="level-selector" class="level-selector">
                         <option value="">Select a level</option>
                     </select>
-                    <div id="questions-container"></div>
+                    
+                    <div class="tab-container" id="tab-container">
+                        <div class="tab active" data-tab="notes">Notes</div>
+                        <div class="tab" data-tab="questions">Questions</div>
+                    </div>
+                    
+                    <div id="notes-container" class="tab-content active"></div>
+                    <div id="questions-container" class="tab-content"></div>
                 </div>
 
-                <h3>Key Concepts</h3>
-                <ul>
-                    <li><strong>Points, Lines, and Planes:</strong> (Content remains the same...)</li>
-                    <li><strong>Angles:</strong> (Content remains the same...)</li>
-                    <li><strong>Triangles:</strong> (Content remains the same...)</li>
-                    <li><strong>Quadrilaterals and Polygons:</strong> (Content remains the same...)</li>
-                    <li><strong>Circles:</strong> (Content remains the same...)</li>
-                    <li><strong>Perimeter, Area, and Volume:</strong> (Content remains the same...)</li>
-                    <li><strong>Coordinate Geometry:</strong> (Content remains the same...)</li>
-                    <li><strong>Transformations:</strong> (Content remains the same...)</li>
-                </ul>
-                <p>For practice, return to the <a href="geometry-lesson.html">Geometry Exercises</a> or explore more resources in the course.</p>
+                <h3>Key Concepts Overview</h3>
+                <ul id="key-concepts-list"></ul>
+                <p>For practice, return to the <a href="algebra-quiz.html">algebra Exercises</a> or explore more resources in the course.</p>
             </div>
         </main>
     </div>
 
     <script>
-        // Geometry data (could also be loaded from an external JSON file)
+        // Enhanced Geometry data with notes for each level
         const geometryData = {
             "geometry": {
                 "levels": [
@@ -131,6 +255,25 @@
                         "level": 1,
                         "name": "Points, Lines, and Planes",
                         "description": "Basic concepts of geometry including points, lines, and planes in 3D space",
+                        "notes": `
+                            <h2>1. Points</h2>
+                            <p>A <strong>point</strong> in space is indicated by a set of three coordinates.</p>
+                            <ul>
+                                <li><strong>Notation:</strong> \(A(x, y, z)\)</li>
+                                <li>No size or shape — simply a location.</li>
+                            </ul>
+                            <div class="example">
+                                <strong>Example:</strong> Represent the point \(P\) that is 3 units right along the x‑axis, 2 up along the y‑axis, and 5 forward along the z‑axis.  
+                                → \(P(3, 2, 5)\)
+                            </div>
+                            
+                            <h2>2. Lines</h2>
+                            <p>A <strong>line</strong> in 3D is defined by:</p>
+                            <ul>
+                                <li>a fixed point \(P_0(x_0, y_0, z_0)\);</li>
+                                <li>a direction vector \(\vec{d} = \langle a, b, c \rangle\).</li>
+                            </ul>
+                        `,
                         "questions": [
                             {
                                 "id": 1,
@@ -150,6 +293,23 @@
                         "level": 2,
                         "name": "Angles",
                         "description": "Understanding different types of angles and their properties",
+                        "notes": `
+                            <h2>✅ What is an Angle?</h2>
+                            <ul>
+                                <li>An <strong>angle</strong> is the figure formed by two rays (sides) sharing a common endpoint (vertex).</li>
+                                <li>Measured in <strong>degrees (°)</strong>, typically using a protractor.</li>
+                            </ul>
+                            
+                            <h2>🧭 Types of Angles</h2>
+                            <ul>
+                                <li><strong>Acute angle</strong>: between 0° and 90° (exclusive).</li>
+                                <li><strong>Right angle</strong>: exactly 90°.</li>
+                                <li><strong>Obtuse angle</strong>: between 90° and 180° (exclusive).</li>
+                                <li><strong>Straight angle</strong>: exactly 180°.</li>
+                                <li><strong>Reflex angle</strong>: between 180° and 360° (exclusive).</li>
+                                <li><strong>Full angle (perigon)</strong>: exactly 360°.</li>
+                            </ul>
+                        `,
                         "questions": [
                             {
                                 "id": 1,
@@ -169,6 +329,21 @@
                         "level": 3,
                         "name": "Triangles",
                         "description": "Properties and theorems related to triangles",
+                        "notes": `
+                            <h1>1. Triangle Essentials</h1>
+                            <p><strong>Definition:</strong> A triangle has three sides and three interior angles summing to 180°.</p>
+                            <p><strong>Angle sum property:</strong> \(∠A + ∠B + ∠C = 180°\).</p>
+                            <div class="example">
+                                <strong>Example:</strong> If ∠A=50°, ∠B=60°, find ∠C.  
+                                <em>Solution:</em> 180 – (50+60) = 70°.
+                            </div>
+                            <h2>Types by Angles</h2>
+                            <ul>
+                                <li><strong>Acute:</strong> all angles < 90°.</li>
+                                <li><strong>Right:</strong> one angle = 90°.</li>
+                                <li><strong>Obtuse:</strong> one angle > 90°.</li>
+                            </ul>
+                        `,
                         "questions": [
                             {
                                 "id": 1,
@@ -184,101 +359,20 @@
                             }
                         ]
                     },
+                ],
+                "keyConcepts": [
                     {
-                        "level": 4,
-                        "name": "Quadrilaterals and Polygons",
-                        "description": "Properties of quadrilaterals and regular polygons",
-                        "questions": [
-                            {
-                                "id": 1,
-                                "question": "What is the sum of interior angles of a hexagon?",
-                                "answer": "720°",
-                                "explanation": "Formula is (n-2)×180° where n=6: (6-2)×180 = 720°."
-                            },
-                            {
-                                "id": 2,
-                                "question": "A rhombus has diagonals 10cm and 8cm. What is its area?",
-                                "answer": "40cm²",
-                                "explanation": "Area of rhombus is (d₁ × d₂)/2 = (10 × 8)/2 = 40."
-                            }
-                        ]
+                        "name": "Points, Lines, and Planes",
+                        "summary": "Fundamental elements of geometry with coordinates and equations"
                     },
                     {
-                        "level": 5,
-                        "name": "Circles",
-                        "description": "Properties and theorems related to circles",
-                        "questions": [
-                            {
-                                "id": 1,
-                                "question": "What is the circumference of a circle with radius 7cm?",
-                                "answer": "14π cm (≈43.98cm)",
-                                "explanation": "Circumference formula is 2πr = 2×π×7 = 14π."
-                            },
-                            {
-                                "id": 2,
-                                "question": "A 60° sector has radius 10cm. What is its area?",
-                                "answer": "50π/3 cm² (≈52.36cm²)",
-                                "explanation": "Sector area formula is (θ/360)×πr² = (60/360)×π×100 = 50π/3."
-                            }
-                        ]
+                        "name": "Angles",
+                        "summary": "Types of angles and their relationships in geometric figures"
                     },
                     {
-                        "level": 6,
-                        "name": "Perimeter, Area, and Volume",
-                        "description": "Calculations for perimeter, area, and volume of shapes",
-                        "questions": [
-                            {
-                                "id": 1,
-                                "question": "What is the perimeter of a rectangle with length 8cm and width 5cm?",
-                                "answer": "26cm",
-                                "explanation": "Perimeter formula is 2(l+w) = 2(8+5) = 26."
-                            },
-                            {
-                                "id": 2,
-                                "question": "What is the volume of a cylinder with radius 3cm and height 7cm?",
-                                "answer": "63π cm³ (≈197.92cm³)",
-                                "explanation": "Volume formula is πr²h = π×9×7 = 63π."
-                            }
-                        ]
+                        "name": "Triangles",
+                        "summary": "Properties, types, and theorems related to three-sided polygons"
                     },
-                    {
-                        "level": 7,
-                        "name": "Coordinate Geometry",
-                        "description": "Geometry in the coordinate plane",
-                        "questions": [
-                            {
-                                "id": 1,
-                                "question": "Find the distance between points A(-2,1) and B(3,-4)",
-                                "answer": "5√2",
-                                "explanation": "Distance formula: √[(3-(-2))² + (-4-1)²] = √[25 + 25] = √50 = 5√2."
-                            },
-                            {
-                                "id": 2,
-                                "question": "What is the midpoint between A(1,2) and B(5,6)?",
-                                "answer": "(3,4)",
-                                "explanation": "Midpoint formula: ((1+5)/2, (2+6)/2) = (3,4)."
-                            }
-                        ]
-                    },
-                    {
-                        "level": 8,
-                        "name": "Transformations",
-                        "description": "Geometric transformations in the plane",
-                        "questions": [
-                            {
-                                "id": 1,
-                                "question": "Translate point P(1,3) by vector (-2,+1). What is P'?",
-                                "answer": "(-1,4)",
-                                "explanation": "Translation rule: (x+h, y+k) = (1-2, 3+1) = (-1,4)."
-                            },
-                            {
-                                "id": 2,
-                                "question": "Rotate point Q(3,4) 90° counter-clockwise about the origin. What is Q'?",
-                                "answer": "(-4,3)",
-                                "explanation": "90° CCW rotation rule: (x,y) → (-y,x) = (-4,3)."
-                            }
-                        ]
-                    }
                 ]
             }
         };
@@ -286,6 +380,22 @@
         // DOM elements
         const levelSelector = document.getElementById('level-selector');
         const questionsContainer = document.getElementById('questions-container');
+        const notesContainer = document.getElementById('notes-container');
+        const keyConceptsList = document.getElementById('key-concepts-list');
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        // Progress elements
+        const progressFill = document.getElementById('progress-fill');
+        const progressPercent = document.getElementById('progress-percent');
+        const progressCount = document.getElementById('progress-count');
+        const readStatus = document.getElementById('read-status');
+        const markReadBtn = document.getElementById('mark-read-btn');
+        const markUnreadBtn = document.getElementById('mark-unread-btn');
+
+        // State management
+        let completedLevels = JSON.parse(localStorage.getItem('completedGeometryLevels')) || [];
+        let isRead = localStorage.getItem('geometryNotesRead') === 'true';
 
         // Initialize the level selector dropdown
         function initLevelSelector() {
@@ -297,19 +407,54 @@
             });
         }
 
+        // Initialize key concepts list
+        function initKeyConcepts() {
+            geometryData.geometry.keyConcepts.forEach(concept => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${concept.name}:</strong> ${concept.summary}`;
+                keyConceptsList.appendChild(li);
+            });
+        }
+
+        // Display notes for a selected level
+        function showNotes(levelNum) {
+            if (!levelNum) {
+                notesContainer.innerHTML = '<p>Select a level to view notes</p>';
+                return;
+            }
+            
+            const level = geometryData.geometry.levels.find(l => l.level == levelNum);
+            if (!level) {
+                notesContainer.innerHTML = '<p>No notes available for this level</p>';
+                return;
+            }
+            
+            notesContainer.innerHTML = `
+                <h3>${level.name}</h3>
+                <p>${level.description}</p>
+                <div class="notes-content">${level.notes}</div>
+            `;
+        }
+
         // Display questions for a selected level
         function showQuestions(levelNum) {
             questionsContainer.innerHTML = '';
             
-            if (!levelNum) return;
+            if (!levelNum) {
+                questionsContainer.innerHTML = '<p>Select a level to view questions</p>';
+                return;
+            }
             
             const level = geometryData.geometry.levels.find(l => l.level == levelNum);
-            if (!level) return;
+            if (!level || !level.questions || level.questions.length === 0) {
+                questionsContainer.innerHTML = '<p>No questions available for this level</p>';
+                return;
+            }
             
             const levelHeader = document.createElement('div');
             levelHeader.className = 'level-header';
             levelHeader.innerHTML = `
-                <h3>${level.name}</h3>
+                <h3>${level.name} Practice Questions</h3>
                 <p>${level.description}</p>
             `;
             questionsContainer.appendChild(levelHeader);
@@ -341,19 +486,99 @@
                         `;
                         answerDiv.style.display = 'block';
                         this.textContent = 'Hide Answer';
+                        
+                        // Mark level as completed when user shows answers
+                        if (!completedLevels.includes(levelNum)) {
+                            completedLevels.push(levelNum);
+                            localStorage.setItem('completedGeometryLevels', JSON.stringify(completedLevels));
+                            updateProgress();
+                        }
                     }
                 });
             });
         }
 
+        // Update progress bar and status
+        function updateProgress() {
+            const totalLevels = geometryData.geometry.levels.length;
+            const completedCount = completedLevels.length;
+            const percent = Math.round((completedCount / totalLevels) * 100);
+            
+            progressFill.style.width = `${percent}%`;
+            progressPercent.textContent = `${percent}%`;
+            progressCount.textContent = `${completedCount}/${totalLevels} levels completed`;
+            
+            // Update read status
+            updateReadStatus();
+        }
+
+        // Update read status display
+        function updateReadStatus() {
+            if (isRead) {
+                readStatus.innerHTML = '<i class="fas fa-circle read"></i><span>Read</span>';
+                markReadBtn.disabled = true;
+                markUnreadBtn.disabled = false;
+            } else {
+                readStatus.innerHTML = '<i class="fas fa-circle unread"></i><span>Unread</span>';
+                markReadBtn.disabled = false;
+                markUnreadBtn.disabled = true;
+            }
+        }
+
+        // Tab switching functionality
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(`${tab.dataset.tab}-container`).classList.add('active');
+            });
+        });
+
         // Event listener for level selection
         levelSelector.addEventListener('change', function() {
-            showQuestions(this.value);
+            const levelNum = this.value;
+            showNotes(levelNum);
+            showQuestions(levelNum);
         });
+
+        // Mark as read button
+       // Mark as read button
+markReadBtn.addEventListener('click', function () {
+    isRead = true;
+    localStorage.setItem('geometryNotesRead', 'true');
+
+    // Mark all levels as completed
+    completedLevels = geometryData.geometry.levels.map(l => String(l.level));
+    localStorage.setItem('completedGeometryLevels', JSON.stringify(completedLevels));
+
+    updateProgress();
+    updateReadStatus();
+});
+
+// Mark as unread button
+markUnreadBtn.addEventListener('click', function () {
+    isRead = false;
+    localStorage.setItem('geometryNotesRead', 'false');
+
+    // Clear all completed levels
+    completedLevels = [];
+    localStorage.setItem('completedGeometryLevels', JSON.stringify(completedLevels));
+
+    updateProgress();
+    updateReadStatus();
+});
+
 
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
             initLevelSelector();
+            initKeyConcepts();
+            showNotes('');
+            showQuestions('');
+            updateProgress();
+            updateReadStatus();
         });
     </script>
 </body>
