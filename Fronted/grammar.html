@@ -34,13 +34,58 @@
       color: darkblue;
       margin-top: 30px;
     }
+    .chapter-buttons {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+    }
+    .progress-container {
+      margin: 20px 0;
+      padding: 15px;
+      background: #e0ecff;
+      border-radius: 10px;
+      border: 1px solid #a4c8ff;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      background: #cbd5e0;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: #2563eb;
+      width: 0%;
+      transition: width 0.5s;
+    }
+    .level-selector {
+      margin: 20px 0;
+      padding: 8px 10px;
+      font-size: 1rem;
+    }
   </style>
 </head>
 <body>
 
   <h1>English Skills Quiz</h1>
-  <p>This quiz tests your knowledge on Essay Writing, Literature, Punctuation, and Grammar. Submit each chapter to get your result.</p>
+  <p>This quiz tests your knowledge on Essay Writing, Literature, Punctuation, and Grammar. Select a level and submit to view your result.</p>
 
+  <!-- Progress Bar -->
+  <div class="progress-container">
+    <strong>Progress:</strong>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div id="progressText">0% Completed</div>
+  </div>
+
+  <!-- Level Selector -->
+  <select id="levelSelector" class="level-selector">
+    <option value="">Select a Level</option>
+  </select>
+
+  <!-- Quiz Display -->
   <div id="quizContainer"></div>
 
   <div class="final-score" id="finalScoreContainer"></div>
@@ -50,7 +95,7 @@
       {
         title: "Chapter 1: Essay Writing",
         questions: [
-          {
+        {
             q: "What is the main purpose of an essay?",
             options: ["To entertain", "To analyze and argue a point", "To describe an image", "To summarize a book"],
             answer: 1
@@ -105,7 +150,7 @@
       {
         title: "Chapter 2: Literature in English (Rwanda)",
         questions: [
-          {
+        {
             q: "Which of these is a theme in Rwandan literature?",
             options: ["Space travel", "Unity and reconciliation", "Fantasy magic", "Time machines"],
             answer: 1
@@ -155,12 +200,13 @@
             options: ["To confuse the reader", "To add color", "To express the central idea", "To list vocabulary"],
             answer: 2
           }
+        
         ]
       },
       {
         title: "Chapter 3: Punctuation",
         questions: [
-          {
+        {
             q: "Which punctuation ends a statement?",
             options: ["Exclamation mark", "Comma", "Period (.)", "Question mark"],
             answer: 2
@@ -175,47 +221,14 @@
             options: ["Plural", "Capitalization", "Possession or contraction", "Spacing"],
             answer: 2
           },
-          {
-            q: "Which is correct?",
-            options: ["Its raining", "It's raining", "Its' raining", "It rains'"],
-            answer: 1
-          },
-          {
-            q: "Use a colon (:) to:",
-            options: ["End a sentence", "Start a sentence", "Introduce a list", "Separate clauses"],
-            answer: 2
-          },
-          {
-            q: "Which sentence uses punctuation correctly?",
-            options: ["I saw a lion; a big one!", "I saw a lion. a big one!", "I saw a lion, a big one!", "I saw a lion! a big one!"],
-            answer: 0
-          },
-          {
-            q: "Which sentence uses quotation marks properly?",
-            options: ["He said, “Hello.”", "He said, “Hello”.", "He said “Hello.”", "He said, Hello.”"],
-            answer: 0
-          },
-          {
-            q: "What punctuation ends a direct question?",
-            options: ["Period", "Exclamation mark", "Comma", "Question mark (?)"],
-            answer: 3
-          },
-          {
-            q: "Which symbol is used for parentheses?",
-            options: ["[ ]", "{ }", "( )", "< >"],
-            answer: 2
-          },
-          {
-            q: "Ellipses (...) are used to:",
-            options: ["End all sentences", "Replace commas", "Indicate a pause or omission", "Show possession"],
-            answer: 2
-          }
+          
+          
         ]
       },
       {
         title: "Chapter 4: Grammar",
         questions: [
-          {
+                  {
             q: "Which is a correct sentence?",
             options: ["She go to school", "She goes to school", "She going to school", "She gone to school"],
             answer: 1
@@ -265,15 +278,27 @@
             options: ["Childs", "Childes", "Children", "Childrens"],
             answer: 2
           }
+
         ]
       }
     ];
 
     const quizDiv = document.getElementById("quizContainer");
-    let totalScore = 0;
-    let totalQuestions = 0;
+    const levelSelector = document.getElementById("levelSelector");
+    const progressFill = document.getElementById("progressFill");
+    const progressText = document.getElementById("progressText");
+    let completedChapters = JSON.parse(localStorage.getItem("completedChapters")) || [];
 
-    chapters.forEach((chapter, chapIndex) => {
+    function updateProgressBar() {
+      const percent = Math.round((completedChapters.length / chapters.length) * 100);
+      progressFill.style.width = `${percent}%`;
+      progressText.textContent = `${percent}% Completed`;
+      localStorage.setItem("completedChapters", JSON.stringify(completedChapters));
+    }
+
+    function renderChapter(chapIndex) {
+      quizDiv.innerHTML = "";
+      const chapter = chapters[chapIndex];
       const div = document.createElement("div");
       div.className = "chapter";
       div.innerHTML = `<h2>${chapter.title}</h2>`;
@@ -299,27 +324,61 @@
         let score = 0;
         chapter.questions.forEach((q, qi) => {
           const selected = document.querySelector(`input[name="chap${chapIndex}q${qi}"]:checked`);
-          if (selected && parseInt(selected.value) === q.answer) {
-            score++;
-          }
+          if (selected && parseInt(selected.value) === q.answer) score++;
         });
         const percent = Math.round((score / chapter.questions.length) * 100);
-        totalScore += score;
-        totalQuestions += chapter.questions.length;
-        submitBtn.disabled = true;
         const result = document.createElement("div");
         result.className = "result";
         result.textContent = `Chapter Score: ${score} / ${chapter.questions.length} → ${percent}%`;
         div.appendChild(result);
-        if (chapIndex === chapters.length - 1) {
-          document.getElementById("finalScoreContainer").innerText =
-            `🎓 Final Score: ${totalScore} / ${totalQuestions} → ${Math.round((totalScore / totalQuestions) * 100)}%`;
-        }
+        submitBtn.disabled = true;
       };
       div.appendChild(submitBtn);
+
+      const buttonsDiv = document.createElement("div");
+      buttonsDiv.className = "chapter-buttons";
+      const doneBtn = document.createElement("button");
+      doneBtn.textContent = "Mark as Done";
+      doneBtn.onclick = () => {
+        if (!completedChapters.includes(chapIndex)) {
+          completedChapters.push(chapIndex);
+          updateProgressBar();
+        }
+      };
+      const undoneBtn = document.createElement("button");
+      undoneBtn.textContent = "Mark as Undone";
+      undoneBtn.onclick = () => {
+        completedChapters = completedChapters.filter(i => i !== chapIndex);
+        updateProgressBar();
+      };
+      buttonsDiv.appendChild(doneBtn);
+      buttonsDiv.appendChild(undoneBtn);
+      div.appendChild(buttonsDiv);
+
       quizDiv.appendChild(div);
+    }
+
+    function initLevelSelector() {
+      chapters.forEach((chap, idx) => {
+        const option = document.createElement("option");
+        option.value = idx;
+        option.textContent = chap.title;
+        levelSelector.appendChild(option);
+      });
+
+      levelSelector.addEventListener("change", function () {
+        if (this.value !== "") {
+          renderChapter(parseInt(this.value));
+        } else {
+          quizDiv.innerHTML = "";
+        }
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      initLevelSelector();
+      updateProgressBar();
     });
   </script>
-
 </body>
 </html>
