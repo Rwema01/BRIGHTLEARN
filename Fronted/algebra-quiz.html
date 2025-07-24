@@ -3,190 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Algebra Quiz | BRIGHTLEARN</title>
+    <title>Algebra Mastery Quiz</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-      /* Quiz Container Styles */
-      .quiz-container {
-        padding: 2rem;
-        max-width: 800px;
-        margin: 0 auto;
-      }
-      
-      /* Level Indicator */
-      .level-indicator {
-        background: #e0e7ff;
-        padding: 0.75rem 1rem;
-        border-radius: 6px;
-        margin-bottom: 1.5rem;
-        font-weight: 600;
-        color: #3a86ff;
-        display: flex;
-        justify-content: space-between;
-      }
-      
-      /* Question Styles */
-      .bl-quiz-q {
-        font-size: 1.2rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        color: #2d3748;
-      }
-      
-      /* Options Styles */
-      .bl-quiz-options {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-        margin-bottom: 1.5rem;
-      }
-      
-      .bl-quiz-options label {
-        background: #f7fafc;
-        border: 1px solid #cbd5e1;
-        border-radius: 6px;
-        padding: 0.75rem 1rem;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-      
-      .bl-quiz-options input[type="radio"] {
-        accent-color: #3a86ff;
-        margin-right: 0.5rem;
-        flex-shrink: 0;
-      }
-      
-      .bl-quiz-options label:hover, 
-      .bl-quiz-options label:has(input:checked) {
-        background: #e0e7ff;
-        border-color: #3a86ff;
-      }
-      
-      /* Navigation Styles */
-      .bl-quiz-nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1.5rem;
-        gap: 1rem;
-      }
-      
-      .bl-quiz-nav button {
-        background: #3a86ff;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        padding: 0.75rem 1.5rem;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: background 0.2s;
-        white-space: nowrap;
-      }
-      
-      .bl-quiz-nav button:disabled {
-        background: #a0aec0;
-        cursor: not-allowed;
-        opacity: 0.7;
-      }
-      
-      /* Progress Tracking */
-      .progress-container {
-        margin-bottom: 2rem;
-      }
-      
-      .global-progress {
-        margin-bottom: 1.5rem;
-      }
-      
-      .level-progress {
-        margin-bottom: 0.5rem;
-      }
-      
-      .progress-header {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 0.5rem;
-        font-size: 0.9rem;
-      }
-      
-      .progress-bar {
-        height: 8px;
-        background: #e2e8f0;
-        border-radius: 4px;
-        overflow: hidden;
-      }
-      
-      .progress-fill {
-        height: 100%;
-        background: #3a86ff;
-        width: 0%;
-        transition: width 0.3s ease;
-      }
-      
-      /* Score Display */
-      .score-display {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 1rem;
-      }
-      
-      .level-score {
-        background: #f0fdf4;
-        padding: 0.5rem;
-        border-radius: 4px;
-        font-size: 0.9rem;
-      }
-      
-      /* Result Styles */
-      .bl-quiz-result {
-        font-size: 1.3rem;
-        font-weight: 700;
-        color: #256029;
-        margin-bottom: 1.5rem;
-        text-align: center;
-        padding: 1rem;
-        background: #f0fff4;
-        border-radius: 6px;
-      }
-      
-      #retryQuiz {
-        background: #f59e42;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        padding: 0.75rem 1.5rem;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: background 0.2s;
-        display: block;
-        margin: 0 auto;
-      }
-      
-      #retryQuiz:hover {
-        background: #ffb366;
-      }
-      
-      /* Responsive Adjustments */
-      @media (max-width: 600px) {
-        .bl-quiz-nav {
-          flex-direction: column;
-        }
-        
-        .bl-quiz-nav button {
-          width: 100%;
-        }
-        
-        .score-display {
-          flex-direction: column;
-          gap: 0.5rem;
-        }
-      }
-    </style>
 </head>
 <body>
+    <div class="app-container">
+        <!-- Left Navigation (Unchanged) -->
+        <nav class="left-nav">
+            <div class="nav-header">
+                <div class="logo-container">
+                    <img src="BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>DASHBOARD</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="courses.html" class="active">
+                        <i class="fas fa-book-open"></i>
+                        <span>COURSES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="history.html">
+                        <i class="fas fa-history"></i>
+                        <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="help.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span>HELP</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="logout-container">
+                <a href="logout.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>LOGOUT</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar (Unchanged) -->
+            <header class="top-bar">
+                <div class="top-icons">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <div class="notification-dropdown">
+                        <i class="fas fa-bell notification-icon"></i>
+                        <span class="notification-badge">3</span>
+                        <div class="dropdown-content">
+                            <div class="notification-header">
+                                <h4>Notifications</h4>
+                                <button class="mark-all-read">Mark all as read</button>
+                            </div>
+                            <div class="notification-list">
+                                <div class="notification-item unread">
+                                    <div class="notification-icon"><i class="fas fa-book"></i></div>
+                                    <div class="notification-content">
+                                        <p>New assignment posted in Algebra II</p>
+                                        <span class="notification-time">2 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-icon"><i class="fas fa-check-circle"></i></div>
+                                    <div class="notification-content">
+                                        <p>Your submission for Essay Writing was graded</p>
+                                        <span class="notification-time">1 day ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="view-all">View All Notifications</a>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-dropdown">
+                        <i class="fas fa-user-circle profile-icon"></i>
+                        <div class="dropdown-content">
+                            <div class="profile-header">
+                                <img src="default-profile.jpg" alt="Profile" class="profile-pic">
+                                <div class="profile-info">
+                                    <h4>Jordan Barker</h4>
+                                    <p>Student</p>
+                                </div>
+                            </div>
+                            <div class="profile-stats">
+                                <div class="stat-item">
+                                    <span>Courses</span>
+                                    <span>5</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span>Completed</span>
+                                    <span>32%</span>
+                                </div>
+                            </div>
+                            <div class="dropdown-links">
+                                <a href="profile.html" class="profile-link"><i class="fas fa-user"></i> View Profile</a>
+                                <a href="settings.html" class="profile-link"><i class="fas fa-cog"></i> Settings</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+    </head>
+<body>
+  <div class="breadcrumbs">
+    <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="math.html">Mathematics</a> > <a href="algebra-quiz.html">Algebra-quiz</a> 
+  </div>
     <div class="app-container">
         <!-- Quiz Content -->
         <div class="quiz-container">
@@ -587,7 +523,9 @@
         updateProgress();
       });
 
-      retryBtn.addEventListener('click', initQuiz);
+      retryBtn.addEventListener('click', () => {
+        window.location.href = "algebra-quiz.html"; // Redirects to the quiz page
+        });
 
       // Start the quiz
       initQuiz();
