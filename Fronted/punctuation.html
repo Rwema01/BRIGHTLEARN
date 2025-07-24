@@ -1,88 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Punctuation Rules Mastery</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      line-height: 1.6;
-      padding: 20px;
-      color: #333;
-      background-color: #f5f5f5;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .level-tabs {
-      display: flex;
-      margin-bottom: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .level-tab {
-      padding: 10px 20px;
-      background-color: #e0e0e0;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
-    .level-tab.active {
-      background-color: #3498db;
-      color: white;
-    }
-    .content-container {
-      display: none;
-    }
-    .content-container.active {
-      display: block;
-    }
-    .page {
-      padding: 25px;
-      margin-bottom: 30px;
-      background-color: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      border-radius: 8px;
-    }
-    .rule, .example, .important, .quiz-question, .progress-container {
-      margin-top: 10px;
-    }
-    .button-group {
-      margin-top: 10px;
-    }
-    .complete-btn, .unread-btn {
-      padding: 6px 10px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-right: 8px;
-    }
-    .complete-btn {
-      background-color: #27ae60;
-      color: white;
-    }
-    .unread-btn {
-      background-color: #e74c3c;
-      color: white;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punctuation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <h1>Punctuation Rules Mastery</h1>
-  <div class="level-tabs" id="levelTabs"></div>
-  <div id="contentContainer"></div>
-  <div class="progress-container">
-    <h3>Your Progress</h3>
-    <div class="progress-bar">
-      <div class="progress" id="progressBar" style="height: 20px; background-color: #27ae60; width: 0%; border-radius: 10px; transition: width 0.5s;"></div>
+    <div class="app-container">
+        <!-- Left Navigation (Unchanged) -->
+        <nav class="left-nav">
+            <div class="nav-header">
+                <div class="logo-container">
+                    <img src="BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>DASHBOARD</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="courses.html" class="active">
+                        <i class="fas fa-book-open"></i>
+                        <span>COURSES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="history.html">
+                        <i class="fas fa-history"></i>
+                        <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="help.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span>HELP</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="logout-container">
+                <a href="logout.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>LOGOUT</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar (Unchanged) -->
+            <header class="top-bar">
+                <div class="top-icons">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <div class="notification-dropdown">
+                        <i class="fas fa-bell notification-icon"></i>
+                        <span class="notification-badge">3</span>
+                        <div class="dropdown-content">
+                            <div class="notification-header">
+                                <h4>Notifications</h4>
+                                <button class="mark-all-read">Mark all as read</button>
+                            </div>
+                            <div class="notification-list">
+                                <div class="notification-item unread">
+                                    <div class="notification-icon"><i class="fas fa-book"></i></div>
+                                    <div class="notification-content">
+                                        <p>New assignment posted in Algebra II</p>
+                                        <span class="notification-time">2 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-icon"><i class="fas fa-check-circle"></i></div>
+                                    <div class="notification-content">
+                                        <p>Your submission for Essay Writing was graded</p>
+                                        <span class="notification-time">1 day ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="view-all">View All Notifications</a>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-dropdown">
+                        <i class="fas fa-user-circle profile-icon"></i>
+                        <div class="dropdown-content">
+                            <div class="profile-header">
+                                <img src="default-profile.jpg" alt="Profile" class="profile-pic">
+                                <div class="profile-info">
+                                    <h4>Jordan Barker</h4>
+                                    <p>Student</p>
+                                </div>
+                            </div>
+                            <div class="profile-stats">
+                                <div class="stat-item">
+                                    <span>Courses</span>
+                                    <span>5</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span>Completed</span>
+                                    <span>32%</span>
+                                </div>
+                            </div>
+                            <div class="dropdown-links">
+                                <a href="profile.html" class="profile-link"><i class="fas fa-user"></i> View Profile</a>
+                                <a href="settings.html" class="profile-link"><i class="fas fa-cog"></i> Settings</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+    
+</head>
+<body>
+    <div class="breadcrumbs">
+        <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="english.html">English</a> > <a href="punctuation.html">Punctuation rules</a>
     </div>
-    <p id="progressText">Complete lessons to track your progress</p>
-  </div>
-  <script>
-    const progressKey = "punctuationLevelProgress";
-    const content = {
+
+    <h1>Punctuation Rules Mastery</h1>
+    
+    <div class="level-tabs" id="levelTabs"></div>
+    
+    <div id="contentContainer"></div>
+    
+    <div class="progress-container">
+        <h3>Your Progress</h3>
+        <div class="progress-bar">
+            <div class="progress" id="progressBar"></div>
+        </div>
+        <p id="progressText">Complete lessons to track your progress</p>
+    </div>
+
+<script>
+    // Punctuation content in JSON format for easy management
+    const punctuationContent = {
         levels: [
             {
                 level: 1,
@@ -375,66 +434,221 @@
             }
         ]
     };
-    let progress = JSON.parse(localStorage.getItem(progressKey) || '{}');
-    document.addEventListener('DOMContentLoaded', () => {
-      const tabs = document.getElementById('levelTabs');
-      content.levels.forEach(level => {
-        const tab = document.createElement('div');
-        tab.className = 'level-tab';
-        tab.textContent = `Level ${level.level}: ${level.title}`;
-        tab.onclick = () => showLevel(level.level);
-        tabs.appendChild(tab);
-      });
-      showLevel(1);
+
+    // User progress tracking
+    let userProgress = {};
+    
+    // Initialize the page
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeProgress();
+        createLevelTabs();
+        showLevel(1);
     });
+    
+    // Initialize progress tracking
+    function initializeProgress() {
+        // Load from localStorage if available
+        const savedProgress = localStorage.getItem('punctuationProgress');
+        if (savedProgress) {
+            userProgress = JSON.parse(savedProgress);
+        }
+        
+        // Initialize any missing levels
+        punctuationContent.levels.forEach(level => {
+            if (!userProgress[`level${level.level}`]) {
+                userProgress[`level${level.level}`] = {
+                    pagesRead: 0,
+                    quizCompleted: false,
+                    quizScore: 0
+                };
+            }
+        });
+        
+        updateProgressDisplay();
+    }
+    
+    // Create the level tabs
+    function createLevelTabs() {
+        const levelTabs = document.getElementById('levelTabs');
+        punctuationContent.levels.forEach(level => {
+            const tab = document.createElement('div');
+            tab.className = 'level-tab';
+            tab.textContent = `Level ${level.level}: ${level.title}`;
+            tab.onclick = () => showLevel(level.level);
+            levelTabs.appendChild(tab);
+        });
+    }
+    
+    // Show content for a specific level
     function showLevel(levelNum) {
-      document.querySelectorAll('.level-tab').forEach((tab, i) => {
-        tab.classList.toggle('active', i === levelNum - 1);
-      });
-      const level = content.levels.find(l => l.level === levelNum);
-      const container = document.getElementById('contentContainer');
-      container.innerHTML = `<h2>Level ${level.level}: ${level.title}</h2>`;
-      level.pages.forEach((page, i) => {
-        const div = document.createElement('div');
-        div.className = 'page';
-        div.innerHTML = `<h3>${page.title}</h3>${page.content}`;
-        const btns = document.createElement('div');
-        btns.className = 'button-group';
-        const key = `${levelNum}_${i}`;
-        const completeBtn = document.createElement('button');
-        completeBtn.className = 'complete-btn';
-        completeBtn.textContent = progress[key] ? 'Read' : 'Mark as Read';
-        completeBtn.disabled = !!progress[key];
-        completeBtn.onclick = () => {
-          progress[key] = true;
-          localStorage.setItem(progressKey, JSON.stringify(progress));
-          showLevel(levelNum);
-          updateProgress();
-        };
-        const unreadBtn = document.createElement('button');
-        unreadBtn.className = 'unread-btn';
-        unreadBtn.textContent = 'Mark as Unread';
-        unreadBtn.disabled = !progress[key];
-        unreadBtn.onclick = () => {
-          delete progress[key];
-          localStorage.setItem(progressKey, JSON.stringify(progress));
-          showLevel(levelNum);
-          updateProgress();
-        };
-        btns.appendChild(completeBtn);
-        btns.appendChild(unreadBtn);
-        div.appendChild(btns);
-        container.appendChild(div);
-      });
-      updateProgress();
+        // Update active tab
+        document.querySelectorAll('.level-tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        document.querySelectorAll('.level-tab')[levelNum-1].classList.add('active');
+        
+        // Get level content
+        const level = punctuationContent.levels.find(l => l.level === levelNum);
+        if (!level) return;
+        
+        // Build HTML content
+        let html = `<h2>Level ${level.level}: ${level.title}</h2>`;
+        
+        // Add pages
+        level.pages.forEach((page, index) => {
+            html += `
+                <div class="page">
+                    ${page.content}
+                </div>
+            `;
+            
+            // Mark as read in progress
+            if (index < userProgress[`level${levelNum}`].pagesRead) {
+                // Already read
+            } else if (index === userProgress[`level${levelNum}`].pagesRead) {
+                // Current page to read
+                userProgress[`level${levelNum}`].pagesRead++;
+                localStorage.setItem('punctuationProgress', JSON.stringify(userProgress));
+                updateProgressDisplay();
+            }
+        });
+        
+        // Add quiz if all pages read
+        if (userProgress[`level${levelNum}`].pagesRead >= level.pages.length) {
+            html += `<div class="page" id="quizPage">`;
+            html += `<h2>${level.quiz.title}</h2>`;
+            html += `<p>Test your knowledge with this interactive quiz. Your score will be calculated at the end!</p>`;
+            
+            level.quiz.questions.forEach((q, qIndex) => {
+                html += `
+                    <div class="quiz-question" id="q${qIndex}">
+                        <h3>${qIndex + 1}. ${q.question}</h3>
+                `;
+                
+                q.options.forEach((option, oIndex) => {
+                    const optionLetter = String.fromCharCode(97 + oIndex);
+                    html += `
+                        <input type="radio" name="q${qIndex}" value="${optionLetter}" id="q${qIndex}_${optionLetter}">
+                        <label for="q${qIndex}_${optionLetter}">${option}</label><br>
+                    `;
+                });
+                
+                html += `</div>`;
+            });
+            
+            html += `
+                <button onclick="calculateScore(${levelNum})">Submit Quiz</button>
+                <div id="results">
+                    <h3>Quiz Results</h3>
+                    <p id="score"></p>
+                    <p id="feedback"></p>
+                </div>
+            </div>`;
+        }
+        
+        document.getElementById('contentContainer').innerHTML = html;
+        updateProgressDisplay();
     }
-    function updateProgress() {
-      const total = content.levels.reduce((sum, l) => sum + l.pages.length, 0);
-      const done = Object.keys(progress).length;
-      const percent = Math.round((done / total) * 100);
-      document.getElementById('progressBar').style.width = `${percent}%`;
-      document.getElementById('progressText').textContent = `You have completed ${done} out of ${total} pages (${percent}%)`;
+    
+    // Calculate quiz score
+    function calculateScore(levelNum) {
+        const level = punctuationContent.levels.find(l => l.level === levelNum);
+        let score = 0;
+        let feedbackHTML = "<h4>Question Feedback:</h4><ol>";
+        
+        level.quiz.questions.forEach((q, qIndex) => {
+            const selectedOption = document.querySelector(`input[name="q${qIndex}"]:checked`);
+            
+            if (selectedOption && selectedOption.value === q.answer) {
+                score++;
+                feedbackHTML += `<li class="correct">Q${qIndex + 1}: Correct! ${q.feedback}</li>`;
+            } else {
+                feedbackHTML += `<li class="incorrect">Q${qIndex + 1}: ${q.feedback}</li>`;
+            }
+        });
+        
+        feedbackHTML += "</ol>";
+        
+        // Update progress
+        userProgress[`level${levelNum}`].quizCompleted = true;
+        userProgress[`level${levelNum}`].quizScore = score / level.quiz.questions.length * 100;
+        localStorage.setItem('punctuationProgress', JSON.stringify(userProgress));
+        
+        // Display results
+        document.getElementById('score').innerHTML = `You scored ${score} out of ${level.quiz.questions.length} (${Math.round(score/level.quiz.questions.length*100)}%)`;
+        document.getElementById('feedback').innerHTML = feedbackHTML;
+        document.getElementById('results').style.display = 'block';
+        
+        updateProgressDisplay();
     }
-  </script>
+    
+    // Update progress display
+    function updateProgressDisplay() {
+        let totalPages = 0;
+        let pagesRead = 0;
+        let quizzesCompleted = 0;
+        let totalQuizzes = punctuationContent.levels.length;
+        let totalScore = 0;
+        
+        punctuationContent.levels.forEach(level => {
+            totalPages += level.pages.length;
+            pagesRead += userProgress[`level${level.level}`].pagesRead;
+            
+            if (userProgress[`level${level.level}`].quizCompleted) {
+                quizzesCompleted++;
+                totalScore += userProgress[`level${level.level}`].quizScore;
+            }
+        });
+        
+        const pagesPercent = Math.round((pagesRead / totalPages) * 100);
+        const quizzesPercent = quizzesCompleted > 0 ? Math.round((totalScore / quizzesCompleted)) : 0;
+        const overallPercent = Math.round((pagesPercent + (quizzesCompleted / totalQuizzes * 100)) / 2);
+        
+        document.getElementById('progressBar').style.width = `${overallPercent}%`;
+        document.getElementById('progressText').innerHTML = `
+            Progress: ${overallPercent}%<br>
+            Pages read: ${pagesRead} of ${totalPages} (${pagesPercent}%)<br>
+            Quizzes completed: ${quizzesCompleted} of ${totalQuizzes}<br>
+            Average quiz score: ${quizzesCompleted > 0 ? quizzesPercent : 'N/A'}%
+        `;
+    }
+
+    // This JSON structure makes it easy to add new levels or content:
+    /*
+    To add a new level:
+    1. Add a new object to the levels array
+    2. Follow the same structure with level number, title, and pages
+    3. Each page has a title and content (HTML formatted)
+    4. Include a quiz with questions and feedback
+    
+    Example of adding a new level:
+    {
+        level: 4,
+        title: "Expert Punctuation",
+        pages: [
+            {
+                title: "Specialized Usage",
+                content: "<h2>Special Cases</h2><p>Content here...</p>"
+            },
+            {
+                title: "Stylistic Choices",
+                content: "<h2>Style Guides</h2><ul><li>Item 1</li></ul>"
+            }
+        ],
+        quiz: {
+            title: "Expert Quiz",
+            questions: [
+                {
+                    question: "Sample question?",
+                    options: ["a) Option 1", "b) Option 2"],
+                    answer: "a",
+                    feedback: "Explanation of correct answer"
+                }
+            ]
+        }
+    }
+    */
+</script>
+
 </body>
 </html>
