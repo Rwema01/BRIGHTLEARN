@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>World History Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+      background: #f9f9f9;
+    }
+    h1, h2 {
+      color: #003366;
+    }
+    .chapter {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    .question {
+      margin-bottom: 15px;
+    }
+    .result {
+      font-weight: bold;
+      color: green;
+      margin-top: 10px;
+    }
+    .final-score {
+      font-size: 20px;
+      color: darkblue;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>World History Quiz Notes</h1>
+  <p>These notes will give you a deeper understanding of World History. This quiz notes will test your knowledge and understanding of World History on American History, World Wars 1, World Wars 2, Colonisation and the British Empire,. Submit each chapter to get your result.</p>
+
+  <div id="quizContainer"></div>
+
+  <div class="final-score" id="finalScoreContainer"></div>
+
+  <script>
+    const chapters = [
+      {
+        title: "Chapter 1: American History: Independence & Growth",
+        questions: [
+          {
+            q: "The road to America's Independence was:?",
+            options: ["The United States declared independence from Britain in 1776", "driven by resistance to British taxes and lack of representation", "The American Revolution was fought between 1775 and 1783", "The Treaty of Paris in 1783 recognized American independence", "After the Revolutionary War, the U.S. expanded westward, developed industrially, and emerged as a global power by the 20th century."],
+            answer: 1
+          },
+          {
+            q: "Impact of the America's independence?",
+            options: ["The United States of America became the first modern democracy based on the ideas of liberty, equality, and popular sovereignty.", "It inspired the development of a written Constitution (1787) and the Bill of Rights (1791), setting a model for many countries.", "Inspiration for Other Revolutions"],
+            answer: 2
+          },
+          {
+            q: "How did AMerica's Independence Affect British Empires?",
+            options: ["Decline of British Power in America", "It forced Britain to focus more on colonies in India, Africa, and the Caribbean", "The U.S. began trading with other nations independently."],
+            answer: 1
+          },
+          {
+            q: "What were the positive outcomes of America's Independence?",
+            options: ["Ideas like freedom of speech", "individual rights", " separation of powers spread across the world", "Indepence of Other Nations"],
+            answer: 0
+          },
+          {
+            q: "The rise of the American Revolution:",
+            options: ["Taxation Without Representation", "Britain imposed taxes like the Stamp Act (1765) and Tea Act (1773) to pay debts from the Seven Years’ War.", "The American Revolution was fought between 1775 and 1783", "A list of topics"],
+            answer: 2
+          },
+          {
+            q: "Learn about  The Boston Tea Party (1773)?",
+            options: ["Colonists, disguised as Native Americans, dumped British tea into Boston Harbor to protest the Tea Act.", "Britain responded with harsh laws (called the Intolerable Acts), which worsened tensions.",  "The Boston Tea Party was a series of protests against the British Empire's tea monopoly.", "The Boston Tea Party was a series of protests against the British Empire's tea monopoly."],
+            answer: 2
+          },
+          {
+            q: "The Industrial Revolution in America (late 1800s):",
+            options: ["Rapid industrial growth turned the U.S. into a global economic power.", "Rise of factories, railroads, and urban cities.", "The U.S. began trading with other nations independently."],
+            answer: 1
+          },
+          {
+            q: " The Great Depression (1929–1939)?",
+            options: ["A major global economic crash that began in the U.S. with the stock market collapse.", "Led to mass unemployment and poverty, and the introduction of President Roosevelt’s New Deal."],
+            answer: 2
+          },
+          {
+            q: "U.S. Role in World Wars:",
+            options: ["World War I (1917–1918): The U.S. joined late but helped the Allies win.",  "World War II (1941–1945): After Japan bombed Pearl Harbor, the U.S. entered the war and became a superpower after the Allied victory.", "The U.S. was a major player in both wars, but the wars were fought mainly in Europe and the Pacific."],
+            answer: 1
+          },
+          {
+            q: " Civil Rights Movement (1950s–1960s)",
+            options: ["Led by figures like Martin Luther King Jr., this movement aimed to end racial segregation and achieve equal rights for African Americans."],
+            answer: 1
+          }
+        ]
+      },
+      {
+        title: "Chapter 2: African History",
+        questions: [
+          {
+            q: "What was the impact of colonization in Africa?",
+            options: [" Loss of Sovereignty African kingdoms and communities were stripped of political control as European powers drew borders and imposed foreign rule.", "Exploitation of Resources", " Cultural Disruption: Traditional societies were altered or destroyed, leading to loss of languages, customs, and social structures."],
+            answer: 1
+          },
+          {
+            q: "How did Africans resist colonial rule?",
+            options: [" Armed Resistance", "Spiritual and Cultural Movements  like the Maji Maji Rebellion (German East Africa) used religious unity to fight colonizers.", " Political Organizing"],
+            answer: 2
+          },
+          {
+            q: " What led to African independence in the 20th century",
+            options: ["Pan-Africanism led by Leaders like Kwame Nkrumah (Ghana) and Julius Nyerere (Tanzania).", " World War II Aftermath", "Mass Protests and Civil Disobedience:"],
+            answer: 2
+          },
+          {
+            q: "What was Apartheid in South Africa?",
+            options: [" Racial Segregation System (1948–1994)", "Leaders like Nelson Mandela, the African National Congress (ANC), and students (e.g., Soweto Uprising 1976) fought against it through activism, protests, and international support", "End of Apartheid"],
+            answer: 2
+          
+          },
+
+          {
+            q: "How did traditional African kingdoms contribute to civilization?",
+            options: ["Kingdoms like Mali, Songhai, and Great Zimbabwe had systems of trade, law, education, and architecture — long before colonialism.", " Cultural and Technological InnovationS"],
+            answer: 2
+          }
+        ]
+      },
+      {
+        title: "Chapter 3: Divison of Africa",
+        questions: 
+          {
+            q: "What was the Berlin Conference of 1884–85?",
+            options: [" Dividing Africa Among Europeans", "European powers met in Berlin (Germany) to divide African land for colonization without consulting Africans.", "Start of the “Scramble for Africa”", "Artificial Borders"],
+            answer: 2
+          }
+          },
+          
+          {
+            q: " What role did women play in African independence?",
+            options: [" Leaders and Fighters", "Women like Funmilayo Ransome-Kuti (Nigeria) and Yaa Asantewaa (Ghana) led protests and military resistance.", "Mobilizers and Organizers", "Women organized boycotts, union strikes, and educational campaigns to support freedom movements"],
+            answer: 0
+          },
+          
+        
+      {
+        title: "Chapter 4: The rise of African Power",
+        questions: [
+          {
+            q: "What Factors Contributed to the Rise of Africa in the 21st Century?",
+            options: ["Economic Growth", "Youth Population", "Technology Adoption", "Urbanization"],
+            answer: 1
+          },
+          
+          {
+            q: "How Did Education Contribute to Africa’s Development?",
+            options: ["Increased Literacy Rates", "Increased Economic Independence", "Universities and technical institutions were developed to train skilled workers and leaders.", "Education helped reduce poverty and improve health outcomes."],
+            answer: 2
+          },
+          {
+            q: "What Role Did Leadership Play in Africa’s Rise?",
+            options: ["Some African leaders promoted peace, development, and reform", "Regional Cooperation Was Strengthened", "Leaders like Mwai Kibaki (Kenya), Yoweri Museveni (Uganda), and Ibrahim Banda (Tanzania) played a pivotal role in fostering stability and development in Africa.", "Leaders collaborated "],
+            answer: 2
+          }
+        ]
+      }
+    ];
+
+    const quizDiv = document.getElementById("quizContainer");
+    let totalScore = 0;
+    let totalQuestions = 0;
+
+    chapters.forEach((chapter, chapIndex) => {
+      const div = document.createElement("div");
+      div.className = "chapter";
+      div.innerHTML = `<h2>${chapter.title}</h2>`;
+      chapter.questions.forEach((qObj, qIndex) => {
+        const qDiv = document.createElement("div");
+        qDiv.className = "question";
+        qDiv.innerHTML = `<p>${qIndex + 1}. ${qObj.q}</p>`;
+        qObj.options.forEach((opt, i) => {
+          const id = `chap${chapIndex}q${qIndex}opt${i}`;
+          qDiv.innerHTML += `
+            <label>
+              <input type="radio" name="chap${chapIndex}q${qIndex}" value="${i}" id="${id}" />
+              ${opt}
+            </label><br/>
+          `;
+        });
+        div.appendChild(qDiv);
+      });
+
+      const submitBtn = document.createElement("button");
+      submitBtn.textContent = "Submit Chapter";
+      submitBtn.onclick = () => {
+        let score = 0;
+        chapter.questions.forEach((q, qi) => {
+          const selected = document.querySelector(`input[name="chap${chapIndex}q${qi}"]:checked`);
+          if (selected && parseInt(selected.value) === q.answer) {
+            score++;
+          }
+        });
+        const percent = Math.round((score / chapter.questions.length) * 100);
+        totalScore += score;
+        totalQuestions += chapter.questions.length;
+        submitBtn.disabled = true;
+        const result = document.createElement("div");
+        result.className = "result";
+        result.textContent = `Chapter Score: ${score} / ${chapter.questions.length} → ${percent}%`;
+        div.appendChild(result);
+        if (chapIndex === chapters.length - 1) {
+          document.getElementById("finalScoreContainer").innerText =
+            `🎓 Final Score: ${totalScore} / ${totalQuestions} → ${Math.round((totalScore / totalQuestions) * 100)}%`;
+        }
+      };
+      div.appendChild(submitBtn);
+      quizDiv.appendChild(div);
+    });
+  </script>
+
+</body>
+</html>
+

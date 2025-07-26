@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Math Video Tutorials - Algebra & Geometry</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 20px;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+    .video-container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .video {
+      margin-bottom: 40px;
+    }
+    iframe {
+      width: 100%;
+      height: 405px;
+      border: none;
+      border-radius: 8px;
+    }
+    .quiz-link {
+      margin-top: 10px;
+      display: inline-block;
+      background: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .quiz-link:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Math Video Tutorials</h1>
+  <h2>Learn Algebra and Geometry</h2>
+
+  <div id="videos"></div>
+
+  <script>
+    const videoData = [
+      {
+        title: "Introduction to Algebra",
+        src: "https://www.youtube.com/embed/3d9sdEzYDjg",
+        quiz: "https://www.khanacademy.org/math/algebra"
+      },
+      {
+        title: "Basics of Geometry",
+        src: "https://www.youtube.com/embed/VYq2ojb9wFw",
+        quiz: "https://www.khanacademy.org/math/geometry"
+      }
+    ];
+
+    const container = document.getElementById('videos');
+
+    videoData.forEach(video => {
+      const videoBlock = document.createElement('div');
+      videoBlock.className = 'video-container video';
+
+      videoBlock.innerHTML = `
+        <h3>${video.title}</h3>
+        <iframe src="${video.src}" allowfullscreen></iframe>
+        <a class="quiz-link" href="${video.quiz}" target="_blank">Practice or Quiz</a>
+      `;
+
+      container.appendChild(videoBlock);
+    });
+  </script>
+
+</body>
+</html>

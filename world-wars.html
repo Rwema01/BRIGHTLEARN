@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>World Wars & Cold War</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+      background: #f1f1f1;
+    }
+    header {
+      background-color: #2c3e50;
+      color: #fff;
+      padding: 15px 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .progress-bar-container {
+      background-color: #ddd;
+      border-radius: 20px;
+      margin: 10px 0;
+      height: 20px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: #3498db;
+      transition: width 0.4s ease-in-out;
+    }
+    .section {
+      background-color: #fff;
+      padding: 20px;
+      margin: 15px 0;
+      border-left: 5px solid #3498db;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .section h2 {
+      margin-top: 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .section h2:after {
+      content: "−";
+      font-size: 1.5em;
+    }
+    .section.collapsed h2:after {
+      content: "+";
+    }
+    .section-content {
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out;
+    }
+    .section.collapsed .section-content {
+      max-height: 0 !important;
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin: 10px 0;
+    }
+    .complete-btn {
+      background: #2ecc71;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .complete-btn:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+    .unread-btn {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .unread-btn:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+    .activity {
+      background-color: #f8f9fa;
+      padding: 15px;
+      margin: 10px 0;
+      border-left: 4px solid #17a2b8;
+    }
+    .timeline-event {
+      background-color: #e9ecef;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border-left: 4px solid #6c757d;
+    }
+    .battle-card {
+      background-color: #f8f9fa;
+      padding: 15px;
+      margin: 10px 0;
+      border-left: 4px solid #dc3545;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>World Wars & Cold War</h1>
+  <div>Progress:</div>
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+</header>
+<main id="content"></main>
+<script>
+const historyData = {
+  "Introduction": {
+    title: "Overview of World Wars",
+    content: `1. Historical Context
+- Late 19th century characterized by intense tensions among European powers
+- Complex system of alliances and rivalries
+- Imperial competition and arms race
+
+2. World War I (1914-1918)
+- Trigger: Assassination of Archduke Franz Ferdinand in Sarajevo (1914)
+- Central Powers vs Allied Powers
+- Global conflict involving multiple continents
+- Ended with Treaty of Versailles (1919)
+
+3. World War II (1939-1945)
+- Trigger: German invasion of Poland (1939)
+- Axis Powers vs Allied Powers
+- Truly global conflict across land, sea and air
+- Ended with unconditional surrender of Axis powers (1945)
+
+4. Cold War (1947-1991)
+- Ideological conflict between US (capitalism) and USSR (communism)
+- Nuclear arms race and proxy wars
+- Ended with collapse of Soviet Union (1991)`
+  },
+  "WWI Causes": {
+    title: "Causes of World War I",
+    content: `1. MAIN Causes (Long-term)
+- <strong>Militarism</strong>: Arms race and military buildup
+- <strong>Alliances</strong>: Complex system of defense treaties
+- <strong>Imperialism</strong>: Competition for colonies
+- <strong>Nationalism</strong>: Ethnic tensions and national pride
+
+2. Immediate Causes
+- Assassination of Archduke Franz Ferdinand (June 28, 1914)
+- Austria-Hungary's ultimatum to Serbia
+- Mobilization of Russian forces
+- German invasion of Belgium (Schlieffen Plan)
+
+3. Underlying Tensions
+- Balkan Wars (1912-1913)
+- Moroccan Crises (1905, 1911)
+- Bosnian Crisis (1908)
+- Anglo-German naval rivalry`
+  },
+  "WWI Course": {
+    title: "Course of World War I",
+    content: `1. Major Theaters of War
+- Western Front (France/Belgium)
+- Eastern Front (Russia/Germany)
+- Italian Front
+- Balkan Front
+- Middle Eastern Front
+- Colonial Fronts
+
+2. Key Battles
+<div class="battle-card">
+  <strong>Battle of the Marne (1914)</strong>: Halted German advance into France
+</div>
+<div class="battle-card">
+  <strong>Battle of Verdun (1916)</strong>: Longest battle (10 months), 700,000 casualties
+</div>
+<div class="battle-card">
+  <strong>Battle of the Somme (1916)</strong>: Over 1 million casualties
+</div>
+<div class="battle-card">
+  <strong>Battle of Gallipoli (1915-1916)</strong>: Failed Allied campaign against Ottoman Empire
+</div>
+
+3. New Military Technologies
+- Machine guns
+- Poison gas
+- Tanks
+- Submarines (U-boats)
+- Aircraft
+- Trench warfare tactics`
+  },
+  "WWI Effects": {
+    title: "Effects of World War I",
+    content: `1. Human Cost
+- 8.5 million soldiers killed
+- 21 million wounded
+- 7.7 million missing/POWs
+- Civilian casualties from disease and starvation
+
+2. Political Consequences
+- Collapse of empires (German, Austro-Hungarian, Ottoman, Russian)
+- Creation of new nations in Europe
+- Russian Revolution (1917) and rise of communism
+- Weakened European dominance globally
+
+3. Economic Impact
+- Destruction of infrastructure
+- Massive war debts
+- Hyperinflation in Germany
+- Disruption of global trade patterns
+
+4. Treaty of Versailles (1919)
+- War guilt clause (Article 231)
+- German reparations (£6.6 billion)
+- Military restrictions on Germany
+- Territorial losses for Germany`
+  },
+  "Interwar Period": {
+    title: "Interwar Period (1919-1939)",
+    content: `1. League of Nations
+- Established 1920 to maintain peace
+- Weaknesses: No military force, US never joined
+- Some successes in resolving minor disputes
+- Failed to prevent aggression by major powers
+
+2. Economic Turmoil
+- Hyperinflation in Germany (1923)
+- Great Depression (1929-1939)
+- Global economic collapse
+- Mass unemployment worldwide
+
+3. Rise of Dictatorships
+- Fascism in Italy (Mussolini)
+- Nazism in Germany (Hitler)
+- Militarism in Japan
+- Stalin's USSR
+- Authoritarian regimes across Europe
+
+4. Path to WWII
+- Japanese invasion of Manchuria (1931)
+- Italian invasion of Ethiopia (1935)
+- German remilitarization of Rhineland (1936)
+- Spanish Civil War (1936-1939)
+- Annexation of Austria (1938)
+- Munich Agreement (1938)`
+  },
+  "WWII Causes": {
+    title: "Causes of World War II",
+    content: `1. Long-term Causes
+- Treaty of Versailles resentment
+- Economic instability
+- Rise of fascism/nazism
+- Failure of League of Nations
+- Appeasement policy
+
+2. Immediate Causes
+- German invasion of Poland (Sept 1, 1939)
+- British/French declarations of war (Sept 3, 1939)
+- Japanese expansion in Asia/Pacific
+- Italian ambitions in Mediterranean/Africa
+
+3. Ideological Factors
+- Nazi ideology (Lebensraum, racial superiority)
+- Japanese militarism/expansionism
+- Anti-communism vs Soviet expansion
+- Clash of democratic vs authoritarian systems`
+  },
+  "WWII Course": {
+    title: "Course of World War II",
+    content: `1. Major Theaters
+- European Theater
+- Pacific Theater
+- North African Campaign
+- Eastern Front (Germany vs USSR)
+- Atlantic Theater
+
+2. Key Battles
+<div class="battle-card">
+  <strong>Battle of Britain (1940)</strong>: Air battle preventing German invasion
+</div>
+<div class="battle-card">
+  <strong>Stalingrad (1942-1943)</strong>: Turning point on Eastern Front
+</div>
+<div class="battle-card">
+  <strong>Midway (1942)</strong>: Turning point in Pacific
+</div>
+<div class="battle-card">
+  <strong>D-Day (1944)</strong>: Allied invasion of Normandy
+</div>
+<div class="battle-card">
+  <strong>Battle of the Bulge (1944-1945)</strong>: Last German offensive
+</div>
+
+3. Holocaust
+- Systematic genocide of 6 million Jews
+- 5 million others (Romani, disabled, political prisoners)
+- Concentration/extermination camps
+- Nazi "Final Solution"`
+  },
+  "WWII Effects": {
+    title: "Effects of World War II",
+    content: `1. Human Cost
+- 70-85 million total deaths
+- 50-55 million civilian deaths
+- Holocaust victims (6 million Jews)
+- Widespread displacement/refugees
+
+2. Political Consequences
+- Emergence of superpowers (US & USSR)
+- Beginning of Cold War
+- Decolonization movements
+- Creation of United Nations (1945)
+- Division of Germany
+
+3. Economic Impact
+- Destruction of European/Asian infrastructure
+- US economic dominance
+- Marshall Plan for European recovery
+- Soviet control of Eastern Europe
+
+4. Technological/Scientific Advances
+- Nuclear technology
+- Radar and jet engines
+- Medical advances
+- Space technology foundations`
+  },
+  "United Nations": {
+    title: "United Nations Organization",
+    content: `1. Establishment
+- Founded 1945 to replace League of Nations
+- 51 original member states
+- Headquarters in New York City
+
+2. Structure
+- General Assembly (all member states)
+- Security Council (5 permanent members with veto power)
+- Economic and Social Council
+- International Court of Justice
+- Secretariat
+
+3. Achievements
+- Decolonization support
+- Human rights declarations
+- Peacekeeping missions
+- Humanitarian aid
+- Specialized agencies (WHO, UNICEF, UNESCO)
+
+4. Challenges
+- Cold War divisions
+- Veto power limitations
+- Funding issues
+- Enforcement difficulties`
+  },
+  "Cold War Origins": {
+    title: "Origins of the Cold War",
+    content: `1. Ideological Differences
+- Capitalism (US) vs Communism (USSR)
+- Democracy vs Totalitarianism
+- Free market vs Command economy
+
+2. Wartime Tensions
+- Delay in opening Second Front
+- Disagreements over postwar Europe
+- Atomic bomb development
+
+3. Postwar Divisions
+- Soviet control of Eastern Europe
+- Iron Curtain speech (1946)
+- Truman Doctrine (1947)
+- Marshall Plan (1948)
+- Berlin Blockade (1948-1949)
+
+4. Military Alliances
+- NATO (1949)
+- Warsaw Pact (1955)
+- Arms race (nuclear weapons)`
+  },
+  "Cold War Conflicts": {
+    title: "Major Cold War Conflicts",
+    content: `1. Proxy Wars
+- Korean War (1950-1953)
+- Vietnam War (1955-1975)
+- Soviet-Afghan War (1979-1989)
+- Angolan Civil War
+- Nicaraguan Revolution
+
+2. Crises
+<div class="timeline-event">
+  <strong>Berlin Blockade (1948-1949)</strong>: First major crisis, led to airlift
+</div>
+<div class="timeline-event">
+  <strong>Cuban Missile Crisis (1962)</strong>: Closest to nuclear war
+</div>
+<div class="timeline-event">
+  <strong>Hungarian Revolution (1956)</strong>: Soviet crackdown
+</div>
+<div class="timeline-event">
+  <strong>Prague Spring (1968)</strong>: Warsaw Pact invasion
+</div>
+
+3. Space Race
+- Sputnik (1957)
+- Yuri Gagarin (1961)
+- Moon landing (1969)
+- Satellite technology`
+  },
+  "Cold War Thaw": {
+    title: "Détente and Thaw (1960s-1970s)",
+    content: `1. Reasons for Thaw
+- Nuclear stalemate (MAD doctrine)
+- Economic strains
+- Sino-Soviet split
+- Public pressure
+
+2. Key Events
+- Hotline established (1963)
+- Nuclear Test Ban Treaty (1963)
+- SALT I (1972)
+- Helsinki Accords (1975)
+- Apollo-Soyuz mission (1975)
+
+3. Continued Tensions
+- Vietnam War escalation
+- Soviet invasion of Afghanistan (1979)
+- Reagan's "Evil Empire" speech (1983)
+- SDI ("Star Wars") program`
+  },
+  "Cold War End": {
+    title: "End of the Cold War",
+    content: `1. Factors Leading to End
+- Soviet economic stagnation
+- Reagan military buildup
+- Gorbachev reforms (glasnost, perestroika)
+- Eastern European revolutions (1989)
+- Fall of Berlin Wall (1989)
+
+2. Key Events
+<div class="timeline-event">
+  <strong>1985</strong>: Gorbachev becomes Soviet leader
+</div>
+<div class="timeline-event">
+  <strong>1989</strong>: Revolutions in Eastern Europe
+</div>
+<div class="timeline-event">
+  <strong>1991</strong>: Dissolution of Soviet Union
+</div>
+
+3. Consequences
+- US as sole superpower
+- Expansion of NATO
+- Economic transition in former Soviet states
+- New world order
+- Rise of new security challenges`
+  },
+  "League vs UN": {
+    title: "League of Nations vs United Nations",
+    content: `1. League of Nations (1920-1946)
+- Founded after WWI
+- Weak structure (no military force)
+- US never joined
+- Failed to prevent aggression
+- Dissolved after WWII
+
+2. United Nations (1945-present)
+- Stronger Security Council with enforcement
+- US as founding member
+- More comprehensive mandate
+- Greater legitimacy
+- More successful peacekeeping
+
+3. Comparative Analysis
+<table border="1">
+  <tr><th>Feature</th><th>League</th><th>UN</th></tr>
+  <tr><td>Membership</td><td>58 max</td><td>193 current</td></tr>
+  <tr><td>US Participation</td><td>None</td><td>Founding member</td></tr>
+  <tr><td>Enforcement</td><td>None</td><td>Peacekeeping forces</td></tr>
+  <tr><td>Structure</td><td>Weak Council</td><td>Strong Security Council</td></tr>
+</table>`
+  },
+  "Legacy": {
+    title: "Legacy of World Wars & Cold War",
+    content: `1. Political Legacy
+- Current international system
+- European Union origins
+- UN system
+- Nuclear non-proliferation regime
+
+2. Technological Legacy
+- Space exploration
+- Computing technology
+- Medical advances
+- Transportation innovations
+
+3. Cultural Legacy
+- War memorials/museums
+- Literature and films
+- Collective memory
+- Lessons about extremism
+
+4. Contemporary Relevance
+- Current conflicts rooted in WW decisions
+- NATO expansion debates
+- Nuclear weapons concerns
+- Rise of China as new challenge`
+  }
+};
+
+const progressKey = "historyProgress";
+function getProgress() {
+  const saved = localStorage.getItem(progressKey);
+  return saved ? JSON.parse(saved) : {};
+}
+
+function updateProgressBar(progress) {
+  const total = Object.keys(historyData).length;
+  const completed = Object.values(progress).filter(v => v === true).length;
+  const percent = (completed / total) * 100;
+  document.getElementById("progressBar").style.width = percent + "%";
+}
+
+function renderContent() {
+  const container = document.getElementById("content");
+  const progress = getProgress();
+  updateProgressBar(progress);
+  
+  Object.entries(historyData).forEach(([section, data]) => {
+    const div = document.createElement("div");
+    div.className = "section";
+    
+    const contentDiv = document.createElement("div");
+    contentDiv.className = "section-content";
+    contentDiv.innerHTML = `<p>${data.content.replace(/\n/g, "<br>")}</p>`;
+    
+    const header = document.createElement("h2");
+    header.innerHTML = `${section}: ${data.title}`;
+    
+    // Create button group
+    const buttonGroup = document.createElement("div");
+    buttonGroup.className = "button-group";
+    
+    const completeBtn = document.createElement("button");
+    completeBtn.className = "complete-btn";
+    completeBtn.textContent = progress[section] ? "Completed" : "Mark as Complete";
+    completeBtn.disabled = progress[section];
+    completeBtn.onclick = () => markComplete(section);
+    
+    const unreadBtn = document.createElement("button");
+    unreadBtn.className = "unread-btn";
+    unreadBtn.textContent = "Mark as Unread";
+    unreadBtn.disabled = !progress[section];
+    unreadBtn.onclick = () => markUnread(section);
+    
+    buttonGroup.appendChild(completeBtn);
+    buttonGroup.appendChild(unreadBtn);
+    
+    header.addEventListener("click", function() {
+      div.classList.toggle("collapsed");
+      if (!div.classList.contains("collapsed")) {
+        contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
+      }
+    });
+    
+    div.appendChild(header);
+    div.appendChild(buttonGroup);
+    div.appendChild(contentDiv);
+    container.appendChild(div);
+    
+    contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
+  });
+}
+
+function markComplete(section) {
+  const progress = getProgress();
+  progress[section] = true;
+  localStorage.setItem(progressKey, JSON.stringify(progress));
+  document.getElementById("content").innerHTML = "";
+  renderContent();
+}
+
+function markUnread(section) {
+  const progress = getProgress();
+  progress[section] = false;
+  localStorage.setItem(progressKey, JSON.stringify(progress));
+  document.getElementById("content").innerHTML = "";
+  renderContent();
+}
+
+renderContent();
+</script>
+</body>
+</html>

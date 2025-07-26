@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrightLearn - Register</title>
+    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-header">
+            <div class="auth-logo">
+                <i class="fas fa-graduation-cap"></i>
+                <h1>BRIGHTLEARN</h1>
+            </div>
+            <p class="auth-tagline">Interactive Learning Platform</p>
+        </div>
+        
+        <form class="auth-form" id="registerForm">
+            <h2 class="form-title">Create Your Account</h2>
+            
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <div class="input-container">
+                    <i class="fas fa-user input-icon"></i>
+                    <input type="text" id="fullName" placeholder="Enter your full name" class="form-input" required>
+                </div>
+                <small id="nameError" class="error-message"></small>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-container">
+                    <i class="fas fa-envelope input-icon"></i>
+                    <input type="email" id="email" placeholder="Enter your email" class="form-input" required>
+                </div>
+                <small id="emailError" class="error-message"></small>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-container">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input type="password" id="password" placeholder="Create a password" class="form-input" required minlength="6">
+                    <i class="fas fa-eye-slash password-toggle"></i>
+                </div>
+                <small id="passwordError" class="error-message"></small>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <div class="input-container">
+                    <i class="fas fa-lock input-icon"></i>
+                    <input type="password" id="confirmPassword" placeholder="Confirm your password" class="form-input" required>
+                    <i class="fas fa-eye-slash password-toggle"></i>
+                </div>
+                <small id="confirmPasswordError" class="error-message"></small>
+            </div>
+            
+            <div class="form-options">
+                <div class="remember-me">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to the terms & conditions</a></label>
+                </div>
+                <small id="termsError" class="error-message"></small>
+            </div>
+            
+            <button type="submit" class="auth-btn">
+                <span>Register</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+            
+            <div class="auth-footer">
+                <p>Already have an account? <a href="login.html" class="auth-link">Login</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script src="signup.js"></script>
+</script>
+<script>
+// Minimal localStorage signup logic
+document.getElementById('registerForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  // Get form values
+  const fullName = document.getElementById('fullName').value.trim();
+  const email = document.getElementById('email').value.trim().toLowerCase();
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  const termsChecked = document.getElementById('terms').checked;
+
+  // Error elements
+  const nameError = document.getElementById('nameError');
+  const emailError = document.getElementById('emailError');
+  const passwordError = document.getElementById('passwordError');
+  const confirmPasswordError = document.getElementById('confirmPasswordError');
+  const termsError = document.getElementById('termsError');
+
+  // Reset errors
+  nameError.textContent = emailError.textContent = passwordError.textContent = confirmPasswordError.textContent = termsError.textContent = '';
+
+  // Validation
+  let valid = true;
+  if (!fullName) { nameError.textContent = 'Full name required.'; valid = false; }
+  if (!email) { emailError.textContent = 'Email required.'; valid = false; }
+  if (!password) { passwordError.textContent = 'Password required.'; valid = false; }
+  if (password.length < 6) { passwordError.textContent = 'Password must be at least 6 characters.'; valid = false; }
+  if (password !== confirmPassword) { confirmPasswordError.textContent = 'Passwords do not match.'; valid = false; }
+  if (!termsChecked) { termsError.textContent = 'You must agree to the terms.'; valid = false; }
+  if (!valid) return;
+
+  // Get users from localStorage
+  let users = JSON.parse(localStorage.getItem('brightlearn_users') || '[]');
+  if (users.some(u => u.email === email)) {
+    emailError.textContent = 'Email already registered.';
+    return;
+  }
+  // Store user (password is stored as plain text for demo; use hashing in production)
+  users.push({ fullName, email, password });
+  localStorage.setItem('brightlearn_users', JSON.stringify(users));
+  alert('Registration successful! You can now log in.');
+  window.location.href = 'login.html';
+});
+</script>
+</body>
+</html>

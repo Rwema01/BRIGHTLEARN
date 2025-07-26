@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIGHTLEARN - Notifications</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Navigation -->
+        <nav class="left-nav">
+            <div class="nav-header">
+                <div class="logo-container">
+                    <img src="BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>DASHBOARD</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="courses.html">
+                        <i class="fas fa-book-open"></i>
+                        <span>COURSES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="history.html">
+                        <i class="fas fa-history"></i>
+                        <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="help.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span>HELP</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- Separated Logout Container -->
+            <div class="logout-container">
+                <a href="logout.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>LOGOUT</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="top-icons">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <!-- Updated Notification Dropdown -->
+                    <div class="notification-dropdown">
+                        <i class="fas fa-bell notification-icon"></i>
+                        <span class="notification-badge">3</span> <!-- Badge for unread count -->
+                        <div class="dropdown-content">
+                            <div class="notification-header">
+                                <div class="notifications-header">
+                                    <div>
+                                        <h1>Notifications</h1>
+                                        <p class="subtitle">You have 3 unread notifications</p>
+                                    </div>
+                                    <div class="notification-actions-top">
+                                        <button class="btn-secondary">
+                                            <i class="fas fa-check-double"></i> Mark all read
+                                        </button>
+                                        <button class="btn-danger">
+                                            <i class="fas fa-trash-alt"></i> Clear all
+                                        </button>
+                                        <div class="dropdown">
+                                            <button class="btn-dropdown">
+                                                <i class="fas fa-filter"></i> Filter
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a href="#">All Notifications</a>
+                                                <a href="#">Unread Only</a>
+                                                <a href="#">Course Alerts</a>
+                                                <a href="#">System Messages</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="notification-list">
+                                <div class="notification-item unread">
+                                    <div class="notification-icon"><i class="fas fa-book"></i></div>
+                                    <div class="notification-content">
+                                        <p>New assignment posted in Algebra II</p>
+                                        <span class="notification-time">2 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="empty-state">
+                                    <i class="fas fa-bell-slash"></i>
+                                    <h3>No new notifications</h3>
+                                    <p>When you have new alerts, they'll appear here</p>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-icon"><i class="fas fa-check-circle"></i></div>
+                                    <div class="notification-content">
+                                        <p>Your submission for Essay Writing was graded</p>
+                                        <span class="notification-time">1 day ago</span>
+                                    </div>
+                                </div>
+                                <!-- More notifications here -->
+                            </div>
+                            <a href="#" class="view-all">View All Notifications</a>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-dropdown">
+                        <i class="fas fa-user-circle profile-icon"></i>
+                        <div class="dropdown-content">
+                            <div class="profile-header">
+                                <img src="default-profile.jpg" alt="Profile" class="profile-pic">
+                                <div class="profile-info">
+                                    <h4>Jordan Barker</h4>
+                                    <p>Student</p>
+                                </div>
+                            </div>
+                            <div class="profile-stats">
+                                <div class="stat-item">
+                                    <span>Courses</span>
+                                    <span>5</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span>Completed</span>
+                                    <span>32%</span>
+                                </div>
+                            </div>
+                            <div class="dropdown-links">
+                                <a href="profile.html" class="profile-link"><i class="fas fa-user"></i> View Profile</a>
+                                <a href="settings.html" class="profile-link"><i class="fas fa-cog"></i> Settings</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Notifications Content -->
+            <div class="dashboard-content">
+                <div class="breadcrumbs">
+                    <a href="index.html">Home</a> > <a href="notifications.html">Notifications</a>
+                </div>
+                
+                <div class="welcome-section">
+                    <h1>Notifications</h1>
+                    <div class="notification-actions">
+                        <button class="notification-action-btn mark-all-read">
+                            <i class="fas fa-check-double"></i> Mark all as read
+                        </button>
+                        <button class="notification-action-btn clear-all">
+                            <i class="fas fa-trash-alt"></i> Clear all
+                        </button>
+                    </div>
+                </div>
+            
+                <div class="content-section">
+                    <div class="notification-list">
+                        <!-- Example Notification Item -->
+                        <div class="notification-item unread">
+                            <div class="notification-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <div class="notification-content">
+                                <h4>English Proficiency Test Available</h4>
+                                <p>New assessment posted for your enrolled course</p>
+                                <div class="notification-meta">
+                                    <span class="time">2 hours ago</span>
+                                    <span class="course">Language Arts</span>
+                                </div>
+                            </div>
+                            <div class="notification-actions">
+                                <button class="btn-mark-read" title="Mark as read">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                            </div>
+                        </div>
+                    
+                        <!-- Second Notification Example -->
+                        <div class="notification-item">
+                            <div class="notification-icon urgent">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <div class="notification-content">
+                                <h4>Assignment Deadline Reminder</h4>
+                                <p>"Black Panther Analysis" due in 24 hours</p>
+                                <div class="notification-meta">
+                                    <span class="time">1 day ago</span>
+                                    <span class="course">Literature 101</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

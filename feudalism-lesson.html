@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Post-Colonial Rwanda & Liberation War</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+      background: #f1f1f1;
+    }
+    header {
+      background-color: #2c3e50;
+      color: #fff;
+      padding: 15px 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .progress-bar-container {
+      background-color: #ddd;
+      border-radius: 20px;
+      margin: 10px 0;
+      height: 20px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background-color: #3498db;
+      transition: width 0.4s ease-in-out;
+    }
+    .section {
+      background-color: #fff;
+      padding: 20px;
+      margin: 15px 0;
+      border-left: 5px solid #3498db;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .section h2 {
+      margin-top: 0;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .section h2:after {
+      content: "−";
+      font-size: 1.5em;
+    }
+    .section.collapsed h2:after {
+      content: "+";
+    }
+    .section-content {
+      overflow: hidden;
+      transition: max-height 0.3s ease-in-out;
+    }
+    .section.collapsed .section-content {
+      max-height: 0 !important;
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin: 10px 0;
+    }
+    .complete-btn {
+      background: #2ecc71;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .complete-btn:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+    .unread-btn {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .unread-btn:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Post-Colonial Rwanda & Liberation War</h1>
+  <div>Progress:</div>
+  <div class="progress-bar-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+</header>
+<main id="content"></main>
+<script>
+const historyData = {
+  "Unit Introduction": {
+    title: "Post-Colonial Rwanda",
+    content: `After colonialism, Rwanda was governed by two main republics—the first led by Grégoire Kayibanda and the second by Major General Juvénal Habyarimana. These regimes were marked by poor governance, corruption, ethnic favoritism, and suppression of political dissent. Their failure to solve the refugee crisis and the denial of democratic space contributed to the rise of opposition groups abroad, particularly the Rwandan Patriotic Front (RPF).`
+  },
+  "Causes of the Liberation War": {
+    title: "Origins of the 1990 Liberation War",
+    content: `The Liberation War began on October 1, 1990, when the RPF launched an armed struggle against the Habyarimana government. Key causes included:
+
+• The unresolved issue of Rwandan refugees who had lived in exile for decades.
+• Systemic political exclusion and lack of democracy.
+• Human rights abuses and lack of freedom of expression.
+• The refusal of the Habyarimana regime to implement reform or allow return of exiles.
+• Ethnic discrimination institutionalized by the regime.
+
+These underlying causes built momentum for the RPF to pursue change militarily when diplomacy failed.`
+  },
+  "Course of the War": {
+    title: "Timeline and Key Events (1990–1994)",
+    content: `• October 1990: RPF invades from Uganda. Initial setbacks lead to arrests of Tutsi in Rwanda.
+• 1991: Ceasefire negotiations begin; a multiparty system is announced under pressure.
+• 1992: The Arusha Peace Talks commence.
+• August 1993: The Arusha Accords are signed to establish power-sharing.
+• April 6, 1994: President Habyarimana is assassinated, triggering the genocide against the Tutsi.
+
+The war ended in July 1994 when the RPF took Kigali and declared a ceasefire.`
+  },
+  "Genocide and Aftermath": {
+    title: "1994 Genocide and Immediate Consequences",
+    content: `• Over 1 million people, mainly Tutsi, were killed.
+• The Rwandan state collapsed, with widespread insecurity and lawlessness.
+• Millions were displaced internally and externally.
+• Infrastructure and economy were destroyed.
+• Ethnic tensions intensified, with suspicion and mistrust between survivors and perpetrators.`
+  },
+  "Government of National Unity": {
+    title: "Post-Genocide Recovery (1994–Present)",
+    content: `The Government of National Unity (GNU), established in July 1994, initiated policies to:
+
+• Rebuild institutions and infrastructure.
+• Promote reconciliation and national unity through programs like Gacaca courts and Ndi Umunyarwanda.
+• Ensure security and disarm insurgent groups.
+• Restore the rule of law and justice for genocide crimes.
+• Boost the economy through Vision 2020, investment in agriculture, energy, ICT, and health.`
+  },
+  "Challenges after Genocide": {
+    title: "Post-Genocide Challenges",
+    content: `• Resettling refugees and internally displaced people.
+• Rebuilding trust in a deeply divided society.
+• Overcoming destroyed economic systems and unemployment.
+• Addressing trauma and mental health issues.
+• Restoring law and judicial mechanisms amidst the collapse.`
+  },
+  "Achievements after Genocide": {
+    title: "Key Achievements Since 1994",
+    content: `• Political stability and peaceful elections.
+• Increased access to education and health.
+• Women's empowerment and gender equality (highest % of women in parliament globally).
+• Infrastructure development: roads, schools, hospitals, ICT.
+• Strong anti-corruption and service delivery systems.
+• International peacekeeping contributions.`
+  },
+  "Introductory Activity": {
+    title: "Think and Reflect",
+    content: `"A world congress of Rwandese refugees had been held in Washington DC in August 1988 and it had passed very strong resolutions about the 'Right of Return'..." (Prunier, 1995).
+
+a. What does this quote imply about the government's handling of the refugee crisis?
+b. Was the refugee problem a cause of the Liberation War? Explain your reasoning.`
+  }
+};
+
+const progressKey = "historyProgress";
+function getProgress() {
+  const saved = localStorage.getItem(progressKey);
+  return saved ? JSON.parse(saved) : {};
+}
+
+function updateProgressBar(progress) {
+  const total = Object.keys(historyData).length;
+  const completed = Object.values(progress).filter(v => v === true).length;
+  const percent = (completed / total) * 100;
+  document.getElementById("progressBar").style.width = percent + "%";
+}
+
+function renderContent() {
+  const container = document.getElementById("content");
+  const progress = getProgress();
+  updateProgressBar(progress);
+  
+  Object.entries(historyData).forEach(([section, data]) => {
+    const div = document.createElement("div");
+    div.className = "section";
+    
+    const contentDiv = document.createElement("div");
+    contentDiv.className = "section-content";
+    contentDiv.innerHTML = `<p>${data.content.replace(/\n/g, "<br>")}</p>`;
+    
+    const header = document.createElement("h2");
+    header.innerHTML = `${section}: ${data.title}`;
+    
+    // Create button group
+    const buttonGroup = document.createElement("div");
+    buttonGroup.className = "button-group";
+    
+    const completeBtn = document.createElement("button");
+    completeBtn.className = "complete-btn";
+    completeBtn.textContent = progress[section] ? "Completed" : "Mark as Complete";
+    completeBtn.disabled = progress[section];
+    completeBtn.onclick = () => markComplete(section);
+    
+    const unreadBtn = document.createElement("button");
+    unreadBtn.className = "unread-btn";
+    unreadBtn.textContent = "Mark as Unread";
+    unreadBtn.disabled = !progress[section];
+    unreadBtn.onclick = () => markUnread(section);
+    
+    buttonGroup.appendChild(completeBtn);
+    buttonGroup.appendChild(unreadBtn);
+    
+    header.addEventListener("click", function() {
+      div.classList.toggle("collapsed");
+      if (!div.classList.contains("collapsed")) {
+        contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
+      }
+    });
+    
+    div.appendChild(header);
+    div.appendChild(buttonGroup); // Buttons now appear below title
+    div.appendChild(contentDiv);
+    container.appendChild(div);
+    
+    contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
+  });
+}
+
+function markComplete(section) {
+  const progress = getProgress();
+  progress[section] = true;
+  localStorage.setItem(progressKey, JSON.stringify(progress));
+  document.getElementById("content").innerHTML = "";
+  renderContent();
+}
+
+function markUnread(section) {
+  const progress = getProgress();
+  progress[section] = false;
+  localStorage.setItem(progressKey, JSON.stringify(progress));
+  document.getElementById("content").innerHTML = "";
+  renderContent();
+}
+
+renderContent();
+</script>
+</body>
+</html>

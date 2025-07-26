@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Log | BRIGHTLEARN</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Navigation -->
+        <nav class="left-nav">
+            <div class="nav-header">
+                <div class="logo-container">
+                    <img src="BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>DASHBOARD</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="courses.html">
+                        <i class="fas fa-book-open"></i>
+                        <span>COURSES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="history.html" class="active">
+                        <i class="fas fa-history"></i>
+                        <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="help.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span>HELP</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="logout-container">
+                <a href="logout.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>LOGOUT</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="top-icons">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search activities..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <div class="notification-dropdown">
+                        <i class="fas fa-bell notification-icon"></i>
+                        <span class="notification-badge">3</span>
+                        <div class="dropdown-content">
+                            <div class="notification-header">
+                                <h4>Notifications</h4>
+                                <button class="mark-all-read">Mark all as read</button>
+                            </div>
+                            <div class="notification-list">
+                                <div class="notification-item unread">
+                                    <div class="notification-icon"><i class="fas fa-book"></i></div>
+                                    <div class="notification-content">
+                                        <p>New assignment posted in Algebra II</p>
+                                        <span class="notification-time">2 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-icon"><i class="fas fa-check-circle"></i></div>
+                                    <div class="notification-content">
+                                        <p>Your submission for Essay Writing was graded</p>
+                                        <span class="notification-time">1 day ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="view-all">View All Notifications</a>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-dropdown">
+                        <i class="fas fa-user-circle profile-icon"></i>
+                        <div class="dropdown-content">
+                            <div class="profile-header">
+                                <img src="default-profile.jpg" alt="Profile" class="profile-pic">
+                                <div class="profile-info">
+                                    <h4>Jordan Barker</h4>
+                                    <p>Student</p>
+                                </div>
+                            </div>
+                            <div class="profile-stats">
+                                <div class="stat-item">
+                                    <span>Courses</span>
+                                    <span>5</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span>Completed</span>
+                                    <span>32%</span>
+                                </div>
+                            </div>
+                            <div class="dropdown-links">
+                                <a href="profile.html" class="profile-link"><i class="fas fa-user"></i> View Profile</a>
+                                <a href="settings.html" class="profile-link"><i class="fas fa-cog"></i> Settings</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Activity Log Content -->
+            <div class="dashboard-content">
+                <!-- Breadcrumbs and Header -->
+                <div class="breadcrumbs">
+                    <a href="index.html">Home</a> > <a href="history.html">History</a> > <a href="activity-log.html">Activity Log</a>
+                </div>
+                
+                <div class="section-header">
+                    <h1><i class="fas fa-list-alt"></i> ACTIVITY LOG</h1>
+                    <div class="log-actions">
+                        <button class="action-btn export-btn">
+                            <i class="fas fa-file-export"></i> Export
+                        </button>
+                        <select class="export-format">
+                            <option>PDF</option>
+                            <option>CSV</option>
+                            <option>Excel</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Activity Filters -->
+                <div class="activity-filters">
+                    <div class="filter-group">
+                        <label for="date-range">Date Range:</label>
+                        <select id="date-range" class="filter-select">
+                            <option value="all">All Time</option>
+                            <option value="week">Last Week</option>
+                            <option value="month">Last Month</option>
+                            <option value="3months">Last 3 Months</option>
+                            <option value="custom">Custom Range</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="activity-type">Activity Type:</label>
+                        <select id="activity-type" class="filter-select">
+                            <option value="all">All Activities</option>
+                            <option value="lessons">Lessons</option>
+                            <option value="quizzes">Quizzes</option>
+                            <option value="assignments">Assignments</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="course-filter">Course:</label>
+                        <select id="course-filter" class="filter-select">
+                            <option value="all">All Courses</option>
+                            <option value="math">Mathematics</option>
+                            <option value="english">English</option>
+                            <option value="history">History</option>
+                        </select>
+                    </div>
+                    <button class="filter-btn apply-btn">Apply Filters</button>
+                    <button class="filter-btn reset-btn">Reset</button>
+                </div>
+
+                <!-- Activity Timeline -->
+                <div class="activity-timeline">
+                    <!-- Day Grouping -->
+                    <div class="timeline-day">
+                        <div class="timeline-date">
+                            <h3>Today</h3>
+                            <span class="date-stats">3 activities</span>
+                        </div>
+                        
+                        <!-- Activity Item -->
+                        <div class="timeline-item quiz">
+                            <div class="timeline-time">10:45 AM</div>
+                            <div class="timeline-content">
+                                <div class="activity-icon">
+                                    <i class="fas fa-question-circle"></i>
+                                </div>
+                                <div class="activity-details">
+                                    <h4>Algebra II Quiz</h4>
+                                    <p>Completed chapter quiz on quadratic equations</p>
+                                    <div class="activity-meta">
+                                        <span class="score passed">Score: 82%</span>
+                                        <span class="time-spent">Time: 12m 34s</span>
+                                        <span class="attempt">Attempt: 1/3</span>
+                                    </div>
+                                </div>
+                                <div class="activity-actions">
+                                    <button class="action-btn review-btn">
+                                        <i class="fas fa-redo"></i> Retake
+                                    </button>
+                                    <button class="action-btn view-btn">
+                                        <i class="fas fa-eye"></i> Review
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Activity Item -->
+                        <div class="timeline-item lesson">
+                            <div class="timeline-time">9:15 AM</div>
+                            <div class="timeline-content">
+                                <div class="activity-icon">
+                                    <i class="fas fa-book-open"></i>
+                                </div>
+                                <div class="activity-details">
+                                    <h4>Quadratic Equations Lesson</h4>
+                                    <p>Completed lesson with 5 practice exercises</p>
+                                    <div class="activity-meta">
+                                        <span class="progress">Progress: 100%</span>
+                                        <span class="time-spent">Time: 25m 10s</span>
+                                    </div>
+                                </div>
+                                <div class="activity-actions">
+                                    <button class="action-btn review-btn">
+                                        <i class="fas fa-book-open"></i> Review
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Day Grouping -->
+                    <div class="timeline-day">
+                        <div class="timeline-date">
+                            <h3>Yesterday</h3>
+                            <span class="date-stats">2 activities</span>
+                        </div>
+                        
+                        <!-- Activity Item -->
+                        <div class="timeline-item assignment">
+                            <div class="timeline-time">4:30 PM</div>
+                            <div class="timeline-content">
+                                <div class="activity-icon">
+                                    <i class="fas fa-edit"></i>
+                                </div>
+                                <div class="activity-details">
+                                    <h4>Essay Draft Submission</h4>
+                                    <p>Submitted first draft of argumentative essay</p>
+                                    <div class="activity-meta">
+                                        <span class="status submitted">Submitted</span>
+                                        <span class="time-spent">Time: 1h 15m</span>
+                                    </div>
+                                </div>
+                                <div class="activity-actions">
+                                    <button class="action-btn view-btn">
+                                        <i class="fas fa-eye"></i> View
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Day Grouping -->
+                    <div class="timeline-day">
+                        <div class="timeline-date">
+                            <h3>June 18, 2023</h3>
+                            <span class="date-stats">4 activities</span>
+                        </div>
+                        
+                        <!-- Activity Item -->
+                        <div class="timeline-item quiz">
+                            <div class="timeline-time">2:15 PM</div>
+                            <div class="timeline-content">
+                                <div class="activity-icon">
+                                    <i class="fas fa-edit"></i>
+                                </div>
+                                <div class="activity-details">
+                                    <h4>Grammar Quiz</h4>
+                                    <p>Completed advanced grammar concepts assessment</p>
+                                    <div class="activity-meta">
+                                        <span class="score review">Score: 68%</span>
+                                        <span class="time-spent">Time: 8m 45s</span>
+                                        <span class="attempt">Attempt: 2/3</span>
+                                    </div>
+                                </div>
+                                <div class="activity-actions">
+                                    <button class="action-btn review-btn">
+                                        <i class="fas fa-redo"></i> Retake
+                                    </button>
+                                    <button class="action-btn view-btn">
+                                        <i class="fas fa-eye"></i> Review
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="page-btn disabled">
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+                    <div class="page-numbers">
+                        <button class="page-number active">1</button>
+                        <button class="page-number">2</button>
+                        <button class="page-number">3</button>
+                        <span class="page-ellipsis">...</span>
+                        <button class="page-number">8</button>
+                    </div>
+                    <button class="page-btn">
+                        Next <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

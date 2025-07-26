@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Algebra & Geometry Formula Sheet</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .formula-category {
+      margin-bottom: 30px;
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .formula-category h2 {
+      color: #005f73;
+    }
+    .formula {
+      margin: 8px 0;
+      padding: 8px;
+      background: #e0f7fa;
+      border-left: 5px solid #00796b;
+      border-radius: 5px;
+    }
+    .formula strong {
+      display: inline-block;
+      width: 200px;
+    }
+    code {
+      background: #fff;
+      padding: 2px 5px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Algebra & Geometry Formula Sheet</h1>
+<div id="formulas-container"></div>
+
+<script>
+// JSON: Formula Sheet
+const formulaSheet = {
+  "Algebra": [
+    { "title": "Quadratic Formula", "expression": "x = (-b ± √(b² - 4ac)) / 2a" },
+    { "title": "Difference of Squares", "expression": "a² - b² = (a - b)(a + b)" },
+    { "title": "Perfect Square Trinomial", "expression": "(a ± b)² = a² ± 2ab + b²" },
+    { "title": "Cube of Binomial", "expression": "(a + b)³ = a³ + 3a²b + 3ab² + b³" },
+    { "title": "Sum of Cubes", "expression": "a³ + b³ = (a + b)(a² - ab + b²)" },
+    { "title": "Difference of Cubes", "expression": "a³ - b³ = (a - b)(a² + ab + b²)" },
+    { "title": "Slope Formula", "expression": "m = (y₂ - y₁) / (x₂ - x₁)" },
+    { "title": "Point-Slope Form", "expression": "y - y₁ = m(x - x₁)" },
+    { "title": "Slope-Intercept Form", "expression": "y = mx + b" },
+    { "title": "Standard Form of Linear Equation", "expression": "Ax + By = C" },
+    { "title": "Vertex Form of Quadratic", "expression": "y = a(x - h)² + k" },
+    { "title": "Factoring Trinomials", "expression": "ax² + bx + c = (mx + n)(px + q)" },
+    { "title": "Exponential Growth", "expression": "y = a(1 + r)^t" },
+    { "title": "Exponential Decay", "expression": "y = a(1 - r)^t" },
+    { "title": "Logarithmic Identity", "expression": "log(ab) = log a + log b" },
+    { "title": "Power Rule of Logs", "expression": "log(aⁿ) = n log a" },
+    { "title": "Change of Base Formula", "expression": "log_b(a) = log a / log b" },
+    { "title": "Absolute Value", "expression": "|x| = x if x ≥ 0; -x if x < 0" },
+    { "title": "Discriminant", "expression": "D = b² - 4ac" },
+    { "title": "Arithmetic Sequence", "expression": "a_n = a₁ + (n - 1)d" },
+    { "title": "Geometric Sequence", "expression": "a_n = a₁ · r^(n - 1)" },
+    { "title": "Sum of Arithmetic Series", "expression": "S_n = n/2(a₁ + a_n)" },
+    { "title": "Sum of Geometric Series", "expression": "S_n = a₁(1 - rⁿ)/(1 - r)" },
+    { "title": "Binomial Theorem", "expression": "(a + b)^n = Σ[nCk · a^(n-k) · b^k]" },
+    { "title": "FOIL Method", "expression": "(a + b)(c + d) = ac + ad + bc + bd" }
+  ],
+  "Geometry": [
+    { "title": "Area of a Triangle", "expression": "A = 1/2 · b · h" },
+    { "title": "Area of a Rectangle", "expression": "A = l · w" },
+    { "title": "Area of a Circle", "expression": "A = πr²" },
+    { "title": "Circumference of Circle", "expression": "C = 2πr" },
+    { "title": "Pythagorean Theorem", "expression": "a² + b² = c²" },
+    { "title": "Volume of Rectangular Prism", "expression": "V = l · w · h" },
+    { "title": "Volume of a Cylinder", "expression": "V = πr²h" },
+    { "title": "Volume of Cone", "expression": "V = (1/3)πr²h" },
+    { "title": "Volume of Sphere", "expression": "V = (4/3)πr³" },
+    { "title": "Surface Area of Sphere", "expression": "SA = 4πr²" },
+    { "title": "Perimeter of Rectangle", "expression": "P = 2(l + w)" },
+    { "title": "Diagonal of Rectangle", "expression": "d = √(l² + w²)" },
+    { "title": "Area of Parallelogram", "expression": "A = b · h" },
+    { "title": "Area of Trapezoid", "expression": "A = 1/2(b₁ + b₂)h" },
+    { "title": "Sum of Interior Angles", "expression": "(n - 2) × 180°" },
+    { "title": "Interior Angle of Regular Polygon", "expression": "[(n - 2) × 180°]/n" },
+    { "title": "Exterior Angle of Polygon", "expression": "360° / n" },
+    { "title": "Distance Formula", "expression": "d = √[(x₂ - x₁)² + (y₂ - y₁)²]" },
+    { "title": "Midpoint Formula", "expression": "M = ((x₁ + x₂)/2, (y₁ + y₂)/2)" },
+    { "title": "Circle Equation", "expression": "(x - h)² + (y - k)² = r²" },
+    { "title": "Heron’s Formula", "expression": "A = √[s(s-a)(s-b)(s-c)] where s = (a+b+c)/2" },
+    { "title": "Area of Sector", "expression": "A = (θ/360) × πr²" },
+    { "title": "Arc Length", "expression": "L = (θ/360) × 2πr" },
+    { "title": "Surface Area of Cone", "expression": "SA = πr² + πrl" },
+    { "title": "Surface Area of Cylinder", "expression": "SA = 2πr(h + r)" }
+  ]
+};
+
+// Render formulas
+const container = document.getElementById("formulas-container");
+
+for (const [topic, formulas] of Object.entries(formulaSheet)) {
+  const section = document.createElement("div");
+  section.className = "formula-category";
+  section.innerHTML = `<h2>${topic}</h2>`;
+
+  formulas.forEach(f => {
+    const div = document.createElement("div");
+    div.className = "formula";
+    div.innerHTML = `<strong>${f.title}</strong><code>${f.expression}</code>`;
+    section.appendChild(div);
+  });
+
+  container.appendChild(section);
+}
+</script>
+
+</body>
+</html>

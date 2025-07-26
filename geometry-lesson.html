@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometry Notes | BRIGHTLEARN</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .geometry-notes-content {
+            background: #f7f9ff;
+            color: #1a237e;
+            border: 1px solid #b3c6ff;
+            border-radius: 8px;
+            padding: 2rem 2rem 1.5rem 2rem;
+            margin: 2rem auto;
+            max-width: 700px;
+            font-size: 1.15rem;
+            box-shadow: 0 2px 8px rgba(38, 50, 56, 0.04);
+        }
+        .geometry-notes-content h4 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #2563eb;
+        }
+        .geometry-notes-content ul {
+            margin: 1rem 0 1rem 1.5rem;
+        }
+        .geometry-notes-content li {
+            margin-bottom: 0.5rem;
+        }
+        .question-container {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .question {
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .answer {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f0f7ff;
+            border-left: 4px solid #2563eb;
+            border-radius: 4px;
+        }
+        .show-answer {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        .show-answer:hover {
+            background: #1d4ed8;
+        }
+        .level-selector {
+            margin: 1rem 0;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border-radius: 4px;
+            border: 1px solid #b3c6ff;
+        }
+        .level-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .notes-container {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            border-left: 4px solid #4f46e5;
+        }
+        .tab-container {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+        .tab {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border: 1px solid #b3c6ff;
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            margin-right: 0.5rem;
+            background: #eef2ff;
+        }
+        .tab.active {
+            background: #4f46e5;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <nav class="left-nav">
+            <div class="nav-header">
+                <div class="logo-container">
+                    <img src="BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-tachometer-alt"></i><span>DASHBOARD</span></a></li>
+                <li><a href="courses.html" class="active"><i class="fas fa-book-open"></i><span>COURSES</span></a></li>
+                <li><a href="history.html"><i class="fas fa-history"></i><span>HISTORY</span></a></li>
+                <li><a href="help.html"><i class="fas fa-question-circle"></i><span>HELP</span></a></li>
+            </ul>
+            <div class="logout-container">
+                <a href="logout.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i><span>LOGOUT</span></a>
+            </div>
+        </nav>
+        <main class="main-content">
+            <div class="geometry-notes-content">
+                <h4>Geometry Notes</h4>
+                <p>Welcome to Geometry Notes! This section summarizes the key concepts from the Geometry module in your Mathematics course.</p>
+                
+                <div id="questions-section">
+                    <h3>Interactive Geometry Practice</h3>
+                    <select id="level-selector" class="level-selector">
+                        <option value="">Select a level</option>
+                    </select>
+                    
+                    <div class="tab-container" id="tab-container">
+                        <div class="tab active" data-tab="notes">Notes</div>
+                        <div class="tab" data-tab="questions">Questions</div>
+                    </div>
+                    
+                    <div id="notes-container" class="tab-content active"></div>
+                    <div id="questions-container" class="tab-content"></div>
+                </div>
+
+                <h3>Key Concepts Overview</h3>
+                <ul id="key-concepts-list"></ul>
+                <p>For practice, return to the <a href="geometry-lesson.html">Geometry Exercises</a> or explore more resources in the course.</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Enhanced Geometry data with notes for each level
+        const geometryData = {
+            "geometry": {
+                "levels": [
+                    {
+                        "level": 1,
+                        "name": "Points, Lines, and Planes",
+                        "description": "Basic concepts of geometry including points, lines, and planes in 3D space",
+                        "notes": `
+                            <h2>1. Points</h2>
+                            <p>A <strong>point</strong> in space is indicated by a set of three coordinates.</p>
+                            <ul>
+                                <li><strong>Notation:</strong> \(A(x, y, z)\)</li>
+                                <li>No size or shape — simply a location.</li>
+                            </ul>
+                            <div class="example">
+                                <strong>Example:</strong> Represent the point \(P\) that is 3 units right along the x‑axis, 2 up along the y‑axis, and 5 forward along the z‑axis.  
+                                → \(P(3, 2, 5)\)
+                            </div>
+                            
+                            <h2>2. Lines</h2>
+                            <p>A <strong>line</strong> in 3D is defined by:</p>
+                            <ul>
+                                <li>a fixed point \(P_0(x_0, y_0, z_0)\);</li>
+                                <li>a direction vector \(\vec{d} = \langle a, b, c \rangle\).</li>
+                            </ul>
+                        `,
+                        "questions": [
+                            {
+                                "id": 1,
+                                "question": "What are the coordinates of point P that is 3 units right along the x-axis, 2 up along the y-axis, and 5 forward along the z-axis?",
+                                "answer": "P(3, 2, 5)",
+                                "explanation": "Points in 3D space are represented by coordinates (x, y, z) where x is horizontal, y is vertical, and z is depth."
+                            },
+                            {
+                                "id": 2,
+                                "question": "Write the parametric equations for a line through P₀(1, 0, -2) with direction vector d = ⟨2, 3, 1⟩",
+                                "answer": "x = 1 + 2t, y = 0 + 3t, z = -2 + t",
+                                "explanation": "Parametric equations for a line use the form x = x₀ + at, y = y₀ + bt, z = z₀ + ct where ⟨a,b,c⟩ is the direction vector."
+                            }
+                        ]
+                    },
+                    {
+                        "level": 2,
+                        "name": "Angles",
+                        "description": "Understanding different types of angles and their properties",
+                        "notes": `
+                            <h2>✅ What is an Angle?</h2>
+                            <ul>
+                                <li>An <strong>angle</strong> is the figure formed by two rays (sides) sharing a common endpoint (vertex).</li>
+                                <li>Measured in <strong>degrees (°)</strong>, typically using a protractor.</li>
+                            </ul>
+                            
+                            <h2>🧭 Types of Angles</h2>
+                            <ul>
+                                <li><strong>Acute angle</strong>: between 0° and 90° (exclusive).</li>
+                                <li><strong>Right angle</strong>: exactly 90°.</li>
+                                <li><strong>Obtuse angle</strong>: between 90° and 180° (exclusive).</li>
+                                <li><strong>Straight angle</strong>: exactly 180°.</li>
+                                <li><strong>Reflex angle</strong>: between 180° and 360° (exclusive).</li>
+                                <li><strong>Full angle (perigon)</strong>: exactly 360°.</li>
+                            </ul>
+                        `,
+                        "questions": [
+                            {
+                                "id": 1,
+                                "question": "What is the complement of a 37° angle?",
+                                "answer": "53°",
+                                "explanation": "Complementary angles sum to 90°, so 90° - 37° = 53°."
+                            },
+                            {
+                                "id": 2,
+                                "question": "Find the smallest positive angle coterminal with 810°",
+                                "answer": "90°",
+                                "explanation": "810 mod 360 = 90°, since 810 - (2×360) = 90."
+                            }
+                        ]
+                    },
+                    {
+                        "level": 3,
+                        "name": "Triangles",
+                        "description": "Properties and theorems related to triangles",
+                        "notes": `
+                            <h1>1. Triangle Essentials</h1>
+                            <p><strong>Definition:</strong> A triangle has three sides and three interior angles summing to 180°.</p>
+                            <p><strong>Angle sum property:</strong> \(∠A + ∠B + ∠C = 180°\).</p>
+                            <div class="example">
+                                <strong>Example:</strong> If ∠A=50°, ∠B=60°, find ∠C.  
+                                <em>Solution:</em> 180 – (50+60) = 70°.
+                            </div>
+                            <h2>Types by Angles</h2>
+                            <ul>
+                                <li><strong>Acute:</strong> all angles < 90°.</li>
+                                <li><strong>Right:</strong> one angle = 90°.</li>
+                                <li><strong>Obtuse:</strong> one angle > 90°.</li>
+                            </ul>
+                        `,
+                        "questions": [
+                            {
+                                "id": 1,
+                                "question": "In triangle ABC, if ∠A=50° and ∠B=60°, what is ∠C?",
+                                "answer": "70°",
+                                "explanation": "Triangle angle sum is 180°, so 180 - (50 + 60) = 70°."
+                            },
+                            {
+                                "id": 2,
+                                "question": "A right triangle has legs 3cm and 4cm. What is the hypotenuse?",
+                                "answer": "5cm",
+                                "explanation": "Using Pythagoras' theorem: √(3² + 4²) = √(9 + 16) = √25 = 5."
+                            }
+                        ]
+                    },
+                    // Additional levels would follow the same pattern...
+                ],
+                "keyConcepts": [
+                    {
+                        "name": "Points, Lines, and Planes",
+                        "summary": "Fundamental elements of geometry with coordinates and equations"
+                    },
+                    {
+                        "name": "Angles",
+                        "summary": "Types of angles and their relationships in geometric figures"
+                    },
+                    {
+                        "name": "Triangles",
+                        "summary": "Properties, types, and theorems related to three-sided polygons"
+                    },
+                    // More key concepts...
+                ]
+            }
+        };
+
+        // DOM elements
+        const levelSelector = document.getElementById('level-selector');
+        const questionsContainer = document.getElementById('questions-container');
+        const notesContainer = document.getElementById('notes-container');
+        const keyConceptsList = document.getElementById('key-concepts-list');
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        // Initialize the level selector dropdown
+        function initLevelSelector() {
+            geometryData.geometry.levels.forEach(level => {
+                const option = document.createElement('option');
+                option.value = level.level;
+                option.textContent = `Level ${level.level}: ${level.name}`;
+                levelSelector.appendChild(option);
+            });
+        }
+
+        // Initialize key concepts list
+        function initKeyConcepts() {
+            geometryData.geometry.keyConcepts.forEach(concept => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${concept.name}:</strong> ${concept.summary}`;
+                keyConceptsList.appendChild(li);
+            });
+        }
+
+        // Display notes for a selected level
+        function showNotes(levelNum) {
+            if (!levelNum) {
+                notesContainer.innerHTML = '<p>Select a level to view notes</p>';
+                return;
+            }
+            
+            const level = geometryData.geometry.levels.find(l => l.level == levelNum);
+            if (!level) {
+                notesContainer.innerHTML = '<p>No notes available for this level</p>';
+                return;
+            }
+            
+            notesContainer.innerHTML = `
+                <h3>${level.name}</h3>
+                <p>${level.description}</p>
+                <div class="notes-content">${level.notes}</div>
+            `;
+        }
+
+        // Display questions for a selected level
+        function showQuestions(levelNum) {
+            questionsContainer.innerHTML = '';
+            
+            if (!levelNum) {
+                questionsContainer.innerHTML = '<p>Select a level to view questions</p>';
+                return;
+            }
+            
+            const level = geometryData.geometry.levels.find(l => l.level == levelNum);
+            if (!level || !level.questions || level.questions.length === 0) {
+                questionsContainer.innerHTML = '<p>No questions available for this level</p>';
+                return;
+            }
+            
+            const levelHeader = document.createElement('div');
+            levelHeader.className = 'level-header';
+            levelHeader.innerHTML = `
+                <h3>${level.name} Practice Questions</h3>
+                <p>${level.description}</p>
+            `;
+            questionsContainer.appendChild(levelHeader);
+            
+            level.questions.forEach(q => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question-container';
+                questionDiv.innerHTML = `
+                    <div class="question">${q.id}. ${q.question}</div>
+                    <button class="show-answer" data-answer="${q.answer}" data-explanation="${q.explanation}">
+                        Show Answer
+                    </button>
+                    <div class="answer" id="answer-${levelNum}-${q.id}"></div>
+                `;
+                questionsContainer.appendChild(questionDiv);
+            });
+            
+            // Add event listeners to all show-answer buttons
+            document.querySelectorAll('.show-answer').forEach(button => {
+                button.addEventListener('click', function() {
+                    const answerDiv = this.nextElementSibling;
+                    if (answerDiv.style.display === 'block') {
+                        answerDiv.style.display = 'none';
+                        this.textContent = 'Show Answer';
+                    } else {
+                        answerDiv.innerHTML = `
+                            <p><strong>Answer:</strong> ${this.dataset.answer}</p>
+                            <p><strong>Explanation:</strong> ${this.dataset.explanation}</p>
+                        `;
+                        answerDiv.style.display = 'block';
+                        this.textContent = 'Hide Answer';
+                    }
+                });
+            });
+        }
+
+        // Tab switching functionality
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(`${tab.dataset.tab}-container`).classList.add('active');
+            });
+        });
+
+        // Event listener for level selection
+        levelSelector.addEventListener('change', function() {
+            const levelNum = this.value;
+            showNotes(levelNum);
+            showQuestions(levelNum);
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            initLevelSelector();
+            initKeyConcepts();
+            showNotes('');
+            showQuestions('');
+        });
+    </script>
+</body>
+</html>

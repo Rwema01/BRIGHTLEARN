@@ -1,0 +1,67 @@
+/* Reset and base styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fefefe;
+}
+
+/* Navigation bar */
+nav {
+  background-color: navy;
+  color: white;
+  padding: 1em 2em;
+  text-align: center;
+}
+
+/* Navigation title */
+nav h1 {
+  margin: 0;
+  font-size: 1.8em;
+}
+
+/* Resources container */
+.resources {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  padding: 2em;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* Each resource box */
+.card {
+  background-color: #ffffff;
+  border-left: 6px solid #8B4513; /* Brown left border */
+  padding: 1em 1.5em;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.01);
+}
+
+/* Headings inside each card */
+.card h2 {
+  color: navy;
+  margin-top: 0;
+}
+
+/* Paragraphs inside cards */
+.card p {
+  color: #333;
+  margin-bottom: 0.5em;
+}
+
+/* Links */
+.card a {
+  color: #8B4513; /* Brown */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HISTORY</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Navigation -->
+        <nav class="left-nav">
+            <div class="nav-header">
+                <div class="logo-container">
+                    <img src="BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>DASHBOARD</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="courses.html" class="active">
+                        <i class="fas fa-book-open"></i>
+                        <span>COURSES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="history.html">
+                        <i class="fas fa-history"></i>
+                        <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="help.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span>HELP</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="logout-container">
+                <a href="logout.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>LOGOUT</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="top-icons">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <div class="notification-dropdown">
+                        <i class="fas fa-bell notification-icon"></i>
+                        <span class="notification-badge">3</span>
+                        <div class="dropdown-content">
+                            <div class="notification-header">
+                                <h4>Notifications</h4>
+                                <button class="mark-all-read">Mark all as read</button>
+                            </div>
+                            <div class="notification-list">
+                                <div class="notification-item unread">
+                                    <div class="notification-icon"><i class="fas fa-book"></i></div>
+                                    <div class="notification-content">
+                                        <p>New assignment posted in Ancient History</p>
+                                        <span class="notification-time">2 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-icon"><i class="fas fa-check-circle"></i></div>
+                                    <div class="notification-content">
+                                        <p>Your submission for World War II was graded</p>
+                                        <span class="notification-time">1 day ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="view-all">View All Notifications</a>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-dropdown">
+                        <i class="fas fa-user-circle profile-icon"></i>
+                        <div class="dropdown-content">
+                            <div class="profile-header">
+                                <img src="default-profile.jpg" alt="Profile" class="profile-pic">
+                                <div class="profile-info">
+                                    <h4>Jordan Barker</h4>
+                                    <p>Student</p>
+                                </div>
+                            </div>
+                            <div class="profile-stats">
+                                <div class="stat-item">
+                                    <span>Courses</span>
+                                    <span>5</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span>Completed</span>
+                                    <span>32%</span>
+                                </div>
+                            </div>
+                            <div class="dropdown-links">
+                                <a href="profile.html" class="profile-link"><i class="fas fa-user"></i> View Profile</a>
+                                <a href="settings.html" class="profile-link"><i class="fas fa-cog"></i> Settings</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Course Content -->
+            <div class="course-header history">
+                <div class="breadcrumbs">
+                    <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="historycourse.html">History</a>
+                </div>
+                <h1><i class="fas fa-landmark"></i> History</h1>
+                <div class="course-meta">
+                    <span>Instructor: <a href="teacher.html">Prof. Mary Beard</a></span>
+                    <span>Difficulty: Intermediate</span>
+                </div>
+            </div>
+
+            <div class="course-container">
+                <!-- Syllabus Section -->
+                <section id="syllabus" class="course-section">
+                    <h2><i class="fas fa-list-ol"></i> Course Syllabus</h2>
+                    
+                    <div class="modules">
+                        <!-- Ancient History Module -->
+                        <div class="module">
+                            <h3>1. Ancient History</h3>
+                            <div class="lessons">
+                                <a href="early-civilization.html" class="lesson completed">
+                                    <span>1.1 Early Civilizations</span>
+                                    <span class="lesson-status">Quiz Score: 85%</span>
+                                </a>
+                                <a href="genocide.html" class="lesson current">
+                                    <span>1.2 genocide</span>
+                                    <span class="lesson-status">Continue Learning</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Medieval History Module -->
+                        <div class="module">
+                            <h3>2. Medieval History</h3>
+                            <div class="lessons">
+                                <a href="feudalism-lesson.html" class="lesson">
+                                    <span>2.1 Feudalism</span>
+                                    <span class="lesson-status">Start Lesson</span>
+                                </a>
+                                <a href="renaissance.html" class="lesson upcoming">
+                                    <span>2.2 Renaissance</span>
+                                    <span class="lesson-status">Assignment Due Jul 15</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Modern History Module -->
+                        <div class="module">
+                            <h3>3. Modern History</h3>
+                            <div class="lessons">
+                                <a href="industrial-revolution.html" class="lesson">
+                                    <span>3.1 Industrial Revolution</span>
+                                    <span class="lesson-status">Start Lesson</span>
+                                </a>
+                                <a href="world-wars.html" class="lesson">
+                                    <span>3.2 World Wars</span>
+                                    <span class="lesson-status">Start Lesson</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Resources Section -->
+                <section id="resources" class="course-section">
+                    <h2><i class="fas fa-book"></i> Resources</h2>
+                    <div class="resources-grid">
+                        <a href="resources.html#timelines" class="resource-card">
+                            <i class="fas fa-timeline"></i>
+                            <h3>Historical Timelines</h3>
+                        </a>
+                        <a href="resources.html#documents" class="resource-card">
+                            <i class="fas fa-scroll"></i>
+                            <h3>Primary Documents</h3>
+                        </a>
+                        <a href="resources.html#maps" class="resource-card">
+                            <i class="fas fa-map"></i>
+                            <h3>Historical Maps</h3>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+    <script src="courses.js"></script>
+</body>
+</html>

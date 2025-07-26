@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HELP</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Navigation (Unchanged) -->
+        <nav class="left-nav">
+            <div class="nav-header">
+                <div class="logo-container">
+                    <img src="BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>DASHBOARD</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="courses.html">
+                        <i class="fas fa-book-open"></i>
+                        <span>COURSES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="history.html">
+                        <i class="fas fa-history"></i>
+                        <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="help.html" class="active">
+                        <i class="fas fa-question-circle"></i>
+                        <span>HELP</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="logout-container">
+                <a href="logout.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>LOGOUT</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar (Unchanged) -->
+            <header class="top-bar">
+                <div class="top-icons">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <div class="notification-dropdown">
+                        <i class="fas fa-bell notification-icon"></i>
+                        <span class="notification-badge">3</span>
+                        <div class="dropdown-content">
+                            <div class="notification-header">
+                                <h4>Notifications</h4>
+                                <button class="mark-all-read">Mark all as read</button>
+                            </div>
+                            <div class="notification-list">
+                                <div class="notification-item unread">
+                                    <div class="notification-icon"><i class="fas fa-book"></i></div>
+                                    <div class="notification-content">
+                                        <p>New assignment posted in Algebra II</p>
+                                        <span class="notification-time">2 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notification-icon"><i class="fas fa-check-circle"></i></div>
+                                    <div class="notification-content">
+                                        <p>Your submission for Essay Writing was graded</p>
+                                        <span class="notification-time">1 day ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="view-all">View All Notifications</a>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-dropdown">
+                        <i class="fas fa-user-circle profile-icon"></i>
+                        <div class="dropdown-content">
+                            <div class="profile-header">
+                                <img src="default-profile.jpg" alt="Profile" class="profile-pic">
+                                <div class="profile-info">
+                                    <h4>Jordan Barker</h4>
+                                    <p>Student</p>
+                                </div>
+                            </div>
+                            <div class="profile-stats">
+                                <div class="stat-item">
+                                    <span>Courses</span>
+                                    <span>5</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span>Completed</span>
+                                    <span>32%</span>
+                                </div>
+                            </div>
+                            <div class="dropdown-links">
+                                <a href="profile.html" class="profile-link"><i class="fas fa-user"></i> View Profile</a>
+                                <a href="settings.html" class="profile-link"><i class="fas fa-cog"></i> Settings</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Help Center Content -->
+<div class="dashboard-content">
+    <div class="welcome-section">
+      <div class="breadcrumbs">
+        <a href="index.html">Home</a> > <a href="help.html">Help</a>
+      </div>
+      <h1>HELP</h1>
+      <p>Find answers to your questions</p>
+      
+      <div class="help-search">
+        <input type="text" placeholder="Search help articles..." id="help-search-input">
+        <button id="help-search-btn">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+  
+    <!-- Help Content Sections -->
+    <div class="help-sections">
+      <!-- Getting Started Section -->
+      <div class="help-section">
+        <h2><i class="fas fa-rocket"></i> Getting Started</h2>
+        
+        <div class="help-article">
+          <h3>How to navigate the platform</h3>
+          <p>Learn the basics of BRIGHTLEARN's interface and features</p>
+          <a href="/help/navigate-platform" class="read-more">Read More <i class="fas fa-chevron-right"></i></a>
+        </div>
+        
+        <div class="help-article">
+          <h3>Setting up your profile</h3>
+          <p>Complete guide to personalizing your learning experience</p>
+          <a href="/help/setup-profile" class="read-more">Read More <i class="fas fa-chevron-right"></i></a>
+        </div>
+      </div>
+      
+      <!-- Courses Section -->
+      <div class="help-section">
+        <h2><i class="fas fa-book-open"></i> Courses</h2>
+        
+        <div class="help-article">
+          <h3>Enrolling in courses</h3>
+          <p>Step-by-step guide to finding and joining courses</p>
+          <a href="/help/enroll-courses" class="read-more">Read More <i class="fas fa-chevron-right"></i></a>
+        </div>
+        
+        <div class="help-article">
+          <h3>Tracking your progress</h3>
+          <p>How to monitor your learning journey and achievements</p>
+          <a href="/help/track-progress" class="read-more">Read More <i class="fas fa-chevron-right"></i></a>
+        </div>
+      </div>
+      
+      <!-- Technical Support Section -->
+      <div class="help-section">
+        <h2><i class="fas fa-tools"></i> Technical Support</h2>
+        
+        <div class="help-article">
+          <h3>System requirements</h3>
+          <p>Check if your device meets our platform specifications</p>
+          <a href="/help/system-requirements" class="read-more">Read More <i class="fas fa-chevron-right"></i></a>
+        </div>
+        
+        <div class="help-article">
+          <h3>Troubleshooting common issues</h3>
+          <p>Solutions for frequent technical problems</p>
+          <a href="/help/troubleshooting" class="read-more">Read More <i class="fas fa-chevron-right"></i></a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Still Need Help Section -->
+    <div class="still-need-help">
+      <div class="support-icon">
+        <i class="fas fa-headset"></i>
+      </div>
+      <h3>Still need help?</h3>
+      <p>Our support team is available 24/7 to assist you</p>
+      <div class="contact-options">
+        <button class="contact-btn email-btn">
+          <i class="fas fa-envelope"></i> Email Us
+        </button>
+        <button class="contact-btn chat-btn">
+          <i class="fas fa-comments"></i> Live Chat
+        </button>
+      </div>
+    </div>
+  </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
