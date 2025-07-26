@@ -67,89 +67,39 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+// PROFILE DROPDOWN
+const profileDropdown = document.querySelector('.profile-dropdown');
+const profileIcon = document.querySelector('.profile-icon');
 
-    // === PROFILE DROPDOWN (Optimized) ===
-    const profileDropdown = document.querySelector('.profile-dropdown');
-    const profileIcon = document.querySelector('.profile-icon');
-    
-    if (profileIcon && profileDropdown) {
-        profileIcon.addEventListener('click', function(e) {
-            e.stopPropagation();
-            profileDropdown.classList.toggle('show');
-        });
+// NOTIFICATION DROPDOWN
+const notificationDropdown = document.querySelector('.notification-dropdown');
+const notificationIcon = document.querySelector('.notification-icon');
 
-        document.addEventListener('click', function() {
-            profileDropdown.classList.remove('show');
-        });
-    }
-
-    // === SEARCH FUNCTIONALITY (Unchanged) ===
-    document.querySelector('.search-input')?.addEventListener('input', function() {
-        console.log(`Searching for: ${this.value}`);
+if (profileIcon && profileDropdown && notificationIcon && notificationDropdown) {
+    // PROFILE
+    profileIcon.addEventListener('click', function (e) {
+        e.stopPropagation();
+        profileDropdown.classList.toggle('show');
+        notificationDropdown.classList.remove('show'); // hide other dropdown
     });
 
-    // === NOTIFICATION FUNCTIONALITY ===
-    const notificationDropdown = document.querySelector('.notification-dropdown');
-    const notificationIcon = document.querySelector('.notification-icon');
+    // NOTIFICATION
+    notificationIcon.addEventListener('click', function (e) {
+        e.stopPropagation();
+        notificationDropdown.classList.toggle('show');
+        profileDropdown.classList.remove('show'); // hide other dropdown
 
-    if (notificationIcon && notificationDropdown) {
-        // Toggle dropdown
-        notificationIcon.addEventListener('click', function(e) {
-            e.stopPropagation();
-            notificationDropdown.classList.toggle('show');
-            
-            // Mark as read when opened
-            if (notificationDropdown.classList.contains('show')) {
-                markNotificationsAsRead();
-            }
-        });
-
-        // Close when clicking outside
-        document.addEventListener('click', function() {
-            notificationDropdown.classList.remove('show');
-        });
-
-        // Mark all as read button
-        const markAllReadBtn = document.querySelector('.mark-all-read');
-        if (markAllReadBtn) {
-            markAllReadBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                markNotificationsAsRead();
-            });
+        if (notificationDropdown.classList.contains('show')) {
+            markNotificationsAsRead();
         }
-    }
-
-    function markNotificationsAsRead() {
-        // Remove unread class from all notifications
-        document.querySelectorAll('.notification-item.unread').forEach(item => {
-            item.classList.remove('unread');
-        });
-        
-        // Update badge count (you would normally get this from your backend)
-        updateNotificationBadge(0);
-    }
-
-    function updateNotificationBadge(count) {
-        const badge = document.querySelector('.notification-badge');
-        if (badge) {
-            badge.textContent = count;
-            badge.style.display = count > 0 ? 'block' : 'none';
-        }
-    }
-
-    // Initialize with 3 unread notifications (you would get this from your backend)
-    updateNotificationBadge(3);
-
-    // === COURSES PAGE (Added Null Check) ===
-    document.querySelectorAll('.course-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const courseName = this.closest('.course-card')?.querySelector('h4')?.textContent;
-            if (courseName) {
-                alert(`Continuing with ${courseName} course...`);
-                // Add actual navigation logic here
-            }
-        });
     });
+
+    // CLOSE BOTH ON OUTSIDE CLICK
+    document.addEventListener('click', function () {
+        profileDropdown.classList.remove('show');
+        notificationDropdown.classList.remove('show');
+    });
+}
 
     // === HISTORY PAGE (Optimized Filter) ===
     const courseFilter = document.getElementById('course-filter');

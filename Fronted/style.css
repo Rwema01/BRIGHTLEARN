@@ -255,6 +255,21 @@ body {
 .profile-icon:hover {
     opacity: 0.8;
 }
+.profile-dropdown .dropdown-content,
+.notification-dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: white;
+    z-index: 100;
+    /* other styling */
+}
+
+.profile-dropdown.show .dropdown-content,
+.notification-dropdown.show .dropdown-content {
+    display: block;
+}
 
 /* ===== COURSES-SPECIFIC STYLES ===== */
 /* (Add these to your existing style.css) */
