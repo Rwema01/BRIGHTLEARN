@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIGHTLEARN - History Quiz</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Quiz specific styles */
+        .quiz-container {
+            margin-top: 30px;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .level-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .level-btn {
+            padding: 10px 15px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .level-btn:hover {
+            background: #2980b9;
+        }
+        
+        .level-btn.active {
+            background: #2c3e50;
+        }
+        
+        .progress-container {
+            margin: 20px 0;
+        }
+        
+        .progress-bar {
+            height: 20px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: #2ecc71;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .minimize-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #7f8c8d;
+            font-size: 18px;
+        }
+        
+        .question-container {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+        }
+        
+        .question-text {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+        
+        .option {
+            padding: 10px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .option:hover {
+            background: #f5f5f5;
+        }
+        
+        .option.selected {
+            background: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+        
+        .option.correct {
+            background: #2ecc71;
+            color: white;
+            border-color: #27ae60;
+        }
+        
+        .option.incorrect {
+            background: #e74c3c;
+            color: white;
+            border-color: #c0392b;
+        }
+        
+        .quiz-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .quiz-btn {
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .quiz-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+        
+        .results-container {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .score-display {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .minimized .question-container {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+        <div class="app-container">
+        <!-- Left Navigation -->
+        <nav class="left-nav">
+            <div class="nav-header">
+                <div class="logo-container">
+                    <img src="BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>DASHBOARD</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="courses.html" class="active">
+                        <i class="fas fa-book-open"></i>
+                        <span>COURSES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="grades.html">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>GRADES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="history.html">
+                        <i class="fas fa-history"></i>
+                        <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                  <a href="settings.html">
+                      <i class="fas fa-cog"></i>
+                      <span>SETTINGS</span>
+                  </a>
+              </li>
+                <li>
+                    <a href="help.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span>HELP</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="logout-container">
+                <a href="logout.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>LOGOUT</span>
+                </a>
+            </div>
+        </nav>
+
+       <!-- Main Content -->
+       <main class="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="top-icons">
+                <div class="search-container">
+                    <input type="text" placeholder="Search..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                
+                <!-- Simple Notification Link -->
+                <a href="notifications.html" class="notification-link">
+                    <i class="fas fa-bell notification-icon"></i>
+                </a>
+                
+                <!-- Simple Profile Link -->
+                <a href="profile.html" class="profile-link">
+                    <i class="fas fa-user-circle profile-icon"></i>
+                </a>
+            </div>
+        </header>
+
+  
+            <div class="resources-container">
+                <div class="breadcrumbs">
+                    <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="resources.html">Resources</a>
+                </div>
+                
+                <div class="resources-header">
+                    <h1><i class="fas fa-book"></i> HISTORY QUIZ</h1>
+                </div>
+
+                <!-- Quiz Section -->
+                <div class="quiz-container">
+                    <div class="level-selector">
+                        <button class="level-btn" data-level="genocide">Genocide Studies</button>
+                        <button class="level-btn" data-level="feudalism">Feudalism</button>
+                        <button class="level-btn" data-level="renaissance">Renaissance</button>
+                        <button class="level-btn" data-level="industrial">Industrial Revolution</button>
+                        <button class="level-btn" data-level="worldwars">World Wars</button>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <h3>Progress: <span id="progress-text">0%</span></h3>
+                        <div class="progress-bar">
+                            <div class="progress" id="progress-bar"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="quiz-content">
+                        <div class="quiz-header">
+                            <h2 id="current-level">Select a level to begin</h2>
+                            <button class="minimize-btn" id="minimize-btn"><i class="fas fa-minus"></i></button>
+                        </div>
+                        
+                        <div id="questions-area">
+                            <p>Please select a historical period to start the quiz.</p>
+                        </div>
+                        
+                        <div class="quiz-controls">
+                            <button class="quiz-btn" id="prev-btn" disabled>Previous</button>
+                            <button class="quiz-btn" id="next-btn" disabled>Next</button>
+                            <button class="quiz-btn" id="submit-btn" disabled>Submit Quiz</button>
+                        </div>
+                    </div>
+                    
+                    <div class="results-container" id="results-container">
+                        <h2>Quiz Results</h2>
+                        <div class="score-display" id="score-display"></div>
+                        <div id="detailed-results"></div>
+                        <button class="quiz-btn" id="retry-btn">Try Again</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Quiz data in JSON format
+        const quizData = {
+            "levels": {
+                "genocide": {
+                    "title": "Genocide Studies",
+                    "questions": [
+                        {
+                            "question": "What is the legal definition of genocide according to the UN?",
+                            "options": [
+                                "The killing of members of a group",
+                                "Acts committed with intent to destroy a national, ethnic, racial or religious group",
+                                "Mass killings during wartime",
+                                "Systematic persecution of political opponents"
+                            ],
+                            "correctIndex": 1,
+                            "explanation": "The UN defines genocide as acts committed with intent to destroy a national, ethnic, racial or religious group."
+                        },
+                        {
+                            "question": "Which event is considered the first genocide of the 20th century?",
+                            "options": [
+                                "The Holocaust",
+                                "Armenian Genocide",
+                                "Rwandan Genocide",
+                                "Cambodian Genocide"
+                            ],
+                            "correctIndex": 1,
+                            "explanation": "The Armenian Genocide (1915-1917) is widely considered the first genocide of the 20th century."
+                        },
+                        {
+                            "question": "What was the main ethnic division in the Rwandan Genocide?",
+                            "options": [
+                                "Hutus and Tutsis",
+                                "Jews and Nazis",
+                                "Serbs and Bosniaks",
+                                "Khmer and Vietnamese"
+                            ],
+                            "correctIndex": 0,
+                            "explanation": "The Rwandan Genocide was primarily between the Hutu majority and Tutsi minority."
+                        },
+                        {
+                            "question": "Approximately how many people were killed in the Holocaust?",
+                            "options": [
+                                "1 million",
+                                "6 million Jews (11 million total)",
+                                "3 million",
+                                "500,000"
+                            ],
+                            "correctIndex": 1,
+                            "explanation": "Approximately 6 million Jews were killed, with total victims (including others) around 11 million."
+                        },
+                        {
+                            "question": "What was the 'Final Solution' in Nazi Germany?",
+                            "options": [
+                                "Plan to win WWII",
+                                "Plan to exterminate Jewish people",
+                                "Economic recovery plan",
+                                "Military strategy"
+                            ],
+                            "correctIndex": 1,
+                            "explanation": "The 'Final Solution' was the Nazi plan for the genocide of Jewish people."
+                        },
+                        {
+                            "question": "Which international court was established to prosecute genocide in Rwanda?",
+                            "options": [
+                                "International Criminal Court",
+                                "International Court of Justice",
+                                "International Criminal Tribunal for Rwanda",
+                                "Nuremberg Tribunal"
+                            ],
+                            "correctIndex": 2,
+                            "explanation": "The ICTR was established by the UN to prosecute genocide in Rwanda."
+                        },
+                        {
+                            "question": "What was the killing method used in the Cambodian Genocide?",
+                            "options": [
+                                "Gas chambers",
+                                "Death marches",
+                                "Killing fields",
+                                "Biological weapons"
+                            ],
+                            "correctIndex": 2,
+                            "explanation": "The Khmer Rouge used 'killing fields' where victims were executed en masse."
+                        },
+                        {
+                            "question": "Which principle allows the UN to intervene to prevent genocide?",
+                            "options": [
+                                "Sovereignty Principle",
+                                "Responsibility to Protect",
+                                "Non-Intervention Principle",
+                                "Humanitarian Intervention"
+                            ],
+                            "correctIndex": 1,
+                            "explanation": "The 'Responsibility to Protect' principle allows intervention to prevent genocide."
+                        },
+                        {
+                            "question": "What was the main cause of the Darfur genocide?",
+                            "options": [
+                                "Religious conflict",
+                                "Ethnic cleansing of non-Arab groups",
+                                "Colonial legacy",
+                                "Economic competition"
+                            ],
+                            "correctIndex": 1,
+                            "explanation": "The Darfur genocide involved ethnic cleansing of non-Arab groups by the Janjaweed."
+                        },
+                        {
+                            "question": "Which document established genocide as an international crime?",
+                            "options": [
+                                "Geneva Conventions",
+                                "Universal Declaration of Human Rights",
+                                "Convention on the Prevention and Punishment of Genocide",
+                                "Rome Statute"
+                            ],
+                            "correctIndex": 2,
+                            "explanation": "The 1948 Genocide Convention established it as an international crime."
+                        }
+                    ]
+                },
+                "feudalism": {
+                    "title": "Feudalism",
+                    "questions": [
+                        // 10 questions about feudalism
+                        {
+                            "question": "What was the basic economic unit of feudalism?",
+                            "options": [
+                                "The town",
+                                "The manor",
+                                "The castle",
+                                "The guild"
+                            ],
+                            "correctIndex": 1,
+                            "explanation": "The manor was the basic economic unit where peasants worked the land."
+                        },
+                        // Add 9 more questions similarly
+                    ]
+                },
+                "renaissance": {
+                    "title": "Renaissance",
+                    "questions": [
+                        // 10 questions about renaissance
+                        {
+                            "question": "Where did the Renaissance begin?",
+                            "options": [
+                                "France",
+                                "England",
+                                "Italy",
+                                "Germany"
+                            ],
+                            "correctIndex": 2,
+                            "explanation": "The Renaissance began in Italy in the 14th century."
+                        },
+                        // Add 9 more questions similarly
+                    ]
+                },
+                "industrial": {
+                    "title": "Industrial Revolution",
+                    "questions": [
+                        // 10 questions about industrial revolution
+                        {
+                            "question": "Which industry was first transformed by the Industrial Revolution?",
+                            "options": [
+                                "Steel",
+                                "Textiles",
+                                "Transportation",
+                                "Mining"
+                            ],
+                            "correctIndex": 1,
+                            "explanation": "The textile industry was the first to be industrialized."
+                        },
+                        // Add 9 more questions similarly
+                    ]
+                },
+                "worldwars": {
+                    "title": "World Wars",
+                    "questions": [
+                        // 10 questions about world wars
+                        {
+                            "question": "What was the immediate trigger for WWI?",
+                            "options": [
+                                "German invasion of Poland",
+                                "Assassination of Archduke Franz Ferdinand",
+                                "Sinking of the Lusitania",
+                                "Russian mobilization"
+                            ],
+                            "correctIndex": 1,
+                            "explanation": "The assassination of Archduke Franz Ferdinand triggered WWI."
+                        },
+                        // Add 9 more questions similarly
+                    ]
+                }
+            }
+        };
+
+        // Quiz state variables
+        let currentLevel = null;
+        let currentQuestion = 0;
+        let userAnswers = [];
+        let quizMinimized = false;
+        let scores = {
+            genocide: 0,
+            feudalism: 0,
+            renaissance: 0,
+            industrial: 0,
+            worldwars: 0
+        };
+
+        // DOM elements
+        const levelBtns = document.querySelectorAll('.level-btn');
+        const questionsArea = document.getElementById('questions-area');
+        const currentLevelDisplay = document.getElementById('current-level');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const resultsContainer = document.getElementById('results-container');
+        const scoreDisplay = document.getElementById('score-display');
+        const detailedResults = document.getElementById('detailed-results');
+        const retryBtn = document.getElementById('retry-btn');
+        const minimizeBtn = document.getElementById('minimize-btn');
+        const quizContent = document.getElementById('quiz-content');
+
+        // Initialize quiz
+        function initQuiz() {
+            levelBtns.forEach(btn => {
+                btn.addEventListener('click', () => loadLevel(btn.dataset.level));
+            });
+            
+            prevBtn.addEventListener('click', showPreviousQuestion);
+            nextBtn.addEventListener('click', showNextQuestion);
+            submitBtn.addEventListener('click', submitQuiz);
+            retryBtn.addEventListener('click', resetQuiz);
+            minimizeBtn.addEventListener('click', toggleMinimize);
+        }
+
+        // Load a quiz level
+        function loadLevel(level) {
+            currentLevel = level;
+            currentQuestion = 0;
+            userAnswers = Array(quizData.levels[level].questions.length).fill(null);
+            
+            // Update UI
+            levelBtns.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.level === level);
+            });
+            
+            currentLevelDisplay.textContent = quizData.levels[level].title;
+            showQuestion();
+            updateProgress();
+            updateNavButtons();
+            
+            // Show quiz area
+            resultsContainer.style.display = 'none';
+        }
+
+        // Show current question
+        function showQuestion() {
+            if (!currentLevel) return;
+            
+            const questions = quizData.levels[currentLevel].questions;
+            const question = questions[currentQuestion];
+            
+            let html = `
+                <div class="question-container">
+                    <div class="question-text">Question ${currentQuestion + 1}: ${question.question}</div>
+                    <div class="options-container">
+            `;
+            
+            question.options.forEach((option, index) => {
+                let classes = "option";
+                if (userAnswers[currentQuestion] === index) classes += " selected";
+                
+                html += `
+                    <div class="${classes}" data-index="${index}">
+                        ${option}
+                    </div>
+                `;
+            });
+            
+            html += `</div></div>`;
+            questionsArea.innerHTML = html;
+            
+            // Add option selection
+            document.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', () => selectOption(option));
+            });
+        }
+
+        // Select an option
+        function selectOption(option) {
+            const selectedIndex = parseInt(option.dataset.index);
+            userAnswers[currentQuestion] = selectedIndex;
+            
+            // Update UI
+            document.querySelectorAll('.option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            option.classList.add('selected');
+            
+            updateNavButtons();
+        }
+
+        // Show next question
+        function showNextQuestion() {
+            if (currentQuestion < quizData.levels[currentLevel].questions.length - 1) {
+                currentQuestion++;
+                showQuestion();
+                updateProgress();
+                updateNavButtons();
+            }
+        }
+
+        // Show previous question
+        function showPreviousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+                updateProgress();
+                updateNavButtons();
+            }
+        }
+
+        // Update navigation buttons
+        function updateNavButtons() {
+            prevBtn.disabled = currentQuestion === 0;
+            nextBtn.disabled = currentQuestion === quizData.levels[currentLevel].questions.length - 1 || userAnswers[currentQuestion] === null;
+            submitBtn.disabled = userAnswers.includes(null);
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            if (!currentLevel) return;
+            
+            const totalQuestions = quizData.levels[currentLevel].questions.length;
+            const answered = userAnswers.filter(a => a !== null).length;
+            const progress = (answered / totalQuestions) * 100;
+            
+            progressBar.style.width = `${progress}%`;
+            progressText.textContent = `${Math.round(progress)}%`;
+        }
+
+        // Submit quiz
+        function submitQuiz() {
+            if (!currentLevel || userAnswers.includes(null)) return;
+            
+            const questions = quizData.levels[currentLevel].questions;
+            let correct = 0;
+            let resultsHtml = '';
+            
+            // Check answers and build results
+            questions.forEach((question, index) => {
+                const isCorrect = userAnswers[index] === question.correctIndex;
+                if (isCorrect) correct++;
+                
+                resultsHtml += `
+                    <div class="question-result">
+                        <p><strong>Question ${index + 1}:</strong> ${question.question}</p>
+                        <p>Your answer: ${question.options[userAnswers[index]]} ${isCorrect ? '✅' : '❌'}</p>
+                        ${!isCorrect ? `<p>Correct answer: ${question.options[question.correctIndex]}</p>` : ''}
+                        <p class="explanation">Explanation: ${question.explanation}</p>
+                        <hr>
+                    </div>
+                `;
+            });
+            
+            // Calculate score
+            const score = (correct / questions.length) * 100;
+            scores[currentLevel] = score; // Store score for this level
+            
+            // Show results
+            scoreDisplay.textContent = `Your score: ${correct}/${questions.length} (${Math.round(score)}%)`;
+            detailedResults.innerHTML = resultsHtml;
+            resultsContainer.style.display = 'block';
+            
+            // Scroll to results
+            resultsContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Reset quiz
+        function resetQuiz() {
+            userAnswers = Array(quizData.levels[currentLevel].questions.length).fill(null);
+            currentQuestion = 0;
+            showQuestion();
+            updateProgress();
+            updateNavButtons();
+            resultsContainer.style.display = 'none';
+        }
+
+        // Toggle minimize
+        function toggleMinimize() {
+            quizMinimized = !quizMinimized;
+            
+            if (quizMinimized) {
+                minimizeBtn.innerHTML = '<i class="fas fa-plus"></i>';
+                quizContent.classList.add('minimized');
+            } else {
+                minimizeBtn.innerHTML = '<i class="fas fa-minus"></i>';
+                quizContent.classList.remove('minimized');
+            }
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
+</body>
+</html>
