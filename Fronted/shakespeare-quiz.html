@@ -3,13 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRIGHTLEARN - Shakespeare Quiz</title>
+    <title>BRIGHTLEARN - Shakespeare & Literature</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Main app styling */
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .left-nav {
+            width: 250px;
+            background-color: #2c3e50;
+            color: white;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Progress and section styling */
+        .progress-bar-container {
+            background-color: #ddd;
+            border-radius: 20px;
+            margin: 10px 0;
+            height: 20px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #3498db;
+            transition: width 0.4s ease-in-out;
+        }
+        
+        .section {
+            background-color: #fff;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section h2 {
+            margin-top: 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section h2:after {
+            content: "−";
+            font-size: 1.5em;
+        }
+        
+        .section.collapsed h2:after {
+            content: "+";
+        }
+        
+        .section-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+        
+        .section.collapsed .section-content {
+            max-height: 0 !important;
+        }
+        
+        /* Button styling */
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        .complete-btn {
+            background: #2ecc71;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        .complete-btn:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+        }
+        
+        .unread-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        .unread-btn:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+        }
+        
+        /* Literature specific styling */
+        .vocab {
+            font-weight: bold;
+            color: #2980b9;
+        }
+        
+        .activity {
+            background-color: #f8f9fa;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 3px solid #f39c12;
+        }
+        
+        .book {
+            background-color: #e8f4f8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        /* Quiz styling */
+        .quiz-question {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .quiz-feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .correct-feedback {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .incorrect-feedback {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
 </head>
 <body>
     <div class="app-container">
-        <!-- Left Navigation (Unchanged) -->
+        <!-- Left Navigation -->
         <nav class="left-nav">
             <div class="nav-header">
                 <div class="logo-container">
@@ -54,202 +220,441 @@
 
         <!-- Main Content -->
         <main class="main-content">
+            <!-- Top Bar -->
             <header class="top-bar">
                <div class="top-icons">
-        <!-- Search -->
-                 
+                    <div class="notification-dropdown">
+                        <a href="notifications.html">
+                            <i class="fas fa-bell notification-icon"></i>
+                        </a>
+                        <span class="notification-badge">3</span>
+                    </div>
 
-        <!-- Notification Icon (links to notification.html) -->
-                 <div class="notification-dropdown">
-                    <a href="notifications.html">
-                    <i class="fas fa-bell notification-icon"></i>
-                    </a>
-                    <span class="notification-badge">3</span>
-                 </div>
-
-        <!-- Profile Icon (links to profile.html) -->
-                 <div class="profile-dropdown">
-                    <a href="profile.html">
-                    <i class="fas fa-user-circle profile-icon"></i>
-                    </a>
-                 </div>
+                    <div class="profile-dropdown">
+                        <a href="profile.html">
+                            <i class="fas fa-user-circle profile-icon"></i>
+                        </a>
+                    </div>
                 </div>
             </header>
 
-            <!-- Top Bar (Unchanged) -->
+            <div class="breadcrumbs">
+                <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="english.html">English</a> > <a href="shakespeare-quiz.html">Literature</a>
+            </div>
 
-    
-</head>
-<body>
-    <div class="breadcrumbs">
-        <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="english.html">English</a> > <a href="shakespeare-quiz.html">Literature</a>
+            <h1>Literature in English - Senior 6 Course</h1>
+            
+            <div>Progress:</div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <main id="content"></main>
+        </main>
     </div>
 
-<div class="page">
-    <h1>Literature in English - Senior 6 Course Summary</h1>
-    <h2>Introduction to the Course</h2>
-    <p>This literature course is designed to develop students' <span class="vocab">critical thinking</span>, <span class="vocab">analytical skills</span>, and <span class="vocab">language proficiency</span> through the study of various literary texts. The Rwanda Education Board syllabus emphasizes both the appreciation of literature and the improvement of English language skills.</p>
-    
-    <h3>Course Objectives:</h3>
-    <ul>
-        <li>Develop understanding and appreciation of literary texts</li>
-        <li>Enhance English language skills through literature</li>
-        <li>Analyze themes, characters, and literary techniques</li>
-        <li>Connect literature to real-life situations</li>
-        <li>Develop critical thinking and creative writing skills</li>
-    </ul>
-    
-    <div class="activity">
-        <h3>Language Learning Activity:</h3>
-        <p>Identify and define 5 new vocabulary words from this page. Use each in a sentence related to literature.</p>
-    </div>
-</div>
+    <script>
+        // Literature content in JSON format with levels
+        const literatureData = {
+            "Course Introduction": {
+                title: "Introduction to the Course",
+                content: `
+                    <p>This literature course is designed to develop students' <span class="vocab">critical thinking</span>, <span class="vocab">analytical skills</span>, and <span class="vocab">language proficiency</span> through the study of various literary texts. The Rwanda Education Board syllabus emphasizes both the appreciation of literature and the improvement of English language skills.</p>
+                    
+                    <h3>Course Objectives:</h3>
+                    <ul>
+                        <li>Develop understanding and appreciation of literary texts</li>
+                        <li>Enhance English language skills through literature</li>
+                        <li>Analyze themes, characters, and literary techniques</li>
+                        <li>Connect literature to real-life situations</li>
+                        <li>Develop critical thinking and creative writing skills</li>
+                    </ul>
+                    
+                    <div class="activity">
+                        <h3>Language Learning Activity:</h3>
+                        <p>Identify and define 5 new vocabulary words from this page. Use each in a sentence related to literature.</p>
+                    </div>
+                    
+                    <div class="quiz">
+                        <h3>Introduction Quiz</h3>
+                        <div class="quiz-question">
+                            <p>What is the main purpose of studying literature according to this course?</p>
+                            <input type="radio" name="q1" id="q1a"><label for="q1a">a) Only to improve grammar skills</label><br>
+                            <input type="radio" name="q1" id="q1b"><label for="q1b">b) To develop critical thinking and language skills</label><br>
+                            <input type="radio" name="q1" id="q1c"><label for="q1c">c) Just to read famous books</label><br>
+                            <input type="radio" name="q1" id="q1d"><label for="q1d">d) Only to prepare for exams</label>
+                        </div>
+                        <button class="complete-btn" onclick="checkQuiz('Course Introduction')">Submit Quiz</button>
+                        <div id="quiz-feedback-intro" class="quiz-feedback"></div>
+                    </div>
+                `
+            },
+            "Prescribed Texts": {
+                title: "Prescribed Texts and Analysis",
+                content: `
+                    <div class="book">
+                        <h3>1. "The Concubine" by Elechi Amadi</h3>
+                        <p><strong>Genre:</strong> Novel (African Literature)</p>
+                        <p><strong>Themes:</strong> 
+                            <ul>
+                                <li>Fate and destiny</li>
+                                <li>Love and marriage</li>
+                                <li>Traditional African beliefs vs modernity</li>
+                                <li>The supernatural in human affairs</li>
+                            </ul>
+                        </p>
+                        <p><strong>Language Focus:</strong> The novel provides rich examples of descriptive language, dialogue, and cultural expressions.</p>
+                    </div>
+                    
+                    <div class="book">
+                        <h3>2. "The River Between" by Ngũgĩ wa Thiong'o</h3>
+                        <p><strong>Genre:</strong> Novel (Post-colonial Literature)</p>
+                        <p><strong>Themes:</strong>
+                            <ul>
+                                <li>Cultural conflict</li>
+                                <li>Colonialism and its effects</li>
+                                <li>Tradition vs Christianity</li>
+                                <li>Education as both liberator and divider</li>
+                            </ul>
+                        </p>
+                        <p><strong>Language Focus:</strong> Excellent for studying symbolism, allegory, and narrative perspective.</p>
+                    </div>
+                    
+                    <div class="activity">
+                        <h3>Comparative Analysis Activity:</h3>
+                        <p>Compare how traditional African culture is portrayed in both "The Concubine" and "The River Between". Write 200 words highlighting similarities and differences in the authors' approaches.</p>
+                    </div>
+                    
+                    <div class="quiz">
+                        <h3>Text Analysis Quiz</h3>
+                        <div class="quiz-question">
+                            <p>Which theme is common to both "The Concubine" and "The River Between"?</p>
+                            <input type="radio" name="q2" id="q2a"><label for="q2a">a) Space exploration</label><br>
+                            <input type="radio" name="q2" id="q2b"><label for="q2b">b) Traditional African beliefs vs modernity</label><br>
+                            <input type="radio" name="q2" id="q2c"><label for="q2c">c) Future technology</label><br>
+                            <input type="radio" name="q2" id="q2d"><label for="q2d">d) Underwater life</label>
+                        </div>
+                        <button class="complete-btn" onclick="checkQuiz('Prescribed Texts')">Submit Quiz</button>
+                        <div id="quiz-feedback-texts" class="quiz-feedback"></div>
+                    </div>
+                `
+            },
+            "Poetry Study": {
+                title: "Poetry Study",
+                content: `
+                    <p>The course includes selected poems from African and English traditions, focusing on:</p>
+                    
+                    <h3>Key Poets and Poems:</h3>
+                    <ul>
+                        <li>"The Negro Speaks of Rivers" by Langston Hughes</li>
+                        <li>"Africa" by David Diop</li>
+                        <li>"Building the Nation" by Henry Barlow</li>
+                        <li>Selected works by William Wordsworth and John Keats</li>
+                    </ul>
+                    
+                    <h3>Poetic Techniques Covered:</h3>
+                    <table>
+                        <tr>
+                            <th>Technique</th>
+                            <th>Definition</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td>Imagery</td>
+                            <td>Descriptive language that appeals to the senses</td>
+                            <td>"I've known rivers ancient as the world" (Hughes)</td>
+                        </tr>
+                        <tr>
+                            <td>Metaphor</td>
+                            <td>Direct comparison without "like" or "as"</td>
+                            <td>"Africa is a giant in chains" (Diop)</td>
+                        </tr>
+                        <tr>
+                            <td>Rhyme Scheme</td>
+                            <td>Pattern of rhymes at the end of lines</td>
+                            <td>ABAB, AABB patterns</td>
+                        </tr>
+                    </table>
+                    
+                    <div class="activity">
+                        <h3>Poetry Writing Activity:</h3>
+                        <p>Write a 12-line poem about an aspect of Rwandan culture using at least three poetic devices studied.</p>
+                    </div>
+                    
+                    <div class="quiz">
+                        <h3>Poetry Quiz</h3>
+                        <div class="quiz-question">
+                            <p>Which of these is an example of metaphor?</p>
+                            <input type="radio" name="q3" id="q3a"><label for="q3a">a) "The river flows like a snake"</label><br>
+                            <input type="radio" name="q3" id="q3b"><label for="q3b">b) "Africa is a giant in chains"</label><br>
+                            <input type="radio" name="q3" id="q3c"><label for="q3c">c) "The wind howled in the night"</label><br>
+                            <input type="radio" name="q3" id="q3d"><label for="q3d">d) "She walked quickly down the street"</label>
+                        </div>
+                        <button class="complete-btn" onclick="checkQuiz('Poetry Study')">Submit Quiz</button>
+                        <div id="quiz-feedback-poetry" class="quiz-feedback"></div>
+                    </div>
+                `
+            },
+            "Drama Study": {
+                title: "Drama Study",
+                content: `
+                    <div class="book">
+                        <h3>"The Lion and the Jewel" by Wole Soyinka</h3>
+                        <p><strong>Genre:</strong> Comedy (African Drama)</p>
+                        <p><strong>Themes:</strong>
+                            <ul>
+                                <li>Modernity vs tradition</li>
+                                <li>Gender roles in society</li>
+                                <li>Youth and age</li>
+                                <li>Cultural conflict</li>
+                            </ul>
+                        </p>
+                        <p><strong>Language Focus:</strong> Study of dialogue, stage directions, and dramatic irony. Excellent for understanding how playwrights develop characters through speech.</p>
+                    </div>
+                    
+                    <h3>Dramatic Techniques:</h3>
+                    <ul>
+                        <li><span class="vocab">Soliloquy</span>: Character speaking thoughts aloud alone on stage</li>
+                        <li><span class="vocab">Aside</span>: Character's remark to audience unheard by other characters</li>
+                        <li><span class="vocab">Dramatic irony</span>: Audience knows something characters don't</li>
+                        <li><span class="vocab">Comic relief</span>: Humorous scenes in serious drama</li>
+                    </ul>
+                    
+                    <div class="activity">
+                        <h3>Drama Activity:</h3>
+                        <p>In groups, perform a key scene from "The Lion and the Jewel". Pay attention to how the language reveals character traits and advances the plot.</p>
+                    </div>
+                    
+                    <div class="quiz">
+                        <h3>Drama Quiz</h3>
+                        <div class="quiz-question">
+                            <p>What is a soliloquy in drama?</p>
+                            <input type="radio" name="q4" id="q4a"><label for="q4a">a) A character's remark to the audience unheard by others</label><br>
+                            <input type="radio" name="q4" id="q4b"><label for="q4b">b) A character speaking thoughts aloud alone on stage</label><br>
+                            <input type="radio" name="q4" id="q4c"><label for="q4c">c) A humorous scene in serious drama</label><br>
+                            <input type="radio" name="q4" id="q4d"><label for="q4d">d) When the audience knows something characters don't</label>
+                        </div>
+                        <button class="complete-btn" onclick="checkQuiz('Drama Study')">Submit Quiz</button>
+                        <div id="quiz-feedback-drama" class="quiz-feedback"></div>
+                    </div>
+                `
+            },
+            "Literary Analysis": {
+                title: "Literary Analysis and English Language Skills",
+                content: `
+                    <h3>Key Literary Concepts:</h3>
+                    <ul>
+                        <li><span class="vocab">Plot structure</span>: Exposition, rising action, climax, falling action, resolution</li>
+                        <li><span class="vocab">Characterization</span>: Direct and indirect methods of revealing characters</li>
+                        <li><span class="vocab">Setting</span>: How time and place affect the story</li>
+                        <li><span class="vocab">Point of view</span>: First-person, third-person limited, omniscient</li>
+                        <li><span class="vocab">Symbolism</span>: Objects representing deeper meanings</li>
+                    </ul>
+                    
+                    <h3>Connecting Literature to Language Learning:</h3>
+                    <p>The study of literature enhances English skills through:</p>
+                    <ol>
+                        <li>Vocabulary expansion from contextual learning</li>
+                        <li>Grammar patterns in authentic texts</li>
+                        <li>Writing skills through analytical essays</li>
+                        <li>Speaking skills through discussions and presentations</li>
+                        <li>Listening skills through dramatic readings</li>
+                    </ol>
+                    
+                    <div class="activity">
+                        <h3>Final Project:</h3>
+                        <p>Choose one text studied and write a 500-word essay analyzing how the author uses literary devices to convey their main themes. Include:</p>
+                        <ul>
+                            <li>Thesis statement</li>
+                            <li>Textual evidence with page numbers</li>
+                            <li>Analysis of language use</li>
+                            <li>Conclusion connecting to broader issues</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz">
+                        <h3>Final Quiz</h3>
+                        <div class="quiz-question">
+                            <p>Which of these is NOT a benefit of studying literature for language learning?</p>
+                            <input type="radio" name="q5" id="q5a"><label for="q5a">a) Vocabulary expansion</label><br>
+                            <input type="radio" name="q5" id="q5b"><label for="q5b">b) Improved cooking skills</label><br>
+                            <input type="radio" name="q5" id="q5c"><label for="q5c">c) Better writing skills</label><br>
+                            <input type="radio" name="q5" id="q5d"><label for="q5d">d) Enhanced speaking abilities</label>
+                        </div>
+                        <button class="complete-btn" onclick="checkQuiz('Literary Analysis')">Submit Quiz</button>
+                        <div id="quiz-feedback-analysis" class="quiz-feedback"></div>
+                    </div>
+                    
+                    <p><em>This summary is based on the Rwanda Education Board's Literature in English syllabus for Senior 6 and accompanying textbook resources.</em></p>
+                `
+            }
+        };
 
-<div class="page">
-    <h2>Prescribed Texts and Analysis</h2>
-    
-    <div class="book">
-        <h3>1. "The Concubine" by Elechi Amadi</h3>
-        <p><strong>Genre:</strong> Novel (African Literature)</p>
-        <p><strong>Themes:</strong> 
-            <ul>
-                <li>Fate and destiny</li>
-                <li>Love and marriage</li>
-                <li>Traditional African beliefs vs modernity</li>
-                <li>The supernatural in human affairs</li>
-            </ul>
-        </p>
-        <p><strong>Language Focus:</strong> The novel provides rich examples of descriptive language, dialogue, and cultural expressions.</p>
-    </div>
-    
-    <div class="book">
-        <h3>2. "The River Between" by Ngũgĩ wa Thiong'o</h3>
-        <p><strong>Genre:</strong> Novel (Post-colonial Literature)</p>
-        <p><strong>Themes:</strong>
-            <ul>
-                <li>Cultural conflict</li>
-                <li>Colonialism and its effects</li>
-                <li>Tradition vs Christianity</li>
-                <li>Education as both liberator and divider</li>
-            </ul>
-        </p>
-        <p><strong>Language Focus:</strong> Excellent for studying symbolism, allegory, and narrative perspective.</p>
-    </div>
-    
-    <div class="activity">
-        <h3>Comparative Analysis Activity:</h3>
-        <p>Compare how traditional African culture is portrayed in both "The Concubine" and "The River Between". Write 200 words highlighting similarities and differences in the authors' approaches.</p>
-    </div>
-</div>
+        // Progress tracking
+        const progressKey = "literatureProgress";
+        
+        function getProgress() {
+            const saved = localStorage.getItem(progressKey);
+            return saved ? JSON.parse(saved) : {};
+        }
+        
+        function updateProgressBar(progress) {
+            const total = Object.keys(literatureData).length;
+            const completed = Object.values(progress).filter(v => v === true).length;
+            const percent = (completed / total) * 100;
+            document.getElementById("progressBar").style.width = percent + "%";
+        }
+        
+        function renderContent() {
+            const container = document.getElementById("content");
+            const progress = getProgress();
+            updateProgressBar(progress);
+            
+            Object.entries(literatureData).forEach(([section, data]) => {
+                const div = document.createElement("div");
+                div.className = "section";
+                
+                const contentDiv = document.createElement("div");
+                contentDiv.className = "section-content";
+                contentDiv.innerHTML = data.content;
+                
+                const header = document.createElement("h2");
+                header.innerHTML = `${section}: ${data.title}`;
+                
+                // Create button group
+                const buttonGroup = document.createElement("div");
+                buttonGroup.className = "button-group";
+                
+                const completeBtn = document.createElement("button");
+                completeBtn.className = "complete-btn";
+                completeBtn.textContent = progress[section] ? "Completed" : "Mark as Complete";
+                completeBtn.disabled = progress[section];
+                completeBtn.onclick = () => markComplete(section);
+                
+                const unreadBtn = document.createElement("button");
+                unreadBtn.className = "unread-btn";
+                unreadBtn.textContent = "Mark as Unread";
+                unreadBtn.disabled = !progress[section];
+                unreadBtn.onclick = () => markUnread(section);
+                
+                buttonGroup.appendChild(completeBtn);
+                buttonGroup.appendChild(unreadBtn);
+                
+                header.addEventListener("click", function() {
+                    div.classList.toggle("collapsed");
+                    if (!div.classList.contains("collapsed")) {
+                        contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
+                    }
+                });
+                
+                div.appendChild(header);
+                div.appendChild(buttonGroup);
+                div.appendChild(contentDiv);
+                container.appendChild(div);
+                
+                contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
+            });
+        }
+        
+        function markComplete(section) {
+            const progress = getProgress();
+            progress[section] = true;
+            localStorage.setItem(progressKey, JSON.stringify(progress));
+            document.getElementById("content").innerHTML = "";
+            renderContent();
+        }
+        
+        function markUnread(section) {
+            const progress = getProgress();
+            progress[section] = false;
+            localStorage.setItem(progressKey, JSON.stringify(progress));
+            document.getElementById("content").innerHTML = "";
+            renderContent();
+        }
+        
+        function checkQuiz(section) {
+            let correctAnswers = 0;
+            let feedback = "";
+            let feedbackDiv = "";
+            
+            if (section === "Course Introduction") {
+                const q1Answer = document.querySelector('input[name="q1"]:checked');
+                if (q1Answer && q1Answer.id === "q1b") correctAnswers++;
+                
+                feedback = `
+                    <div class="correct-feedback">
+                        <p>You scored ${correctAnswers}/1 on the Introduction Quiz.</p>
+                        <p><strong>Feedback:</strong> The main purpose of studying literature in this course is to develop critical thinking and language skills, not just grammar or exam preparation.</p>
+                    </div>
+                `;
+                feedbackDiv = "quiz-feedback-intro";
+            }
+            else if (section === "Prescribed Texts") {
+                const q2Answer = document.querySelector('input[name="q2"]:checked');
+                if (q2Answer && q2Answer.id === "q2b") correctAnswers++;
+                
+                feedback = `
+                    <div class="correct-feedback">
+                        <p>You scored ${correctAnswers}/1 on the Text Analysis Quiz.</p>
+                        <p><strong>Feedback:</strong> Both "The Concubine" and "The River Between" explore the theme of traditional African beliefs vs modernity, though from different perspectives.</p>
+                    </div>
+                `;
+                feedbackDiv = "quiz-feedback-texts";
+            }
+            else if (section === "Poetry Study") {
+                const q3Answer = document.querySelector('input[name="q3"]:checked');
+                if (q3Answer && q3Answer.id === "q3b") correctAnswers++;
+                
+                feedback = `
+                    <div class="correct-feedback">
+                        <p>You scored ${correctAnswers}/1 on the Poetry Quiz.</p>
+                        <p><strong>Feedback:</strong> "Africa is a giant in chains" is a metaphor directly comparing Africa to a chained giant. The other options are either similes ("like a snake") or don't contain comparisons.</p>
+                    </div>
+                `;
+                feedbackDiv = "quiz-feedback-poetry";
+            }
+            else if (section === "Drama Study") {
+                const q4Answer = document.querySelector('input[name="q4"]:checked');
+                if (q4Answer && q4Answer.id === "q4b") correctAnswers++;
+                
+                feedback = `
+                    <div class="correct-feedback">
+                        <p>You scored ${correctAnswers}/1 on the Drama Quiz.</p>
+                        <p><strong>Feedback:</strong> A soliloquy is when a character speaks their thoughts aloud while alone on stage. An aside is when a character speaks directly to the audience.</p>
+                    </div>
+                `;
+                feedbackDiv = "quiz-feedback-drama";
+            }
+            else if (section === "Literary Analysis") {
+                const q5Answer = document.querySelector('input[name="q5"]:checked');
+                if (q5Answer && q5Answer.id === "q5b") correctAnswers++;
+                
+                feedback = `
+                    <div class="correct-feedback">
+                        <p>You scored ${correctAnswers}/1 on the Final Quiz.</p>
+                        <p><strong>Feedback:</strong> While literature study improves many language skills, it doesn't directly teach cooking skills. All other options are documented benefits of literature study.</p>
+                    </div>
+                `;
+                feedbackDiv = "quiz-feedback-analysis";
+            }
+            
+            // Show feedback
+            document.getElementById(feedbackDiv).innerHTML = feedback;
+            
+            // Mark as complete if they got the question right
+            if (correctAnswers > 0) {
+                markComplete(section);
+            }
+        }
 
-<div class="page">
-    <h2>Poetry Study</h2>
-    <p>The course includes selected poems from African and English traditions, focusing on:</p>
-    
-    <h3>Key Poets and Poems:</h3>
-    <ul>
-        <li>"The Negro Speaks of Rivers" by Langston Hughes</li>
-        <li>"Africa" by David Diop</li>
-        <li>"Building the Nation" by Henry Barlow</li>
-        <li>Selected works by William Wordsworth and John Keats</li>
-    </ul>
-    
-    <h3>Poetic Techniques Covered:</h3>
-    <table border="1" cellpadding="5">
-        <tr>
-            <th>Technique</th>
-            <th>Definition</th>
-            <th>Example</th>
-        </tr>
-        <tr>
-            <td>Imagery</td>
-            <td>Descriptive language that appeals to the senses</td>
-            <td>"I've known rivers ancient as the world" (Hughes)</td>
-        </tr>
-        <tr>
-            <td>Metaphor</td>
-            <td>Direct comparison without "like" or "as"</td>
-            <td>"Africa is a giant in chains" (Diop)</td>
-        </tr>
-        <tr>
-            <td>Rhyme Scheme</td>
-            <td>Pattern of rhymes at the end of lines</td>
-            <td>ABAB, AABB patterns</td>
-        </tr>
-    </table>
-    
-    <div class="activity">
-        <h3>Poetry Writing Activity:</h3>
-        <p>Write a 12-line poem about an aspect of Rwandan culture using at least three poetic devices studied.</p>
-    </div>
-</div>
-
-<div class="page">
-    <h2>Drama Study</h2>
-    
-    <div class="book">
-        <h3>"The Lion and the Jewel" by Wole Soyinka</h3>
-        <p><strong>Genre:</strong> Comedy (African Drama)</p>
-        <p><strong>Themes:</strong>
-            <ul>
-                <li>Modernity vs tradition</li>
-                <li>Gender roles in society</li>
-                <li>Youth and age</li>
-                <li>Cultural conflict</li>
-            </ul>
-        </p>
-        <p><strong>Language Focus:</strong> Study of dialogue, stage directions, and dramatic irony. Excellent for understanding how playwrights develop characters through speech.</p>
-    </div>
-    
-    <h3>Dramatic Techniques:</h3>
-    <ul>
-        <li><span class="vocab">Soliloquy</span>: Character speaking thoughts aloud alone on stage</li>
-        <li><span class="vocab">Aside</span>: Character's remark to audience unheard by other characters</li>
-        <li><span class="vocab">Dramatic irony</span>: Audience knows something characters don't</li>
-        <li><span class="vocab">Comic relief</span>: Humorous scenes in serious drama</li>
-    </ul>
-    
-    <div class="activity">
-        <h3>Drama Activity:</h3>
-        <p>In groups, perform a key scene from "The Lion and the Jewel". Pay attention to how the language reveals character traits and advances the plot.</p>
-    </div>
-</div>
-
-<div class="page">
-    <h2>Literary Analysis and English Language Skills</h2>
-    
-    <h3>Key Literary Concepts:</h3>
-    <ul>
-        <li><span class="vocab">Plot structure</span>: Exposition, rising action, climax, falling action, resolution</li>
-        <li><span class="vocab">Characterization</span>: Direct and indirect methods of revealing characters</li>
-        <li><span class="vocab">Setting</span>: How time and place affect the story</li>
-        <li><span class="vocab">Point of view</span>: First-person, third-person limited, omniscient</li>
-        <li><span class="vocab">Symbolism</span>: Objects representing deeper meanings</li>
-    </ul>
-    
-    <h3>Connecting Literature to Language Learning:</h3>
-    <p>The study of literature enhances English skills through:</p>
-    <ol>
-        <li>Vocabulary expansion from contextual learning</li>
-        <li>Grammar patterns in authentic texts</li>
-        <li>Writing skills through analytical essays</li>
-        <li>Speaking skills through discussions and presentations</li>
-        <li>Listening skills through dramatic readings</li>
-    </ol>
-    
-    <div class="activity">
-        <h3>Final Project:</h3>
-        <p>Choose one text studied and write a 500-word essay analyzing how the author uses literary devices to convey their main themes. Include:</p>
-        <ul>
-            <li>Thesis statement</li>
-            <li>Textual evidence with page numbers</li>
-            <li>Analysis of language use</li>
-            <li>Conclusion connecting to broader issues</li>
-        </ul>
-    </div>
-    
-    <p><em>This summary is based on the Rwanda Education Board's Literature in English syllabus for Senior 6 and accompanying textbook resources.</em></p>
-</div>
-
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderContent();
+        });
+    </script>
 </body>
 </html>
+
+
+
+  

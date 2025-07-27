@@ -3,9 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>BRIGHTLEARN - Geometry Lesson</title>
+=======
+    <title>BRIGHTLEARN - Geometry Lessons</title>
+>>>>>>> a9bdef6 (ui)
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Main app styling */
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .left-nav {
+            width: 250px;
+            background-color: #001833;
+            color: white;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Progress and section styling */
+        .progress-bar-container {
+            background-color: #ddd;
+            border-radius: 20px;
+            margin: 10px 0;
+            height: 20px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #3498db;
+            transition: width 0.4s ease-in-out;
+        }
+        
+        .section {
+            background-color: #fff;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section h2 {
+            margin-top: 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section h2:after {
+            content: "−";
+            font-size: 1.5em;
+        }
+        
+        .section.collapsed h2:after {
+            content: "+";
+        }
+        
+        .section-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+        
+        .section.collapsed .section-content {
+            max-height: 0 !important;
+        }
+        
+        /* Button styling */
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        .complete-btn {
+            background: #2ecc71;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        .complete-btn:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+        }
+        
+        .unread-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        .unread-btn:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+        }
+        
+        /* Literature specific styling */
+        .vocab {
+            font-weight: bold;
+            color: #2980b9;
+        }
+        
+        .activity {
+            background-color: #f8f9fa;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 3px solid #f39c12;
+        }
+        
+        .book {
+            background-color: #e8f4f8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        /* Quiz styling */
+        .quiz-question {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .quiz-feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .correct-feedback {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .incorrect-feedback {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Level navigation */
+        .level-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .level-btn {
+            padding: 8px 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .level-btn.active {
+            background-color: #2980b9;
+        }
+        
+        .level-content {
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .level-status {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #e8f4f8;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        
+        .completed {
+            color: #2ecc71;
+        }
+        
+        .not-completed {
+            color: #e74c3c;
+        }
+    </style>
 </head>
 <body>
     <div class="app-container">
@@ -65,6 +277,7 @@
         </nav>
 
         <!-- Main Content -->
+<<<<<<< HEAD
         <main class="main-content">
             <!-- Top Bar -->
             <header class="top-bar">
@@ -118,14 +331,52 @@
                     <ul id="key-concepts-list"></ul>
                     <p>For practice, return to the <a href="geometry-assignment.html">Geometry Exercises</a> or explore more resources in the course.</p>
                 </div>
+=======
+        <div class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+               <div class="top-icons">
+                    <div class="notification-dropdown">
+                        <a href="notifications.html">
+                            <i class="fas fa-bell notification-icon"></i>
+                        </a>
+                        <span class="notification-badge">3</span>
+                    </div>
+
+                    <div class="profile-dropdown">
+                        <a href="profile.html">
+                            <i class="fas fa-user-circle profile-icon"></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+
+            <div class="breadcrumbs">
+                <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="math.html">Math</a> > <a href="geometry-lessons.html">Geometry</a>
+>>>>>>> a9bdef6 (ui)
             </div>
-        </main>
+
+            <h1>Geometry Beginner Notes</h1>
+
+            <div>Progress:</div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <div id="content">
+                <!-- Level navigation will be added here by JavaScript -->
+                <div id="levelNavigation"></div>
+                <div id="levelContent"></div>
+            </div>
+        </div>
     </div>
 
     <script>
         // Enhanced Geometry data with notes for each level
         const geometryData = {
             "geometry": {
+                "title": "Geometry Fundamentals",
+                "content": "<p>Introduction to basic geometry concepts</p>",
                 "levels": [
                     {
                         "level": 1,
@@ -254,131 +505,143 @@
         };
 
         // DOM elements
-        const levelSelector = document.getElementById('level-selector');
-        const questionsContainer = document.getElementById('questions-container');
-        const notesContainer = document.getElementById('notes-container');
-        const keyConceptsList = document.getElementById('key-concepts-list');
-        const tabs = document.querySelectorAll('.tab');
-        const tabContents = document.querySelectorAll('.tab-content');
-
-        // Initialize the level selector dropdown
-        function initLevelSelector() {
-            geometryData.geometry.levels.forEach(level => {
-                const option = document.createElement('option');
-                option.value = level.level;
-                option.textContent = `Level ${level.level}: ${level.name}`;
-                levelSelector.appendChild(option);
-            });
+        // Progress tracking
+        const progressKey = "GeometryProgress";
+        let currentLevel = 0;
+        
+        function getProgress() {
+            const saved = localStorage.getItem(progressKey);
+            return saved ? JSON.parse(saved) : {};
         }
-
-        // Initialize key concepts list
-        function initKeyConcepts() {
-            geometryData.geometry.keyConcepts.forEach(concept => {
-                const li = document.createElement('li');
-                li.innerHTML = `<strong>${concept.name}:</strong> ${concept.summary}`;
-                keyConceptsList.appendChild(li);
-            });
+        
+        function updateProgressBar(progress) {
+            const total = geometryData.geometry.levels.length;
+            const completed = Object.values(progress).filter(v => v === true).length;
+            const percent = (completed / total) * 100;
+            document.getElementById("progressBar").style.width = percent + "%";
         }
-
-        // Display notes for a selected level
-        function showNotes(levelNum) {
-            if (!levelNum) {
-                notesContainer.innerHTML = '<p>Select a level to view notes</p>';
-                return;
-            }
+        
+        function renderLevelNavigation() {
+            const navContainer = document.getElementById("levelNavigation");
+            navContainer.innerHTML = "";
             
-            const level = geometryData.geometry.levels.find(l => l.level == levelNum);
-            if (!level) {
-                notesContainer.innerHTML = '<p>No notes available for this level</p>';
-                return;
-            }
+            const levelNav = document.createElement("div");
+            levelNav.className = "level-nav";
             
-            notesContainer.innerHTML = `
-                <h3>${level.name}</h3>
-                <p>${level.description}</p>
-                <div class="notes-content">${level.notes}</div>
-            `;
-        }
-
-        // Display questions for a selected level
-        function showQuestions(levelNum) {
-            questionsContainer.innerHTML = '';
-            
-            if (!levelNum) {
-                questionsContainer.innerHTML = '<p>Select a level to view questions</p>';
-                return;
-            }
-            
-            const level = geometryData.geometry.levels.find(l => l.level == levelNum);
-            if (!level || !level.questions || level.questions.length === 0) {
-                questionsContainer.innerHTML = '<p>No questions available for this level</p>';
-                return;
-            }
-            
-            const levelHeader = document.createElement('div');
-            levelHeader.className = 'level-header';
-            levelHeader.innerHTML = `
-                <h3>${level.name} Practice Questions</h3>
-                <p>${level.description}</p>
-            `;
-            questionsContainer.appendChild(levelHeader);
-            
-            level.questions.forEach(q => {
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'question-container';
-                questionDiv.innerHTML = `
-                    <div class="question">${q.id}. ${q.question}</div>
-                    <button class="show-answer" data-answer="${q.answer}" data-explanation="${q.explanation}">
-                        Show Answer
-                    </button>
-                    <div class="answer" id="answer-${levelNum}-${q.id}"></div>
-                `;
-                questionsContainer.appendChild(questionDiv);
+            geometryData.geometry.levels.forEach((level, index) => {
+                const levelBtn = document.createElement("button");
+                levelBtn.className = `level-btn ${index === currentLevel ? 'active' : ''}`;
+                levelBtn.textContent = `Level ${level.level}: ${level.name}`;
+                levelBtn.onclick = () => {
+                    currentLevel = index;
+                    renderLevelContent();
+                    renderLevelNavigation();
+                };
+                levelNav.appendChild(levelBtn);
             });
             
-            // Add event listeners to all show-answer buttons
-            document.querySelectorAll('.show-answer').forEach(button => {
-                button.addEventListener('click', function() {
-                    const answerDiv = this.nextElementSibling;
-                    if (answerDiv.style.display === 'block') {
-                        answerDiv.style.display = 'none';
-                        this.textContent = 'Show Answer';
-                    } else {
-                        answerDiv.innerHTML = `
-                            <p><strong>Answer:</strong> ${this.dataset.answer}</p>
-                            <p><strong>Explanation:</strong> ${this.dataset.explanation}</p>
-                        `;
-                        answerDiv.style.display = 'block';
-                        this.textContent = 'Hide Answer';
-                    }
-                });
-            });
+            navContainer.appendChild(levelNav);
         }
-
-        // Tab switching functionality
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                tabs.forEach(t => t.classList.remove('active'));
-                tabContents.forEach(c => c.classList.remove('active'));
+        
+        function renderLevelContent() {
+            const contentContainer = document.getElementById("levelContent");
+            contentContainer.className = "level-content";
+            
+            const level = geometryData.geometry.levels[currentLevel];
+            const progress = getProgress();
+            const isCompleted = progress[currentLevel] === true;
+            
+            // Create status indicator
+            const statusDiv = document.createElement("div");
+            statusDiv.className = `level-status ${isCompleted ? 'completed' : 'not-completed'}`;
+            statusDiv.textContent = isCompleted ? "✓ Completed" : "✗ Not Completed";
+            
+            // Create button group
+            const buttonGroup = document.createElement("div");
+            buttonGroup.className = "button-group";
+            
+            const completeBtn = document.createElement("button");
+            completeBtn.className = "complete-btn";
+            completeBtn.textContent = "Mark as Read";
+            completeBtn.onclick = markComplete;
+            completeBtn.disabled = isCompleted;
+            
+            const unreadBtn = document.createElement("button");
+            unreadBtn.className = "unread-btn";
+            unreadBtn.textContent = "Mark as Unread";
+            unreadBtn.onclick = markUnread;
+            unreadBtn.disabled = !isCompleted;
+            
+            buttonGroup.appendChild(completeBtn);
+            buttonGroup.appendChild(unreadBtn);
+            
+            // Create notes section
+            const notesDiv = document.createElement("div");
+            notesDiv.className = "notes";
+            notesDiv.innerHTML = level.notes;
+            
+            // Create questions section
+            const questionsDiv = document.createElement("div");
+            questionsDiv.className = "questions";
+            
+            const questionsHeader = document.createElement("h2");
+            questionsHeader.textContent = "Practice Questions";
+            questionsDiv.appendChild(questionsHeader);
+            
+            level.questions.forEach((question, qIndex) => {
+                const questionDiv = document.createElement("div");
+                questionDiv.className = "quiz-question";
                 
-                tab.classList.add('active');
-                document.getElementById(`${tab.dataset.tab}-container`).classList.add('active');
+                const questionText = document.createElement("p");
+                questionText.innerHTML = `<strong>Question ${qIndex + 1}:</strong> ${question.question}`;
+                questionDiv.appendChild(questionText);
+                
+                const showAnswerBtn = document.createElement("button");
+                showAnswerBtn.className = "complete-btn";
+                showAnswerBtn.textContent = "Show Answer";
+                showAnswerBtn.onclick = () => {
+                    const explanation = document.createElement("div");
+                    explanation.className = "quiz-feedback correct-feedback";
+                    explanation.innerHTML = `
+                        <p><strong>Answer:</strong> ${question.answer}</p>
+                        <p><strong>Explanation:</strong> ${question.explanation}</p>
+                    `;
+                    questionDiv.appendChild(explanation);
+                    showAnswerBtn.style.display = "none";
+                };
+                questionDiv.appendChild(showAnswerBtn);
+                
+                questionsDiv.appendChild(questionDiv);
             });
-        });
-
-        // Event listener for level selection
-        levelSelector.addEventListener('change', function() {
-            const levelNum = this.value;
-            showNotes(levelNum);
-            showQuestions(levelNum);
-        });
+            
+            contentContainer.innerHTML = "";
+            contentContainer.appendChild(statusDiv);
+            contentContainer.appendChild(buttonGroup);
+            contentContainer.appendChild(notesDiv);
+            contentContainer.appendChild(questionsDiv);
+        }
+        
+        function markComplete() {
+            const progress = getProgress();
+            progress[currentLevel] = true;
+            localStorage.setItem(progressKey, JSON.stringify(progress));
+            updateProgressBar(progress);
+            renderLevelContent(); // Refresh the view to update buttons and status
+        }
+        
+        function markUnread() {
+            const progress = getProgress();
+            progress[currentLevel] = false;
+            localStorage.setItem(progressKey, JSON.stringify(progress));
+            updateProgressBar(progress);
+            renderLevelContent(); // Refresh the view to update buttons and status
+        }
 
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
-            initLevelSelector();
-            initKeyConcepts();
-            showNotes('');
-            showQuestions('');
+            renderLevelNavigation();
+            renderLevelContent();
+            updateProgressBar(getProgress());
         });
     </script>
 </body>

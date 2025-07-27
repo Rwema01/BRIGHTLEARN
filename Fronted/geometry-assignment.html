@@ -3,9 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>BRIGHTLEARN - Geometry Assignment</title>
+=======
+    <title>BRIGHTLEARN - Geometry Mastery</title>
+>>>>>>> a9bdef6 (ui)
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Main app styling */
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .left-nav {
+            width: 250px;
+            background-color: #001833;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+        }
+        
+        /* Progress bar styling */
+        .progress-container {
+            margin: 20px 0;
+            background: #f5f7fa;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: #ecf0f1;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            transition: width 0.4s ease;
+        }
+        
+        /* Quiz styling */
+        .course-header {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .course-header i {
+            margin-right: 10px;
+            color: #3498db;
+        }
+        
+        .level-selector {
+            width: 100%;
+            padding: 10px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .bl-quiz-q {
+            font-size: 1.2em;
+            margin: 20px 0;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        .bl-quiz-options {
+            margin: 20px 0;
+        }
+        
+        .bl-quiz-options label {
+            display: block;
+            padding: 10px;
+            margin: 5px 0;
+            background: #f8f9fa;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .bl-quiz-options label:hover {
+            background: #e3f2fd;
+        }
+        
+        .bl-quiz-options input {
+            margin-right: 10px;
+        }
+        
+        .bl-quiz-nav {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        
+        .bl-quiz-nav button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+        
+        .bl-quiz-nav button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        #prevQ {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        #prevQ:hover:not(:disabled) {
+            background: #7f8c8d;
+        }
+        
+        #nextQ {
+            background: #3498db;
+            color: white;
+        }
+        
+        #nextQ:hover {
+            background: #2980b9;
+        }
+        
+        #retryQuiz {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        #retryQuiz:hover {
+            background: #c0392b;
+        }
+        
+        .bl-quiz-result {
+            padding: 20px;
+            margin: 20px 0;
+            background: #d4edda;
+            color: #155724;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+        
+        /* Main content area */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            background-color: #f5f7fa;
+        }
+        
+        .top-bar {
+            display: flex;
+            justify-content: flex-end;
+            
+            padding-left: 0;
+            padding-right: 0;
+            margin-bottom: 20px;
+        }
+        
+        .breadcrumbs {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+        
+        .breadcrumbs a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <div class="app-container">
@@ -66,6 +255,7 @@
 
         <!-- Main Content -->
         <main class="main-content">
+<<<<<<< HEAD
           <!-- Top Bar -->
           <header class="top-bar">
               <div class="top-icons">
@@ -105,6 +295,39 @@
                     <div class="progress-bar">
                         <div class="progress-fill" id="progress-fill" style="width: 17%"></div>
                     </div>
+=======
+            <!-- Top Bar -->
+            <header class="top-bar">
+               <div class="top-icons">
+                    <div class="notification-dropdown">
+                        <a href="notifications.html">
+                            <i class="fas fa-bell notification-icon"></i>
+                        </a>
+                        <span class="notification-badge">3</span>
+                    </div>
+
+                    <div class="profile-dropdown">
+                        <a href="profile.html">
+                            <i class="fas fa-user-circle profile-icon"></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+
+            <div class="breadcrumbs">
+                <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="math.html">Mathematics</a> > <a href="geometry-assignment.html">Geometry Assignment</a>
+            </div>
+
+            <div class="course-header">
+                <h1><i class="fas fa-shapes"></i> Geometry Mastery Quiz</h1>
+            </div>
+            
+            <!-- Progress Section -->
+            <div class="progress-container">
+                <div class="progress-header">
+                    <h3>Your Progress</h3>
+                    <div class="progress-text" id="progress-text">0% (0/5 levels completed)</div>
+>>>>>>> a9bdef6 (ui)
                 </div>
                 
                 <!-- Level Selector -->
@@ -117,17 +340,31 @@
                     <p>Please select a level to begin.</p>
                 </div>
             </div>
+<<<<<<< HEAD
+=======
+            
+            <!-- Level Selector -->
+            <select id="level-selector" class="level-selector">
+                <option value="">Select a level to begin</option>
+            </select>
+            
+            <!-- Quiz Container -->
+            <div id="quiz-container"></div>
+>>>>>>> a9bdef6 (ui)
         </main>
     </div>
 
     <script>
-      // Quiz data with multiple levels
+      // Enhanced Quiz data with multiple levels and difficulty indicators
       const geometryQuizData = {
+        title: "Geometry Mastery",
+        description: "Test your knowledge of geometric concepts through progressive difficulty levels",
         levels: [
           {
             level: 1,
             name: "Basic Concepts",
             description: "Points, Lines, and Planes",
+            difficulty: "Beginner",
             questions: [
               {
                 question: "Which of these best describes a point?",
@@ -137,7 +374,8 @@
                   "A flat, two-dimensional surface",
                   "A three-dimensional object"
                 ],
-                answer: 1
+                answer: 1,
+                explanation: "A point is defined as a location in space with no dimensions (no length, width, or height)."
               },
               {
                 question: "How many points determine a unique line?",
@@ -147,7 +385,19 @@
                   "3",
                   "4"
                 ],
-                answer: 1
+                answer: 1,
+                explanation: "Two distinct points determine exactly one line in Euclidean geometry."
+              },
+              {
+                question: "Which term describes a set of points that extends infinitely in all directions?",
+                options: [
+                  "Line",
+                  "Plane",
+                  "Ray",
+                  "Segment"
+                ],
+                answer: 1,
+                explanation: "A plane is a flat, two-dimensional surface that extends infinitely in all directions."
               }
             ]
           },
@@ -155,6 +405,7 @@
             level: 2,
             name: "Angles",
             description: "Types and Properties of Angles",
+            difficulty: "Beginner",
             questions: [
               {
                 question: "What is the complement of a 35° angle?",
@@ -164,7 +415,8 @@
                   "145°",
                   "325°"
                 ],
-                answer: 1
+                answer: 1,
+                explanation: "Complementary angles add up to 90°, so 90° - 35° = 55°."
               },
               {
                 question: "An angle measuring 91° is classified as:",
@@ -174,7 +426,19 @@
                   "Obtuse",
                   "Straight"
                 ],
-                answer: 2
+                answer: 2,
+                explanation: "Obtuse angles are greater than 90° but less than 180°."
+              },
+              {
+                question: "What is the sum of the interior angles of a triangle?",
+                options: [
+                  "90°",
+                  "180°",
+                  "270°",
+                  "360°"
+                ],
+                answer: 1,
+                explanation: "The sum of interior angles in any triangle is always 180°."
               }
             ]
           },
@@ -182,6 +446,7 @@
             level: 3,
             name: "Triangles",
             description: "Properties and Types of Triangles",
+            difficulty: "Intermediate",
             questions: [
               {
                 question: "What is the third angle of a triangle with angles 45° and 45°?",
@@ -191,7 +456,8 @@
                   "100°",
                   "180°"
                 ],
-                answer: 1
+                answer: 1,
+                explanation: "180° - (45° + 45°) = 90°. This is a right isosceles triangle."
               },
               {
                 question: "A triangle with all sides equal is called:",
@@ -201,7 +467,101 @@
                   "Equilateral",
                   "Right"
                 ],
-                answer: 2
+                answer: 2,
+                explanation: "Equilateral triangles have all sides and all angles equal."
+              },
+              {
+                question: "In a right triangle, the side opposite the right angle is called:",
+                options: [
+                  "Adjacent",
+                  "Opposite",
+                  "Hypotenuse",
+                  "Leg"
+                ],
+                answer: 2,
+                explanation: "The hypotenuse is always the longest side in a right triangle."
+              }
+            ]
+          },
+          {
+            level: 4,
+            name: "Quadrilaterals",
+            description: "Properties of Four-Sided Shapes",
+            difficulty: "Intermediate",
+            questions: [
+              {
+                question: "Which quadrilateral has exactly one pair of parallel sides?",
+                options: [
+                  "Square",
+                  "Rectangle",
+                  "Rhombus",
+                  "Trapezoid"
+                ],
+                answer: 3,
+                explanation: "A trapezoid is defined as having exactly one pair of parallel sides."
+              },
+              {
+                question: "What is the sum of interior angles in any quadrilateral?",
+                options: [
+                  "180°",
+                  "270°",
+                  "360°",
+                  "540°"
+                ],
+                answer: 2,
+                explanation: "Quadrilaterals can be divided into two triangles (2 × 180° = 360°)."
+              },
+              {
+                question: "Which statement about parallelograms is always true?",
+                options: [
+                  "All angles are right angles",
+                  "All sides are equal",
+                  "Opposite sides are parallel",
+                  "Diagonals are perpendicular"
+                ],
+                answer: 2,
+                explanation: "By definition, parallelograms have two pairs of parallel sides."
+              }
+            ]
+          },
+          {
+            level: 5,
+            name: "Circles",
+            description: "Properties and Theorems of Circles",
+            difficulty: "Advanced",
+            questions: [
+              {
+                question: "What is the ratio of a circle's circumference to its diameter?",
+                options: [
+                  "π",
+                  "2π",
+                  "π/2",
+                  "π²"
+                ],
+                answer: 0,
+                explanation: "This is the definition of π (pi) as C = πd."
+              },
+              {
+                question: "An angle formed by two radii of a circle is called:",
+                options: [
+                  "Central angle",
+                  "Inscribed angle",
+                  "Right angle",
+                  "Supplementary angle"
+                ],
+                answer: 0,
+                explanation: "A central angle has its vertex at the circle's center."
+              },
+              {
+                question: "What is the area of a circle with radius 5 units?",
+                options: [
+                  "10π",
+                  "25π",
+                  "50π",
+                  "100π"
+                ],
+                answer: 1,
+                explanation: "Area = πr² = π(5)² = 25π."
               }
             ]
           }
@@ -218,51 +578,92 @@
       let currentLevel = null;
       let completedLevels = JSON.parse(localStorage.getItem('completedGeometryLevels')) || [];
       let answeredQuestions = JSON.parse(localStorage.getItem('answeredQuestions')) || {};
+      let userScore = JSON.parse(localStorage.getItem('userScore')) || {};
 
-      // Initialize the level selector
+      // Initialize the level selector with enhanced options
       function initLevelSelector() {
         geometryQuizData.levels.forEach(level => {
           const option = document.createElement('option');
           option.value = level.level;
-          option.textContent = `Level ${level.level}: ${level.name} - ${level.description}`;
+          
+          // Show completion status and difficulty
+          const completionStatus = completedLevels.includes(level.level) ? '✓ ' : '';
+          option.textContent = `${completionStatus}Level ${level.level}: ${level.name} (${level.difficulty})`;
+          
+          // Disable if previous levels not completed (except first level)
+          if (level.level > 1 && !completedLevels.includes(level.level - 1)) {
+            option.disabled = true;
+            option.textContent += ' - Complete previous level first';
+          }
+          
           levelSelector.appendChild(option);
         });
       }
 
-      // Update progress display
+      // Update progress display with more detailed information
       function updateProgress() {
         const totalQuestions = geometryQuizData.levels.reduce((total, level) => total + level.questions.length, 0);
         let answeredCount = 0;
+        let correctCount = 0;
         
-        // Count all answered questions across all levels
+        // Count all answered and correct questions
         for (const level of geometryQuizData.levels) {
           if (answeredQuestions[level.level]) {
             answeredCount += Object.keys(answeredQuestions[level.level]).length;
+            
+            // Count correct answers
+            level.questions.forEach((q, i) => {
+              if (answeredQuestions[level.level][i] !== undefined && 
+                  answeredQuestions[level.level][i] === q.answer) {
+                correctCount++;
+              }
+            });
           }
         }
         
         const percent = Math.round((answeredCount / totalQuestions) * 100);
+        const accuracy = answeredCount > 0 ? Math.round((correctCount / answeredCount) * 100) : 0;
         
         progressFill.style.width = `${percent}%`;
-        progressText.textContent = `${percent}% (${answeredCount}/${totalQuestions} questions answered)`;
+        progressText.textContent = `${percent}% Complete | ${correctCount}/${answeredCount} Correct (${accuracy}% Accuracy)`;
       }
 
-      // Render quiz for a specific level
+      // Enhanced quiz rendering with navigation and feedback
       function renderQuiz(levelNum) {
         const level = geometryQuizData.levels.find(l => l.level == levelNum);
-        if (!level) {
-          quizContainer.innerHTML = '<p>Please select a level to begin.</p>';
+        if (!levelNum) {
+          quizContainer.innerHTML = `
+            <div class="welcome-message">
+              <h3>Welcome to ${geometryQuizData.title}!</h3>
+              <p>${geometryQuizData.description}</p>
+              <p>Select a level from the dropdown menu to begin testing your knowledge.</p>
+              <div class="level-summary">
+                <h4>Level Summary:</h4>
+                <ul>
+                  ${geometryQuizData.levels.map(lvl => `
+                    <li>
+                      <strong>Level ${lvl.level}:</strong> ${lvl.name} (${lvl.difficulty})
+                      ${completedLevels.includes(lvl.level) ? '✓' : ''}
+                    </li>
+                  `).join('')}
+                </ul>
+              </div>
+            </div>
+          `;
           return;
         }
 
         currentLevel = levelNum;
-        let currentQuestion = 0;
         
-        // Initialize answered questions for this level if not exists
+        // Initialize answered questions and score tracking for this level if not exists
         if (!answeredQuestions[levelNum]) {
           answeredQuestions[levelNum] = {};
         }
+        if (!userScore[levelNum]) {
+          userScore[levelNum] = { correct: 0, total: level.questions.length };
+        }
         
+        let currentQuestion = 0;
         let userAnswers = level.questions.map((q, i) => 
           answeredQuestions[levelNum][i] !== undefined ? answeredQuestions[levelNum][i] : null
         );
@@ -270,31 +671,49 @@
         function showQuestion(idx) {
           const q = level.questions[idx];
           quizContainer.innerHTML = `
+            <div class="quiz-header">
+              <h3>Level ${level.level}: ${level.name}</h3>
+              <p>${level.description} (${level.difficulty})</p>
+              <div class="question-progress">Question ${idx + 1} of ${level.questions.length}</div>
+            </div>
+            
             <div class="bl-quiz-q">${q.question}</div>
             <div class="bl-quiz-options">
               ${q.options.map((opt, i) => `
-                <label>
+                <label class="${userAnswers[idx] === i ? 'selected' : ''}">
                   <input type="radio" name="option" value="${i}" ${userAnswers[idx] === i ? 'checked' : ''}>
                   ${opt}
                 </label>
               `).join('')}
             </div>
             <div class="bl-quiz-nav">
-              <button id="prevQ" ${idx === 0 ? 'disabled' : ''}>Previous</button>
-              <button id="nextQ">${idx === level.questions.length - 1 ? 'Finish' : 'Next'}</button>
+              <button id="prevQ" ${idx === 0 ? 'disabled' : ''}>
+                <i class="fas fa-arrow-left"></i> Previous
+              </button>
+              <button id="nextQ">
+                ${idx === level.questions.length - 1 ? 'Finish <i class="fas fa-check"></i>' : 'Next <i class="fas fa-arrow-right"></i>'}
+              </button>
             </div>
           `;
 
+          // Add event listeners for answer selection
           document.querySelectorAll('input[name="option"]').forEach(input => {
             input.addEventListener('change', e => {
               userAnswers[idx] = parseInt(e.target.value);
-              // Save the answer immediately
               answeredQuestions[levelNum][idx] = parseInt(e.target.value);
+              
+              // Update label styling
+              document.querySelectorAll('.bl-quiz-options label').forEach(label => {
+                label.classList.remove('selected');
+              });
+              e.target.closest('label').classList.add('selected');
+              
               localStorage.setItem('answeredQuestions', JSON.stringify(answeredQuestions));
               updateProgress();
             });
           });
 
+          // Navigation buttons
           document.getElementById('prevQ').onclick = () => {
             if (currentQuestion > 0) {
               currentQuestion--;
@@ -312,12 +731,26 @@
           };
         }
 
+        // Enhanced quiz completion handler
         function finishQuiz() {
           let correct = 0;
-          level.questions.forEach((q, i) => {
-            if (userAnswers[i] === q.answer) correct++;
+          const results = level.questions.map((q, i) => {
+            const isCorrect = userAnswers[i] === q.answer;
+            if (isCorrect) correct++;
+            
+            return {
+              question: q.question,
+              userAnswer: q.options[userAnswers[i]],
+              correctAnswer: q.options[q.answer],
+              explanation: q.explanation,
+              isCorrect: isCorrect
+            };
           });
 
+          // Update score tracking
+          userScore[levelNum] = { correct, total: level.questions.length };
+          localStorage.setItem('userScore', JSON.stringify(userScore));
+          
           // Mark level as completed if all questions answered
           if (userAnswers.every(answer => answer !== null) && !completedLevels.includes(levelNum)) {
             completedLevels.push(levelNum);
@@ -325,11 +758,44 @@
           }
 
           const percent = Math.round((correct / level.questions.length) * 100);
+          
+          // Detailed results display
           quizContainer.innerHTML = `
-            <div class="bl-quiz-result">You scored ${percent}% (${correct} out of ${level.questions.length})</div>
-            <button id="retryQuiz">Retry</button>
+            <div class="quiz-results">
+              <div class="result-summary ${percent >= 70 ? 'pass' : 'fail'}">
+                <h3>Level ${level.level} Results: ${percent}%</h3>
+                <p>You answered ${correct} out of ${level.questions.length} questions correctly.</p>
+                ${percent >= 70 ? 
+                  '<div class="badge"><i class="fas fa-trophy"></i> Level Completed!</div>' : 
+                  '<p>Try again to improve your score!</p>'}
+              </div>
+              
+              <div class="detailed-results">
+                <h4>Question Breakdown:</h4>
+                ${results.map((result, i) => `
+                  <div class="question-result ${result.isCorrect ? 'correct' : 'incorrect'}">
+                    <p><strong>Q${i + 1}:</strong> ${result.question}</p>
+                    <p>Your answer: ${result.userAnswer || 'Not answered'}</p>
+                    ${!result.isCorrect ? `<p>Correct answer: ${result.correctAnswer}</p>` : ''}
+                    <p class="explanation">Explanation: ${result.explanation}</p>
+                  </div>
+                `).join('')}
+              </div>
+              
+              <div class="result-actions">
+                <button id="retryQuiz" class="retry-btn">
+                  <i class="fas fa-redo"></i> Retry Level
+                </button>
+                ${levelNum < geometryQuizData.levels.length ? `
+                  <button id="nextLevel" class="next-btn" ${percent >= 70 ? '' : 'disabled'}>
+                    <i class="fas fa-arrow-right"></i> Next Level
+                  </button>
+                ` : ''}
+              </div>
+            </div>
           `;
 
+          // Result action buttons
           document.getElementById('retryQuiz').onclick = () => {
             // Clear answers for this level when retrying
             answeredQuestions[levelNum] = {};
@@ -339,6 +805,13 @@
             showQuestion(currentQuestion);
             updateProgress();
           };
+
+          if (document.getElementById('nextLevel')) {
+            document.getElementById('nextLevel').onclick = () => {
+              levelSelector.value = parseInt(levelNum) + 1;
+              renderQuiz(parseInt(levelNum) + 1);
+            };
+          }
         }
 
         showQuestion(currentQuestion);
