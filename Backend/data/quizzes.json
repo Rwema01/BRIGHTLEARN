@@ -1,27 +1,37 @@
-[
-  {
-    "id": "math101",
-    "title": "Math Basics",
-    "questions": [
-      { "question": "2 + 2?", "options": ["3", "4", "5"], "answer": "4" },
-      { "question": "5 - 3?", "options": ["1", "2", "3"], "answer": "2" }
+{
+    "quizzes": [
+        {
+            "id": "math-alg-q1",
+            "courseId": "math-101",
+            "subject": "algebra",
+            "title": "Algebra Quiz 1",
+            "questions": [
+                {
+                    "id": 1,
+                    "question": "Solve for x: 2x + 5 = 13",
+                    "options": ["x = 4", "x = 6", "x = 8", "x = 3"],
+                    "correctAnswer": "x = 4"
+                }
+            ]
+        },
+        {
+            "id": "eng-gram-q1",
+            "courseId": "eng-101",
+            "subject": "grammar",
+            "title": "Grammar Quiz 1",
+            "questions": [
+                {
+                    "id": 1,
+                    "question": "Which sentence is grammatically correct?",
+                    "options": [
+                        "They is going to school.",
+                        "They are going to school.",
+                        "They am going to school.",
+                        "They be going to school."
+                    ],
+                    "correctAnswer": "They are going to school."
+                }
+            ]
+        }
     ]
-  },
-  {
-    "id": "eng101",
-    "title": "English Basics",
-    "questions": [
-      { "question": "Synonym of 'big'?", "options": ["small", "large", "tiny"], "answer": "large" },
-      { "question": "Antonym of 'cold'?", "options": ["hot", "wet", "cool"], "answer": "hot" }
-    ]
-  },
-
-  {
-    "id": "hist101",
-    "title": "History Basics",
-    "questions": [
-      { "question": "Synonym of 'big'?", "options": ["small", "large", "tiny"], "answer": "large" },
-      { "question": "Antonym of 'cold'?", "options": ["hot", "wet", "cool"], "answer": "hot" }
-    ]
-  }
-]
+}

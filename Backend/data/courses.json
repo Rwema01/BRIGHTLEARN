@@ -1,0 +1,124 @@
+{
+    "courses": [
+        {
+            "id": "math-101",
+            "name": "Mathematics",
+            "subjects": ["algebra", "geometry", "statistics"],
+            "resources": ["math-video", "math-notes", "math-practice"]
+        },
+        {
+            "id": "eng-101",
+            "name": "English",
+            "subjects": ["grammar", "creative-writing", "modern-novels"],
+            "resources": ["grammar", "punctuation", "essay-writing"]
+        },
+        {
+            "id": "hist-101",
+            "name": "History",
+            "subjects": ["early-civilization", "renaissance", "industrial-revolution"],
+            "resources": ["classical-antiquity", "feudalism-lesson", "world-wars"]
+        },
+        {
+            "id": "sci-101",
+            "name": "Biology",
+            "subjects": ["cell-biology", "genetics", "ecology"],
+            "resources": ["biology-labs", "microscope-studies", "field-research"]
+        },
+        {
+            "id": "sci-102",
+            "name": "Chemistry",
+            "subjects": ["organic-chemistry", "inorganic-chemistry", "biochemistry"],
+            "resources": ["chemical-experiments", "periodic-table", "molecular-structures"]
+        },
+        {
+            "id": "sci-103",
+            "name": "Physics",
+            "subjects": ["mechanics", "thermodynamics", "quantum-physics"],
+            "resources": ["physics-simulations", "lab-experiments", "problem-solving"]
+        },
+        {
+            "id": "comp-101",
+            "name": "Computer Science",
+            "subjects": ["programming", "data-structures", "algorithms"],
+            "resources": ["coding-exercises", "project-assignments", "debugging-practice"]
+        },
+        {
+            "id": "lang-101",
+            "name": "Spanish",
+            "subjects": ["basic-spanish", "intermediate-spanish", "advanced-spanish"],
+            "resources": ["vocabulary", "grammar-exercises", "conversation-practice"]
+        },
+        {
+            "id": "lang-102",
+            "name": "French",
+            "subjects": ["basic-french", "intermediate-french", "advanced-french"],
+            "resources": ["pronunciation", "writing-exercises", "cultural-studies"]
+        },
+        {
+            "id": "art-101",
+            "name": "Visual Arts",
+            "subjects": ["drawing", "painting", "sculpture"],
+            "resources": ["art-tutorials", "virtual-gallery", "technique-guides"]
+        },
+        {
+            "id": "mus-101",
+            "name": "Music",
+            "subjects": ["music-theory", "instrumental", "composition"],
+            "resources": ["sheet-music", "practice-exercises", "listening-materials"]
+        },
+        {
+            "id": "geo-101",
+            "name": "Geography",
+            "subjects": ["physical-geography", "human-geography", "cartography"],
+            "resources": ["maps", "case-studies", "field-reports"]
+        },
+        {
+            "id": "econ-101",
+            "name": "Economics",
+            "subjects": ["microeconomics", "macroeconomics", "international-trade"],
+            "resources": ["economic-models", "market-analysis", "case-studies"]
+        },
+        {
+            "id": "psych-101",
+            "name": "Psychology",
+            "subjects": ["cognitive-psychology", "social-psychology", "developmental-psychology"],
+            "resources": ["experiments", "case-studies", "research-methods"]
+        },
+        {
+            "id": "phil-101",
+            "name": "Philosophy",
+            "subjects": ["ethics", "logic", "metaphysics"],
+            "resources": ["philosophical-texts", "debate-topics", "thought-experiments"]
+        },
+        {
+            "id": "env-101",
+            "name": "Environmental Science",
+            "subjects": ["ecosystems", "climate-change", "sustainability"],
+            "resources": ["field-studies", "environmental-data", "project-work"]
+        },
+        {
+            "id": "bus-101",
+            "name": "Business Studies",
+            "subjects": ["management", "marketing", "entrepreneurship"],
+            "resources": ["business-plans", "case-studies", "market-research"]
+        },
+        {
+            "id": "pol-101",
+            "name": "Political Science",
+            "subjects": ["government-systems", "international-relations", "political-theory"],
+            "resources": ["policy-analysis", "case-studies", "debate-materials"]
+        },
+        {
+            "id": "soc-101",
+            "name": "Sociology",
+            "subjects": ["social-structures", "cultural-studies", "research-methods"],
+            "resources": ["field-research", "social-analysis", "case-studies"]
+        },
+        {
+            "id": "phys-101",
+            "name": "Physical Education",
+            "subjects": ["fitness", "sports-science", "nutrition"],
+            "resources": ["workout-plans", "training-videos", "health-guides"]
+        }
+    ]
+}
