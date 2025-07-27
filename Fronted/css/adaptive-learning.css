@@ -1,0 +1,279 @@
+/* Adaptive Learning and Gamification Styles */
+
+/* Level System */
+.level-indicator {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 0.5rem;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 100;
+}
+
+.level-badge {
+    width: 32px;
+    height: 32px;
+    background: var(--primary-blue);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.experience-bar {
+    width: 100px;
+    height: 4px;
+    background: var(--light-gray);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.experience-fill {
+    height: 100%;
+    background: var(--secondary-color);
+    transition: width 0.3s ease;
+}
+
+/* Level Up Animation */
+.level-up-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.level-up-content {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.level-up-content h2 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.reward-preview {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+/* Challenges */
+.challenges-panel {
+    position: fixed;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    box-shadow: var(--shadow);
+    max-width: 300px;
+}
+
+.challenge-card {
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    background: var(--light-gray);
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.challenge-card:hover {
+    transform: translateX(5px);
+}
+
+.challenge-title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.challenge-progress {
+    height: 4px;
+    background: var(--medium-gray);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.challenge-progress-fill {
+    height: 100%;
+    background: var(--primary-blue);
+    transition: width 0.3s ease;
+}
+
+/* Badges */
+.badge-collection {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.badge-item {
+    text-align: center;
+    padding: 1rem;
+    background: var(--light-gray);
+    border-radius: var(--border-radius);
+    transition: transform 0.3s ease;
+}
+
+.badge-item:hover {
+    transform: translateY(-5px);
+}
+
+.badge-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.badge-locked {
+    filter: grayscale(1);
+    opacity: 0.5;
+}
+
+/* Power-ups */
+.power-up-indicator {
+    position: fixed;
+    top: 4rem;
+    right: 1rem;
+    background: var(--primary-blue);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    animation: slideIn 0.3s ease-out;
+}
+
+.power-up-timer {
+    font-weight: bold;
+}
+
+/* XP Gain Animation */
+.xp-gain {
+    position: fixed;
+    top: 4rem;
+    right: 1rem;
+    background: var(--secondary-color);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    animation: xpFloat 2s ease-out forwards;
+}
+
+/* Adaptive Content */
+.adaptive-content {
+    transition: opacity 0.3s ease;
+}
+
+.adaptive-content.loading {
+    opacity: 0.5;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes xpFloat {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .challenges-panel {
+        position: static;
+        transform: none;
+        margin: 1rem auto;
+        max-width: 100%;
+    }
+
+    .level-indicator {
+        top: auto;
+        bottom: 1rem;
+    }
+
+    .power-up-indicator {
+        top: auto;
+        bottom: 4rem;
+    }
+
+    .badge-collection {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    }
+}
+
+/* Dark Theme Support */
+[data-theme="dark"] {
+    .level-up-content {
+        background: var(--primary-color);
+        color: var(--white);
+    }
+
+    .challenges-panel,
+    .badge-item {
+        background: var(--primary-color);
+        color: var(--white);
+    }
+
+    .challenge-card {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .level-indicator {
+        background: var(--primary-color);
+        color: var(--white);
+    }
+}

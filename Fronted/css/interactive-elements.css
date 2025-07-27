@@ -1,0 +1,158 @@
+.draggable {
+    cursor: move;
+    user-select: none;
+    padding: 8px;
+    margin: 4px;
+    background: var(--light-gray);
+    border: 2px solid var(--medium-gray);
+    border-radius: var(--border-radius);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.draggable.dragging {
+    transform: scale(1.05);
+    box-shadow: var(--shadow);
+    opacity: 0.8;
+}
+
+.dropzone {
+    min-height: 100px;
+    border: 2px dashed var(--medium-gray);
+    border-radius: var(--border-radius);
+    margin: 1rem 0;
+    padding: 1rem;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.dropzone.drag-over {
+    background-color: var(--light-gray);
+    border-color: var(--secondary-color);
+}
+
+.highlightable {
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.highlightable:hover {
+    background-color: rgba(46, 204, 113, 0.1);
+}
+
+.highlightable.highlighted {
+    background-color: rgba(46, 204, 113, 0.2);
+    border: 1px solid var(--secondary-color);
+}
+
+/* Accessibility Styles */
+.focus-visible {
+    outline: 2px solid var(--primary-blue);
+    outline-offset: 2px;
+}
+
+[role="button"]:focus-visible {
+    outline: 2px solid var(--primary-blue);
+    outline-offset: 2px;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Interactive Elements Animation */
+.interactive-element {
+    transition: transform 0.2s;
+}
+
+.interactive-element:hover {
+    transform: translateY(-2px);
+}
+
+.interactive-element:active {
+    transform: translateY(0);
+}
+
+/* Progress Indicators */
+.progress-indicator {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--medium-gray);
+    margin: 0 4px;
+    transition: background-color 0.3s;
+}
+
+.progress-indicator.completed {
+    background: var(--secondary-color);
+}
+
+.progress-indicator.current {
+    background: var(--primary-blue);
+    animation: pulse 2s infinite;
+}
+
+/* Media Controls */
+.media-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: var(--border-radius);
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.media-container:hover .media-controls {
+    opacity: 1;
+}
+
+.media-btn {
+    background: transparent;
+    border: none;
+    color: var(--white);
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.media-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.media-progress {
+    flex-grow: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+}
+
+.media-progress-fill {
+    height: 100%;
+    background: var(--primary-blue);
+    border-radius: 2px;
+    transition: width 0.1s linear;
+}
+
+.media-time {
+    font-size: 12px;
+    color: var(--white);
+    margin: 0 8px;
+}

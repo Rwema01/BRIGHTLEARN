@@ -12,10 +12,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    const BASE_URL = 'http://localhost:3000/api';
+
     // Form submission with validation
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
-        loginForm.addEventListener('submit', function(e) {
+        loginForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             // Clear previous errors
@@ -47,6 +49,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('passwordError').textContent = 'Password must be at least 6 characters';
                 document.getElementById('passwordError').style.display = 'block';
                 isValid = false;
+            }
+
+            if (isValid) {
+                try {
+                    const response = await fetch(`${BASE_URL}/login`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ email, password }),
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        localStorage.setItem('token', data.token);
+                        // Decode the JWT token to get userId
+                        const payload = JSON.parse(atob(data.token.split('.')[1]));
+                        localStorage.setItem('userId', payload.userId);
+                        window.location.href = 'index.html';
+                    } else {
+                        document.getElementById('passwordError').textContent = data.message || 'Invalid credentials';
+                        document.getElementById('passwordError').style.display = 'block';
+                    }
+                } catch (error) {
+                    console.error('Login error:', error);
+                    document.getElementById('passwordError').textContent = 'An error occurred. Please try again.';
+                    document.getElementById('passwordError').style.display = 'block';
+                }
             }
             
             if (!isValid) return;

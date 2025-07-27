@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIGHTLEARN - Grades</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Navigation -->
+        <nav class="left-nav">
+            <div class="nav-header">
+                <div class="logo-container">
+                    <img src="BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>DASHBOARD</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="courses.html">
+                        <i class="fas fa-book-open"></i>
+                        <span>COURSES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="history.html">
+                        <i class="fas fa-history"></i>
+                        <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="help.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span>HELP</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="logout-container">
+                <a href="logout.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>LOGOUT</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="top-icons">
+                    <a href="notifications.html" class="notification-link">
+                        <i class="fas fa-bell notification-icon"></i>
+                    </a>
+                    <a href="profile.html" class="profile-link">
+                        <i class="fas fa-user-circle profile-icon"></i>
+                    </a>
+                </div>
+            </header>
+
+            <!-- Grades Content -->
+            <div class="dashboard-content grades-page">
+                <div class="breadcrumbs">
+                    <a href="index.html">Home</a> > <a href="grades.html">Grades</a>
+                </div>
+                
+                <div class="welcome-section">
+                    <h1><i class="fas fa-graduation-cap"></i> My Grades</h1>
+                    <p>Track your academic performance and progress across all courses</p>
+                </div>
+
+                <!-- Performance Summary -->
+                <div class="content-section">
+                    <div class="performance-summary">
+                        <h2><i class="fas fa-chart-line"></i> Performance Overview</h2>
+                        <div class="summary-cards">
+                            <div class="summary-card">
+                                <div class="grade-circle">
+                                    <div class="grade">87%</div>
+                                </div>
+                                <h3>Overall Average</h3>
+                                <p>Across all courses</p>
+                            </div>
+                            <div class="summary-card">
+                                <div class="completed-courses">
+                                    <i class="fas fa-trophy"></i>
+                                    <span>1</span>
+                                </div>
+                                <h3>Completed Courses</h3>
+                                <p>Fully finished</p>
+                            </div>
+                            <div class="summary-card">
+                                <div class="assessment-count">
+                                    <i class="fas fa-clipboard-check"></i>
+                                    <span>9</span>
+                                </div>
+                                <h3>Total Assessments</h3>
+                                <p>Quizzes & assignments</p>
+                            </div>
+                            <div class="summary-card">
+                                <div class="status-indicator">
+                                    <span class="good-standing">Good Standing</span>
+                                </div>
+                                <h3>Academic Status</h3>
+                                <p>Above 70% average</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Grades Table -->
+                <div class="content-section">
+                    <div class="grades-table-section">
+                        <h2><i class="fas fa-table"></i> Course Grades</h2>
+                        <div class="table-container">
+                            <table class="grades-table">
+                                <thead>
+                                    <tr>
+                                        <th>Course</th>
+                                        <th>Type</th>
+                                        <th>Title</th>
+                                        <th>Score</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="grades-table-body">
+                                    <!-- Grades will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Performance Cards -->
+                <div class="content-section">
+                    <h2><i class="fas fa-chart-bar"></i> Course Performance</h2>
+                    <div class="course-grades">
+                        <div class="course-cards" id="course-grades-cards">
+                            <!-- Course performance cards will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Assessments -->
+                <div class="content-section">
+                    <h2><i class="fas fa-clock"></i> Recent Assessments</h2>
+                    <div class="recent-assessments">
+                        <div class="assessment-list" id="recent-assessments-list">
+                            <!-- Recent assessments will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Grades page specific functionality
+        document.addEventListener('DOMContentLoaded', async function() {
+            const token = localStorage.getItem('token');
+            const userId = localStorage.getItem('userId');
+            
+            if (!token || !userId) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            let grades = [];
+            let progress = [];
+
+            // Fetch grades and progress data
+            async function fetchGradesData() {
+                try {
+                    const [gradesResponse, progressResponse] = await Promise.all([
+                        fetch(`http://localhost:3000/api/grades/user/${userId}`, {
+                            headers: {
+                                'Authorization': `Bearer ${token}`,
+                                'Content-Type': 'application/json'
+                            }
+                        }),
+                        fetch(`http://localhost:3000/api/progress/${userId}`, {
+                            headers: {
+                                'Authorization': `Bearer ${token}`,
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                    ]);
+
+                    if (gradesResponse.ok) {
+                        grades = await gradesResponse.json();
+                    }
+
+                    if (progressResponse.ok) {
+                        progress = await progressResponse.json();
+                    }
+
+                    renderGradesTable();
+                    renderCoursePerformance();
+                    renderRecentAssessments();
+                    updatePerformanceSummary();
+                } catch (error) {
+                    console.error('Error fetching grades data:', error);
+                    showErrorMessage('Failed to load grades data');
+                }
+            }
+
+            // Render grades table
+            function renderGradesTable() {
+                const tableBody = document.getElementById('grades-table-body');
+                
+                if (grades.length === 0) {
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td colspan="7" class="empty-grades">
+                                <i class="fas fa-clipboard-list"></i>
+                                <p>No grades available yet. Complete assessments to see your grades here.</p>
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+
+                tableBody.innerHTML = grades.map(grade => {
+                    const statusClass = grade.status === 'passed' ? 'passed' : 'failed';
+                    const scoreClass = grade.percentage >= 90 ? 'excellent' : 
+                                    grade.percentage >= 80 ? 'good' : 
+                                    grade.percentage >= 70 ? 'average' : 'needs-improvement';
+                    
+                    return `
+                        <tr>
+                            <td>
+                                <div class="course-info">
+                                    <strong>${grade.courseTitle}</strong>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="grade-type ${grade.type}">
+                                    <i class="fas fa-${grade.type === 'quiz' ? 'question-circle' : 'file-alt'}"></i>
+                                    ${grade.type}
+                                </span>
+                            </td>
+                            <td>${grade.title}</td>
+                            <td>
+                                <span class="score ${scoreClass}">${grade.score}/${grade.maxScore} (${grade.percentage}%)</span>
+                            </td>
+                            <td>
+                                <span class="status ${statusClass}">
+                                    <i class="fas fa-${grade.status === 'passed' ? 'check' : 'times'}"></i>
+                                    ${grade.status}
+                                </span>
+                            </td>
+                            <td>${formatDate(grade.completedAt)}</td>
+                            <td>
+                                <button class="view-details" onclick="viewGradeDetails('${grade.id}')">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+
+            // Render course performance cards
+            function renderCoursePerformance() {
+                const cardsContainer = document.getElementById('course-grades-cards');
+                
+                if (progress.length === 0) {
+                    cardsContainer.innerHTML = `
+                        <div class="empty-courses">
+                            <i class="fas fa-book-open"></i>
+                            <p>No course progress available. Enroll in courses to see performance here.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                cardsContainer.innerHTML = progress.map(course => {
+                    const courseGrades = grades.filter(g => g.courseId === course.courseId);
+                    const avgScore = courseGrades.length > 0 ? 
+                        Math.round(courseGrades.reduce((sum, g) => sum + g.percentage, 0) / courseGrades.length) : 0;
+                    
+                    const statusClass = course.status === 'completed' ? 'completed' : 'in-progress';
+                    
+                    return `
+                        <div class="course-grade-card ${course.courseId}">
+                            <div class="course-header ${course.courseId}">
+                                <i class="fas fa-${getCourseIcon(course.courseId)}"></i>
+                                <h3>${course.courseTitle}</h3>
+                            </div>
+                            <div class="completion-percent">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: ${course.overallProgress}%"></div>
+                                </div>
+                                <span>${course.overallProgress}% Complete</span>
+                            </div>
+                            <div class="course-stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Average Score</span>
+                                    <span class="stat-value">${avgScore}%</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Assessments</span>
+                                    <span class="stat-value">${courseGrades.length}</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Status</span>
+                                    <span class="stat-value ${statusClass}">${course.status}</span>
+                                </div>
+                            </div>
+                            <div class="course-actions">
+                                <button class="continue-btn" onclick="viewCourseDetails('${course.courseId}')">
+                                    <i class="fas fa-eye"></i> View Details
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            // Render recent assessments
+            function renderRecentAssessments() {
+                const assessmentsList = document.getElementById('recent-assessments-list');
+                
+                if (grades.length === 0) {
+                    assessmentsList.innerHTML = `
+                        <div class="empty-assessments">
+                            <i class="fas fa-clipboard-check"></i>
+                            <p>No recent assessments to display.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const recentGrades = grades
+                    .sort((a, b) => new Date(b.completedAt) - new Date(a.completedAt))
+                    .slice(0, 5);
+
+                assessmentsList.innerHTML = recentGrades.map(grade => {
+                    const scoreClass = grade.percentage >= 90 ? 'excellent' : 
+                                    grade.percentage >= 80 ? 'good' : 
+                                    grade.percentage >= 70 ? 'average' : 'needs-improvement';
+                    
+                    return `
+                        <div class="assessment-item">
+                            <div class="assessment-icon">
+                                <i class="fas fa-${grade.type === 'quiz' ? 'question-circle' : 'file-alt'}"></i>
+                            </div>
+                            <div class="assessment-details">
+                                <h4>${grade.title}</h4>
+                                <p>${grade.courseTitle}</p>
+                                <div class="assessment-meta">
+                                    <span class="score ${scoreClass}">${grade.percentage}%</span>
+                                    <span class="date">${formatDate(grade.completedAt)}</span>
+                                </div>
+                            </div>
+                            <div class="assessment-status">
+                                <span class="status ${grade.status}">
+                                    <i class="fas fa-${grade.status === 'passed' ? 'check' : 'times'}"></i>
+                                </span>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            // Update performance summary
+            function updatePerformanceSummary() {
+                if (grades.length === 0) return;
+
+                const overallAverage = Math.round(grades.reduce((sum, g) => sum + g.percentage, 0) / grades.length);
+                const completedCourses = progress.filter(p => p.status === 'completed').length;
+                const totalAssessments = grades.length;
+                const academicStatus = overallAverage >= 70 ? 'Good Standing' : 'Needs Improvement';
+
+                // Update summary cards
+                document.querySelector('.grade-circle .grade').textContent = `${overallAverage}%`;
+                document.querySelector('.completed-courses span').textContent = completedCourses;
+                document.querySelector('.assessment-count span').textContent = totalAssessments;
+                document.querySelector('.status-indicator span').textContent = academicStatus;
+            }
+
+            // Helper functions
+            function formatDate(dateString) {
+                const date = new Date(dateString);
+                return date.toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'short', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            }
+
+            function getCourseIcon(courseId) {
+                const icons = {
+                    'math-101': 'calculator',
+                    'eng-101': 'book',
+                    'hist-101': 'landmark',
+                    'sci-101': 'flask',
+                    'comp-101': 'laptop-code'
+                };
+                return icons[courseId] || 'graduation-cap';
+            }
+
+            // Global functions for buttons
+            window.viewGradeDetails = function(gradeId) {
+                const grade = grades.find(g => g.id === gradeId);
+                if (grade) {
+                    alert(`Grade Details:\n\nCourse: ${grade.courseTitle}\nAssessment: ${grade.title}\nScore: ${grade.score}/${grade.maxScore} (${grade.percentage}%)\nStatus: ${grade.status}\nFeedback: ${grade.feedback}`);
+                }
+            };
+
+            window.viewCourseDetails = function(courseId) {
+                const course = progress.find(p => p.courseId === courseId);
+                if (course) {
+                    window.location.href = `courses.html?courseId=${courseId}`;
+                }
+            };
+
+            // Initialize
+            fetchGradesData();
+        });
+    </script>
+</body>
+</html> 

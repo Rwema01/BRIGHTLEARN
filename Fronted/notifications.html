@@ -82,53 +82,236 @@
                 <div class="welcome-section">
                     <h1>Notifications</h1>
                     <div class="notification-actions">
-                        <button class="notification-action-btn mark-all-read">
+                        <button class="notification-action-btn mark-all-read" id="mark-all-read-btn">
                             <i class="fas fa-check-double"></i> Mark all as read
                         </button>
-                        <button class="notification-action-btn clear-all">
+                        <button class="notification-action-btn clear-all" id="clear-all-btn">
                             <i class="fas fa-trash-alt"></i> Clear all
                         </button>
                     </div>
                 </div>
             
                 <div class="content-section">
-                    <div class="notification-list">
-                        <!-- Example Notification Item -->
-                        <div class="notification-item unread">
-                            <div class="notification-icon">
-                                <i class="fas fa-book-open"></i>
+                    <div class="notification-list" id="notification-list">
+                        <!-- Loading state -->
+                        <div class="loading-notifications">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading notifications...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Notifications page specific functionality
+        document.addEventListener('DOMContentLoaded', async function() {
+            const token = localStorage.getItem('token');
+            const userId = localStorage.getItem('userId');
+            
+            if (!token || !userId) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            let notifications = [];
+
+            // Fetch notifications from backend
+            async function fetchNotifications() {
+                try {
+                    const response = await fetch(`http://localhost:3000/api/notifications/user/${userId}`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        notifications = await response.json();
+                        renderNotifications();
+                    } else {
+                        console.error('Failed to fetch notifications');
+                        showErrorMessage('Failed to load notifications');
+                    }
+                } catch (error) {
+                    console.error('Error fetching notifications:', error);
+                    showErrorMessage('Error loading notifications');
+                }
+            }
+
+            // Render notifications
+            function renderNotifications() {
+                const notificationList = document.getElementById('notification-list');
+                
+                if (notifications.length === 0) {
+                    notificationList.innerHTML = `
+                        <div class="empty-notifications">
+                            <i class="fas fa-bell-slash"></i>
+                            <h3>No notifications</h3>
+                            <p>You're all caught up! Check back later for new updates.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                notificationList.innerHTML = notifications.map(notification => {
+                    const timeAgo = getTimeAgo(new Date(notification.timestamp));
+                    const iconClass = getNotificationIcon(notification.type);
+                    const priorityClass = notification.priority === 'high' ? 'urgent' : '';
+                    const unreadClass = !notification.read ? 'unread' : '';
+                    
+                    return `
+                        <div class="notification-item ${unreadClass}" data-id="${notification.id}">
+                            <div class="notification-icon ${priorityClass}">
+                                <i class="${iconClass}"></i>
                             </div>
                             <div class="notification-content">
-                                <h4>English Proficiency Test Available</h4>
-                                <p>New assessment posted for your enrolled course</p>
+                                <h4>${notification.title}</h4>
+                                <p>${notification.message}</p>
                                 <div class="notification-meta">
-                                    <span class="time">2 hours ago</span>
-                                    <span class="course">Language Arts</span>
+                                    <span class="time">${timeAgo}</span>
+                                    <span class="type">${notification.type.replace('_', ' ')}</span>
                                 </div>
                             </div>
                             <div class="notification-actions">
-                                <button class="btn-mark-read" title="Mark as read">
-                                    <i class="fas fa-check"></i>
-                                </button>
+                                ${!notification.read ? `
+                                    <button class="btn-mark-read" title="Mark as read" onclick="markAsRead('${notification.id}')">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                ` : ''}
                             </div>
                         </div>
-                    
-                        <!-- Second Notification Example -->
-                        <div class="notification-item">
-                            <div class="notification-icon urgent">
-                                <i class="fas fa-exclamation-circle"></i>
-                            </div>
-                            <div class="notification-content">
-                                <h4>Assignment Deadline Reminder</h4>
-                                <p>"Black Panther Analysis" due in 24 hours</p>
-                                <div class="notification-meta">
-                                    <span class="time">1 day ago</span>
-                                    <span class="course">Literature 101</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    `;
+                }).join('');
+            }
 
-    <script src="script.js"></script>
+            // Get notification icon based on type
+            function getNotificationIcon(type) {
+                const icons = {
+                    'COURSE_UPDATE': 'fas fa-book-open',
+                    'ASSIGNMENT_DUE': 'fas fa-file-alt',
+                    'ASSIGNMENT_FEEDBACK': 'fas fa-comment',
+                    'ACHIEVEMENT': 'fas fa-trophy',
+                    'QUIZ_REMINDER': 'fas fa-question-circle',
+                    'COURSE_PROGRESS': 'fas fa-chart-line',
+                    'COURSE_RECOMMENDATION': 'fas fa-lightbulb',
+                    'STREAK_WARNING': 'fas fa-fire',
+                    'SYSTEM': 'fas fa-info-circle'
+                };
+                return icons[type] || 'fas fa-bell';
+            }
+
+            // Get time ago
+            function getTimeAgo(date) {
+                const now = new Date();
+                const diffInSeconds = Math.floor((now - date) / 1000);
+                
+                if (diffInSeconds < 60) return 'Just now';
+                if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)} minutes ago`;
+                if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)} hours ago`;
+                if (diffInSeconds < 2592000) return `${Math.floor(diffInSeconds / 86400)} days ago`;
+                return date.toLocaleDateString();
+            }
+
+            // Mark notification as read
+            window.markAsRead = async function(notificationId) {
+                try {
+                    const response = await fetch(`http://localhost:3000/api/notifications/${notificationId}/read`, {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        // Update local state
+                        const notification = notifications.find(n => n.id === notificationId);
+                        if (notification) {
+                            notification.read = true;
+                            renderNotifications();
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error marking notification as read:', error);
+                }
+            };
+
+            // Mark all notifications as read
+            document.getElementById('mark-all-read-btn').addEventListener('click', async function() {
+                try {
+                    const response = await fetch(`http://localhost:3000/api/notifications/user/${userId}/read-all`, {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        // Update local state
+                        notifications.forEach(notification => {
+                            notification.read = true;
+                        });
+                        renderNotifications();
+                        showSuccessMessage('All notifications marked as read');
+                    }
+                } catch (error) {
+                    console.error('Error marking all notifications as read:', error);
+                    showErrorMessage('Failed to mark all notifications as read');
+                }
+            });
+
+            // Clear all notifications
+            document.getElementById('clear-all-btn').addEventListener('click', function() {
+                if (confirm('Are you sure you want to clear all notifications?')) {
+                    notifications = [];
+                    renderNotifications();
+                    showSuccessMessage('All notifications cleared');
+                }
+            });
+
+            // Show success message
+            function showSuccessMessage(message) {
+                const notification = document.createElement('div');
+                notification.className = 'temp-notification success';
+                notification.innerHTML = `
+                    <div class="notification-content">
+                        <i class="fas fa-check-circle"></i>
+                        <span>${message}</span>
+                    </div>
+                `;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.opacity = '1';
+                    notification.style.transform = 'translateX(0)';
+                }, 100);
+                
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+            }
+
+            // Show error message
+            function showErrorMessage(message) {
+                const notificationList = document.getElementById('notification-list');
+                notificationList.innerHTML = `
+                    <div class="error-notifications">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Error</h3>
+                        <p>${message}</p>
+                        <button onclick="location.reload()" class="retry-btn">Try Again</button>
+                    </div>
+                `;
+            }
+
+            // Initialize
+            fetchNotifications();
+        });
+    </script>
 </body>
 </html>

@@ -1,3 +1,288 @@
 {
-    "progress": []
+  "progress": [
+    {
+      "id": "prog_001",
+      "userId": "1753634027701",
+      "courseId": "math-101",
+      "courseTitle": "Mathematics Fundamentals",
+      "enrolledAt": "2025-07-27T16:33:47.701Z",
+      "lastAccessed": "2025-07-27T22:00:00.000Z",
+      "overallProgress": 75,
+      "lessonsCompleted": 3,
+      "totalLessons": 4,
+      "quizzesCompleted": 2,
+      "totalQuizzes": 3,
+      "assignmentsCompleted": 1,
+      "totalAssignments": 2,
+      "currentLesson": "math-lesson-4",
+      "status": "in-progress",
+      "timeSpent": 180,
+      "lessons": [
+        {
+          "id": "math-lesson-1",
+          "title": "Introduction to Algebra",
+          "completed": true,
+          "completedAt": "2025-07-27T17:00:00.000Z",
+          "timeSpent": 45,
+          "score": 100
+        },
+        {
+          "id": "math-lesson-2",
+          "title": "Solving Linear Equations",
+          "completed": true,
+          "completedAt": "2025-07-27T18:30:00.000Z",
+          "timeSpent": 60,
+          "score": 95
+        },
+        {
+          "id": "math-lesson-3",
+          "title": "Geometry Fundamentals",
+          "completed": true,
+          "completedAt": "2025-07-27T20:15:00.000Z",
+          "timeSpent": 50,
+          "score": 88
+        },
+        {
+          "id": "math-lesson-4",
+          "title": "Statistical Analysis",
+          "completed": false,
+          "timeSpent": 0,
+          "score": 0
+        }
+      ],
+      "quizzes": [
+        {
+          "id": "math-alg-q1",
+          "title": "Algebra Fundamentals Quiz",
+          "completed": true,
+          "completedAt": "2025-07-27T21:28:07.094Z",
+          "score": 100,
+          "totalQuestions": 5,
+          "correctAnswers": 5
+        },
+        {
+          "id": "math-geo-q1",
+          "title": "Geometry Basics Quiz",
+          "completed": true,
+          "completedAt": "2025-07-27T21:00:00.000Z",
+          "score": 100,
+          "totalQuestions": 4,
+          "correctAnswers": 4
+        }
+      ]
+    },
+    {
+      "id": "prog_002",
+      "userId": "1753634027701",
+      "courseId": "eng-101",
+      "courseTitle": "English Composition & Literature",
+      "enrolledAt": "2025-07-27T16:33:47.701Z",
+      "lastAccessed": "2025-07-27T21:30:00.000Z",
+      "overallProgress": 60,
+      "lessonsCompleted": 2,
+      "totalLessons": 3,
+      "quizzesCompleted": 1,
+      "totalQuizzes": 2,
+      "assignmentsCompleted": 1,
+      "totalAssignments": 3,
+      "currentLesson": "eng-lesson-3",
+      "status": "in-progress",
+      "timeSpent": 120,
+      "lessons": [
+        {
+          "id": "eng-lesson-1",
+          "title": "Grammar Fundamentals",
+          "completed": true,
+          "completedAt": "2025-07-27T17:30:00.000Z",
+          "timeSpent": 40,
+          "score": 92
+        },
+        {
+          "id": "eng-lesson-2",
+          "title": "Essay Writing Techniques",
+          "completed": true,
+          "completedAt": "2025-07-27T19:45:00.000Z",
+          "timeSpent": 55,
+          "score": 85
+        },
+        {
+          "id": "eng-lesson-3",
+          "title": "Literary Analysis",
+          "completed": false,
+          "timeSpent": 0,
+          "score": 0
+        }
+      ],
+      "quizzes": [
+        {
+          "id": "eng-gram-q1",
+          "title": "Grammar Fundamentals Quiz",
+          "completed": true,
+          "completedAt": "2025-07-27T20:30:00.000Z",
+          "score": 75,
+          "totalQuestions": 4,
+          "correctAnswers": 3
+        }
+      ]
+    },
+    {
+      "id": "prog_003",
+      "userId": "1753634027701",
+      "courseId": "hist-101",
+      "courseTitle": "World History: Ancient to Modern",
+      "enrolledAt": "2025-07-27T16:33:47.701Z",
+      "lastAccessed": "2025-07-27T20:15:00.000Z",
+      "overallProgress": 100,
+      "lessonsCompleted": 4,
+      "totalLessons": 4,
+      "quizzesCompleted": 3,
+      "totalQuizzes": 3,
+      "assignmentsCompleted": 2,
+      "totalAssignments": 2,
+      "currentLesson": null,
+      "status": "completed",
+      "timeSpent": 240,
+      "lessons": [
+        {
+          "id": "hist-lesson-1",
+          "title": "Ancient Civilizations",
+          "completed": true,
+          "completedAt": "2025-07-27T17:15:00.000Z",
+          "timeSpent": 50,
+          "score": 95
+        },
+        {
+          "id": "hist-lesson-2",
+          "title": "The Renaissance Period",
+          "completed": true,
+          "completedAt": "2025-07-27T18:30:00.000Z",
+          "timeSpent": 60,
+          "score": 88
+        },
+        {
+          "id": "hist-lesson-3",
+          "title": "Industrial Revolution",
+          "completed": true,
+          "completedAt": "2025-07-27T19:45:00.000Z",
+          "timeSpent": 55,
+          "score": 92
+        },
+        {
+          "id": "hist-lesson-4",
+          "title": "Modern World History",
+          "completed": true,
+          "completedAt": "2025-07-27T20:15:00.000Z",
+          "timeSpent": 70,
+          "score": 100
+        }
+      ],
+      "quizzes": [
+        {
+          "id": "hist-ancient-q1",
+          "title": "Ancient Civilizations Quiz",
+          "completed": true,
+          "completedAt": "2025-07-27T18:00:00.000Z",
+          "score": 100,
+          "totalQuestions": 4,
+          "correctAnswers": 4
+        }
+      ]
+    },
+    {
+      "id": "prog_004",
+      "userId": "1753648313605",
+      "courseId": "sci-101",
+      "courseTitle": "Biology: Life Sciences",
+      "enrolledAt": "2025-07-27T20:31:53.605Z",
+      "lastAccessed": "2025-07-27T22:30:00.000Z",
+      "overallProgress": 40,
+      "lessonsCompleted": 1,
+      "totalLessons": 3,
+      "quizzesCompleted": 1,
+      "totalQuizzes": 2,
+      "assignmentsCompleted": 0,
+      "totalAssignments": 2,
+      "currentLesson": "sci-lesson-2",
+      "status": "in-progress",
+      "timeSpent": 90,
+      "lessons": [
+        {
+          "id": "sci-lesson-1",
+          "title": "Cell Biology Basics",
+          "completed": true,
+          "completedAt": "2025-07-27T21:00:00.000Z",
+          "timeSpent": 45,
+          "score": 78
+        },
+        {
+          "id": "sci-lesson-2",
+          "title": "Genetics and Heredity",
+          "completed": false,
+          "timeSpent": 0,
+          "score": 0
+        },
+        {
+          "id": "sci-lesson-3",
+          "title": "Ecosystems and Ecology",
+          "completed": false,
+          "timeSpent": 0,
+          "score": 0
+        }
+      ],
+      "quizzes": [
+        {
+          "id": "sci-bio-q1",
+          "title": "Cell Biology Quiz",
+          "completed": true,
+          "completedAt": "2025-07-27T21:45:00.000Z",
+          "score": 75,
+          "totalQuestions": 4,
+          "correctAnswers": 3
+        }
+      ]
+    },
+    {
+      "id": "prog_005",
+      "userId": "1753648313605",
+      "courseId": "comp-101",
+      "courseTitle": "Computer Science Fundamentals",
+      "enrolledAt": "2025-07-27T20:31:53.605Z",
+      "lastAccessed": "2025-07-27T22:00:00.000Z",
+      "overallProgress": 25,
+      "lessonsCompleted": 1,
+      "totalLessons": 3,
+      "quizzesCompleted": 0,
+      "totalQuizzes": 2,
+      "assignmentsCompleted": 0,
+      "totalAssignments": 3,
+      "currentLesson": "comp-lesson-2",
+      "status": "in-progress",
+      "timeSpent": 50,
+      "lessons": [
+        {
+          "id": "comp-lesson-1",
+          "title": "Programming Basics",
+          "completed": true,
+          "completedAt": "2025-07-27T21:30:00.000Z",
+          "timeSpent": 50,
+          "score": 85
+        },
+        {
+          "id": "comp-lesson-2",
+          "title": "Data Structures",
+          "completed": false,
+          "timeSpent": 0,
+          "score": 0
+        },
+        {
+          "id": "comp-lesson-3",
+          "title": "Algorithm Design",
+          "completed": false,
+          "timeSpent": 0,
+          "score": 0
+        }
+      ],
+      "quizzes": []
+    }
+  ]
 }

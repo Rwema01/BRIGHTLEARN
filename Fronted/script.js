@@ -1,32 +1,28 @@
+// API Base URL
+const BASE_URL = 'http://localhost:3000/api';
+
 document.addEventListener('DOMContentLoaded', function() {
-    // === LOGOUT FUNCTIONALITY (Enhanced) ===
-    const logoutBtn = document.getElementById('logout-btn');
+    // Check authentication
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
+    
+    if (!token || !userId) {
+        window.location.replace('login.html');
+        return;
+    }
+
+    // === LOGOUT FUNCTIONALITY ===
+    const logoutBtn = document.querySelector('.logout-btn');
     if (logoutBtn) {
         logoutBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            
-            // Clear all client-side storage
             localStorage.clear();
             sessionStorage.clear();
-            
-            // Clear cache headers (simulated)
-            fetch('/clear-cache', {
-                method: 'POST',
-                headers: {
-                    'Cache-Control': 'no-store, no-cache, must-revalidate'
-                }
-            }).catch(() => {}); // Silent fail if endpoint doesn't exist
-            
-            // Redirect with history manipulation
-            window.location.replace("login.html"); // replace() prevents back navigation
-            window.history.pushState(null, null, window.location.href);
-            window.onpopstate = function() {
-                window.history.go(1);
-            };
+            window.location.replace("login.html");
         });
     }
 
-    // === NAVIGATION HIGHLIGHT (Optimized) ===
+    // === NAVIGATION HIGHLIGHT ===
     const navLinks = document.querySelectorAll('.nav-links li a');
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 
@@ -34,41 +30,295 @@ document.addEventListener('DOMContentLoaded', function() {
         const linkPage = link.getAttribute('href').split('/').pop();
         if (linkPage === currentPage) {
             link.classList.add('active');
-            link.removeEventListener('click', handleNavClick); // Avoid duplicate handlers
         }
-        
-        link.addEventListener('click', handleNavClick);
     });
 
-    function handleNavClick() {
-        navLinks.forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
+    // === DASHBOARD INITIALIZATION ===
+    async function initializeDashboard() {
+        const token = localStorage.getItem('token');
+        const userId = localStorage.getItem('userId');
+
+        if (!token || !userId) {
+            window.location.replace('login.html');
+            return;
+        }
+
+        try {
+            // Fetch dashboard summary from backend
+            const dashboardResponse = await fetch(`${BASE_URL}/dashboard/${userId}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const dashboard = await dashboardResponse.json();
+
+            // Update welcome name
+            document.querySelector('.student-name').textContent = dashboard.name;
+
+            // Update learning overview
+            document.querySelector('.progress-details').innerHTML = `
+                <p>• Overall: ${dashboard.overallProgress}%</p>
+                <p>• Trend: ↗ ${dashboard.overallProgress}%</p>
+            `;
+
+            // Update quick stats
+            document.querySelector('.quick-stats ul').innerHTML = `
+                <li>• Total Courses: ${dashboard.totalCourses}</li>
+                <li>• Completed: ${dashboard.completedCourses}/${dashboard.totalCourses} (${dashboard.completedCourses > 0 ? Math.round((dashboard.completedCourses/dashboard.totalCourses)*100) : 0}%)</li>
+                <li>• Avg. Score: ${dashboard.avgScore}% (${dashboard.passing ? 'Passing' : 'Not Passing'})</li>
+                <li>• Streak: ${dashboard.streak} days 🔥</li>
+            `;
+
+            // Update recent activity
+            const activityList = document.querySelector('.activity-list');
+            activityList.innerHTML = dashboard.recentActivity.map(activity => `
+                <div class="activity-item">
+                    <span class="activity-date">${new Date(activity.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+                    <span class="activity-course">${activity.type || activity.description || 'Activity'}</span>
+                    <span class="activity-score passed">${activity.score ? activity.score + '%' : ''} ✅</span>
+                </div>
+            `).join('');
+
+            // Update progress chart (doughnut)
+            const ctx = document.getElementById('progressChart')?.getContext('2d');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Completed', 'Remaining'],
+                        datasets: [{
+                            data: [dashboard.overallProgress, 100-dashboard.overallProgress],
+                            backgroundColor: ['#3A86FF', '#E0E0E0'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        cutout: '70%',
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: { enabled: false }
+                        }
+                    }
+                });
+            }
+
+            // === DYNAMIC: YOUR COURSES ===
+            function getCourseIcon(title) {
+                const map = {
+                    'math': '🧮',
+                    'mathematics': '🧮',
+                    'english': '🖊️',
+                    'history': '🏛️',
+                    'science': '🔬',
+                    'algebra': '➗',
+                    'geometry': '📐',
+                    'literature': '📚',
+                    'civics': '🏛️',
+                    'writing': '✍️',
+                    'essay': '✍️',
+                    'civilization': '🏺',
+                };
+                const key = title.toLowerCase();
+                for (const k in map) {
+                    if (key.includes(k)) return map[k];
+                }
+                return '📘';
+            }
+
+            const coursesResponse = await fetch(`${BASE_URL}/students/${userId}/courses`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            const courses = await coursesResponse.json();
+            const courseCards = document.querySelector('.your-courses .course-cards');
+            if (courseCards && Array.isArray(courses)) {
+                courseCards.innerHTML = courses.map(course => `
+                    <div class="course-card" style="cursor:pointer" onclick="window.location.href='courses.html?courseId=${course.id}'">
+                        <div class="course-icon">${getCourseIcon(course.title)}</div>
+                        <h4>${course.title}</h4>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${course.progress || 0}%;"></div>
+                        </div>
+                        <p>Progress: ${course.progress || 0}%</p>
+                        <p>Last: ${course.grades && course.grades.length > 0 ? (course.grades[course.grades.length-1].score + '%') : '--'}</p>
+                        <p class="course-description">${course.description || ''}</p>
+                    </div>
+                `).join('');
+            }
+
+            // === DYNAMIC: CONTINUE LEARNING ===
+            const recResponse = await fetch(`${BASE_URL}/recommendations/user/${userId}`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            const recData = await recResponse.json();
+            const learningCards = document.querySelector('.continue-learning .learning-cards');
+            if (learningCards && recData && Array.isArray(recData.newCourses)) {
+                learningCards.innerHTML = recData.newCourses.map(course => `
+                    <div class="learning-card" style="cursor:pointer" onclick="window.location.href='courses.html?courseId=${course.id}'">
+                        <div class="course-icon">${getCourseIcon(course.title)}</div>
+                        <h4>${course.title}</h4>
+                        <p>New</p>
+                        <button>Start</button>
+                    </div>
+                `).join('');
+            }
+        } catch (error) {
+            console.error('Error initializing dashboard:', error);
+        }
     }
 
-    // === CHART.JS INIT (Unchanged) ===
-    const ctx = document.getElementById('progressChart')?.getContext('2d');
-    if (ctx) {
-        new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Completed', 'Remaining'],
-                datasets: [{
-                    data: [65, 35],
-                    backgroundColor: ['#3A86FF', '#E0E0E0'],
-                    borderWidth: 0
-                }]
+    // Initialize dashboard on load
+    initializeDashboard();
+
+    // === COURSES PAGE DYNAMIC RENDERING ===
+    if (window.location.pathname.endsWith('courses.html')) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get('courseId');
+        const token = localStorage.getItem('token');
+        const userId = localStorage.getItem('userId');
+        if (courseId && token && userId) {
+            // Hide all-courses grid, show single course view
+            const allCoursesGrid = document.querySelector('.course-cards-grid');
+            if (allCoursesGrid) allCoursesGrid.style.display = 'none';
+            // Fetch course details from backend
+            fetch(`${BASE_URL}/courses`)
+                .then(res => res.json())
+                .then(courses => {
+                    const course = (courses.courses || courses).find(c => c.id === courseId);
+                    if (!course) return;
+                    // Fetch user's progress for this course
+                    fetch(`${BASE_URL}/students/${userId}/courses`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    })
+                    .then(res => res.json())
+                    .then(userCourses => {
+                        const userCourse = userCourses.find(c => c.id === courseId);
+                        const isEnrolled = !!userCourse;
+                        const progress = userCourse ? userCourse.progress : 0;
+                        const lastGrade = userCourse && userCourse.grades && userCourse.grades.length > 0 
+                            ? userCourse.grades[userCourse.grades.length-1].score 
+                            : null;
+                        // Create single course view
+                        const contentSection = document.querySelector('.content-section');
+                        if (contentSection) {
+                            contentSection.innerHTML = `
+                                <div class="single-course-view">
+                                    <div class="course-header">
+                                        <h2>${course.title}</h2>
+                                        <div class="course-icon">${getCourseIcon(course.title)}</div>
+                                    </div>
+                                    <p class="course-description">${course.description || 'No description available.'}</p>
+                                    
+                                    ${isEnrolled ? `
+                                        <div class="course-progress">
+                                            <h3>Your Progress</h3>
+                                            <div class="progress-bar">
+                                                <div class="progress-fill" style="width: ${progress}%"></div>
+                                            </div>
+                                            <p>${progress}% Complete</p>
+                                            ${lastGrade ? `<p>Last Grade: ${lastGrade}%</p>` : ''}
+                                        </div>
+                                    ` : `
+                                        <div class="enrollment-section">
+                                            <h3>Enroll in this course</h3>
+                                            <p>Start your learning journey with this course.</p>
+                                            <button onclick="enrollInCourse('${courseId}')" class="enroll-btn">Enroll Now</button>
+                                        </div>
+                                    `}
+                                    
+                                    <div class="course-details">
+                                        <h3>Course Information</h3>
+                                        <div class="detail-grid">
+                                            <div class="detail-item">
+                                                <strong>Instructor:</strong> ${course.instructor ? course.instructor.name : 'N/A'}
+                                            </div>
+                                            <div class="detail-item">
+                                                <strong>Email:</strong> ${course.instructor ? course.instructor.email : 'N/A'}
+                                            </div>
+                                            <div class="detail-item">
+                                                <strong>Course ID:</strong> ${course.id}
+                                            </div>
+                                            <div class="detail-item">
+                                                <strong>Status:</strong> ${isEnrolled ? 'Enrolled' : 'Not Enrolled'}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    ${isEnrolled ? `
+                                        <div class="course-actions">
+                                            <h3>Continue Learning</h3>
+                                            <a href="lessons.html?courseId=${courseId}" class="action-btn">View Lessons</a>
+                                            <a href="assignments.html?courseId=${courseId}" class="action-btn">Assignments</a>
+                                            <a href="quizzes.html?courseId=${courseId}" class="action-btn">Quizzes</a>
+                                        </div>
+                                    ` : ''}
+                                    
+                                    <a href="courses.html" class="back-btn">&larr; Back to all courses</a>
+                                </div>
+                            `;
+                        }
+                    });
+                });
+        }
+    }
+
+    // === ENROLLMENT FUNCTION ===
+    window.enrollInCourse = function(courseId) {
+        const token = localStorage.getItem('token');
+        const userId = localStorage.getItem('userId');
+        if (!token || !userId) {
+            alert('Please log in to enroll in courses.');
+            return;
+        }
+        
+        fetch(`${BASE_URL}/students/${userId}/enroll`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
-            options: {
-                cutout: '70%',
-                plugins: {
-                    legend: { display: false },
-                    tooltip: { enabled: false }
+            body: JSON.stringify({ courseId })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.message) {
+                alert('Successfully enrolled!');
+                location.reload(); // Refresh to show enrolled state
+            } else {
+                alert('Enrollment failed. Please try again.');
                 }
-            }
+        })
+        .catch(err => {
+            console.error('Enrollment error:', err);
+            alert('Enrollment failed. Please try again.');
+        });
+    };
+
+// PROFILE DROPDOWN
+// Profile dropdown functionality
+    // Profile and Notification Links
+    const profileLink = document.querySelector('.profile-link');
+    const notificationLink = document.querySelector('.notification-link');
+
+    if (profileLink) {
+        profileLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = 'profile.html';
         });
     }
-// PROFILE DROPDOWN
-const profileDropdown = document.querySelector('.profile-dropdown');
+
+    if (notificationLink) {
+        notificationLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = 'notifications.html';
+        });
+    }
+    const profileDropdown = document.querySelector('.profile-dropdown');
+if (profileDropdown) {
+    profileDropdown.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.href = 'profile.html';
+    });
+    }
 const profileIcon = document.querySelector('.profile-icon');
 
 // NOTIFICATION DROPDOWN
@@ -425,6 +675,240 @@ if (profileIcon && profileDropdown && notificationIcon && notificationDropdown) 
 
     // Initialize notifications
     initNotifications();
+
+    // === LESSONS PAGE DYNAMIC RENDERING ===
+    if (window.location.pathname.endsWith('lessons.html')) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get('courseId');
+        const token = localStorage.getItem('token');
+        const userId = localStorage.getItem('userId');
+        
+        if (courseId && token && userId) {
+            // Fetch course details and lessons
+            Promise.all([
+                fetch(`${BASE_URL}/courses`).then(res => res.json()),
+                fetch(`${BASE_URL}/students/${userId}/courses`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                }).then(res => res.json())
+            ]).then(([coursesData, userCourses]) => {
+                const course = (coursesData.courses || coursesData).find(c => c.id === courseId);
+                const userCourse = userCourses.find(c => c.id === courseId);
+                
+                if (course) {
+                    // Update page title and course name
+                    document.getElementById('course-title').textContent = course.title;
+                    document.getElementById('course-name').textContent = course.title;
+                    
+                    // Update progress
+                    const progress = userCourse ? userCourse.progress : 0;
+                    document.getElementById('course-progress').style.width = `${progress}%`;
+                    document.getElementById('progress-text').textContent = `${progress}% Complete`;
+                    
+                    // Generate sample lessons (in a real app, this would come from backend)
+                    const lessons = [
+                        { id: 1, title: 'Introduction to Course', status: 'completed', duration: '30 min' },
+                        { id: 2, title: 'Basic Concepts', status: 'completed', duration: '45 min' },
+                        { id: 3, title: 'Advanced Topics', status: 'in-progress', duration: '60 min' },
+                        { id: 4, title: 'Practice Exercises', status: 'not-started', duration: '30 min' },
+                        { id: 5, title: 'Final Review', status: 'not-started', duration: '45 min' }
+                    ];
+                    
+                    const lessonsGrid = document.getElementById('lessons-grid');
+                    lessonsGrid.innerHTML = lessons.map(lesson => `
+                        <div class="lesson-card ${lesson.status}">
+                            <div class="lesson-header">
+                                <h4>${lesson.title}</h4>
+                                <span class="lesson-status ${lesson.status}">${lesson.status.replace('-', ' ')}</span>
+                            </div>
+                            <p class="lesson-duration">${lesson.duration}</p>
+                            <button class="lesson-btn" onclick="startLesson(${lesson.id})">
+                                ${lesson.status === 'completed' ? 'Review' : lesson.status === 'in-progress' ? 'Continue' : 'Start'}
+                            </button>
+                        </div>
+                    `).join('');
+                }
+            });
+        }
+    }
+
+    // === ASSIGNMENTS PAGE DYNAMIC RENDERING ===
+    if (window.location.pathname.endsWith('assignments.html')) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get('courseId');
+        const token = localStorage.getItem('token');
+        const userId = localStorage.getItem('userId');
+        
+        if (courseId && token && userId) {
+            // Fetch course details and assignments
+            Promise.all([
+                fetch(`${BASE_URL}/courses`).then(res => res.json()),
+                fetch(`${BASE_URL}/students/${userId}/courses`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                }).then(res => res.json())
+            ]).then(([coursesData, userCourses]) => {
+                const course = (coursesData.courses || coursesData).find(c => c.id === courseId);
+                const userCourse = userCourses.find(c => c.id === courseId);
+                
+                if (course) {
+                    // Update page title and course name
+                    document.getElementById('course-title').textContent = course.title;
+                    document.getElementById('course-name').textContent = course.title;
+                    
+                    // Generate sample assignments (in a real app, this would come from backend)
+                    const assignments = [
+                        { id: 1, title: 'Assignment 1', dueDate: '2024-01-15', status: 'submitted', grade: 85 },
+                        { id: 2, title: 'Assignment 2', dueDate: '2024-01-22', status: 'pending', grade: null },
+                        { id: 3, title: 'Assignment 3', dueDate: '2024-01-29', status: 'not-started', grade: null }
+                    ];
+                    
+                    // Update stats
+                    const total = assignments.length;
+                    const completed = assignments.filter(a => a.status === 'submitted').length;
+                    const dueSoon = assignments.filter(a => a.status !== 'submitted' && new Date(a.dueDate) < new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)).length;
+                    
+                    document.getElementById('total-assignments').textContent = total;
+                    document.getElementById('completed-assignments').textContent = completed;
+                    document.getElementById('due-soon').textContent = dueSoon;
+                    
+                    const assignmentsGrid = document.getElementById('assignments-grid');
+                    assignmentsGrid.innerHTML = assignments.map(assignment => `
+                        <div class="assignment-card ${assignment.status}">
+                            <div class="assignment-header">
+                                <h4>${assignment.title}</h4>
+                                <span class="assignment-status ${assignment.status}">${assignment.status.replace('-', ' ')}</span>
+                            </div>
+                            <p class="assignment-due">Due: ${new Date(assignment.dueDate).toLocaleDateString()}</p>
+                            ${assignment.grade ? `<p class="assignment-grade">Grade: ${assignment.grade}%</p>` : ''}
+                            <button class="assignment-btn" onclick="openAssignment(${assignment.id})">
+                                ${assignment.status === 'submitted' ? 'View' : assignment.status === 'pending' ? 'Submit' : 'Start'}
+                            </button>
+                        </div>
+                    `).join('');
+                }
+            });
+        }
+    }
+
+    // === QUIZZES PAGE DYNAMIC RENDERING ===
+    if (window.location.pathname.endsWith('quizzes.html')) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get('courseId');
+        const token = localStorage.getItem('token');
+        const userId = localStorage.getItem('userId');
+        
+        if (courseId && token && userId) {
+            // Fetch course details and quizzes
+            Promise.all([
+                fetch(`${BASE_URL}/courses`).then(res => res.json()),
+                fetch(`${BASE_URL}/students/${userId}/courses`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                }).then(res => res.json()),
+                fetch(`${BASE_URL}/quizzes/course/${courseId}`).then(res => res.json()).catch(() => [])
+            ]).then(([coursesData, userCourses, quizzesData]) => {
+                const course = (coursesData.courses || coursesData).find(c => c.id === courseId);
+                const userCourse = userCourses.find(c => c.id === courseId);
+                const quizzes = quizzesData.quizzes || quizzesData || [];
+                
+                if (course) {
+                    // Update page title and course name
+                    document.getElementById('course-title').textContent = course.title;
+                    document.getElementById('course-name').textContent = course.title;
+                    
+                    // Generate sample quizzes if none from backend
+                    const sampleQuizzes = quizzes.length > 0 ? quizzes : [
+                        { id: 1, title: 'Quiz 1: Basic Concepts', questions: 10, status: 'completed', score: 85 },
+                        { id: 2, title: 'Quiz 2: Advanced Topics', questions: 15, status: 'not-started', score: null },
+                        { id: 3, title: 'Final Quiz', questions: 20, status: 'not-started', score: null }
+                    ];
+                    
+                    // Update stats
+                    const total = sampleQuizzes.length;
+                    const completed = sampleQuizzes.filter(q => q.status === 'completed').length;
+                    const avgScore = completed > 0 ? 
+                        Math.round(sampleQuizzes.filter(q => q.score).reduce((sum, q) => sum + q.score, 0) / completed) : 0;
+                    
+                    document.getElementById('total-quizzes').textContent = total;
+                    document.getElementById('completed-quizzes').textContent = completed;
+                    document.getElementById('avg-score').textContent = `${avgScore}%`;
+                    
+                    const quizzesGrid = document.getElementById('quizzes-grid');
+                    quizzesGrid.innerHTML = sampleQuizzes.map(quiz => `
+                        <div class="quiz-card ${quiz.status}">
+                            <div class="quiz-header">
+                                <h4>${quiz.title}</h4>
+                                <span class="quiz-status ${quiz.status}">${quiz.status.replace('-', ' ')}</span>
+                            </div>
+                            <p class="quiz-questions">${quiz.questions} questions</p>
+                            ${quiz.score ? `<p class="quiz-score">Score: ${quiz.score}%</p>` : ''}
+                            <button class="quiz-btn" onclick="startQuiz(${quiz.id})">
+                                ${quiz.status === 'completed' ? 'Review' : 'Start Quiz'}
+                            </button>
+                        </div>
+                    `).join('');
+                }
+            });
+        }
+    }
+
+    // === HELPER FUNCTIONS FOR LESSONS/ASSIGNMENTS/QUIZZES ===
+    window.startLesson = function(lessonId) {
+        alert(`Starting lesson ${lessonId}. In a real app, this would open the lesson content.`);
+    };
+
+    window.openAssignment = function(assignmentId) {
+        alert(`Opening assignment ${assignmentId}. In a real app, this would open the assignment submission form.`);
+    };
+
+    window.startQuiz = function(quizId) {
+        alert(`Starting quiz ${quizId}. In a real app, this would open the quiz interface.`);
+    };
+
+    // === NOTIFICATION COUNT ===
+    async function updateNotificationCount() {
+        const token = localStorage.getItem('token');
+        const userId = localStorage.getItem('userId');
+        
+        if (!token || !userId) return;
+
+        try {
+            const response = await fetch(`http://localhost:3000/api/notifications/user/${userId}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                const notifications = await response.json();
+                const unreadCount = notifications.filter(n => !n.read).length;
+                
+                // Update notification icon with count
+                const notificationIcon = document.querySelector('.notification-icon');
+                if (notificationIcon) {
+                    // Remove existing badge
+                    const existingBadge = notificationIcon.querySelector('.notification-badge');
+                    if (existingBadge) {
+                        existingBadge.remove();
+                    }
+                    
+                    // Add new badge if there are unread notifications
+                    if (unreadCount > 0) {
+                        const badge = document.createElement('span');
+                        badge.className = 'notification-badge';
+                        badge.textContent = unreadCount > 99 ? '99+' : unreadCount;
+                        notificationIcon.appendChild(badge);
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching notification count:', error);
+        }
+    }
+
+    // Initialize notification count
+    updateNotificationCount();
+
+    // === PROFILE AND NOTIFICATION LINKS ===
 });
 
 // Certificate Functions

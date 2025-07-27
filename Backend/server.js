@@ -21,6 +21,7 @@ const QUIZZES_DB = path.join(__dirname, 'data', 'quizzes.json');
 const GRADES_DB = path.join(__dirname, 'data', 'grades.json');
 const ACTIVITIES_DB = path.join(__dirname, 'data', 'activities.json');
 const ACHIEVEMENTS_DB = path.join(__dirname, 'data', 'achievements.json');
+const NOTIFICATIONS_DB = path.join(__dirname, 'data', 'notifications.json');
 
 // Helper functions
 async function readJSON(filePath) {
@@ -121,6 +122,60 @@ app.get('/api/progress/:userId', async (req, res) => {
     }
 });
 
+// Get specific course progress
+app.get('/api/progress/:userId/course/:courseId', async (req, res) => {
+    try {
+        const { userId, courseId } = req.params;
+        const progressData = await readJSON(PROGRESS_DB);
+        const courseProgress = progressData.progress.find(p => p.userId === userId && p.courseId === courseId);
+        
+        if (!courseProgress) {
+            return res.status(404).json({ message: 'Course progress not found' });
+        }
+        
+        res.json(courseProgress);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+// Update lesson completion
+app.put('/api/progress/:userId/course/:courseId/lesson/:lessonId', async (req, res) => {
+    try {
+        const { userId, courseId, lessonId } = req.params;
+        const { completed, score, timeSpent } = req.body;
+        
+        const progressData = await readJSON(PROGRESS_DB);
+        const courseProgress = progressData.progress.find(p => p.userId === userId && p.courseId === courseId);
+        
+        if (!courseProgress) {
+            return res.status(404).json({ message: 'Course progress not found' });
+        }
+        
+        const lesson = courseProgress.lessons.find(l => l.id === lessonId);
+        if (lesson) {
+            lesson.completed = completed;
+            if (completed) {
+                lesson.completedAt = new Date().toISOString();
+                lesson.score = score || 0;
+                lesson.timeSpent = timeSpent || 0;
+            }
+        }
+        
+        // Recalculate overall progress
+        const completedLessons = courseProgress.lessons.filter(l => l.completed).length;
+        courseProgress.overallProgress = Math.round((completedLessons / courseProgress.totalLessons) * 100);
+        courseProgress.lessonsCompleted = completedLessons;
+        courseProgress.lastAccessed = new Date().toISOString();
+        
+        await writeJSON(PROGRESS_DB, progressData);
+        
+        res.json(courseProgress);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
 // Quiz Routes
 app.get('/api/quizzes/course/:courseId', async (req, res) => {
     try {
@@ -215,12 +270,107 @@ app.post('/api/quiz/:quizId/submit', async (req, res) => {
     }
 });
 
+// Submit quiz result
+app.post('/api/quizzes/:quizId/submit', async (req, res) => {
+    try {
+        const { quizId } = req.params;
+        const { userId, answers, timeSpent } = req.body;
+        
+        // Get quiz data
+        const quizzesData = await readJSON(QUIZZES_DB);
+        const quiz = quizzesData.quizzes.find(q => q.id === quizId);
+        
+        if (!quiz) {
+            return res.status(404).json({ message: 'Quiz not found' });
+        }
+        
+        // Calculate score
+        let correctAnswers = 0;
+        const results = quiz.questions.map((question, index) => {
+            const isCorrect = answers[index] === question.correctAnswer;
+            if (isCorrect) correctAnswers++;
+            return {
+                questionId: question.id,
+                userAnswer: answers[index],
+                correctAnswer: question.correctAnswer,
+                isCorrect,
+                explanation: question.explanation
+            };
+        });
+        
+        const score = Math.round((correctAnswers / quiz.totalQuestions) * 100);
+        const passed = score >= quiz.passingScore;
+        
+        // Create grade record
+        const gradesData = await readJSON(GRADES_DB);
+        const newGrade = {
+            id: `grade_${Date.now()}`,
+            userId,
+            courseId: quiz.courseId,
+            courseTitle: quiz.title,
+            type: 'quiz',
+            title: quiz.title,
+            quizId,
+            score,
+            maxScore: 100,
+            percentage: score,
+            status: passed ? 'passed' : 'failed',
+            completedAt: new Date().toISOString(),
+            timeSpent,
+            correctAnswers,
+            totalQuestions: quiz.totalQuestions,
+            feedback: passed ? 'Good job! Keep up the excellent work.' : 'Review the material and try again.',
+            results
+        };
+        
+        gradesData.grades.push(newGrade);
+        await writeJSON(GRADES_DB, gradesData);
+        
+        // Update progress
+        const progressData = await readJSON(PROGRESS_DB);
+        const courseProgress = progressData.progress.find(p => p.userId === userId && p.courseId === quiz.courseId);
+        
+        if (courseProgress) {
+            const existingQuiz = courseProgress.quizzes.find(q => q.id === quizId);
+            if (existingQuiz) {
+                existingQuiz.completed = true;
+                existingQuiz.completedAt = new Date().toISOString();
+                existingQuiz.score = score;
+                existingQuiz.correctAnswers = correctAnswers;
+            } else {
+                courseProgress.quizzes.push({
+                    id: quizId,
+                    title: quiz.title,
+                    completed: true,
+                    completedAt: new Date().toISOString(),
+                    score,
+                    totalQuestions: quiz.totalQuestions,
+                    correctAnswers
+                });
+            }
+            
+            courseProgress.quizzesCompleted = courseProgress.quizzes.filter(q => q.completed).length;
+            await writeJSON(PROGRESS_DB, progressData);
+        }
+        
+        res.json({
+            grade: newGrade,
+            results,
+            passed,
+            score
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
 // Grades Routes
 app.get('/api/grades/user/:userId', async (req, res) => {
     try {
         const { userId } = req.params;
         const gradesData = await readJSON(GRADES_DB);
         const userGrades = gradesData.grades.filter(g => g.userId === userId);
+        
         res.json(userGrades);
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
@@ -457,30 +607,79 @@ app.put('/api/settings/user/:userId', async (req, res) => {
 app.get('/api/notifications/user/:userId', async (req, res) => {
     try {
         const { userId } = req.params;
-        const activities = await readJSON(ACTIVITIES_DB);
-        const achievements = await readJSON(ACHIEVEMENTS_DB);
-        
-        // Combine recent activities and achievements as notifications
-        const recentActivities = activities.activities
-            .filter(a => a.userId === userId)
-            .slice(0, 10)
-            .map(a => ({
-                type: 'ACTIVITY',
-                ...a
-            }));
-
-        const recentAchievements = achievements.achievements
-            .filter(a => a.userId === userId)
-            .slice(0, 10)
-            .map(a => ({
-                type: 'ACHIEVEMENT',
-                ...a
-            }));
-
-        const notifications = [...recentActivities, ...recentAchievements]
+        const notificationsData = await readJSON(NOTIFICATIONS_DB);
+        const userNotifications = notificationsData.notifications
+            .filter(n => n.userId === userId)
             .sort((a, b) => new Date(b.timestamp || b.earnedAt) - new Date(a.timestamp || a.earnedAt));
 
-        res.json(notifications.slice(0, 20)); // Return top 20 most recent notifications
+        res.json(userNotifications.slice(0, 20)); // Return top 20 most recent notifications
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+// Mark notification as read
+app.put('/api/notifications/:notificationId/read', async (req, res) => {
+    try {
+        const { notificationId } = req.params;
+        const notificationsData = await readJSON(NOTIFICATIONS_DB);
+        
+        const notification = notificationsData.notifications.find(n => n.id === notificationId);
+        if (!notification) {
+            return res.status(404).json({ message: 'Notification not found' });
+        }
+
+        notification.read = true;
+        await writeJSON(NOTIFICATIONS_DB, notificationsData);
+        
+        res.json(notification);
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+// Mark all notifications as read for a user
+app.put('/api/notifications/user/:userId/read-all', async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const notificationsData = await readJSON(NOTIFICATIONS_DB);
+        
+        notificationsData.notifications.forEach(notification => {
+            if (notification.userId === userId) {
+                notification.read = true;
+            }
+        });
+        
+        await writeJSON(NOTIFICATIONS_DB, notificationsData);
+        
+        res.json({ message: 'All notifications marked as read' });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+// Create new notification
+app.post('/api/notifications', async (req, res) => {
+    try {
+        const { userId, type, title, message, priority = 'medium', actionUrl = null } = req.body;
+        const notificationsData = await readJSON(NOTIFICATIONS_DB);
+        
+        const newNotification = {
+            id: `notif_${Date.now()}`,
+            userId,
+            type,
+            title,
+            message,
+            timestamp: new Date().toISOString(),
+            read: false,
+            priority,
+            actionUrl
+        };
+
+        notificationsData.notifications.push(newNotification);
+        await writeJSON(NOTIFICATIONS_DB, notificationsData);
+        
+        res.status(201).json(newNotification);
     } catch (error) {
         res.status(500).json({ message: 'Server error' });
     }
@@ -516,6 +715,73 @@ app.get('/api/recommendations/user/:userId', async (req, res) => {
         res.json({
             newCourses: recommendedCourses,
             advancedCourses: advancedRecommendations
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+// Dashboard Summary Endpoint
+app.get('/api/dashboard/:userId', async (req, res) => {
+    try {
+        const { userId } = req.params;
+        // Load all needed data
+        const users = await readJSON(USERS_DB);
+        const courses = await readJSON(COURSES_DB);
+        const progress = await readJSON(PROGRESS_DB);
+        const grades = await readJSON(GRADES_DB);
+        const activities = await readJSON(ACTIVITIES_DB);
+        const achievements = await readJSON(ACHIEVEMENTS_DB);
+
+        // User info
+        const user = users.users.find(u => u.id === userId);
+        if (!user) return res.status(404).json({ message: 'User not found' });
+
+        // Progress
+        const userProgress = progress.progress.filter(p => p.userId === userId);
+        const totalCourses = courses.courses.length;
+        const enrolledCourses = new Set(userProgress.map(p => p.courseId));
+        const completedCourses = userProgress.filter(p => p.progress >= 100).length;
+        const overallProgress = userProgress.length > 0 ? Math.round(userProgress.reduce((sum, p) => sum + p.progress, 0) / userProgress.length) : 0;
+
+        // Grades
+        const userGrades = grades.grades.filter(g => g.userId === userId);
+        const avgScore = userGrades.length > 0 ? Math.round(userGrades.reduce((sum, g) => sum + g.score, 0) / userGrades.length) : 0;
+        const passing = avgScore >= 60;
+
+        // Streak (days with activity)
+        const userActivities = activities.activities.filter(a => a.userId === userId);
+        const days = userActivities.map(a => a.timestamp.split('T')[0]);
+        const uniqueDays = Array.from(new Set(days)).sort().reverse();
+        let streak = 0;
+        let current = new Date();
+        for (let i = 0; i < uniqueDays.length; i++) {
+            const day = new Date(uniqueDays[i]);
+            if (i === 0 && (current - day) / (1000 * 60 * 60 * 24) > 1) break;
+            if (i > 0) {
+                const prev = new Date(uniqueDays[i - 1]);
+                if ((prev - day) / (1000 * 60 * 60 * 24) !== 1) break;
+            }
+            streak++;
+        }
+
+        // Recent activity
+        const recentActivity = userActivities.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)).slice(0, 5);
+
+        // Recommendations
+        const gradesSet = new Set(userGrades.map(g => g.courseId));
+        const recommendedCourses = courses.courses.filter(c => !enrolledCourses.has(c.id)).slice(0, 3);
+
+        res.json({
+            name: user.fullName || user.name || 'Student',
+            overallProgress,
+            totalCourses,
+            completedCourses,
+            avgScore,
+            passing,
+            streak,
+            recentActivity,
+            recommendedCourses
         });
     } catch (error) {
         res.status(500).json({ message: 'Server error' });

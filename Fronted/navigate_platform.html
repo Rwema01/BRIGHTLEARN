@@ -1,139 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRIGHTLEARN - Navigate Platform</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Navigate the Platform – BRIGHTLEARN Help</title>
+  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  >
 </head>
 <body>
-    <div class="app-container">
-        <!-- Left Navigation -->
-        <nav class="left-nav">
-            <div class="nav-header">
-                <div class="logo-container">
-                    <img src="BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
-                </div>
-            </div>
-            
-            <ul class="nav-links">
-                <li>
-                    <a href="index.html">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <span>DASHBOARD</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="courses.html">
-                        <i class="fas fa-book-open"></i>
-                        <span>COURSES</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="history.html">
-                        <i class="fas fa-history"></i>
-                        <span>HISTORY</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="help.html" class="active">
-                        <i class="fas fa-question-circle"></i>
-                        <span>HELP</span>
-                    </a>
-                </li>
-            </ul>
-            
-            <div class="logout-container">
-                <a href="logout.html" class="logout-btn">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>LOGOUT</span>
-                </a>
-            </div>
-        </nav>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Top Bar -->
-            <header class="top-bar">
-                <div class="top-icons">
-                    <div class="search-container">
-                        <input type="text" placeholder="Search activities..." class="search-input">
-                        <i class="fas fa-search search-icon"></i>
-                    </div>
-                    
-                    <!-- Simple Notification Link -->
-                    <a href="notifications.html" class="notification-link">
-                        <i class="fas fa-bell notification-icon"></i>
-                    </a>
-                    
-                    <!-- Simple Profile Link -->
-                    <a href="profile.html" class="profile-link">
-                        <i class="fas fa-user-circle profile-icon"></i>
-                    </a>
-                </div>
-            </header>
-
-            <!-- Navigation Guide Content -->
-            <div class="dashboard-content">
-                <!-- Breadcrumbs -->
-                <div class="breadcrumbs">
-                    <a href="index.html">Home</a> > <a href="help.html">Help</a> > <a href="navigate_platform.html">Navigate Platform</a>
-                </div>
-                
-                <!-- Platform Navigation Section -->
-                <div class="content-card platform-guide">
-                    <h1 class="content-title">How to Navigate the Platform</h1>
-                    <div class="content-body">
-                        <p class="intro-text">BRIGHTLEARN provides a clean, user-friendly interface with useful features:</p>
-                        
-                        <ul class="feature-list">
-                            <li class="feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-tachometer-alt"></i>
-                                </div>
-                                <div class="feature-content">
-                                    <h3 class="feature-title">Dashboard</h3>
-                                    <p class="feature-description">View summary stats, current course progress, and important notifications.</p>
-                                </div>
-                            </li>
-                            <li class="feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-book-open"></i>
-                                </div>
-                                <div class="feature-content">
-                                    <h3 class="feature-title">Courses</h3>
-                                    <p class="feature-description">Browse and select interactive lessons for Math, English & History.</p>
-                                </div>
-                            </li>
-                            <li class="feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-history"></i>
-                                </div>
-                                <div class="feature-content">
-                                    <h3 class="feature-title">History</h3>
-                                    <p class="feature-description">Review completed activities and quiz scores with visual feedback.</p>
-                                </div>
-                            </li>
-                            <li class="feature-item">
-                                <div class="feature-icon">
-                                    <i class="fas fa-question-circle"></i>
-                                </div>
-                                <div class="feature-content">
-                                    <h3 class="feature-title">Help</h3>
-                                    <p class="feature-description">Access documentation, FAQs, and support resources.</p>
-                                </div>
-                            </li>
-                        </ul>
-                        
-                        <div class="navigation-tip">
-                            <i class="fas fa-lightbulb tip-icon"></i>
-                            <p>Navigate between sections easily using the sidebar menu.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <h2>BRIGHTLEARN</h2>
+      <nav>
+        <ul>
+          <li><a href="index.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+          <li><a href="courses.html"><i class="fas fa-book-open"></i> Courses</a></li>
+          <li><a href="history.html"><i class="fas fa-history"></i> History</a></li>
+          <li><a href="help.html" class="active"><i class="fas fa-question-circle"></i> Help</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <main class="main-content">
+      <header class="topbar">
+        <div class="user-profile"><i class="fas fa-user-circle"></i> Logged in User</div>
+      </header>
+      <div class="page-content">
+        <div class="breadcrumbs">
+          <a href="index.html">Home</a> › <a href="help.html">Help</a> › Navigate Platform
+        </div>
+        <h1>How to Navigate the Platform</h1>
+        <p>BRIGHTLEARN provides a clean, user‑friendly interface with useful features:</p>
+        <ul>
+          <li><strong>Dashboard:</strong> View summary stats, current course progress, notifications.</li>
+          <li><strong>Courses:</strong> Browse and select interactive lessons for Math, English & History.</li>
+          <li><strong>History:</strong> Review completed activities and quiz scores with visual feedback.</li>
+          <li><strong>Help:</strong> Access documentation, FAQs, and support resources.</li>
+        </ul>
+        <p>Navigate between sections easily using the sidebar.</p>
+      </div>
+    </main>
+  </div>
 </body>
 </html>

@@ -1,142 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRIGHTLEARN - Troubleshooting</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Troubleshooting Common Issues – BRIGHTLEARN Help</title>
+  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  >
 </head>
 <body>
-    <div class="app-container">
-        <!-- Left Navigation -->
-        <nav class="left-nav">
-            <div class="nav-header">
-                <div class="logo-container">
-                    <img src="BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
-                </div>
-            </div>
-            
-            <ul class="nav-links">
-                <li>
-                    <a href="index.html">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <span>DASHBOARD</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="courses.html">
-                        <i class="fas fa-book-open"></i>
-                        <span>COURSES</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="history.html">
-                        <i class="fas fa-history"></i>
-                        <span>HISTORY</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="help.html" class="active">
-                        <i class="fas fa-question-circle"></i>
-                        <span>HELP</span>
-                    </a>
-                </li>
-            </ul>
-            
-            <div class="logout-container">
-                <a href="logout.html" class="logout-btn">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>LOGOUT</span>
-                </a>
-            </div>
-        </nav>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Top Bar -->
-            <header class="top-bar">
-                <div class="top-icons">
-                    <div class="search-container">
-                        <input type="text" placeholder="Search activities..." class="search-input">
-                        <i class="fas fa-search search-icon"></i>
-                    </div>
-                    
-                    <!-- Simple Notification Link -->
-                    <a href="notifications.html" class="notification-link">
-                        <i class="fas fa-bell notification-icon"></i>
-                    </a>
-                    
-                    <!-- Simple Profile Link -->
-                    <a href="profile.html" class="profile-link">
-                        <i class="fas fa-user-circle profile-icon"></i>
-                    </a>
-                </div>
-            </header>
-
-            <!-- Troubleshooting Content -->
-            <div class="dashboard-content">
-                <!-- Breadcrumbs -->
-                <div class="breadcrumbs">
-                    <a href="index.html">Home</a> > <a href="help.html">Help</a> > <a href="troubleshooting.html">Troubleshooting</a>
-                </div>
-                
-                <!-- Troubleshooting Section -->
-                <div class="content-card troubleshooting">
-                    <h1 class="content-title">Troubleshooting Common Issues</h1>
-                    <div class="content-body">
-                        <p class="intro-text">If you're facing any challenges, try the following solutions:</p>
-                        
-                        <div class="solutions-list">
-                            <div class="solution-item">
-                                <div class="solution-icon error">
-                                    <i class="fas fa-exclamation-triangle"></i>
-                                </div>
-                                <div class="solution-content">
-                                    <h3 class="solution-title">Pages won't load</h3>
-                                    <p class="solution-detail">Clear browser cache and refresh</p>
-                                </div>
-                            </div>
-                            
-                            <div class="solution-item">
-                                <div class="solution-icon warning">
-                                    <i class="fas fa-code"></i>
-                                </div>
-                                <div class="solution-content">
-                                    <h3 class="solution-title">Quizzes or lessons not responding</h3>
-                                    <p class="solution-detail">Ensure JavaScript is enabled</p>
-                                </div>
-                            </div>
-                            
-                            <div class="solution-item">
-                                <div class="solution-icon info">
-                                    <i class="fas fa-sync-alt"></i>
-                                </div>
-                                <div class="solution-content">
-                                    <h3 class="solution-title">Progress or scores not updating</h3>
-                                    <p class="solution-detail">Try logging out and back in or switch browsers</p>
-                                </div>
-                            </div>
-                            
-                            <div class="solution-item">
-                                <div class="solution-icon settings">
-                                    <i class="fas fa-bell"></i>
-                                </div>
-                                <div class="solution-content">
-                                    <h3 class="solution-title">No notifications</h3>
-                                    <p class="solution-detail">Make sure notifications are enabled in your profile settings</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-note">
-                            <i class="fas fa-life-ring note-icon"></i>
-                            <p>If problems continue, reach out via the Help Center contact options.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
+  <div class="dashboard">
+    <aside class="sidebar">
+      <h2>BRIGHTLEARN</h2>
+      <nav>
+        <ul>
+          <li><a href="index.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+          <li><a href="courses.html"><i class="fas fa-book-open"></i> Courses</a></li>
+          <li><a href="history.html"><i class="fas fa-history"></i> History</a></li>
+          <li><a href="help.html" class="active"><i class="fas fa-question-circle"></i> Help</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <main class="main-content">
+      <header class="topbar">
+        <div class="user-profile"><i class="fas fa-user-circle"></i> Logged in User</div>
+      </header>
+      <div class="page-content">
+        <div class="breadcrumbs">
+          <a href="index.html">Home</a> › <a href="help.html">Help</a> › Troubleshooting
+        </div>
+        <h1>Troubleshooting Common Issues</h1>
+        <p>If you're facing any challenges, try the following solutions:</p>
+        <ul>
+          <li><strong>Pages won’t load:</strong> Clear browser cache and refresh.</li>
+          <li><strong>Quizzes or lessons not responding:</strong> Ensure JavaScript is enabled.</li>
+          <li><strong>Progress or scores not updating:</strong> Try logging out and back in or switch browsers.</li>
+          <li><strong>No notifications:</strong> Make sure notifications are enabled in your profile settings.</li>
+        </ul>
+        <p>If problems continue, reach out via the Help Center contact options.</p>
+      </div>
+    </main>
+  </div>
 </body>
 </html>

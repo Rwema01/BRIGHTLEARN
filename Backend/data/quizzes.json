@@ -4,13 +4,86 @@
             "id": "math-alg-q1",
             "courseId": "math-101",
             "subject": "algebra",
-            "title": "Algebra Quiz 1",
+            "title": "Algebra Fundamentals Quiz",
+            "description": "Test your understanding of basic algebraic concepts",
+            "duration": "30 minutes",
+            "totalQuestions": 5,
+            "passingScore": 70,
             "questions": [
                 {
                     "id": 1,
                     "question": "Solve for x: 2x + 5 = 13",
                     "options": ["x = 4", "x = 6", "x = 8", "x = 3"],
-                    "correctAnswer": "x = 4"
+                    "correctAnswer": "x = 4",
+                    "explanation": "Subtract 5 from both sides: 2x = 8, then divide by 2: x = 4"
+                },
+                {
+                    "id": 2,
+                    "question": "What is the value of x in the equation: 3x - 7 = 14",
+                    "options": ["x = 5", "x = 7", "x = 9", "x = 11"],
+                    "correctAnswer": "x = 7",
+                    "explanation": "Add 7 to both sides: 3x = 21, then divide by 3: x = 7"
+                },
+                {
+                    "id": 3,
+                    "question": "Simplify the expression: 2(x + 3) + 4",
+                    "options": ["2x + 6 + 4", "2x + 10", "2x + 7", "2x + 12"],
+                    "correctAnswer": "2x + 10",
+                    "explanation": "Distribute 2: 2x + 6, then add 4: 2x + 10"
+                },
+                {
+                    "id": 4,
+                    "question": "Solve the inequality: 3x + 2 > 11",
+                    "options": ["x > 3", "x > 4", "x > 2", "x > 5"],
+                    "correctAnswer": "x > 3",
+                    "explanation": "Subtract 2: 3x > 9, then divide by 3: x > 3"
+                },
+                {
+                    "id": 5,
+                    "question": "What is the slope of the line y = 2x + 3?",
+                    "options": ["2", "3", "1", "0"],
+                    "correctAnswer": "2",
+                    "explanation": "In the form y = mx + b, m is the slope, so the slope is 2"
+                }
+            ]
+        },
+        {
+            "id": "math-geo-q1",
+            "courseId": "math-101",
+            "subject": "geometry",
+            "title": "Geometry Basics Quiz",
+            "description": "Test your knowledge of basic geometric concepts",
+            "duration": "25 minutes",
+            "totalQuestions": 4,
+            "passingScore": 75,
+            "questions": [
+                {
+                    "id": 1,
+                    "question": "What is the area of a rectangle with length 8 and width 6?",
+                    "options": ["14", "28", "48", "56"],
+                    "correctAnswer": "48",
+                    "explanation": "Area = length × width = 8 × 6 = 48"
+                },
+                {
+                    "id": 2,
+                    "question": "What is the perimeter of a square with side length 5?",
+                    "options": ["10", "15", "20", "25"],
+                    "correctAnswer": "20",
+                    "explanation": "Perimeter = 4 × side length = 4 × 5 = 20"
+                },
+                {
+                    "id": 3,
+                    "question": "What is the area of a circle with radius 3? (Use π = 3.14)",
+                    "options": ["18.84", "28.26", "37.68", "47.1"],
+                    "correctAnswer": "28.26",
+                    "explanation": "Area = πr² = 3.14 × 3² = 3.14 × 9 = 28.26"
+                },
+                {
+                    "id": 4,
+                    "question": "What is the volume of a cube with side length 4?",
+                    "options": ["16", "32", "48", "64"],
+                    "correctAnswer": "64",
+                    "explanation": "Volume = side length³ = 4³ = 64"
                 }
             ]
         },
@@ -18,7 +91,11 @@
             "id": "eng-gram-q1",
             "courseId": "eng-101",
             "subject": "grammar",
-            "title": "Grammar Quiz 1",
+            "title": "Grammar Fundamentals Quiz",
+            "description": "Test your understanding of basic grammar rules",
+            "duration": "20 minutes",
+            "totalQuestions": 4,
+            "passingScore": 75,
             "questions": [
                 {
                     "id": 1,
@@ -29,7 +106,179 @@
                         "They am going to school.",
                         "They be going to school."
                     ],
-                    "correctAnswer": "They are going to school."
+                    "correctAnswer": "They are going to school.",
+                    "explanation": "The plural subject 'they' requires the plural verb 'are'"
+                },
+                {
+                    "id": 2,
+                    "question": "Choose the correct form: 'She _____ to the store yesterday.'",
+                    "options": ["go", "goes", "went", "gone"],
+                    "correctAnswer": "went",
+                    "explanation": "Past tense of 'go' is 'went'"
+                },
+                {
+                    "id": 3,
+                    "question": "Which word is a conjunction?",
+                    "options": ["quickly", "and", "beautiful", "happy"],
+                    "correctAnswer": "and",
+                    "explanation": "'And' is a conjunction that connects words or phrases"
+                },
+                {
+                    "id": 4,
+                    "question": "Identify the subject in: 'The cat sleeps peacefully.'",
+                    "options": ["cat", "sleeps", "peacefully", "The cat"],
+                    "correctAnswer": "The cat",
+                    "explanation": "'The cat' is the complete subject of the sentence"
+                }
+            ]
+        },
+        {
+            "id": "hist-ancient-q1",
+            "courseId": "hist-101",
+            "subject": "early-civilization",
+            "title": "Ancient Civilizations Quiz",
+            "description": "Test your knowledge of early human civilizations",
+            "duration": "25 minutes",
+            "totalQuestions": 4,
+            "passingScore": 70,
+            "questions": [
+                {
+                    "id": 1,
+                    "question": "Which ancient civilization built the pyramids?",
+                    "options": ["Greeks", "Egyptians", "Romans", "Babylonians"],
+                    "correctAnswer": "Egyptians",
+                    "explanation": "The ancient Egyptians built the famous pyramids as tombs for their pharaohs"
+                },
+                {
+                    "id": 2,
+                    "question": "What was the first major civilization in Mesopotamia?",
+                    "options": ["Sumerians", "Babylonians", "Assyrians", "Persians"],
+                    "correctAnswer": "Sumerians",
+                    "explanation": "The Sumerians were the first major civilization in Mesopotamia, known for inventing writing"
+                },
+                {
+                    "id": 3,
+                    "question": "Which river was central to ancient Egyptian civilization?",
+                    "options": ["Tigris", "Euphrates", "Nile", "Indus"],
+                    "correctAnswer": "Nile",
+                    "explanation": "The Nile River was essential to Egyptian agriculture and civilization"
+                },
+                {
+                    "id": 4,
+                    "question": "What was the Code of Hammurabi?",
+                    "options": [
+                        "A religious text",
+                        "A legal code",
+                        "A mathematical treatise",
+                        "A literary work"
+                    ],
+                    "correctAnswer": "A legal code",
+                    "explanation": "The Code of Hammurabi was one of the first written legal codes in history"
+                }
+            ]
+        },
+        {
+            "id": "sci-bio-q1",
+            "courseId": "sci-101",
+            "subject": "cell-biology",
+            "title": "Cell Biology Quiz",
+            "description": "Test your understanding of cell structure and function",
+            "duration": "30 minutes",
+            "totalQuestions": 4,
+            "passingScore": 75,
+            "questions": [
+                {
+                    "id": 1,
+                    "question": "What is the control center of the cell?",
+                    "options": ["Mitochondria", "Nucleus", "Cytoplasm", "Cell membrane"],
+                    "correctAnswer": "Nucleus",
+                    "explanation": "The nucleus contains the cell's genetic material and controls cell activities"
+                },
+                {
+                    "id": 2,
+                    "question": "Which organelle produces energy for the cell?",
+                    "options": ["Golgi apparatus", "Mitochondria", "Endoplasmic reticulum", "Lysosomes"],
+                    "correctAnswer": "Mitochondria",
+                    "explanation": "Mitochondria are known as the powerhouse of the cell, producing ATP"
+                },
+                {
+                    "id": 3,
+                    "question": "What is the function of the cell membrane?",
+                    "options": [
+                        "Only to protect the cell",
+                        "To control what enters and exits the cell",
+                        "To produce energy",
+                        "To store genetic material"
+                    ],
+                    "correctAnswer": "To control what enters and exits the cell",
+                    "explanation": "The cell membrane is selectively permeable, controlling substance movement"
+                },
+                {
+                    "id": 4,
+                    "question": "Which of the following is NOT found in plant cells?",
+                    "options": ["Cell wall", "Chloroplasts", "Centrioles", "Vacuole"],
+                    "correctAnswer": "Centrioles",
+                    "explanation": "Centrioles are found in animal cells but not typically in plant cells"
+                }
+            ]
+        },
+        {
+            "id": "comp-prog-q1",
+            "courseId": "comp-101",
+            "subject": "programming",
+            "title": "Programming Basics Quiz",
+            "description": "Test your understanding of fundamental programming concepts",
+            "duration": "25 minutes",
+            "totalQuestions": 4,
+            "passingScore": 70,
+            "questions": [
+                {
+                    "id": 1,
+                    "question": "What is a variable in programming?",
+                    "options": [
+                        "A type of computer",
+                        "A container for storing data",
+                        "A programming language",
+                        "A mathematical equation"
+                    ],
+                    "correctAnswer": "A container for storing data",
+                    "explanation": "A variable is a named container that stores data values"
+                },
+                {
+                    "id": 2,
+                    "question": "What is the purpose of a loop in programming?",
+                    "options": [
+                        "To stop the program",
+                        "To repeat code multiple times",
+                        "To create variables",
+                        "To print text"
+                    ],
+                    "correctAnswer": "To repeat code multiple times",
+                    "explanation": "Loops allow you to execute the same code multiple times"
+                },
+                {
+                    "id": 3,
+                    "question": "What is an algorithm?",
+                    "options": [
+                        "A computer program",
+                        "A step-by-step problem-solving procedure",
+                        "A programming language",
+                        "A type of data"
+                    ],
+                    "correctAnswer": "A step-by-step problem-solving procedure",
+                    "explanation": "An algorithm is a finite sequence of well-defined instructions"
+                },
+                {
+                    "id": 4,
+                    "question": "What does 'debugging' mean in programming?",
+                    "options": [
+                        "Writing new code",
+                        "Finding and fixing errors",
+                        "Running a program",
+                        "Creating variables"
+                    ],
+                    "correctAnswer": "Finding and fixing errors",
+                    "explanation": "Debugging is the process of identifying and removing errors from code"
                 }
             ]
         }

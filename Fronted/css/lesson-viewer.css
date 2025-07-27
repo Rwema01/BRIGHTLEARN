@@ -1,0 +1,294 @@
+/* Lesson Viewer Styles */
+.lesson-viewer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.lesson-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--medium-gray);
+}
+
+.lesson-title-section {
+    flex: 1;
+}
+
+.lesson-title {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.lesson-meta {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    color: var(--dark-gray);
+    font-size: 0.9rem;
+}
+
+.lesson-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.lesson-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--medium-gray);
+}
+
+.nav-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--light-gray);
+    border: none;
+    border-radius: var(--border-radius);
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+    background: var(--medium-gray);
+}
+
+.nav-button.prev:hover {
+    transform: translateX(-5px);
+}
+
+.nav-button.next:hover {
+    transform: translateX(5px);
+}
+
+.lesson-content {
+    margin: 2rem 0;
+    line-height: 1.6;
+}
+
+/* Interactive Elements */
+.interaction-area {
+    background: var(--light-gray);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.interaction-instructions {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: var(--white);
+    border-left: 4px solid var(--primary-blue);
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+/* Quiz Elements */
+.quiz-section {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: var(--shadow);
+}
+
+.quiz-question {
+    margin-bottom: 2rem;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.option-card {
+    padding: 1rem;
+    background: var(--light-gray);
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.option-card:hover {
+    border-color: var(--primary-blue);
+    transform: translateY(-2px);
+}
+
+.option-card.selected {
+    background: var(--primary-light);
+    border-color: var(--primary-blue);
+}
+
+/* Practice Elements */
+.practice-section {
+    background: var(--white);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: var(--shadow);
+}
+
+.code-workspace {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.code-editor-container {
+    background: var(--code-editor-bg);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.code-output {
+    background: var(--light-gray);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    font-family: monospace;
+}
+
+/* Video Lesson */
+.video-lesson {
+    position: relative;
+    margin: 2rem 0;
+}
+
+.video-controls-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.video-lesson:hover .video-controls-overlay {
+    opacity: 1;
+}
+
+.video-progress {
+    flex: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.video-progress-fill {
+    height: 100%;
+    background: var(--primary-blue);
+    border-radius: 2px;
+    transition: width 0.1s linear;
+}
+
+/* Interactive Reading */
+.reading-section {
+    position: relative;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+}
+
+.reading-controls {
+    position: sticky;
+    top: 0;
+    background: var(--white);
+    padding: 1rem;
+    border-bottom: 1px solid var(--medium-gray);
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    z-index: 10;
+}
+
+.reading-content {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-top: 2rem;
+}
+
+.reading-content.dark-theme {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .lesson-viewer {
+        padding: 1rem;
+    }
+
+    .lesson-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .lesson-meta {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .code-workspace {
+        grid-template-columns: 1fr;
+    }
+
+    .options-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .video-controls-overlay {
+        padding: 0.5rem;
+    }
+}
+
+/* Accessibility */
+.lesson-viewer:focus-within {
+    outline: none;
+    box-shadow: var(--shadow), 0 0 0 2px var(--primary-blue);
+}
+
+[role="button"]:focus-visible,
+.nav-button:focus-visible,
+.option-card:focus-visible {
+    outline: 2px solid var(--primary-blue);
+    outline-offset: 2px;
+}
+
+/* Animations */
+.lesson-fade-in {
+    animation: lessonFadeIn 0.3s ease-in-out;
+}
+
+@keyframes lessonFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIGHTLEARN - Course Details</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Navigation -->
+        <nav class="left-nav">
+            <div class="nav-header">
+                <div class="logo-container">
+                    <img src="BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>DASHBOARD</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="courses.html" class="active">
+                        <i class="fas fa-book-open"></i>
+                        <span>COURSES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="grades.html">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>GRADES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="help.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span>HELP</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="logout-container">
+                <a href="logout.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>LOGOUT</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="breadcrumb">
+                    <a href="courses.html"><i class="fas fa-arrow-left"></i> Back to Courses</a>
+                </div>
+                <div class="top-icons">
+                    <a href="notifications.html" class="notification-link">
+                        <i class="fas fa-bell notification-icon"></i>
+                    </a>
+                    <a href="profile.html" class="profile-link">
+                        <i class="fas fa-user-circle profile-icon"></i>
+                    </a>
+                </div>
+            </header>
+
+            <!-- Course Details Content -->
+            <div class="course-details-container">
+                <!-- Course Header -->
+                <div class="course-details-header">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+
+                <!-- Course Content Tabs -->
+                <div class="course-tabs">
+                    <button class="tab-btn active" data-tab="overview">Overview</button>
+                    <button class="tab-btn" data-tab="lessons">Lessons</button>
+                    <button class="tab-btn" data-tab="quizzes">Quizzes</button>
+                    <button class="tab-btn" data-tab="resources">Resources</button>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- Overview Tab -->
+                    <div class="tab-pane active" id="overview">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+
+                    <!-- Lessons Tab -->
+                    <div class="tab-pane" id="lessons">
+                        <div class="lessons-list">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Quizzes Tab -->
+                    <div class="tab-pane" id="quizzes">
+                        <div class="quizzes-list">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Resources Tab -->
+                    <div class="tab-pane" id="resources">
+                        <div class="resources-list">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/course-details.js"></script>
+</body>
+</html>

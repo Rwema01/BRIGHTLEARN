@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIGHTLEARN - Lesson Viewer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Navigation -->
+        <nav class="left-nav">
+            <div class="nav-header">
+                <div class="logo-container">
+                    <img src="BRIGHTLEARN.jpg" alt="BRIGHTLEARN" class="logo">
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>DASHBOARD</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="courses.html" class="active">
+                        <i class="fas fa-book-open"></i>
+                        <span>COURSES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="grades.html">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>GRADES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="help.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span>HELP</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="logout-container">
+                <a href="logout.html" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>LOGOUT</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Lesson Navigation Header -->
+            <div class="lesson-nav-header">
+                <div class="lesson-breadcrumb">
+                    <a href="#" class="back-to-course">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Back to Course</span>
+                    </a>
+                </div>
+                <div class="lesson-navigation">
+                    <button class="nav-btn prev-lesson" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                        Previous Lesson
+                    </button>
+                    <div class="lesson-progress">
+                        <span class="current-lesson">Lesson 1</span>
+                        <div class="progress-indicator">
+                            <div class="progress-dots">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        <span class="total-lessons">of 12 Lessons</span>
+                    </div>
+                    <button class="nav-btn next-lesson">
+                        Next Lesson
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Lesson Content -->
+            <div class="lesson-container">
+                <!-- Left Side - Main Content -->
+                <div class="lesson-content">
+                    <div class="lesson-header">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="lesson-body">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="lesson-actions">
+                        <button class="complete-lesson-btn">
+                            <i class="fas fa-check-circle"></i>
+                            Mark as Complete
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Side - Lesson Overview -->
+                <div class="lesson-sidebar">
+                    <div class="lesson-overview">
+                        <h3>Lesson Overview</h3>
+                        <div class="overview-content">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="lesson-resources">
+                        <h3>Additional Resources</h3>
+                        <div class="resources-list">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="lesson-notes">
+                        <h3>Your Notes</h3>
+                        <textarea class="notes-editor" placeholder="Take notes for this lesson..."></textarea>
+                        <button class="save-notes-btn">
+                            <i class="fas fa-save"></i>
+                            Save Notes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Video Player Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="video-title"></h3>
+                <button class="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="video-container">
+                <!-- Video player will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/lesson-viewer.js"></script>
+</body>
+</html>

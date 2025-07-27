@@ -1,0 +1,136 @@
+{
+  "notifications": [
+    {
+      "id": "notif_001",
+      "userId": "1753634027701",
+      "type": "COURSE_UPDATE",
+      "title": "New Math Lesson Available",
+      "message": "A new lesson on Algebra has been added to your Mathematics course.",
+      "timestamp": "2025-07-27T22:00:00.000Z",
+      "read": true,
+      "priority": "medium",
+      "actionUrl": "/courses.html?courseId=math-101"
+    },
+    {
+      "id": "notif_002",
+      "userId": "1753634027701",
+      "type": "ASSIGNMENT_DUE",
+      "title": "Assignment Due Tomorrow",
+      "message": "Your English essay assignment is due tomorrow. Don't forget to submit!",
+      "timestamp": "2025-07-27T21:30:00.000Z",
+      "read": true,
+      "priority": "high",
+      "actionUrl": "/assignments.html?courseId=eng-101"
+    },
+    {
+      "id": "notif_003",
+      "userId": "1753634027701",
+      "type": "ACHIEVEMENT",
+      "title": "Perfect Score Achievement!",
+      "message": "Congratulations! You scored 100% on the History quiz. Great job!",
+      "timestamp": "2025-07-27T20:15:00.000Z",
+      "read": true,
+      "priority": "medium",
+      "actionUrl": "/quizzes.html?courseId=hist-101"
+    },
+    {
+      "id": "notif_004",
+      "userId": "1753634027701",
+      "type": "COURSE_PROGRESS",
+      "title": "Course Milestone Reached",
+      "message": "You've completed 50% of your Mathematics course. Keep up the great work!",
+      "timestamp": "2025-07-27T19:45:00.000Z",
+      "read": true,
+      "priority": "low",
+      "actionUrl": "/courses.html?courseId=math-101"
+    },
+    {
+      "id": "notif_005",
+      "userId": "1753634027701",
+      "type": "SYSTEM",
+      "title": "Welcome to BRIGHTLEARN!",
+      "message": "Welcome to your learning journey. We're excited to help you achieve your goals!",
+      "timestamp": "2025-07-27T16:33:47.701Z",
+      "read": true,
+      "priority": "low",
+      "actionUrl": "/index.html"
+    },
+    {
+      "id": "notif_006",
+      "userId": "1753648313605",
+      "type": "COURSE_UPDATE",
+      "title": "New Science Course Available",
+      "message": "A new Biology course has been added to your recommended courses.",
+      "timestamp": "2025-07-27T22:30:00.000Z",
+      "read": false,
+      "priority": "medium",
+      "actionUrl": "/courses.html?courseId=sci-101"
+    },
+    {
+      "id": "notif_007",
+      "userId": "1753648313605",
+      "type": "QUIZ_REMINDER",
+      "title": "Quiz Reminder",
+      "message": "You have a Chemistry quiz scheduled for tomorrow. Make sure to review!",
+      "timestamp": "2025-07-27T21:00:00.000Z",
+      "read": false,
+      "priority": "high",
+      "actionUrl": "/quizzes.html?courseId=sci-102"
+    },
+    {
+      "id": "notif_008",
+      "userId": "1753648313605",
+      "type": "ACHIEVEMENT",
+      "title": "Streak Achievement",
+      "message": "You've maintained a 7-day learning streak! Excellent dedication!",
+      "timestamp": "2025-07-27T20:30:00.000Z",
+      "read": true,
+      "priority": "medium",
+      "actionUrl": "/index.html"
+    },
+    {
+      "id": "notif_009",
+      "userId": "1753648313605",
+      "type": "ASSIGNMENT_FEEDBACK",
+      "title": "Assignment Feedback Available",
+      "message": "Your Physics lab report has been graded. Check your feedback!",
+      "timestamp": "2025-07-27T19:15:00.000Z",
+      "read": true,
+      "priority": "medium",
+      "actionUrl": "/assignments.html?courseId=sci-103"
+    },
+    {
+      "id": "notif_010",
+      "userId": "1753648313605",
+      "type": "SYSTEM",
+      "title": "Welcome to BRIGHTLEARN!",
+      "message": "Welcome to your learning journey. We're excited to help you achieve your goals!",
+      "timestamp": "2025-07-27T20:31:53.605Z",
+      "read": true,
+      "priority": "low",
+      "actionUrl": "/index.html"
+    },
+    {
+      "id": "notif_011",
+      "userId": "1753634027701",
+      "type": "COURSE_RECOMMENDATION",
+      "title": "Recommended Course",
+      "message": "Based on your performance, we recommend trying Computer Science!",
+      "timestamp": "2025-07-27T18:30:00.000Z",
+      "read": true,
+      "priority": "low",
+      "actionUrl": "/courses.html?courseId=comp-101"
+    },
+    {
+      "id": "notif_012",
+      "userId": "1753634027701",
+      "type": "STREAK_WARNING",
+      "title": "Don't Break Your Streak!",
+      "message": "You're on a 5-day learning streak. Log in today to keep it going!",
+      "timestamp": "2025-07-27T17:45:00.000Z",
+      "read": true,
+      "priority": "medium",
+      "actionUrl": "/index.html"
+    }
+  ]
+}

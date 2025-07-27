@@ -1,0 +1,238 @@
+/* Learning Analytics Styles */
+
+.achievement-notification {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--white);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    animation: slideIn 0.3s ease-out, fadeOut 0.3s ease-in 4.7s;
+    z-index: 1000;
+}
+
+.achievement-icon {
+    font-size: 2rem;
+    animation: bounce 0.5s ease-in-out;
+}
+
+.achievement-details h3 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+.achievement-details p {
+    margin: 0.25rem 0 0;
+    color: var(--dark-gray);
+    font-size: 0.875rem;
+}
+
+/* Progress Indicators */
+.section-progress {
+    position: fixed;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 100;
+}
+
+.progress-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--medium-gray);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.progress-dot.active {
+    background: var(--primary-blue);
+    transform: scale(1.2);
+}
+
+.progress-dot.completed {
+    background: var(--secondary-color);
+}
+
+.progress-label {
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.progress-dot:hover .progress-label {
+    opacity: 1;
+}
+
+/* Engagement Indicators */
+.engagement-meter {
+    position: fixed;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    z-index: 100;
+}
+
+.engagement-bar {
+    width: 100px;
+    height: 4px;
+    background: var(--light-gray);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.engagement-fill {
+    height: 100%;
+    background: var(--primary-blue);
+    transition: width 0.3s ease;
+}
+
+.engagement-label {
+    font-size: 0.75rem;
+    color: var(--dark-gray);
+}
+
+/* Analytics Dashboard */
+.analytics-dashboard {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100vh;
+    background: var(--white);
+    box-shadow: var(--shadow);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.analytics-dashboard.visible {
+    transform: translateX(0);
+}
+
+.dashboard-header {
+    padding: 1rem;
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.dashboard-content {
+    padding: 1rem;
+    overflow-y: auto;
+    height: calc(100vh - 60px);
+}
+
+.metric-card {
+    background: var(--light-gray);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+}
+
+.metric-title {
+    font-size: 0.875rem;
+    color: var(--dark-gray);
+    margin-bottom: 0.5rem;
+}
+
+.metric-value {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .section-progress {
+        display: none;
+    }
+
+    .analytics-dashboard {
+        width: 100%;
+    }
+
+    .engagement-meter {
+        bottom: 0;
+        width: 100%;
+        border-radius: 0;
+    }
+}
+
+/* Dark Theme Support */
+[data-theme="dark"] .achievement-notification {
+    background: var(--primary-color);
+}
+
+[data-theme="dark"] .achievement-details h3 {
+    color: var(--white);
+}
+
+[data-theme="dark"] .achievement-details p {
+    color: var(--light-gray);
+}
+
+[data-theme="dark"] .analytics-dashboard {
+    background: var(--primary-color);
+}
+
+[data-theme="dark"] .metric-card {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .metric-value {
+    color: var(--white);
+}

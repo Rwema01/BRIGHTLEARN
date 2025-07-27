@@ -2,123 +2,234 @@
     "courses": [
         {
             "id": "math-101",
-            "name": "Mathematics",
+            "title": "Mathematics Fundamentals",
+            "description": "Master the fundamentals of mathematics including algebra, geometry, and statistics. This comprehensive course covers essential mathematical concepts and problem-solving techniques.",
+            "instructor": {
+                "name": "Dr. Sarah Johnson",
+                "email": "sarah.johnson@brightlearn.com",
+                "bio": "PhD in Mathematics with 10+ years of teaching experience"
+            },
             "subjects": ["algebra", "geometry", "statistics"],
-            "resources": ["math-video", "math-notes", "math-practice"]
+            "resources": ["math-video", "math-notes", "math-practice"],
+            "duration": "12 weeks",
+            "difficulty": "intermediate",
+            "lessons": [
+                {
+                    "id": "math-lesson-1",
+                    "title": "Introduction to Algebra",
+                    "description": "Learn the basics of algebraic expressions and equations",
+                    "duration": "45 minutes",
+                    "type": "video",
+                    "content": "algebra-basics-video.mp4"
+                },
+                {
+                    "id": "math-lesson-2",
+                    "title": "Solving Linear Equations",
+                    "description": "Master techniques for solving linear equations",
+                    "duration": "60 minutes",
+                    "type": "interactive",
+                    "content": "linear-equations-practice.html"
+                },
+                {
+                    "id": "math-lesson-3",
+                    "title": "Geometry Fundamentals",
+                    "description": "Explore basic geometric shapes and properties",
+                    "duration": "50 minutes",
+                    "type": "video",
+                    "content": "geometry-basics-video.mp4"
+                },
+                {
+                    "id": "math-lesson-4",
+                    "title": "Statistical Analysis",
+                    "description": "Learn data analysis and statistical methods",
+                    "duration": "75 minutes",
+                    "type": "interactive",
+                    "content": "statistics-practice.html"
+                }
+            ],
+            "totalLessons": 4,
+            "totalQuizzes": 3,
+            "totalAssignments": 2
         },
         {
             "id": "eng-101",
-            "name": "English",
+            "title": "English Composition & Literature",
+            "description": "Develop your writing skills and explore classic and modern literature. This course focuses on grammar, creative writing, and literary analysis.",
+            "instructor": {
+                "name": "Prof. Michael Chen",
+                "email": "michael.chen@brightlearn.com",
+                "bio": "MFA in Creative Writing, published author and educator"
+            },
             "subjects": ["grammar", "creative-writing", "modern-novels"],
-            "resources": ["grammar", "punctuation", "essay-writing"]
+            "resources": ["grammar", "punctuation", "essay-writing"],
+            "duration": "10 weeks",
+            "difficulty": "beginner",
+            "lessons": [
+                {
+                    "id": "eng-lesson-1",
+                    "title": "Grammar Fundamentals",
+                    "description": "Master essential grammar rules and sentence structure",
+                    "duration": "40 minutes",
+                    "type": "video",
+                    "content": "grammar-basics-video.mp4"
+                },
+                {
+                    "id": "eng-lesson-2",
+                    "title": "Essay Writing Techniques",
+                    "description": "Learn effective essay writing strategies and structure",
+                    "duration": "55 minutes",
+                    "type": "interactive",
+                    "content": "essay-writing-practice.html"
+                },
+                {
+                    "id": "eng-lesson-3",
+                    "title": "Literary Analysis",
+                    "description": "Analyze classic and modern literature",
+                    "duration": "65 minutes",
+                    "type": "video",
+                    "content": "literary-analysis-video.mp4"
+                }
+            ],
+            "totalLessons": 3,
+            "totalQuizzes": 2,
+            "totalAssignments": 3
         },
         {
             "id": "hist-101",
-            "name": "History",
+            "title": "World History: Ancient to Modern",
+            "description": "Journey through world history from ancient civilizations to the modern era. Explore key events, figures, and cultural developments.",
+            "instructor": {
+                "name": "Dr. Emily Rodriguez",
+                "email": "emily.rodriguez@brightlearn.com",
+                "bio": "PhD in History, specializing in world civilizations"
+            },
             "subjects": ["early-civilization", "renaissance", "industrial-revolution"],
-            "resources": ["classical-antiquity", "feudalism-lesson", "world-wars"]
+            "resources": ["classical-antiquity", "feudalism-lesson", "world-wars"],
+            "duration": "14 weeks",
+            "difficulty": "intermediate",
+            "lessons": [
+                {
+                    "id": "hist-lesson-1",
+                    "title": "Ancient Civilizations",
+                    "description": "Explore the rise of early human civilizations",
+                    "duration": "50 minutes",
+                    "type": "video",
+                    "content": "ancient-civilizations-video.mp4"
+                },
+                {
+                    "id": "hist-lesson-2",
+                    "title": "The Renaissance Period",
+                    "description": "Discover the cultural rebirth of Europe",
+                    "duration": "60 minutes",
+                    "type": "interactive",
+                    "content": "renaissance-exploration.html"
+                },
+                {
+                    "id": "hist-lesson-3",
+                    "title": "Industrial Revolution",
+                    "description": "Understand the impact of industrialization",
+                    "duration": "55 minutes",
+                    "type": "video",
+                    "content": "industrial-revolution-video.mp4"
+                },
+                {
+                    "id": "hist-lesson-4",
+                    "title": "Modern World History",
+                    "description": "Examine 20th and 21st century developments",
+                    "duration": "70 minutes",
+                    "type": "interactive",
+                    "content": "modern-history-practice.html"
+                }
+            ],
+            "totalLessons": 4,
+            "totalQuizzes": 3,
+            "totalAssignments": 2
         },
         {
             "id": "sci-101",
-            "name": "Biology",
+            "title": "Biology: Life Sciences",
+            "description": "Explore the fascinating world of living organisms. From cellular biology to ecology, discover the principles that govern life.",
+            "instructor": {
+                "name": "Dr. James Wilson",
+                "email": "james.wilson@brightlearn.com",
+                "bio": "PhD in Biology, research scientist and educator"
+            },
             "subjects": ["cell-biology", "genetics", "ecology"],
-            "resources": ["biology-labs", "microscope-studies", "field-research"]
-        },
-        {
-            "id": "sci-102",
-            "name": "Chemistry",
-            "subjects": ["organic-chemistry", "inorganic-chemistry", "biochemistry"],
-            "resources": ["chemical-experiments", "periodic-table", "molecular-structures"]
-        },
-        {
-            "id": "sci-103",
-            "name": "Physics",
-            "subjects": ["mechanics", "thermodynamics", "quantum-physics"],
-            "resources": ["physics-simulations", "lab-experiments", "problem-solving"]
+            "resources": ["biology-labs", "microscope-studies", "field-research"],
+            "duration": "12 weeks",
+            "difficulty": "intermediate",
+            "lessons": [
+                {
+                    "id": "sci-lesson-1",
+                    "title": "Cell Biology Basics",
+                    "description": "Learn about cell structure and function",
+                    "duration": "45 minutes",
+                    "type": "video",
+                    "content": "cell-biology-video.mp4"
+                },
+                {
+                    "id": "sci-lesson-2",
+                    "title": "Genetics and Heredity",
+                    "description": "Understand genetic principles and inheritance",
+                    "duration": "60 minutes",
+                    "type": "interactive",
+                    "content": "genetics-practice.html"
+                },
+                {
+                    "id": "sci-lesson-3",
+                    "title": "Ecosystems and Ecology",
+                    "description": "Explore environmental relationships and systems",
+                    "duration": "55 minutes",
+                    "type": "video",
+                    "content": "ecology-video.mp4"
+                }
+            ],
+            "totalLessons": 3,
+            "totalQuizzes": 2,
+            "totalAssignments": 2
         },
         {
             "id": "comp-101",
-            "name": "Computer Science",
+            "title": "Computer Science Fundamentals",
+            "description": "Learn programming basics, data structures, and algorithms. Develop computational thinking and problem-solving skills.",
+            "instructor": {
+                "name": "Prof. Lisa Park",
+                "email": "lisa.park@brightlearn.com",
+                "bio": "MS in Computer Science, software engineer and educator"
+            },
             "subjects": ["programming", "data-structures", "algorithms"],
-            "resources": ["coding-exercises", "project-assignments", "debugging-practice"]
-        },
-        {
-            "id": "lang-101",
-            "name": "Spanish",
-            "subjects": ["basic-spanish", "intermediate-spanish", "advanced-spanish"],
-            "resources": ["vocabulary", "grammar-exercises", "conversation-practice"]
-        },
-        {
-            "id": "lang-102",
-            "name": "French",
-            "subjects": ["basic-french", "intermediate-french", "advanced-french"],
-            "resources": ["pronunciation", "writing-exercises", "cultural-studies"]
-        },
-        {
-            "id": "art-101",
-            "name": "Visual Arts",
-            "subjects": ["drawing", "painting", "sculpture"],
-            "resources": ["art-tutorials", "virtual-gallery", "technique-guides"]
-        },
-        {
-            "id": "mus-101",
-            "name": "Music",
-            "subjects": ["music-theory", "instrumental", "composition"],
-            "resources": ["sheet-music", "practice-exercises", "listening-materials"]
-        },
-        {
-            "id": "geo-101",
-            "name": "Geography",
-            "subjects": ["physical-geography", "human-geography", "cartography"],
-            "resources": ["maps", "case-studies", "field-reports"]
-        },
-        {
-            "id": "econ-101",
-            "name": "Economics",
-            "subjects": ["microeconomics", "macroeconomics", "international-trade"],
-            "resources": ["economic-models", "market-analysis", "case-studies"]
-        },
-        {
-            "id": "psych-101",
-            "name": "Psychology",
-            "subjects": ["cognitive-psychology", "social-psychology", "developmental-psychology"],
-            "resources": ["experiments", "case-studies", "research-methods"]
-        },
-        {
-            "id": "phil-101",
-            "name": "Philosophy",
-            "subjects": ["ethics", "logic", "metaphysics"],
-            "resources": ["philosophical-texts", "debate-topics", "thought-experiments"]
-        },
-        {
-            "id": "env-101",
-            "name": "Environmental Science",
-            "subjects": ["ecosystems", "climate-change", "sustainability"],
-            "resources": ["field-studies", "environmental-data", "project-work"]
-        },
-        {
-            "id": "bus-101",
-            "name": "Business Studies",
-            "subjects": ["management", "marketing", "entrepreneurship"],
-            "resources": ["business-plans", "case-studies", "market-research"]
-        },
-        {
-            "id": "pol-101",
-            "name": "Political Science",
-            "subjects": ["government-systems", "international-relations", "political-theory"],
-            "resources": ["policy-analysis", "case-studies", "debate-materials"]
-        },
-        {
-            "id": "soc-101",
-            "name": "Sociology",
-            "subjects": ["social-structures", "cultural-studies", "research-methods"],
-            "resources": ["field-research", "social-analysis", "case-studies"]
-        },
-        {
-            "id": "phys-101",
-            "name": "Physical Education",
-            "subjects": ["fitness", "sports-science", "nutrition"],
-            "resources": ["workout-plans", "training-videos", "health-guides"]
+            "resources": ["coding-exercises", "project-assignments", "debugging-practice"],
+            "duration": "16 weeks",
+            "difficulty": "intermediate",
+            "lessons": [
+                {
+                    "id": "comp-lesson-1",
+                    "title": "Programming Basics",
+                    "description": "Introduction to programming concepts and syntax",
+                    "duration": "50 minutes",
+                    "type": "video",
+                    "content": "programming-basics-video.mp4"
+                },
+                {
+                    "id": "comp-lesson-2",
+                    "title": "Data Structures",
+                    "description": "Learn about arrays, lists, and other data structures",
+                    "duration": "65 minutes",
+                    "type": "interactive",
+                    "content": "data-structures-practice.html"
+                },
+                {
+                    "id": "comp-lesson-3",
+                    "title": "Algorithm Design",
+                    "description": "Understand algorithm efficiency and design",
+                    "duration": "60 minutes",
+                    "type": "video",
+                    "content": "algorithms-video.mp4"
+                }
+            ],
+            "totalLessons": 3,
+            "totalQuizzes": 2,
+            "totalAssignments": 3
         }
     ]
 }

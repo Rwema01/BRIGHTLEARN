@@ -5,7 +5,16 @@
       "fullName": "Mbonyumugisha Prince",
       "email": "mugishaprince395@gmail.com",
       "password": "$2a$10$mrVSsACyK2OIyBEoRtE0ZuIfblQWHRk4yF7crerSho5U3.y4WZPjm",
-      "createdAt": "2025-07-27T16:33:47.701Z"
+      "createdAt": "2025-07-27T16:33:47.701Z",
+      "bio": "Passionate student with a love for mathematics and technology. Always eager to learn and explore new concepts."
+    },
+    {
+      "id": "1753648313605",
+      "fullName": "Mbonyumugisha Prince",
+      "email": "mbonyumugishaprince@gmail.com",
+      "password": "$2a$10$l26lmjQX7PIDmYWM1gThuuoRBHromfLnYM/nQy/6aLFyRPx8FKifS",
+      "createdAt": "2025-07-27T20:31:53.605Z",
+      "bio": "Dedicated learner focused on academic excellence and personal growth. Interested in science and innovation."
     }
   ]
 }

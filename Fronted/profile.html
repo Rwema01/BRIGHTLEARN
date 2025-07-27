@@ -75,6 +75,7 @@
             <div class="dashboard-content">
                 <div class="breadcrumbs">
                     <a href="index.html">Home</a> > <a href="profile.html">Profile</a>
+                </div>
                 <div class="welcome-section">
                     <h1>My Profile</h1>
                     <p>Manage your personal information and account settings</p>
@@ -84,7 +85,7 @@
                     <!-- Profile Card with Edit Mode -->
                     <div class="profile-card">
                         <div class="profile-header">
-                            <img src="default-profile.jpg" alt="Profile" class="profile-pic-large">
+                            <img src="https://ui-avatars.com/api/?name=User&background=random&color=fff&size=150" alt="Profile" class="profile-pic-large" id="profile-picture">
                             <div class="picture-actions">
                                 <button class="edit-btn" id="edit-picture-btn">
                                     <i class="fas fa-camera"></i> Change Picture
@@ -98,19 +99,19 @@
                             <div class="detail-view-mode">
                                 <div class="detail-row">
                                     <span class="detail-label">Full Name:</span>
-                                    <span class="detail-value" id="display-name">Jordan Barker</span>
+                                    <span class="detail-value" id="display-name">Loading...</span>
                                 </div>
                                 <div class="detail-row">
                                     <span class="detail-label">Email:</span>
-                                    <span class="detail-value" id="display-email">john.barker@example.com</span>
+                                    <span class="detail-value" id="display-email">Loading...</span>
                                 </div>
                                 <div class="detail-row">
                                     <span class="detail-label">Bio:</span>
-                                    <span class="detail-value" id="display-bio">Mathematics enthusiast and lifelong learner</span>
+                                    <span class="detail-value" id="display-bio">Loading...</span>
                                 </div>
                                 <div class="detail-row">
                                     <span class="detail-label">Member Since:</span>
-                                    <span class="detail-value">January 2023</span>
+                                    <span class="detail-value" id="display-joined">Loading...</span>
                                 </div>
                                 <div class="detail-row">
                                     <span class="detail-label">Account Type:</span>
@@ -122,15 +123,15 @@
                             <form class="detail-edit-mode" id="profile-edit-form" style="display: none;">
                                 <div class="detail-row">
                                     <label class="detail-label">Full Name:</label>
-                                    <input type="text" class="detail-input" id="edit-name" value="Jordan Barker">
+                                    <input type="text" class="detail-input" id="edit-name" value="">
                                 </div>
                                 <div class="detail-row">
                                     <label class="detail-label">Email:</label>
-                                    <input type="email" class="detail-input" id="edit-email" value="john.barker@example.com">
+                                    <input type="email" class="detail-input" id="edit-email" value="">
                                 </div>
                                 <div class="detail-row">
                                     <label class="detail-label">Bio:</label>
-                                    <textarea class="detail-input" id="edit-bio" rows="3">Mathematics enthusiast and lifelong learner</textarea>
+                                    <textarea class="detail-input" id="edit-bio" rows="3"></textarea>
                                 </div>
                                 <div class="form-actions">
                                     <button type="button" class="action-btn secondary" id="cancel-edit-btn">
@@ -224,23 +225,152 @@
     <script src="script.js"></script>
 </script>
 <script>
-// Load user profile from localStorage
-document.addEventListener('DOMContentLoaded', function() {
-  // Get current user from localStorage
-  let user = null;
-  try {
-    user = JSON.parse(localStorage.getItem('brightlearn_current_user'));
-  } catch (e) {}
-  if (user) {
-    // Display user info
-    if (document.getElementById('display-name'))
-      document.getElementById('display-name').textContent = user.fullName || '';
-    if (document.getElementById('display-email'))
-      document.getElementById('display-email').textContent = user.email || '';
-    if (document.getElementById('edit-name'))
-      document.getElementById('edit-name').value = user.fullName || '';
-    if (document.getElementById('edit-email'))
-      document.getElementById('edit-email').value = user.email || '';
+// Profile page specific functionality
+document.addEventListener('DOMContentLoaded', async function() {
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('userId');
+    
+    if (!token || !userId) {
+        // Redirect to login if not authenticated
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Show loading state
+    const loadingElements = ['display-name', 'display-email', 'display-bio', 'display-joined'];
+    loadingElements.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) element.textContent = 'Loading...';
+    });
+
+    // Fetch user profile from backend
+    try {
+        const response = await fetch(`http://localhost:3000/api/user/${userId}/profile`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            const userData = await response.json();
+            
+            // Update profile picture with user's name
+            const profilePic = document.getElementById('profile-picture');
+            if (profilePic) {
+                const userName = userData.fullName || userData.name || 'User';
+                profilePic.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(userName)}&background=random&color=fff&size=150`;
+                profilePic.alt = userName;
+            }
+
+            // Update display values
+            document.getElementById('display-name').textContent = userData.fullName || userData.name || 'N/A';
+            document.getElementById('display-email').textContent = userData.email || 'N/A';
+            document.getElementById('display-bio').textContent = userData.bio || 'No bio available';
+            
+            // Format and display join date
+            if (userData.createdAt) {
+                const joinDate = new Date(userData.createdAt);
+                const options = { year: 'numeric', month: 'long' };
+                document.getElementById('display-joined').textContent = joinDate.toLocaleDateString('en-US', options);
+            } else {
+                document.getElementById('display-joined').textContent = 'N/A';
+            }
+
+            // Update edit form values
+            document.getElementById('edit-name').value = userData.fullName || userData.name || '';
+            document.getElementById('edit-email').value = userData.email || '';
+            document.getElementById('edit-bio').value = userData.bio || '';
+
+        } else {
+            console.error('Failed to fetch user profile');
+            // Show error message
+            document.getElementById('display-name').textContent = 'Error loading profile';
+            document.getElementById('display-email').textContent = 'Please try again';
+            document.getElementById('display-bio').textContent = 'Unable to load bio';
+            document.getElementById('display-joined').textContent = 'N/A';
+        }
+    } catch (error) {
+        console.error('Error fetching user profile:', error);
+        // Show error message
+        document.getElementById('display-name').textContent = 'Error loading profile';
+        document.getElementById('display-email').textContent = 'Please try again';
+        document.getElementById('display-bio').textContent = 'Unable to load bio';
+        document.getElementById('display-joined').textContent = 'N/A';
+    }
+
+    // Profile edit functionality
+    const editBtn = document.getElementById('edit-profile-btn');
+    const cancelBtn = document.getElementById('cancel-edit-btn');
+    const viewMode = document.querySelector('.detail-view-mode');
+    const editMode = document.getElementById('profile-edit-form');
+
+    if (editBtn) {
+        editBtn.addEventListener('click', function() {
+            viewMode.style.display = 'none';
+            editMode.style.display = 'block';
+            editBtn.style.display = 'none';
+        });
+    }
+
+    if (cancelBtn) {
+        cancelBtn.addEventListener('click', function() {
+            viewMode.style.display = 'block';
+            editMode.style.display = 'none';
+            editBtn.style.display = 'block';
+        });
+    }
+
+    // Handle profile form submission
+    const profileForm = document.getElementById('profile-edit-form');
+    if (profileForm) {
+        profileForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                fullName: document.getElementById('edit-name').value,
+                email: document.getElementById('edit-email').value,
+                bio: document.getElementById('edit-bio').value
+            };
+
+            try {
+                const response = await fetch(`http://localhost:3000/api/user/${userId}/profile`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    // Update display values
+                    document.getElementById('display-name').textContent = formData.fullName;
+                    document.getElementById('display-email').textContent = formData.email;
+                    document.getElementById('display-bio').textContent = formData.bio;
+                    
+                    // Update profile picture with new name
+                    const profilePic = document.getElementById('profile-picture');
+                    if (profilePic) {
+                        const userName = formData.fullName || 'User';
+                        profilePic.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(userName)}&background=random&color=fff&size=150`;
+                        profilePic.alt = userName;
+                    }
+                    
+                    // Switch back to view mode
+                    viewMode.style.display = 'block';
+                    editMode.style.display = 'none';
+                    editBtn.style.display = 'block';
+                    
+                    alert('Profile updated successfully!');
+                } else {
+                    alert('Failed to update profile. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error updating profile:', error);
+                alert('Error updating profile. Please try again.');
+            }
+        });
   }
 
   // Make profile link in dropdown work

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIGHTLEARN - Offline</title>
+    <link rel="stylesheet" href="/css/brightlearn.css">
+    <style>
+        .offline-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 2rem;
+            background: var(--light-gray);
+        }
+
+        .offline-content {
+            max-width: 600px;
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .offline-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .offline-title {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .offline-message {
+            color: var(--dark-gray);
+            margin-bottom: 2rem;
+        }
+
+        .available-content {
+            text-align: left;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--medium-gray);
+        }
+
+        .content-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .content-item {
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: var(--light-gray);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .content-icon {
+            font-size: 1.5rem;
+        }
+
+        .content-info {
+            flex: 1;
+        }
+
+        .content-title {
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+
+        .content-status {
+            font-size: 0.875rem;
+            color: var(--dark-gray);
+        }
+
+        .retry-button {
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .retry-button:hover {
+            background: var(--primary-dark);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .offline-page {
+                background: var(--primary-color);
+            }
+
+            .offline-content {
+                background: var(--primary-dark);
+                color: var(--white);
+            }
+
+            .offline-title {
+                color: var(--white);
+            }
+
+            .offline-message {
+                color: var(--light-gray);
+            }
+
+            .content-item {
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+            .content-status {
+                color: var(--light-gray);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-page">
+        <div class="offline-content">
+            <div class="offline-icon">📡</div>
+            <h1 class="offline-title">You're Offline</h1>
+            <p class="offline-message">
+                Don't worry! You can still access your downloaded content and continue learning.
+                We'll automatically sync your progress when you're back online.
+            </p>
+            <button class="retry-button" onclick="window.location.reload()">
+                Try Again
+            </button>
+
+            <div class="available-content">
+                <h2>Available Offline</h2>
+                <ul class="content-list" id="offlineContent">
+                    <!-- Content will be populated by JavaScript -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check for cached content and display it
+        async function displayOfflineContent() {
+            try {
+                const cache = await caches.open('brightlearn-cache-v1');
+                const keys = await cache.keys();
+                const contentList = document.getElementById('offlineContent');
+                
+                if (keys.length === 0) {
+                    contentList.innerHTML = '<li class="content-item">No content available offline</li>';
+                    return;
+                }
+
+                const contentItems = keys
+                    .filter(key => key.url.includes('/content/'))
+                    .map(key => {
+                        const url = new URL(key.url);
+                        const pathParts = url.pathname.split('/');
+                        const contentName = pathParts[pathParts.length - 1]
+                            .replace(/-/g, ' ')
+                            .replace('.html', '');
+
+                        return `
+                            <li class="content-item">
+                                <span class="content-icon">📚</span>
+                                <div class="content-info">
+                                    <div class="content-title">${contentName}</div>
+                                    <div class="content-status">Available Offline</div>
+                                </div>
+                            </li>
+                        `;
+                    });
+
+                contentList.innerHTML = contentItems.join('');
+            } catch (error) {
+                console.error('Error displaying offline content:', error);
+            }
+        }
+
+        // Check connection status
+        function updateOnlineStatus() {
+            const retryButton = document.querySelector('.retry-button');
+            if (navigator.onLine) {
+                retryButton.textContent = 'Reconnected! Click to Reload';
+                retryButton.style.background = 'var(--secondary-color)';
+            } else {
+                retryButton.textContent = 'Try Again';
+                retryButton.style.background = 'var(--primary-blue)';
+            }
+        }
+
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+
+        // Initialize
+        displayOfflineContent();
+        updateOnlineStatus();
+    </script>
+</body>
+</html>

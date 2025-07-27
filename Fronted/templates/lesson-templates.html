@@ -1,0 +1,183 @@
+<!-- Video Lesson Template -->
+<template id="video-lesson-template">
+    <div class="lesson-content-wrapper video-lesson">
+        <div class="video-player-section">
+            <div class="video-wrapper">
+                <iframe src="${videoUrl}" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="video-controls">
+                <button class="control-btn" data-action="rewind">
+                    <i class="fas fa-backward"></i> 10s
+                </button>
+                <button class="control-btn" data-action="play-pause">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="control-btn" data-action="forward">
+                    <i class="fas fa-forward"></i> 10s
+                </button>
+            </div>
+        </div>
+        <div class="content-sections">
+            <div class="section key-points">
+                <h3><i class="fas fa-star"></i> Key Points</h3>
+                <ul class="key-points-list">
+                    <!-- Will be populated dynamically -->
+                </ul>
+            </div>
+            <div class="section transcript">
+                <h3><i class="fas fa-file-alt"></i> Transcript</h3>
+                <div class="transcript-content">
+                    <!-- Will be populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<!-- Interactive Exercise Template -->
+<template id="interactive-exercise-template">
+    <div class="lesson-content-wrapper interactive-exercise">
+        <div class="exercise-header">
+            <h2 class="exercise-title"></h2>
+            <div class="exercise-progress">
+                <span class="current-question"></span>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+        <div class="exercise-content">
+            <div class="question-container">
+                <!-- Will be populated dynamically -->
+            </div>
+            <div class="answer-feedback">
+                <!-- Feedback will appear here -->
+            </div>
+        </div>
+        <div class="exercise-navigation">
+            <button class="nav-btn prev-question" disabled>
+                <i class="fas fa-arrow-left"></i> Previous
+            </button>
+            <button class="submit-answer">
+                Check Answer
+            </button>
+            <button class="nav-btn next-question" disabled>
+                Next <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+</template>
+
+<!-- Reading Lesson Template -->
+<template id="reading-lesson-template">
+    <div class="lesson-content-wrapper reading-lesson">
+        <div class="reading-header">
+            <div class="reading-controls">
+                <button class="control-btn" data-action="font-decrease">
+                    <i class="fas fa-minus"></i> A
+                </button>
+                <button class="control-btn" data-action="font-increase">
+                    <i class="fas fa-plus"></i> A
+                </button>
+                <button class="control-btn" data-action="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+        <div class="reading-content">
+            <!-- Will be populated dynamically -->
+        </div>
+        <div class="reading-footer">
+            <div class="section-navigation">
+                <button class="section-btn prev-section" disabled>
+                    <i class="fas fa-arrow-left"></i> Previous Section
+                </button>
+                <div class="section-indicator">
+                    <!-- Will be populated dynamically -->
+                </div>
+                <button class="section-btn next-section">
+                    Next Section <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</template>
+
+<!-- Quiz Template -->
+<template id="quiz-template">
+    <div class="lesson-content-wrapper quiz-lesson">
+        <div class="quiz-header">
+            <h2 class="quiz-title"></h2>
+            <div class="quiz-info">
+                <span class="time-remaining">
+                    <i class="fas fa-clock"></i>
+                    <span class="timer">00:00</span>
+                </span>
+                <span class="question-counter">
+                    Question <span class="current">1</span> of <span class="total">10</span>
+                </span>
+            </div>
+        </div>
+        <div class="quiz-content">
+            <div class="question-container">
+                <!-- Will be populated dynamically -->
+            </div>
+        </div>
+        <div class="quiz-navigation">
+            <button class="quiz-btn prev-question" disabled>
+                <i class="fas fa-arrow-left"></i> Previous
+            </button>
+            <button class="quiz-btn submit-answer">
+                Submit Answer
+            </button>
+            <button class="quiz-btn next-question" disabled>
+                Next <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+</template>
+
+<!-- Practice Exercise Template -->
+<template id="practice-template">
+    <div class="lesson-content-wrapper practice-lesson">
+        <div class="practice-header">
+            <h2 class="practice-title"></h2>
+            <div class="practice-controls">
+                <button class="control-btn" data-action="hint">
+                    <i class="fas fa-lightbulb"></i> Hint
+                </button>
+                <button class="control-btn" data-action="solution">
+                    <i class="fas fa-eye"></i> Solution
+                </button>
+                <button class="control-btn" data-action="reset">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+        </div>
+        <div class="practice-content">
+            <div class="problem-statement">
+                <!-- Will be populated dynamically -->
+            </div>
+            <div class="workspace">
+                <div class="input-area">
+                    <!-- Will be populated dynamically -->
+                </div>
+                <div class="output-area">
+                    <!-- Results will appear here -->
+                </div>
+            </div>
+        </div>
+        <div class="practice-footer">
+            <button class="practice-btn run-code">
+                <i class="fas fa-play"></i> Run Code
+            </button>
+            <button class="practice-btn submit-solution">
+                Submit Solution
+            </button>
+        </div>
+    </div>
+</template>

@@ -1,3 +1,5 @@
+const BASE_URL = 'http://localhost:3000/api';
+
 document.addEventListener('DOMContentLoaded', function() {
     setupPasswordToggle();
     setupRegisterForm();
@@ -23,7 +25,7 @@ function setupRegisterForm() {
     const registerForm = document.getElementById('registerForm');
     
     if (registerForm) {
-        registerForm.addEventListener('submit', function(e) {
+        registerForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             clearErrors();
 
@@ -48,6 +50,38 @@ function setupRegisterForm() {
                 isValid = false;
             } else if (!/^\S+@\S+\.\S+$/.test(email)) {
                 showError('emailError', 'Please enter a valid email');
+                isValid = false;
+            }
+
+            if (isValid) {
+                try {
+                    const response = await fetch(`${BASE_URL}/register`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            fullName,
+                            email,
+                            password
+                        }),
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        localStorage.setItem('token', data.token);
+                        // Decode the JWT token to get userId
+                        const payload = JSON.parse(atob(data.token.split('.')[1]));
+                        localStorage.setItem('userId', payload.userId);
+                        window.location.href = 'index.html';
+                    } else {
+                        showError('emailError', data.message || 'Registration failed');
+                    }
+                } catch (error) {
+                    console.error('Registration error:', error);
+                    showError('emailError', 'An error occurred during registration');
+                }
                 isValid = false;
             }
 

@@ -1,0 +1,220 @@
+/* Lesson Templates Styles */
+
+/* Video Lesson */
+.video-lesson {
+    padding: 2rem;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    margin-bottom: 2rem;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius);
+}
+
+.video-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    background: var(--video-control-bg);
+    border-radius: var(--border-radius);
+}
+
+.control-btn {
+    background: transparent;
+    border: none;
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.control-btn:hover {
+    opacity: 0.8;
+}
+
+.key-points {
+    background: var(--light-gray);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin: 1rem 0;
+}
+
+.transcript {
+    background: var(--white);
+    padding: 1.5rem;
+    border: 1px solid var(--medium-gray);
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+}
+
+/* Interactive Exercise */
+.interactive-exercise {
+    padding: 2rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--light-gray);
+    border-radius: 4px;
+    margin: 1rem 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--secondary-color);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* Reading Lesson */
+.reading-lesson {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.reading-controls {
+    position: sticky;
+    top: 0;
+    background: var(--white);
+    padding: 1rem;
+    box-shadow: var(--shadow);
+    z-index: 100;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.reading-content {
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+.reading-content.dark-theme {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+}
+
+/* Quiz Template */
+.quiz-container {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.timer {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    background: var(--light-gray);
+}
+
+.timer.warning {
+    background: var(--quiz-timer-warning);
+    color: var(--white);
+}
+
+.timer.danger {
+    background: var(--quiz-timer-danger);
+    color: var(--white);
+    animation: pulse 1s infinite;
+}
+
+/* Practice Template */
+.practice-exercise {
+    padding: 2rem;
+}
+
+.code-editor {
+    background: var(--code-editor-bg);
+    color: var(--code-editor-text);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    font-family: 'Courier New', monospace;
+    margin: 1rem 0;
+    min-height: 300px;
+}
+
+.practice-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.hint-panel {
+    background: var(--hint-bg);
+    color: var(--hint-text);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+    display: none;
+}
+
+.hint-panel.visible {
+    display: block;
+}
+
+.solution-panel {
+    background: var(--solution-bg);
+    color: var(--solution-text);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+    display: none;
+}
+
+.solution-panel.visible {
+    display: block;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .video-lesson,
+    .interactive-exercise,
+    .reading-lesson,
+    .quiz-container,
+    .practice-exercise {
+        padding: 1rem;
+    }
+
+    .video-controls,
+    .reading-controls,
+    .practice-controls {
+        flex-wrap: wrap;
+    }
+
+    .control-btn {
+        flex: 1 1 auto;
+        text-align: center;
+    }
+}
