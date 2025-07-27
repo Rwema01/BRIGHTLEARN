@@ -3,13 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRIGHTLEARN - Shakespeare Quiz</title>
+    <title>BRIGHTLEARN - Advanced grammar</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .progress-bar-container {
+            background-color: #ddd;
+            border-radius: 20px;
+            margin: 10px 0;
+            height: 20px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #3498db;
+            transition: width 0.4s ease-in-out;
+        }
+        .level {
+            background-color: #fff;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .level h2 {
+            margin-top: 0;
+        }
+        .complete-btn {
+            background: #008437;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        .complete-btn:disabled {
+            background: #038dc8;
+            cursor: not-allowed;
+        }
+        .uncomplete-btn {
+            background: #b51904;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .button-container {
+            display: flex;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
     <div class="app-container">
-        <!-- Left Navigation (Unchanged) -->
+        <!-- Left Navigation -->
         <nav class="left-nav">
             <div class="nav-header">
                 <div class="logo-container">
@@ -31,9 +83,21 @@
                     </a>
                 </li>
                 <li>
+                    <a href="grades.html">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>GRADES</span>
+                    </a>
+                </li>
+                <li>
                     <a href="history.html">
                         <i class="fas fa-history"></i>
                         <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>SETTINGS</span>
                     </a>
                 </li>
                 <li>
@@ -54,229 +118,668 @@
 
         <!-- Main Content -->
         <main class="main-content">
+            <!-- Top Bar -->
             <header class="top-bar">
-               <div class="top-icons">
-        <!-- Search -->
-               
-
-        <!-- Notification Icon (links to notification.html) -->
-                 <div class="notification-dropdown">
-                    <a href="notifications.html">
-                    <i class="fas fa-bell notification-icon"></i>
+                <div class="top-icons">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <!-- Simple Notification Link -->
+                    <a href="notifications.html" class="notification-link">
+                        <i class="fas fa-bell notification-icon"></i>
                     </a>
-                    <span class="notification-badge">3</span>
-                 </div>
-
-        <!-- Profile Icon (links to profile.html) -->
-                 <div class="profile-dropdown">
-                    <a href="profile.html">
-                    <i class="fas fa-user-circle profile-icon"></i>
+                    
+                    <!-- Simple Profile Link -->
+                    <a href="profile.html" class="profile-link">
+                        <i class="fas fa-user-circle profile-icon"></i>
                     </a>
-                 </div>
                 </div>
             </header>
 
-            <!-- Top Bar (Unchanged) -->
+            <!-- Updated Breadcrumbs to match courses.html style -->
+            <div class="dashboard-content">
+                <div class="welcome-section">
+                    <div class="breadcrumbs">
+                        <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="english.html">English</a> > <a href="advanced-grammar.html">Advanced Grammar</a>
+                    </div>
+                    <h1><i class="fas fa-language"></i> Advanced <span class="student-name">Grammar - 30 Page Summary</span></h1>
+                </div>
 
-    
-</head>
-  <style>
-    
-   
-    .progress-bar-container {
-      background-color: #ddd;
-      border-radius: 20px;
-      margin: 10px 0;
-      height: 20px;
-      overflow: hidden;
-    }
-    .progress-bar {
-      height: 100%;
-      width: 0%;
-      background-color: #3498db;
-      transition: width 0.4s ease-in-out;
-    }
-    .level {
-      background-color: #fff;
-      padding: 20px;
-      margin: 15px 0;
-      border-left: 5px solid #3498db;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .level h2 {
-      margin-top: 0;
-    }
-    .complete-btn {
-      background: #2ecc71;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      margin-top: 10px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    .complete-btn:disabled {
-      background: #aaa;
-      cursor: not-allowed;
-    }
-  </style>
-</head>
-<body>
-<header>
-   <div class="breadcrumbs">
-    <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="english.html">English</a> > <a href="advanced-grammar.html">Advanced Grammar</a>
-</div>
-  <h1>Advanced Grammar - 30 Page Summary</h1>
-  <div>Progress:</div>
-  <div class="progress-bar-container">
-    <div class="progress-bar" id="progressBar"></div>
-  </div>
-</header>
-<main id="content"></main>
-<script>
-const notesData = {
-  "Level 1": {
-    title: "Introduction to Advanced Grammar",
-    content: `Definition of Grammar
-Grammar is the set of structural rules that govern the composition of words, phrases, and sentences in a language. It provides a framework for communication by defining how words are formed, arranged, and modified to convey meaning.
+                <!-- All the original body content remains exactly the same -->
+                <div>Progress:</div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                
+                <main id="content"></main>
+                
+                <script>
+                    const notesData = {
+                        "Level 1": {
+                            title: "Introduction to Advanced Grammar",
+                            content: `Definition of Grammar
+                    Grammar is the set of structural rules that govern the composition of words, phrases, and sentences in a language. It provides a framework for communication by defining how words are formed, arranged, and modified to convey meaning.
 
-2. Importance of Grammar
-Clarity: Proper grammar ensures clear and precise communication.
-Credibility: Correct grammar enhances professionalism in writing and speaking.
-Comprehension: It helps readers and listeners understand the intended message.
-Consistency: Grammar rules standardize language usage.
+                    2. Importance of Grammar
+                    Clarity: Proper grammar ensures clear and precise communication.
+                    Credibility: Correct grammar enhances professionalism in writing and speaking.
+                    Comprehension: It helps readers and listeners understand the intended message.
+                    Consistency: Grammar rules standardize language usage.
 
-3. Components of Grammar
-Grammar consists of several key components:
+                    3. Components of Grammar
+                    Grammar consists of several key components:
 
-A. Phonology
-The study of sounds in a language.
-Includes pronunciation, stress, and intonation patterns.
+                    A. Phonology
+                    The study of sounds in a language.
+                    Includes pronunciation, stress, and intonation patterns.
 
-B. Morphology
-The study of word formation.
-Examines prefixes, suffixes, roots, and how words are constructed (e.g., "unhappiness" = un- + happy + -ness).
+                    B. Morphology
+                    The study of word formation.
+                    Examines prefixes, suffixes, roots, and how words are constructed (e.g., "unhappiness" = un- + happy + -ness).
 
-C. Syntax
-The arrangement of words to form meaningful sentences.
-Governs sentence structure (e.g., subject-verb-object order in English: "She eats apples.").
+                    C. Syntax
+                    The arrangement of words to form meaningful sentences.
+                    Governs sentence structure (e.g., subject-verb-object order in English: "She eats apples.").
 
-D. Semantics
-The study of meaning in language.
-Analyzes how words and sentences convey ideas (e.g., "bank" can mean a financial institution or the side of a river).
+                    D. Semantics
+                    The study of meaning in language.
+                    Analyzes how words and sentences convey ideas (e.g., "bank" can mean a financial institution or the side of a river).
 
-E. Pragmatics
-The study of language in context.
-Examines how meaning changes based on situation, tone, and cultural factors (e.g., sarcasm, politeness).
+                    E. Pragmatics
+                    The study of language in context.
+                    Examines how meaning changes based on situation, tone, and cultural factors (e.g., sarcasm, politeness).
 
-4. Parts of Speech
-Words are categorized into different parts of speech based on their function:
-Nouns – Names of people, places, things (e.g., dog, city, love).
-Pronouns – Replace nouns (e.g., he, she, they).
-Verbs – Express actions or states (e.g., run, is, think).
-Adjectives – Describe nouns (e.g., happy, tall, blue).
-Adverbs – Modify verbs, adjectives, or other adverbs (e.g., quickly, very, well).
-Prepositions – Show relationships (e.g., in, on, at).
-Conjunctions – Connect words or clauses (e.g., and, but, because).
-Interjections – Express emotions (e.g., wow, ouch, hey).
+                    4. Parts of Speech
+                    Words are categorized into different parts of speech based on their function:
+                    Nouns – Names of people, places, things (e.g., dog, city, love).
+                    Pronouns – Replace nouns (e.g., he, she, they).
+                    Verbs – Express actions or states (e.g., run, is, think).
+                    Adjectives – Describe nouns (e.g., happy, tall, blue).
+                    Adverbs – Modify verbs, adjectives, or other adverbs (e.g., quickly, very, well).
+                    Prepositions – Show relationships (e.g., in, on, at).
+                    Conjunctions – Connect words or clauses (e.g., and, but, because).
+                    Interjections – Express emotions (e.g., wow, ouch, hey).
 
-5. Sentence Structure
-A sentence typically consists of:
-Subject (who or what the sentence is about).
-Predicate (what the subject does or is).
-Example:
-"The cat (subject) sat on the mat (predicate)."
+                    5. Sentence Structure
+                    A sentence typically consists of:
+                    Subject (who or what the sentence is about).
+                    Predicate (what the subject does or is).
+                    Example:
+                    "The cat (subject) sat on the mat (predicate)."
 
-Sentences can be:
-Simple (one independent clause).
-Compound (two independent clauses joined by a conjunction).
-Complex (one independent and one dependent clause).
+                    Sentences can be:
+                    Simple (one independent clause).
+                    Compound (two independent clauses joined by a conjunction).
+                    Complex (one independent and one dependent clause).
 
-6. Common Grammar Rules
-Subject-Verb Agreement: The verb must agree with the subject in number (e.g., "She runs" vs. "They run").
-Punctuation: Proper use of commas, periods, apostrophes, etc.
-Tense Consistency: Maintain the same tense unless indicating a time shift.
-Pronoun-Antecedent Agreement: Pronouns must match their nouns in gender and number.
+                    6. Common Grammar Rules
+                    Subject-Verb Agreement: The verb must agree with the subject in number (e.g., "She runs" vs. "They run").
+                    Punctuation: Proper use of commas, periods, apostrophes, etc.
+                    Tense Consistency: Maintain the same tense unless indicating a time shift.
+                    Pronoun-Antecedent Agreement: Pronouns must match their nouns in gender and number.
 
-7. Types of Grammar
-Descriptive Grammar: How language is actually used by speakers.
-Prescriptive Grammar: Rules dictating "correct" usage.
-Comparative Grammar: Comparing grammatical structures across languages.
+                    7. Types of Grammar
+                    Descriptive Grammar: How language is actually used by speakers.
+                    Prescriptive Grammar: Rules dictating "correct" usage.
+                    Comparative Grammar: Comparing grammatical structures across languages.
 
-8. Conclusion
-Grammar is essential for effective communication. Understanding its rules and components helps in constructing clear, coherent, and grammatically correct sentences. Mastery of grammar improves both written and spoken language skills.`
-  },
-"Level 2": {
-  "title": "The Subjunctive Mood",
-  "content": "1. Definition of Mood\nIn grammar, mood refers to the form of a verb that indicates the speaker's attitude toward the action or state expressed. It shows whether the statement is a fact, command, wish, possibility, or hypothetical situation.\n\n2. Types of Moods\nThere are three main moods in English:\n\nA. Indicative Mood\n- Used to state facts, opinions, or questions.\n- Most common mood in everyday speech and writing.\n\nExamples:\n- She goes to school every day. (Fact)\n- Do you like coffee? (Question)\n- I think it will rain. (Opinion)\n\nB. Imperative Mood\n- Used to give commands, requests, or instructions.\n- Often has an implied subject (\"you\").\n\nExamples:\n- Close the door. (Command)\n- Please pass the salt. (Request)\n- Don't be late. (Instruction)\n\nC. Subjunctive Mood\n- Expresses wishes, hypothetical situations, suggestions, or demands.\n- Often used with \"if,\" \"wish,\" \"suggest,\" \"demand,\" etc.\n\nStructure:\n- Present Subjunctive: Base form of the verb (e.g., \"It is important that he be here.\")\n- Past Subjunctive: \"Were\" for all subjects (e.g., \"If I were rich...\")\n\nExamples:\n- I wish she were here. (Wish)\n- If I had more time, I would travel. (Hypothetical)\n- The teacher demanded that he submit the assignment. (Demand)\n\n3. Conditional Mood (Sometimes Included)\n- Used to express actions that depend on a condition (\"would,\" \"could,\" \"might\").\n- Often overlaps with the subjunctive mood.\n\nExamples:\n- She would call if she had time.\n- If it rains, we will stay home.\n\n4. Interrogative Mood (Debated Category)\n- Used to ask questions.\n- Some grammarians consider it part of the indicative mood.\n\nExamples:\n- Are you coming?\n- Where did she go?"
-},
-  "Level 3": { title: "Conditional Sentences (All Types)", content: "Conditionals have four types: Zero, First, Second, Third..." },
-  "Level 4": { title: "Inversion for Emphasis", content: "Inversion reverses typical subject-verb order..." },
-  "Level 5": { title: "The Perfect Aspect", content: "Perfect tenses (have + past participle)..." },
-  "Level 6": { title: "Modal Verbs - Advanced Usage", content: "Beyond basic permission/ability, modals express..." },
-  "Level 7": { title: "Passive Voice Nuances", content: "The passive isn't just 'object becomes subject'..." },
-  "Level 8": { title: "Gerunds vs. Infinitives", content: "Verb patterns determine meaning: 'remember to call'..." },
-  "Level 9": { title: "Participle Clauses", content: "Present participles (-ing) show simultaneous actions..." },
-  "Level 10": { title: "Articles - Advanced Rules", content: "Beyond 'a/an/the,' zero article applies to general plurals..." },
-  "Level 11": { title: "Relative Clauses", content: "Restrictive clauses (no commas) define..." },
-  "Level 12": { title: "Ellipsis and Substitution", content: "Ellipsis omits understood words..." },
-  "Level 13": { title: "Discourse Markers", content: "Transition words organize ideas..." },
-  "Level 14": { title: "Inversion in Conditionals", content: "Formal conditionals invert without 'if'..." },
-  "Level 15": { title: "Fronting and Emphasis", content: "Moving elements to sentence start creates focus..." },
-  "Level 16": { title: "Passive with Reporting Verbs", content: "Impersonal constructions avoid 'I/we'..." },
-  "Level 17": { title: "Nominalization", content: "Turning verbs into nouns ('to analyze' → 'analysis')..." },
-  "Level 18": { title: "Parallel Structure", content: "Balanced constructions prevent confusion..." },
-  "Level 19": { title: "Hypothetical Meaning", content: "Past tense for present unreality..." },
-  "Level 20": { title: "Gradability and Non-Gradable Adjectives", content: "Most adjectives accept modifiers..." },
-  "Level 21": { title: "Transitivity and Verb Patterns", content: "Transitive verbs need objects..." },
-  "Level 22": { title: "Ergative Verbs", content: "Verbs where subject/object switch roles..." },
-  "Level 23": { title: "Catenative Verbs", content: "Chaining verbs: 'She seems to have forgotten'..." },
-  "Level 24": { title: "Delexical Verbs", content: "Light verbs with little meaning..." },
-  "Level 25": { title: "Multi-Word Verbs", content: "Phrasal, prepositional, and phrasal-prepositional verbs..." },
-  "Level 26": { title: "Anaphora and Cataphora", content: "Referring back or forward..." },
-  "Level 27": { title: "Information Structure", content: "Given-new contract: Start with known information..." },
-  "Level 28": { title: "Hedging and Boosting", content: "Hedges soften claims. Boosters strengthen..." },
-  "Level 29": { title: "Cohesion Devices", content: "Repetition, synonyms, pronouns, and conjunctions..." },
-  "Level 30": { title: "Conclusion - Grammar in Context", content: "Rules interact dynamically..." }
-};
+                    8. Conclusion
+                    Grammar is essential for effective communication. Understanding its rules and components helps in constructing clear, coherent, and grammatically correct sentences. Mastery of grammar improves both written and spoken language skills.`
+                        },
+                        "Level 2": {
+                            "title": "The Subjunctive Mood",
+                            "content": "1. Definition of Mood\nIn grammar, mood refers to the form of a verb that indicates the speaker's attitude toward the action or state expressed. It shows whether the statement is a fact, command, wish, possibility, or hypothetical situation.\n\n2. Types of Moods\nThere are three main moods in English:\n\nA. Indicative Mood\n- Used to state facts, opinions, or questions.\n- Most common mood in everyday speech and writing.\n\nExamples:\n- She goes to school every day. (Fact)\n- Do you like coffee? (Question)\n- I think it will rain. (Opinion)\n\nB. Imperative Mood\n- Used to give commands, requests, or instructions.\n- Often has an implied subject (\"you\").\n\nExamples:\n- Close the door. (Command)\n- Please pass the salt. (Request)\n- Don't be late. (Instruction)\n\nC. Subjunctive Mood\n- Expresses wishes, hypothetical situations, suggestions, or demands.\n- Often used with \"if,\" \"wish,\" \"suggest,\" \"demand,\" etc.\n\nStructure:\n- Present Subjunctive: Base form of the verb (e.g., \"It is important that he be here.\")\n- Past Subjunctive: \"Were\" for all subjects (e.g., \"If I were rich...\")\n\nExamples:\n- I wish she were here. (Wish)\n- If I had more time, I would travel. (Hypothetical)\n- The teacher demanded that he submit the assignment. (Demand)\n\n3. Conditional Mood (Sometimes Included)\n- Used to express actions that depend on a condition (\"would,\" \"could,\" \"might\").\n- Often overlaps with the subjunctive mood.\n\nExamples:\n- She would call if she had time.\n- If it rains, we will stay home.\n\n4. Interrogative Mood (Debated Category)\n- Used to ask questions.\n- Some grammarians consider it part of the indicative mood.\n\nExamples:\n- Are you coming?\n- Where did she go?"
+                        },
+                        "Level 3": {
+                            title: "Conditional Sentences (All Types)",
+                            content: `1. **Zero Conditional** (General Truths)
+- Structure: If + present simple, present simple
+- Example: "If you heat ice, it melts."
+- Usage: Scientific facts, universal truths.
 
-const progressKey = "grammarProgress";
-function getProgress() {
-  const saved = localStorage.getItem(progressKey);
-  return saved ? JSON.parse(saved) : {};
-}
-function updateProgressBar(progress) {
-  const total = Object.keys(notesData).length;
-  const completed = Object.values(progress).filter(v => v === true).length;
-  const percent = (completed / total) * 100;
-  document.getElementById("progressBar").style.width = percent + "%";
-}
-function renderContent() {
-  const container = document.getElementById("content");
-  const progress = getProgress();
-  updateProgressBar(progress);
-  Object.entries(notesData).forEach(([level, data]) => {
-    const div = document.createElement("div");
-    div.className = "level";
-    const isComplete = progress[level] === true;
-    div.innerHTML = `
-      <h2>${level}: ${data.title}</h2>
-      <p>${data.content.replace(/\n/g, "<br>")}</p>
-      <button class="complete-btn" ${isComplete ? "disabled" : ""} onclick="markComplete('${level}')">
-        ${isComplete ? "Completed" : "Mark as Complete"}
-      </button>
-    `;
-    container.appendChild(div);
-  });
-}
-function markComplete(level) {
-  const progress = getProgress();
-  progress[level] = true;
-  localStorage.setItem(progressKey, JSON.stringify(progress));
-  document.getElementById("content").innerHTML = "";
-  renderContent();
-}
-renderContent();
-</script>
+2. **First Conditional** (Real Future Possibility)
+- Structure: If + present simple, will + base verb
+- Example: "If it rains, we will cancel the picnic."
+- Usage: Likely future outcomes.
+
+3. **Second Conditional** (Unreal/Hypothetical Present)
+- Structure: If + past simple, would + base verb
+- Example: "If I won the lottery, I would buy a castle."
+- Usage: Imaginary situations.
+
+4. **Third Conditional** (Unreal Past)
+- Structure: If + past perfect, would have + past participle
+- Example: "If you had studied, you would have passed."
+- Usage: Regrets/criticism about the past.
+
+5. **Mixed Conditionals**
+- Example: "If I had learned Spanish (past), I would be fluent now (present)."`
+                        },
+                        "Level 4": {
+                            title: "Inversion for Emphasis",
+                            content: `1. **Definition**: Reversing subject-verb order for dramatic/formal effect.
+        
+2. **Common Triggers**:
+   - Negative Adverbs: 
+     - "Never have I seen such beauty."
+     - "Seldom does he arrive on time."
+   - "Only" Phrases:
+     - "Only after the storm did we see the damage."
+   - Conditionals (replacing "if"):
+     - "Were I you, I would apologize." (Instead of "If I were you...")
+
+3. **Rules**:
+   - Auxiliary verb comes FIRST ("Did I know...").
+   - No inversion if the negative word modifies the subject:
+     - "Hardly anyone understood the lecture." (Correct)
+     - "Hardly did anyone understand the lecture." (Incorrect)`
+                        },
+                        "Level 5": {
+                            title: "The Perfect Aspect",
+                            content: `1. **Core Idea**: Connects actions across different times.
+        
+2. **Tenses**:
+   - Present Perfect: 
+     - "She has written three novels." (Past action, present relevance)
+   - Past Perfect: 
+     - "When I arrived, the train had left." (Past-before-past)
+   - Future Perfect: 
+     - "By 2030, AI will have transformed education."
+
+3. **Key Uses**:
+   - Unfinished Time: "I've known her since 2010."
+   - Experiences: "Have you ever eaten durian?"
+   - Recent Past: "The CEO has just resigned."`
+                        },
+                        "Level 6": {
+                            title: "Modal Verbs - Advanced Usage",
+                            content: `1. **Beyond Basics**:
+   - "Must" vs. "Have to":
+     - "You must obey the law." (Rule)
+     - "I have to finish this today." (Personal obligation)
+   - "Should" vs. "Ought to":
+     - "You should apologize." (Advice)
+     - "You ought to help them." (Moral duty)
+
+2. **Probability**:
+   - "It might rain." (50% chance)
+   - "She must be at home." (95% certainty)
+   - "They can't be serious!" (Disbelief)
+
+3. **Past Modals**:
+   - "You should have called." (Missed obligation)
+   - "She might have forgotten." (Possibility)`
+                        },
+                        "Level 7": {
+                            title: "Passive Voice Nuances",
+                            content: `1. **When to Use**:
+   - Agent unknown: "My bike was stolen."
+   - Agent obvious: "The suspect was arrested (by police)."
+   - Focus on action: "A new law was passed."
+
+2. **Advanced Structures**:
+   - Double Passive: "The project is expected to be completed."
+   - Reporting Verbs: "It is believed that aliens exist."
+   - Get-Passive (Informal): "He got promoted last week."
+
+3. **Avoid Overuse**:
+   - Active: "The committee approved the plan." (Stronger)
+   - Passive: "The plan was approved by the committee." (Weaker)`
+                        },
+                        "Level 8": {
+                            title: "Gerunds vs. Infinitives",
+                            content: `1. **Verb Patterns**:
+   - Gerund (-ing): After prepositions ("She's good at swimming").
+   - Infinitive (to + verb): After adjectives ("It's easy to learn").
+   - Both (with meaning changes):
+     - "I stopped smoking." (Quit habit)
+     - "I stopped to smoke." (Paused for a break)
+
+2. **Common Verbs**:
+   - Gerund Only: Avoid, enjoy, deny ("He denied cheating").
+   - Infinitive Only: Agree, decide, refuse ("We agreed to leave").
+   - Both: Like, hate, begin ("I like dancing/to dance").`
+                        },
+                        "Level 9": {
+                            title: "Participle Clauses",
+                            content: `1. **Types**:
+   - Present Participle (-ing): "Seeing the crowd, she waved."
+   - Past Participle (-ed/irregular): "Built in 1920, the tower is historic."
+   - Perfect Participle (having + past participle): "Having finished, he left."
+
+2. **Uses**:
+   - Replace Time Clauses: "After I opened the door, I saw..." → "Opening the door, I saw..."
+   - Replace Reason Clauses: "Because he was tired, he slept." → "Being tired, he slept."
+
+3. **Rules**:
+   - Same Subject: "Walking home, my phone rang." (Incorrect – 'phone' didn't walk)
+   - Active → -ing / Passive → -ed: "The book, written by Twain, is famous."`
+                        },
+                        "Level 10": {
+                            title: "Articles - Advanced Rules",
+                            content: `1. **Zero Article (No 'the/a/an')**:
+   - General Plurals: "Cats are independent."
+   - Abstract Nouns: "Love conquers all."
+   - Meals: "We had breakfast late."
+
+2. **Definite Article ('the')**:
+   - Unique Things: "The sun rose."
+   - Superlatives: "She's the best player."
+   - Previously Mentioned: "I bought a book. The book is expensive."
+
+3. **Exceptions**:
+   - Institutions: "She's in hospital." (UK) vs. "She's in the hospital." (US)
+   - Geographical Names: "I visited the Alps" (mountain ranges) but "Mount Everest".`
+                        },
+                        "Level 11": {
+                            title: "Relative Clauses",
+                            content: `1. **Definition**: Clauses that modify nouns (provide extra information).
+        
+2. **Types**:
+   - Defining (Restrictive):
+     - Essential to sentence meaning. No commas.
+     - Example: "The book that you lent me was fascinating."
+   - Non-Defining (Non-Restrictive):
+     - Extra information. Uses commas.
+     - Example: "Tokyo, which is Japan's capital, is huge."
+
+3. **Relative Pronouns**:
+   - People: who/whom/that ("The artist who painted this is famous")
+   - Things: which/that ("The car which I bought is electric")
+   - Possession: whose ("The woman whose phone rang left")
+
+4. **Omitting Pronouns**:
+   - Only in defining clauses when pronoun is the object:
+     - "The movie (that) we watched was scary." (Correct)
+     - "The doctor, (who) treated me, was kind." (Incorrect)`
+                        },
+                        "Level 12": {
+                            title: "Ellipsis and Substitution",
+                            content: `1. **Ellipsis**: Omitting repeated words when meaning is clear.
+   - Example: 
+     - Full: "She likes tea, and she likes coffee."
+     - Ellipsis: "She likes tea and coffee."
+
+2. **Common Cases**:
+   - After "and/but/or": "He ordered pasta and (he) ate quickly."
+   - In comparisons: "She runs faster than I (run)."
+   - Short answers: "Are you coming?" "Yes, (I am)."
+
+3. **Substitution**:
+   - "do": "She exercises more than I do." (Replace "exercise")
+   - "so": "Is it raining?" "I think so." (Replace "that it is raining")
+   - "one": "This phone is cheap, but that one is expensive."
+
+4. **Avoiding Errors**:
+   - Wrong: "She enjoys hiking, and I enjoy it too."
+   - Right: "She enjoys hiking, and I do too."`
+                        },
+                        "Level 13": {
+                            title: "Discourse Markers",
+                            content: `1. **Definition**: Words/phrases that organize ideas in speech/writing.
+        
+2. **Types**:
+   - Adding: "Furthermore, the data shows..."
+   - Contrasting: "However, critics disagree..."
+   - Cause/Effect: "Consequently, prices rose..."
+   - Sequencing: "Firstly, we must consider..."
+
+3. **Formal vs Informal**:
+   - Formal: "Notwithstanding these findings..."
+   - Informal: "Anyway, let's move on..."
+
+4. **Position Rules**:
+   - Start of sentence: "Moreover, the study confirms..."
+   - Mid-sentence: "The results, therefore, are significant."`
+                        },
+                        "Level 14": {
+                            title: "Inversion in Conditionals",
+                            content: `1. **Formal Conditionals** (No "if"):
+   - Standard: "If I were rich, I would travel."
+   - Inverted: "Were I rich, I would travel."
+
+2. **Structures**:
+   - Type 2: "Were + subject" ("Were she here, she'd know")
+   - Type 3: "Had + subject" ("Had they arrived earlier...")
+
+3. **Usage Contexts**:
+   - Legal documents: "Should the tenant fail to pay..."
+   - Literary: "Had I but known the truth..."
+
+4. **Exceptions**:
+   - Never invert first conditionals ("If it rains" → NOT "Rains it")`
+                        },
+                        "Level 15": {
+                            title: "Fronting and Emphasis",
+                            content: `1. **Definition**: Moving non-standard elements to sentence start.
+        
+2. **Types**:
+   - Prepositional Phrases: "On the table sat a mysterious box."
+   - Negative Adverbs: "Never have I been so embarrassed."
+   - Adjectives: "Essential is that we act now."
+
+3. **Effects**:
+   - Dramatic emphasis: "Gone were the days of peace."
+   - Contrast: "Your essay was good; better was your presentation."
+
+4. **Punctuation**:
+   - Often uses commas: "The castle, ancient and crumbling, stood alone."`
+                        },
+                        "Level 16": {
+                            title: "Passive with Reporting Verbs",
+                            content: `1. **Impersonal Constructions**:
+   - Active: "People say she's brilliant."
+   - Passive: "She is said to be brilliant."
+
+2. **Common Verbs**:
+   - Believe, consider, estimate, know, report, think
+   - Example: "The suspect is believed to be armed."
+
+3. **Tense Changes**:
+   - Present: "It is thought that he lives abroad."
+   - Past: "He is thought to have left yesterday."
+
+4. **Formal Writing**:
+   - Preferred in academic/scientific contexts:
+     "The chemical was found to react violently."`
+                        },
+                        "Level 17": {
+                            title: "Nominalization",
+                            content: `1. **Definition**: Turning verbs/adjectives into nouns.
+   - Verb → Noun: "analyze" → "analysis"
+   - Adjective → Noun: "stable" → "stability"
+
+2. **Uses**:
+   - Academic writing: "The investigation revealed..."
+   - Conciseness: "Their refusal surprised us" vs. "They refused, which surprised us"
+
+3. **Common Suffixes**:
+   - -tion/-sion (decide → decision)
+   - -ment (achieve → achievement)
+   - -ity (possible → possibility)
+
+4. **Overuse Warning**:
+   - Can make writing abstract:
+     Bad: "The implementation of the plan by the team..."
+     Better: "The team implemented the plan..."`
+                        },
+                        "Level 18": {
+                            title: "Parallel Structure",
+                            content: `1. **Definition**: Using same grammatical form for similar ideas.
+        
+2. **Examples**:
+   - Correct: "She likes hiking, swimming, and cycling."
+   - Incorrect: "She likes hiking, to swim, and cycling."
+
+3. **With Correlatives**:
+   - Both...and: "Both the novel and the film were successful."
+   - Not only...but also: "He not only wrote but also directed it."
+
+4. **In Comparisons**:
+   - Wrong: "Her speech was clearer than the mayor."
+   - Right: "Her speech was clearer than the mayor's (speech)."`
+                        },
+                        "Level 19": {
+                            title: "Hypothetical Meaning",
+                            content: `1. **Past Tense for Present**:
+   - "I wish I knew the answer." (But I don't)
+   - "If only we had more time!" (We don't)
+
+2. **Structures**:
+   - Wish + past perfect: "I wish you had told me." (Regret)
+   - It's time + past: "It's time we left." (Should leave now)
+
+3. **Implied Conditions**:
+   - "I would've called, but I lost your number."
+     (Implied: "if I hadn't lost your number")
+
+4. **Were-Subjunctive**:
+   - Formal: "If he were honest..." (Even for singular)`
+                        },
+                        "Level 20": {
+                            title: "Gradable and Non-Gradable Adjectives",
+                            content: `1. **Gradable Adjectives**:
+   - Can use "very/rather/extremely":
+     - "Very cold" (Can be -5°C or -20°C)
+   - Have comparative forms: "colder", "more interesting"
+
+2. **Non-Gradable Adjectives**:
+   - Absolute meaning (can't be "more" or "less"):
+     - "Freezing" (Already means "extremely cold")
+     - "Unique", "dead", "perfect"
+   - Use "absolutely/completely" instead of "very":
+     - "Absolutely terrified" (NOT "very terrified")
+
+3. **Common Mistakes**:
+   - Wrong: "This is the most unique painting."
+   - Right: "This painting is unique."`
+                        },
+                        "Level 21": {
+                            title: "Transitivity and Verb Patterns",
+                            content: `1. **Transitive Verbs**:
+   - Require objects: "She bought a car." (What did she buy?)
+   - Examples: bring, give, send, make
+
+2. **Intransitive Verbs**:
+   - No object needed: "He died." (Can't ask "what?")
+   - Examples: sleep, arrive, go, happen
+
+3. **Ambitransitive Verbs**:
+   - Can be both: "She reads (books) every night."
+   - Others: eat, write, drive
+
+4. **Prepositional Verbs**:
+   - Always need specific prepositions:
+     - "He listens to music." (NOT "listens music")
+     - "They're arguing about politics."`
+                        },
+                        "Level 22": {
+                            title: "Ergative Verbs",
+                            content: `1. **Definition**: Verbs where subject/object can switch roles.
+        
+2. **Examples**:
+   - "The window broke." (Intransitive)
+   - "He broke the window." (Transitive)
+   - Others: melt, close, cook, sink
+
+3. **Causative Meaning**:
+   - Transitive form implies someone caused action:
+     - "The sun melted the ice." (Sun caused melting)
+
+4. **Common in Science**:
+   - "The solution heats slowly." (vs. "We heat the solution")`
+                        },
+                        "Level 23": {
+                            title: "Catenative Verbs",
+                            content: `1. **Definition**: Verbs chained with other verbs.
+        
+2. **Patterns**:
+   - Verb + to-infinitive: "She hopes to win."
+   - Verb + gerund: "They enjoy swimming."
+   - Verb + bare infinitive: "Let me go."
+
+3. **Multiple Chains**:
+   - "He seems to have forgotten to lock the door."
+     (seems → to have forgotten → to lock)
+
+4. **Meaning Changes**:
+   - "Remember to call" (Future action)
+   - "Remember calling" (Past memory)`
+                        },
+                        "Level 24": {
+                            title: "Delexical Verbs",
+                            content: `1. **Definition**: "Light" verbs with little meaning of their own.
+        
+2. **Common Verbs**:
+   - Have: "have a shower", "have breakfast"
+   - Take: "take a photo", "take notes"
+   - Make: "make a mistake", "make progress"
+   - Give: "give advice", "give a speech"
+
+3. **Collocation Importance**:
+   - Correct: "do homework" (NOT "make homework")
+   - Wrong: "take a decision" (UK) vs. "make a decision" (US)
+
+4. **Nuances**:
+   - "Make a call" (phone) vs. "Give someone a call" (informal invitation)`
+                        },
+                        "Level 25": {
+                            title: "Multi-Word Verbs",
+                            content: `1. **Phrasal Verbs** (Verb + Particle):
+   - "Turn off the lights." (Literal)
+   - "She turned down the offer." (Idiomatic)
+
+2. **Prepositional Verbs**:
+   - "He's looking after the dog." (Always needs object)
+
+3. **Phrasal-Prepositional**:
+   - "We ran out of milk." (Verb + adverb + preposition)
+
+4. **Separability Rules**:
+   - Can separate: "Turn the lights off." (Pronouns MUST separate: "Turn them off.")
+   - Can't separate: "She takes after her mother." (NOT "takes her mother after")`
+                        },
+                        "Level 26": {
+                            title: "Anaphora and Cataphora",
+                            content: `1. **Anaphora** (Referring back):
+   - "The dog barked. It was hungry." ("It" refers to dog)
+
+2. **Cataphora** (Referring forward):
+   - "When he arrived, John saw the mess." ("He" refers to John)
+
+3. **Cohesion Devices**:
+   - Pronouns: "The students finished. They left."
+   - Synonyms: "A Porsche sped by. The sports car..."
+   - Ellipsis: "I love jazz; my wife (loves) classical."
+
+4. **Avoid Ambiguity**:
+   - Bad: "Tom told Mark he was late." (Who's late?)
+   - Better: "Tom said to Mark, 'I'm late.'"`
+                        },
+                        "Level 27": {
+                            title: "Information Structure",
+                            content: `1. **Given-New Contract**:
+   - Start with known info, introduce new info later:
+     - "The CEO resigned yesterday. Her departure shocked investors."
+
+2. **Fronting** (for focus):
+   - Normal: "The solution is in the report."
+   - Fronted: "In the report is the solution."
+
+3. **Cleft Sentences**:
+   - "It was Jane who solved the problem."
+   - "What we need is more time."
+
+4. **End Weight Principle**:
+   - Put complex info at sentence end:
+     - Bad: "That he was lying became obvious."
+     - Good: "It became obvious that he was lying."`
+                        },
+                        "Level 28": {
+                            title: "Hedging and Boosting",
+                            content: `1. **Hedges** (Softening claims):
+   - "This may indicate a problem."
+   - "It could be argued that..."
+   - Verbs: "seem", "appear", "suggest"
+
+2. **Boosters** (Strengthening claims):
+   - "This clearly demonstrates..."
+   - "There is no doubt that..."
+   - Adverbs: "definitely", "undoubtedly"
+
+3. **Academic Writing**:
+   - Avoid absolutes: "This proves" → "This suggests"
+   - Data commentary: "The results imply (NOT show) a trend."`
+                        },
+                        "Level 29": {
+                            title: "Cohesion Devices",
+                            content: `1. **Lexical Cohesion**:
+   - Repetition: "The theory... This theory..."
+   - Synonyms: "pollution → environmental damage"
+
+2. **Grammatical Cohesion**:
+   - Pronouns: "Dr. Lee arrived. She began..."
+   - Conjunctions: "however", "therefore"
+
+3. **Paragraph Links**:
+   - "As mentioned earlier..."
+   - "Building on this point..."
+
+4. **Avoid Overuse**:
+   - Bad: "The cat. The cat sat. The cat purred."
+   - Better: "The cat sat and purred."`
+                        },
+                        "Level 30": {
+                            title: "Conclusion - Grammar in Context",
+                            content: `1. **Interconnected Rules**:
+   - How conditionals interact with modals: "If he had studied, he might have passed."
+
+2. **Register Awareness**:
+   - Formal: "Were the circumstances different..."
+   - Informal: "If things were different..."
+
+3. **Native Speaker Intuition**:
+   - Sometimes "sounds right" trumps rules (e.g., "Who/whom" in speech)
+
+4. **Final Tips**:
+   - Read widely to internalize patterns.
+   - Practice with authentic materials.
+   - Remember: Grammar serves communication, not vice versa.`
+                        }
+                    };
+
+                    const progressKey = "grammarProgress";
+                    function getProgress() {
+                        const saved = localStorage.getItem(progressKey);
+                        return saved ? JSON.parse(saved) : {};
+                    }
+                    function updateProgressBar(progress) {
+                        const total = Object.keys(notesData).length;
+                        const completed = Object.values(progress).filter(v => v === true).length;
+                        const percent = (completed / total) * 100;
+                        document.getElementById("progressBar").style.width = percent + "%";
+                    }
+                    function renderContent() {
+                        const container = document.getElementById("content");
+                        const progress = getProgress();
+                        updateProgressBar(progress);
+                        Object.entries(notesData).forEach(([level, data]) => {
+                            const div = document.createElement("div");
+                            div.className = "level";
+                            const isComplete = progress[level] === true;
+                            div.innerHTML = `
+                                <h2>${level}: ${data.title}</h2>
+                                <p>${data.content.replace(/\n/g, "<br>")}</p>
+                                <div class="button-container">
+                                    <button class="complete-btn" ${isComplete ? "disabled" : ""} onclick="markComplete('${level}')">
+                                        ${isComplete ? "Completed" : "Mark as Complete"}
+                                    </button>
+                                    ${isComplete ? `<button class="uncomplete-btn" onclick="unmarkComplete('${level}')">Unmark as Complete</button>` : ''}
+                                </div>
+                            `;
+                            container.appendChild(div);
+                        });
+                    }
+                    function markComplete(level) {
+                        const progress = getProgress();
+                        progress[level] = true;
+                        localStorage.setItem(progressKey, JSON.stringify(progress));
+                        document.getElementById("content").innerHTML = "";
+                        renderContent();
+                    }
+                    function unmarkComplete(level) {
+                        const progress = getProgress();
+                        progress[level] = false;
+                        localStorage.setItem(progressKey, JSON.stringify(progress));
+                        document.getElementById("content").innerHTML = "";
+                        renderContent();
+                    }
+                    renderContent();
+                </script>
+            </div>
+        </main>
+    </div>
 </body>
 </html>
