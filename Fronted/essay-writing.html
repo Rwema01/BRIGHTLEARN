@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRIGHTLEARN - Shakespeare Quiz</title>
+    <title>Essay writing</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -31,11 +31,23 @@
                     </a>
                 </li>
                 <li>
+                  <a href="grades.html">
+                      <i class="fas fa-graduation-cap"></i>
+                      <span>GRADES</span>
+                  </a>
+              </li>
+                <li>
                     <a href="history.html">
                         <i class="fas fa-history"></i>
                         <span>HISTORY</span>
                     </a>
                 </li>
+                <li>
+                  <a href="settings.html">
+                      <i class="fas fa-cog"></i>
+                      <span>SETTINGS</span>
+                  </a>
+              </li>
                 <li>
                     <a href="help.html">
                         <i class="fas fa-question-circle"></i>
@@ -54,44 +66,42 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <header class="top-bar">
-               <div class="top-icons">
-        <!-- Search -->
-              
-
-        <!-- Notification Icon (links to notification.html) -->
-                 <div class="notification-dropdown">
-                    <a href="notifications.html">
-                    <i class="fas fa-bell notification-icon"></i>
-                    </a>
-                    <span class="notification-badge">3</span>
-                 </div>
-
-        <!-- Profile Icon (links to profile.html) -->
-                 <div class="profile-dropdown">
-                    <a href="profile.html">
-                    <i class="fas fa-user-circle profile-icon"></i>
-                    </a>
-                 </div>
-                </div>
-            </header>
-
-            <!-- Top Bar (Unchanged) -->
-
-    
-</head>
+          <!-- Top Bar -->
+          <header class="top-bar">
+              <div class="top-icons">
+                  <div class="search-container">
+                      <input type="text" placeholder="Search..." class="search-input">
+                      <i class="fas fa-search search-icon"></i>
+                  </div>
+                  
+                  <!-- Simple Notification Link -->
+                  <a href="notifications.html" class="notification-link">
+                      <i class="fas fa-bell notification-icon"></i>
+                  </a>
+                  
+                  <!-- Simple Profile Link -->
+                  <a href="profile.html" class="profile-link">
+                      <i class="fas fa-user-circle profile-icon"></i>
+                  </a>
+              </div>
+          </header>
 
 </head>
 <body>
-  <div class="breadcrumbs">
-    <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="english.html">English</a> > <a href="essay-writing.html">Essay writing</a>
-</div>
+ <!-- Course Content with Updated Breadcrumbs Structure -->
+ <div class="dashboard-content">
+  <!-- Welcome Section with Breadcrumbs -->
+  <div class="welcome-section">
+      <div class="breadcrumbs">
+          <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="english.html">English</a> > <a href="essay-writing.html">Essay Writing</a>
+      </div>
+      <h1><i class="fas fa-pen"></i> <span class="student-name">ESSAY WRITING</span></h1>
+  </div>
 
-  <h1>Essay Writing Skills</h1>
-  
   <div class="level-tabs" id="levelTabs"></div>
 
   <div id="contentContainer"></div>
+</div>
 
   <script>
     // Essay content in JSON format for easy management and expansion
