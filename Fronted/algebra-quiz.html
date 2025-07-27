@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRIGHTLEARN - Shakespeare Quiz</title>
+    <title>BRIGHTLEARN - Algebra Quiz</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="app-container">
-        <!-- Left Navigation (Unchanged) -->
+        <!-- Left Navigation -->
         <nav class="left-nav">
             <div class="nav-header">
                 <div class="logo-container">
@@ -31,11 +31,23 @@
                     </a>
                 </li>
                 <li>
+                    <a href="grades.html">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>GRADES</span>
+                    </a>
+                </li>
+                <li>
                     <a href="history.html">
                         <i class="fas fa-history"></i>
                         <span>HISTORY</span>
                     </a>
                 </li>
+                <li>
+                  <a href="settings.html">
+                      <i class="fas fa-cog"></i>
+                      <span>SETTINGS</span>
+                  </a>
+              </li>
                 <li>
                     <a href="help.html">
                         <i class="fas fa-question-circle"></i>
@@ -52,90 +64,85 @@
             </div>
         </nav>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <header class="top-bar">
-               <div class="top-icons">
-        <!-- Search -->
+       <!-- Main Content -->
+       <main class="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="top-icons">
+                <div class="search-container">
+                    <input type="text" placeholder="Search..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
                 
-
-        <!-- Notification Icon (links to notification.html) -->
-                 <div class="notification-dropdown">
-                    <a href="notifications.html">
+                <!-- Simple Notification Link -->
+                <a href="notifications.html" class="notification-link">
                     <i class="fas fa-bell notification-icon"></i>
-                    </a>
-                    <span class="notification-badge">3</span>
-                 </div>
-
-        <!-- Profile Icon (links to profile.html) -->
-                 <div class="profile-dropdown">
-                    <a href="profile.html">
-                    <i class="fas fa-user-circle profile-icon"></i>
-                    </a>
-                 </div>
-                </div>
-            </header>
-
-            <!-- Top Bar (Unchanged) -->
-
-    
-</head>
-<body>
-  <div class="breadcrumbs">
-    <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="math.html">Mathematics</a> > <a href="algebra-quiz.html">Algebra-quiz</a> 
-  </div>
-    <div class="app-container">
-        <!-- Quiz Content -->
-        <div class="quiz-container">
-            <div class="quiz-header">
-                <h1>Algebra Mastery Quiz</h1>
-            </div>
-
-            <!-- Quiz System Container -->
-            <div id="quiz-system">
-                <div class="level-indicator">
-                    <span id="current-level">Level 1: Basic Equations</span>
-                    <span id="level-score">Score: 0%</span>
-                </div>
+                </a>
                 
-                <div class="progress-container">
-                    <div class="global-progress">
-                        <div class="progress-header">
-                            <span>Overall Progress</span>
-                            <span id="global-progress-text">0/40 questions</span>
+                <!-- Simple Profile Link -->
+                <a href="profile.html" class="profile-link">
+                    <i class="fas fa-user-circle profile-icon"></i>
+                </a>
+            </div>
+        </header>
+
+            <!-- Quiz Content with Updated Breadcrumbs Structure -->
+            <div class="dashboard-content">
+                <!-- Welcome Section with Breadcrumbs -->
+                <div class="welcome-section">
+                    <div class="breadcrumbs">
+                        <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="math.html">Mathematics</a> > <a href="algebra-quiz.html">Algebra Quiz</a>
+                    </div>
+                    <h1><i class="fas fa-square-root-alt"></i> <span class="student-name">ALGEBRA QUIZ</span></h1>
+                </div>
+
+                <!-- Quiz System Container -->
+                <div id="quiz-system">
+                    <div class="level-indicator">
+                        <span id="current-level">Level 1: Basic Equations</span>
+                        <span id="level-score">Score: 0%</span>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="global-progress">
+                            <div class="progress-header">
+                                <span>Overall Progress</span>
+                                <span id="global-progress-text">0/20 questions</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="global-progress-bar"></div>
+                            </div>
                         </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="global-progress-bar"></div>
+                        
+                        <div class="level-progress">
+                            <div class="progress-header">
+                                <span>Level Progress</span>
+                                <span id="level-progress-text">0/5 questions</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" id="level-progress-bar"></div>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="level-progress">
-                        <div class="progress-header">
-                            <span>Level Progress</span>
-                            <span id="level-progress-text">0/5 questions</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="level-progress-bar"></div>
-                        </div>
+                    <div class="score-display">
+                        <div class="level-score" id="current-level-score">Current Level: 0%</div>
+                        <div class="level-score" id="overall-score">Overall Score: 0%</div>
                     </div>
+                    
+                    <div id="question-container"></div>
+                    <div class="bl-quiz-options" id="options-container"></div>
+                    <div class="bl-quiz-nav">
+                        <button id="prev-btn" disabled>Previous</button>
+                        <button id="next-btn">Next</button>
+                    </div>
+                    <div class="bl-quiz-result" id="result-container" style="display: none;"></div>
+                    <button id="retryQuiz" style="display: none;">Retry Quiz</button>
                 </div>
-                
-                <div class="score-display">
-                    <div class="level-score" id="current-level-score">Current Level: 0%</div>
-                    <div class="level-score" id="overall-score">Overall Score: 0%</div>
-                </div>
-                
-                <div id="question-container"></div>
-                <div class="bl-quiz-options" id="options-container"></div>
-                <div class="bl-quiz-nav">
-                    <button id="prev-btn" disabled>Previous</button>
-                    <button id="next-btn">Next</button>
-                </div>
-                <div class="bl-quiz-result" id="result-container" style="display: none;"></div>
-                <button id="retryQuiz" style="display: none;">Retry Quiz</button>
             </div>
-        </div>
+        </main>
     </div>
+
     <script>
       // Structured quiz data with levels
       const quizData = {
@@ -200,68 +207,6 @@
                 question: "10. Simplify: (x² - 4)/(x - 2)",
                 options: ["x - 2", "x + 2", "x² + 2", "Cannot be simplified"],
                 answer: 1
-              }
-            ]
-          },
-          {
-            name: "Functions & Graphs",
-            description: "Understand linear functions and graphs",
-            questions: [
-              {
-                question: "11. What is the slope of the line: y = 2x + 5?",
-                options: ["2", "5", "-2", "1/2"],
-                answer: 0
-              },
-              {
-                question: "12. What is the y-intercept of y = -3x + 7?",
-                options: ["-3", "3", "7", "-7"],
-                answer: 2
-              },
-              {
-                question: "13. Find the x-intercept of y = -2x + 8",
-                options: ["(8,0)", "(-4,0)", "(4,0)", "(0,8)"],
-                answer: 2
-              },
-              {
-                question: "14. What is the vertex of y = (x-2)² + 3?",
-                options: ["(-2,3)", "(2,3)", "(-3,2)", "(3,2)"],
-                answer: 1
-              },
-              {
-                question: "15. Which is the equation of a line with slope -2 passing through (1,4)?",
-                options: ["y = -2x + 2", "y = -2x + 6", "y = 2x + 2", "y = 2x + 6"],
-                answer: 1
-              }
-            ]
-          },
-          {
-            name: "Advanced Algebra",
-            description: "Tackle more complex algebraic concepts",
-            questions: [
-              {
-                question: "16. Solve for x: |2x - 3| = 7",
-                options: ["x = 5", "x = -2", "x = 5 or x = -2", "x = 2 or x = -5"],
-                answer: 2
-              },
-              {
-                question: "17. Solve the inequality: 3x - 5 < 10",
-                options: ["x < 5", "x > 5", "x < 15", "x > 15"],
-                answer: 0
-              },
-              {
-                question: "18. What is the domain of f(x) = √(x-4)?",
-                options: ["x > 4", "x ≥ 4", "All real numbers", "x ≤ 4"],
-                answer: 1
-              },
-              {
-                question: "19. What is the range of f(x) = x² + 3?",
-                options: ["All real numbers", "y ≥ 0", "y ≥ 3", "y ≤ 3"],
-                answer: 2
-              },
-              {
-                question: "20. Which is the inverse of f(x) = 2x - 5?",
-                options: ["f⁻¹(x) = (x+5)/2", "f⁻¹(x) = (x-5)/2", "f⁻¹(x) = 2/(x+5)", "f⁻¹(x) = -2x + 5"],
-                answer: 0
               }
             ]
           }
@@ -486,7 +431,7 @@
 
       retryBtn.addEventListener('click', () => {
         window.location.href = "algebra-quiz.html"; // Redirects to the quiz page
-        });
+      });
 
       // Start the quiz
       initQuiz();
