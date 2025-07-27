@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MATHEMATICS</title>
+    <title>BRIGHTLEARN - Mathematics</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="app-container">
-        <!-- Left Navigation (unchanged from your original) -->
+        <!-- Left Navigation -->
         <nav class="left-nav">
             <div class="nav-header">
                 <div class="logo-container">
@@ -31,9 +31,21 @@
                     </a>
                 </li>
                 <li>
+                    <a href="grades.html">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>GRADES</span>
+                    </a>
+                </li>
+                <li>
                     <a href="history.html">
                         <i class="fas fa-history"></i>
                         <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>SETTINGS</span>
                     </a>
                 </li>
                 <li>
@@ -54,98 +66,89 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Top Bar (unchanged from your original) -->
+            <!-- Top Bar -->
             <header class="top-bar">
-               <div class="top-icons">
-        <!-- Search -->
-                 
-
-        <!-- Notification Icon (links to notification.html) -->
-                 <div class="notification-dropdown">
-                    <a href="notifications.html">
-                    <i class="fas fa-bell notification-icon"></i>
+                <div class="top-icons">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <!-- Simple Notification Link -->
+                    <a href="notifications.html" class="notification-link">
+                        <i class="fas fa-bell notification-icon"></i>
                     </a>
-                    <span class="notification-badge">3</span>
-                 </div>
-
-        <!-- Profile Icon (links to profile.html) -->
-                 <div class="profile-dropdown">
-                    <a href="profile.html">
-                    <i class="fas fa-user-circle profile-icon"></i>
+                    
+                    <!-- Simple Profile Link -->
+                    <a href="profile.html" class="profile-link">
+                        <i class="fas fa-user-circle profile-icon"></i>
                     </a>
-                 </div>
                 </div>
             </header>
 
-            <!-- Enhanced Course Content -->
-            <div class="course-header math">
-                <div class="breadcrumbs">
-                    <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="math.html">Mathematics</a> 
-                    
+            <!-- Course Content with Updated Breadcrumbs Structure -->
+            <div class="dashboard-content">
+                <!-- Welcome Section with Breadcrumbs -->
+                <div class="welcome-section">
+                    <div class="breadcrumbs">
+                        <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="math.html">Mathematics</a>
+                    </div>
+                    <h1><i class="fas fa-square-root-alt"></i> <span class="student-name">MATHEMATICS</span></h1>
                 </div>
-                <h1><i class="fas fa-square-root-alt"></i> Mathematics</h1>
-                <div class="course-meta">
-                    <span>Instructor: <a href="teacher.html">Dr. Alan Turing</a></span>
-                    <span>Difficulty: Intermediate</span>
-                </div>
-            </div>
 
-            <div class="course-container">
-                <!-- Enhanced Syllabus Section -->
-                <section id="syllabus" class="course-section">
-                    <h2><i class="fas fa-list-ol"></i> Course Syllabus</h2>
-                    
-                    <div class="modules">
-                        <!-- Algebra Module -->
-                        <div class="module">
-                            <h3>1. Algebra</h3>
-                            <div class="lessons">
-                                <a href="algebra-quiz.html" class="lesson completed">
-                                    <span>1.1 Exercises of Algebra</span>
-                                    <span class="lesson-status">Quiz Score: 82%</span>
-                                </a>
-                                <a href="math-notes.html" class="lesson current">
-                                    <span>1.2 Algebra notes</span>
-                                    <span class="lesson-status">Continue Learning</span>
-                                </a>
-                            </div>
-                        </div>
+                <div class="course-container">
+                    <!-- Syllabus Section -->
+                    <section id="syllabus" class="course-section">
+                        <h2><i class="fas fa-list-ol"></i> Course Syllabus</h2>
                         
-                        <!-- Geometry Module -->
-                        <div class="module">
-                            <h3>2. Geometry</h3>
-                            <div class="lessons">
-                                <a href="geometry-lesson.html" class="lesson">
-                                    <span>2.1 Basic Geometry</span>
-                                    <span class="lesson-status">Start Lesson</span>
-                                </a>
-                                <a href="geometry-assignment.html" class="lesson upcoming">
-                                    <span>2.2 geometric Exercises
-                                    <span class="lesson-status">Assignment Due Jun 28</span>
-                                </a>
+                        <div class="modules">
+                            <!-- Algebra Module -->
+                            <div class="module">
+                                <h3>1. Algebra</h3>
+                                <div class="lessons">
+                                    <a href="algebra-quiz.html" class="lesson completed">
+                                        <span>1.1 Exercises of Algebra</span>
+                                        <span class="lesson-status">Quiz Score: 82%</span>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Geometry Module -->
+                            <div class="module">
+                                <h3>2. Geometry</h3>
+                                <div class="lessons">
+                                    <a href="geometry-lesson.html" class="lesson">
+                                        <span>2.1 Basic Geometry</span>
+                                        <span class="lesson-status">Start Lesson</span>
+                                    </a>
+                                    <a href="geometry-assignment.html" class="lesson">
+                                        <span>2.2 Geometric Exercises</span>
+                                        <span class="lesson-status">Assignment Due Jun 28</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-                <!-- Enhanced Resources Section -->
-                <section id="resources" class="course-section">
-                    <h2><i class="fas fa-book"></i> Resources</h2>
-                    <div class="resources-grid">
-                        <a href="math-formulas.html" class="resource-card">
-                            <i class="fas fa-calculator"></i>
-                            <h3>Formula Sheets</h3>
-                        </a>
-                        <a href="math-video.html" class="resource-card">
-                            <i class="fas fa-video"></i>
-                            <h3>Video Tutorials</h3>
-                        </a>
-                        <a href="math-practice.html" class="resource-card">
-                            <i class="fas fa-edit"></i>
-                            <h3>Practice Problems</h3>
-                        </a>
-                    </div>
-                </section>
+                    <!-- Resources Section -->
+                    <section id="resources" class="course-section">
+                        <h2><i class="fas fa-book"></i> Resources</h2>
+                        <div class="resources-grid">
+                            <a href="math-formulas.html" class="resource-card">
+                                <i class="fas fa-calculator"></i>
+                                <h3>Formula Sheets</h3>
+                            </a>
+                            <a href="math-video.html" class="resource-card">
+                                <i class="fas fa-video"></i>
+                                <h3>Video Tutorials</h3>
+                            </a>
+                            <a href="math-practice.html" class="resource-card">
+                                <i class="fas fa-edit"></i>
+                                <h3>Practice Problems</h3>
+                            </a>
+                        </div>
+                    </section>
+                </div>
             </div>
         </main>
     </div>
