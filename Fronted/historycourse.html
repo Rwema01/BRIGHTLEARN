@@ -31,9 +31,21 @@
                     </a>
                 </li>
                 <li>
+                    <a href="grades.html">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>GRADES</span>
+                    </a>
+                </li>
+                <li>
                     <a href="history.html">
                         <i class="fas fa-history"></i>
                         <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>SETTINGS</span>
                     </a>
                 </li>
                 <li>
@@ -56,109 +68,106 @@
         <main class="main-content">
             <!-- Top Bar -->
             <header class="top-bar">
-               <div class="top-icons">
-        <!-- Search -->
-                 
-
-        <!-- Notification Icon (links to notification.html) -->
-                 <div class="notification-dropdown">
-                    <a href="notifications.html">
-                    <i class="fas fa-bell notification-icon"></i>
+                <div class="top-icons">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <!-- Simple Notification Link -->
+                    <a href="notifications.html" class="notification-link">
+                        <i class="fas fa-bell notification-icon"></i>
                     </a>
-                    <span class="notification-badge">3</span>
-                 </div>
-
-        <!-- Profile Icon (links to profile.html) -->
-                 <div class="profile-dropdown">
-                    <a href="profile.html">
-                    <i class="fas fa-user-circle profile-icon"></i>
+                    
+                    <!-- Simple Profile Link -->
+                    <a href="profile.html" class="profile-link">
+                        <i class="fas fa-user-circle profile-icon"></i>
                     </a>
-                 </div>
                 </div>
             </header>
-            <!-- Course Content -->
-            <div class="course-header history">
-                <div class="breadcrumbs">
-                    <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="historycourse.html">History</a>
-                </div>
-                <h1><i class="fas fa-landmark"></i> History</h1>
-                <div class="course-meta">
-                    <span>Instructor: <a href="teacher.html">Prof. Mary Beard</a></span>
-                    <span>Difficulty: Intermediate</span>
-                </div>
-            </div>
 
-            <div class="course-container">
-                <!-- Syllabus Section -->
-                <section id="syllabus" class="course-section">
-                    <h2><i class="fas fa-list-ol"></i> Course Syllabus</h2>
-                    
-                    <div class="modules">
-                        <!-- Ancient History Module -->
-                        <div class="module">
-                            <h3>1. Ancient History</h3>
-                            <div class="lessons">
-                                <a href="early-civilization.html" class="lesson completed">
-                                    <span>1.1 Early Civilizations</span>
-                                    <span class="lesson-status">Quiz Score: 85%</span>
-                                </a>
-                                <a href="genocide.html" class="lesson current">
-                                    <span>1.2 genocide</span>
-                                    <span class="lesson-status">Continue Learning</span>
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <!-- Medieval History Module -->
-                        <div class="module">
-                            <h3>2. Medieval History</h3>
-                            <div class="lessons">
-                                <a href="feudalism-lesson.html" class="lesson">
-                                    <span>2.1 Feudalism</span>
-                                    <span class="lesson-status">Start Lesson</span>
-                                </a>
-                                <a href="renaissance.html" class="lesson upcoming">
-                                    <span>2.2 Renaissance</span>
-                                    <span class="lesson-status">Assignment Due Jul 15</span>
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <!-- Modern History Module -->
-                        <div class="module">
-                            <h3>3. Modern History</h3>
-                            <div class="lessons">
-                                <a href="industrial-revolution.html" class="lesson">
-                                    <span>3.1 Industrial Revolution</span>
-                                    <span class="lesson-status">Start Lesson</span>
-                                </a>
-                                <a href="world-wars.html" class="lesson">
-                                    <span>3.2 World Wars</span>
-                                    <span class="lesson-status">Start Lesson</span>
-                                </a>
-                            </div>
-                        </div>
+            <!-- Course Content with Updated Breadcrumbs Structure -->
+            <div class="dashboard-content">
+                <!-- Welcome Section with Breadcrumbs -->
+                <div class="welcome-section">
+                    <div class="breadcrumbs">
+                        <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="historycourse.html">History</a>
                     </div>
-                </section>
+                    <h1><i class="fas fa-landmark"></i> <span class="student-name">HISTORY</span></h1>
+                </div>
 
-                <!-- Resources Section -->
-                <section id="resources" class="course-section">
-                    <h2><i class="fas fa-book"></i> Resources</h2>
-                    <div class="resources-grid">
-                        <a href="resources.html#timelines" class="resource-card">
-                            <i class="fas fa-timeline"></i>
-                            <h3>Historical Timelines</h3>
-                        </a>
-                        <a href="resources1.html" class="resource-card">
-                            <i class="fas fa-scroll"></i>
-                            <h3>Practice History Quiz</h3>
-                        </a>
-                        <a href="resources.html#maps" class="resource-card">
-                            <i class="fas fa-map"></i>
-                            <h3>Historical Maps</h3>
-                        </a>
-                    </div>
-                </section>
+                <div class="course-container">
+                    <!-- Syllabus Section -->
+                    <section id="syllabus" class="course-section">
+                        <h2><i class="fas fa-list-ol"></i> Course Syllabus</h2>
+                        
+                        <div class="modules">
+                            <!-- Ancient History Module -->
+                            <div class="module">
+                                <h3>1. Ancient History</h3>
+                                <div class="lessons">
+                                    <a href="early-civilization.html" class="lesson completed">
+                                        <span>1.1 Early Civilizations</span>
+                                        <span class="lesson-status">Quiz Score: 85%</span>
+                                    </a>
+                                    <a href="genocide.html" class="lesson current">
+                                        <span>1.2 Genocide</span>
+                                        <span class="lesson-status">Continue Learning</span>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Medieval History Module -->
+                            <div class="module">
+                                <h3>2. Medieval History</h3>
+                                <div class="lessons">
+                                    <a href="feudalism-lesson.html" class="lesson">
+                                        <span>2.1 Feudalism</span>
+                                        <span class="lesson-status">Start Lesson</span>
+                                    </a>
+                                    <a href="renaissance.html" class="lesson upcoming">
+                                        <span>2.2 Renaissance</span>
+                                        <span class="lesson-status">Assignment Due Jul 15</span>
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Modern History Module -->
+                            <div class="module">
+                                <h3>3. Modern History</h3>
+                                <div class="lessons">
+                                    <a href="industrial-revolution.html" class="lesson">
+                                        <span>3.1 Industrial Revolution</span>
+                                        <span class="lesson-status">Start Lesson</span>
+                                    </a>
+                                    <a href="world-wars.html" class="lesson">
+                                        <span>3.2 World Wars</span>
+                                        <span class="lesson-status">Start Lesson</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Resources Section -->
+                    <section id="resources" class="course-section">
+                        <h2><i class="fas fa-book"></i> Resources</h2>
+                        <div class="resources-grid">
+                            <a href="resources.html#timelines" class="resource-card">
+                                <i class="fas fa-timeline"></i>
+                                <h3>Historical Timelines</h3>
+                            </a>
+                            <a href="resources.html#documents" class="resource-card">
+                                <i class="fas fa-scroll"></i>
+                                <h3>Primary Documents</h3>
+                            </a>
+                            <a href="resources.html#maps" class="resource-card">
+                                <i class="fas fa-map"></i>
+                                <h3>Historical Maps</h3>
+                            </a>
+                        </div>
+                    </section>
+                </div>
             </div>
         </main>
     </div>
