@@ -3,13 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRIGHTLEARN - Shakespeare Quiz</title>
+    <title>BRIGHTLEARN - Genocide</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .progress-bar-container {
+            background-color: #ddd;
+            border-radius: 20px;
+            margin: 10px 0;
+            height: 20px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #3498db;
+            transition: width 0.4s ease-in-out;
+        }
+        .section {
+            background-color: #fff;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .section h2 {
+            margin-top: 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .section h2:after {
+            content: "−";
+            font-size: 1.5em;
+        }
+        .section.collapsed h2:after {
+            content: "+";
+        }
+        .section-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+        .section.collapsed .section-content {
+            max-height: 0 !important;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .complete-btn {
+            background: #008437;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .complete-btn:disabled {
+            background: #038dc8;
+            cursor: not-allowed;
+        }
+        .unread-btn {
+            background: #b51904;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .unread-btn:disabled {
+            background: #616002;
+            cursor: not-allowed;
+        }
+        .breadcrumbs {
+            padding: 10px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .breadcrumbs a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+        .history-content {
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="app-container">
-        <!-- Left Navigation (Unchanged) -->
+        <!-- Left Navigation -->
         <nav class="left-nav">
             <div class="nav-header">
                 <div class="logo-container">
@@ -31,9 +118,21 @@
                     </a>
                 </li>
                 <li>
+                    <a href="grades.html">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>GRADES</span>
+                    </a>
+                </li>
+                <li>
                     <a href="history.html">
                         <i class="fas fa-history"></i>
                         <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>SETTINGS</span>
                     </a>
                 </li>
                 <li>
@@ -54,122 +153,54 @@
 
         <!-- Main Content -->
         <main class="main-content">
+            <!-- Top Bar -->
             <header class="top-bar">
-               <div class="top-icons">
-        <!-- Search -->
-              
-        <!-- Notification Icon (links to notification.html) -->
-                 <div class="notification-dropdown">
-                    <a href="notifications.html">
-                    <i class="fas fa-bell notification-icon"></i>
+                <div class="top-icons">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <!-- Simple Notification Link -->
+                    <a href="notifications.html" class="notification-link">
+                        <i class="fas fa-bell notification-icon"></i>
                     </a>
-                    <span class="notification-badge">3</span>
-                 </div>
-
-        <!-- Profile Icon (links to profile.html) -->
-                 <div class="profile-dropdown">
-                    <a href="profile.html">
-                    <i class="fas fa-user-circle profile-icon"></i>
+                    
+                    <!-- Simple Profile Link -->
+                    <a href="profile.html" class="profile-link">
+                        <i class="fas fa-user-circle profile-icon"></i>
                     </a>
-                 </div>
                 </div>
             </header>
 
-            <!-- Top Bar (Unchanged) -->
+            <!-- Course Content with Updated Breadcrumbs Structure -->
+            <div class="dashboard-content">
+                <!-- Welcome Section with Breadcrumbs -->
+                <div class="welcome-section">
+                    <div class="breadcrumbs">
+                        <a href="index.html">Home</a> > 
+                        <a href="courses.html">Courses</a> > 
+                        <a href="historycourse.html">History</a> > 
+                        <a href="genocide.html">Genocide</a>
+                    </div>
+                    <h1><i class="fas fa-landmark"></i> <span class="student-name">EARLY AFRICAN CIVILIZATIONS - RWANDA FOCUS</span></h1>
+                    <div>Progress:</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                </div>
 
-    
-</head>
-  <style>
-    
-    .progress-bar-container {
-      background-color: #ddd;
-      border-radius: 20px;
-      margin: 10px 0;
-      height: 20px;
-      overflow: hidden;
-    }
-    .progress-bar {
-      height: 100%;
-      width: 0%;
-      background-color: #3498db;
-      transition: width 0.4s ease-in-out;
-    }
-    .section {
-      background-color: #fff;
-      padding: 20px;
-      margin: 15px 0;
-      border-left: 5px solid #3498db;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .section h2 {
-      margin-top: 0;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .section h2:after {
-      content: "−";
-      font-size: 1.5em;
-    }
-    .section.collapsed h2:after {
-      content: "+";
-    }
-    .section-content {
-      overflow: hidden;
-      transition: max-height 0.3s ease-in-out;
-    }
-    .section.collapsed .section-content {
-      max-height: 0 !important;
-    }
-    .button-group {
-      display: flex;
-      gap: 10px;
-      margin: 10px 0;
-    }
-    .complete-btn {
-      background: #2ecc71;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    .complete-btn:disabled {
-      background: #aaa;
-      cursor: not-allowed;
-    }
-    .unread-btn {
-      background: #e74c3c;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    .unread-btn:disabled {
-      background: #aaa;
-      cursor: not-allowed;
-    }
-  </style>
-</head>
-<body>
-<header>
-       <div class="breadcrumbs">
-    <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="historycourse.html">History</a> > <a href="genocide.html">Genocide</a>
-</div>
-  <h1>Early African Civilizations - Rwanda Focus</h1>
-  <div>Progress:</div>
-  <div class="progress-bar-container">
-    <div class="progress-bar" id="progressBar"></div>
-  </div>
-</header>
-<main id="content"></main>
-<script>
-const historyData = {
-  "Pre-Colonial Rwanda": {
-    title: "Pre-Colonial Rwandan Society",
-    content: `1. Origins and Early Settlement
+                <!-- History Content Section -->
+                <div class="history-content">
+                    <main id="content"></main>
+                </div>
+            </div>
+
+    <script>
+        const historyData = {
+            "Pre-Colonial Rwanda": {
+                title: "Pre-Colonial Rwandan Society",
+                content: `1. Origins and Early Settlement
 - Rwanda's earliest inhabitants were the Twa (pygmy) hunter-gatherers (1st millennium BCE)
 - Bantu migrations (1st millennium CE) introduced agriculture and ironworking
 - Hutu cultivators established settled agricultural communities
@@ -192,10 +223,10 @@ const historyData = {
 - Mwami as sacred ruler with divine legitimacy
 - Territorial administrators (chiefs and subchiefs)
 - Army (ibirima) and royal drummers (abiru)`
-  },
-  "Colonial Impact": {
-    title: "Colonial Influence on Rwandan Society",
-    content: `1. German Colonial Period (1897-1916)
+            },
+            "Colonial Impact": {
+                title: "Colonial Influence on Rwandan Society",
+                content: `1. German Colonial Period (1897-1916)
 - Incorporated into German East Africa
 - Indirect rule through existing monarchy
 - Minimal infrastructure development
@@ -212,10 +243,10 @@ const historyData = {
 - Traditional ubuhake system weakened
 - Emergence of class divisions along ethnic lines
 - Education system favored Tutsi elite`
-  },
-  "Road to Genocide": {
-    title: "Path to the 1994 Genocide",
-    content: `1. Post-Independence Tensions (1962-1990)
+            },
+            "Road to Genocide": {
+                title: "Path to the 1994 Genocide",
+                content: `1. Post-Independence Tensions (1962-1990)
 - Hutu Revolution (1959-1961) overthrew Tutsi monarchy
 - First Republic (1962-1973) under Gregoire Kayibanda
 - Ethnic violence in 1963, 1967, 1973
@@ -235,10 +266,10 @@ const historyData = {
 - Weapons distribution
 - Lists of Tutsi compiled
 - Military training of civilians`
-  },
-  "Genocide Against Tutsi": {
-    title: "The 1994 Genocide Against the Tutsi",
-    content: `1. Trigger Event
+            },
+            "Genocide Against Tutsi": {
+                title: "The 1994 Genocide Against the Tutsi",
+                content: `1. Trigger Event
 - April 6, 1994: Plane carrying Habyarimana shot down
 - Immediate killings began in Kigali
 - Interim government formed
@@ -255,10 +286,10 @@ const historyData = {
 - France's Operation Turquoise controversial
 - US/Belgium evacuated foreigners
 - Media largely ignored events`
-  },
-  "Post-Genocide Rwanda": {
-    title: "Reconstruction and Prevention",
-    content: `1. Immediate Aftermath
+            },
+            "Post-Genocide Rwanda": {
+                title: "Reconstruction and Prevention",
+                content: `1. Immediate Aftermath
 - RPF military victory (July 1994)
 - Government of National Unity formed
 - 2 million refugees (including génocidaires) fled
@@ -276,90 +307,91 @@ const historyData = {
 - Economic development programs
 - Education reforms
 - Memory policies (Kwibuka remembrance)`
-  }
-};
+            }
+        };
 
-const progressKey = "historyProgress";
-function getProgress() {
-  const saved = localStorage.getItem(progressKey);
-  return saved ? JSON.parse(saved) : {};
-}
+        const progressKey = "historyProgress";
+        function getProgress() {
+            const saved = localStorage.getItem(progressKey);
+            return saved ? JSON.parse(saved) : {};
+        }
 
-function updateProgressBar(progress) {
-  const total = Object.keys(historyData).length;
-  const completed = Object.values(progress).filter(v => v === true).length;
-  const percent = (completed / total) * 100;
-  document.getElementById("progressBar").style.width = percent + "%";
-}
+        function updateProgressBar(progress) {
+            const total = Object.keys(historyData).length;
+            const completed = Object.values(progress).filter(v => v === true).length;
+            const percent = (completed / total) * 100;
+            document.getElementById("progressBar").style.width = percent + "%";
+        }
 
-function renderContent() {
-  const container = document.getElementById("content");
-  const progress = getProgress();
-  updateProgressBar(progress);
-  
-  Object.entries(historyData).forEach(([section, data]) => {
-    const div = document.createElement("div");
-    div.className = "section";
-    
-    const contentDiv = document.createElement("div");
-    contentDiv.className = "section-content";
-    contentDiv.innerHTML = `<p>${data.content.replace(/\n/g, "<br>")}</p>`;
-    
-    const header = document.createElement("h2");
-    header.innerHTML = `${section}: ${data.title}`;
-    
-    // Create button group
-    const buttonGroup = document.createElement("div");
-    buttonGroup.className = "button-group";
-    
-    const completeBtn = document.createElement("button");
-    completeBtn.className = "complete-btn";
-    completeBtn.textContent = progress[section] ? "Completed" : "Mark as Complete";
-    completeBtn.disabled = progress[section];
-    completeBtn.onclick = () => markComplete(section);
-    
-    const unreadBtn = document.createElement("button");
-    unreadBtn.className = "unread-btn";
-    unreadBtn.textContent = "Mark as Unread";
-    unreadBtn.disabled = !progress[section];
-    unreadBtn.onclick = () => markUnread(section);
-    
-    buttonGroup.appendChild(completeBtn);
-    buttonGroup.appendChild(unreadBtn);
-    
-    header.addEventListener("click", function() {
-      div.classList.toggle("collapsed");
-      if (!div.classList.contains("collapsed")) {
-        contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
-      }
-    });
-    
-    div.appendChild(header);
-    div.appendChild(buttonGroup); // Buttons now appear below title
-    div.appendChild(contentDiv);
-    container.appendChild(div);
-    
-    contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
-  });
-}
+        function renderContent() {
+            const container = document.getElementById("content");
+            const progress = getProgress();
+            updateProgressBar(progress);
+            
+            Object.entries(historyData).forEach(([section, data]) => {
+                const div = document.createElement("div");
+                div.className = "section";
+                
+                const contentDiv = document.createElement("div");
+                contentDiv.className = "section-content";
+                contentDiv.innerHTML = `<p>${data.content.replace(/\n/g, "<br>")}</p>`;
+                
+                const header = document.createElement("h2");
+                header.innerHTML = `${section}: ${data.title}`;
+                
+                // Create button group
+                const buttonGroup = document.createElement("div");
+                buttonGroup.className = "button-group";
+                
+                const completeBtn = document.createElement("button");
+                completeBtn.className = "complete-btn";
+                completeBtn.textContent = progress[section] ? "Completed" : "Mark as Complete";
+                completeBtn.disabled = progress[section];
+                completeBtn.onclick = () => markComplete(section);
+                
+                const unreadBtn = document.createElement("button");
+                unreadBtn.className = "unread-btn";
+                unreadBtn.textContent = "Mark as Unread";
+                unreadBtn.disabled = !progress[section];
+                unreadBtn.onclick = () => markUnread(section);
+                
+                buttonGroup.appendChild(completeBtn);
+                buttonGroup.appendChild(unreadBtn);
+                
+                header.addEventListener("click", function() {
+                    div.classList.toggle("collapsed");
+                    if (!div.classList.contains("collapsed")) {
+                        contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
+                    }
+                });
+                
+                div.appendChild(header);
+                div.appendChild(buttonGroup);
+                div.appendChild(contentDiv);
+                container.appendChild(div);
+                
+                contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
+            });
+        }
 
-function markComplete(section) {
-  const progress = getProgress();
-  progress[section] = true;
-  localStorage.setItem(progressKey, JSON.stringify(progress));
-  document.getElementById("content").innerHTML = "";
-  renderContent();
-}
+        function markComplete(section) {
+            const progress = getProgress();
+            progress[section] = true;
+            localStorage.setItem(progressKey, JSON.stringify(progress));
+            document.getElementById("content").innerHTML = "";
+            renderContent();
+        }
 
-function markUnread(section) {
-  const progress = getProgress();
-  progress[section] = false;
-  localStorage.setItem(progressKey, JSON.stringify(progress));
-  document.getElementById("content").innerHTML = "";
-  renderContent();
-}
+        function markUnread(section) {
+            const progress = getProgress();
+            progress[section] = false;
+            localStorage.setItem(progressKey, JSON.stringify(progress));
+            document.getElementById("content").innerHTML = "";
+            renderContent();
+        }
 
-renderContent();
-</script>
+        // Initialize the page
+        renderContent();
+    </script>
 </body>
 </html>
