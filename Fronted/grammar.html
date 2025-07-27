@@ -31,11 +31,23 @@
                     </a>
                 </li>
                 <li>
+                  <a href="grades.html">
+                      <i class="fas fa-graduation-cap"></i>
+                      <span>GRADES</span>
+                  </a>
+              </li>
+                <li>
                     <a href="history.html">
                         <i class="fas fa-history"></i>
                         <span>HISTORY</span>
                     </a>
                 </li>
+                <li>
+                  <a href="settings.html">
+                      <i class="fas fa-cog"></i>
+                      <span>SETTINGS</span>
+                  </a>
+              </li>
                 <li>
                     <a href="help.html">
                         <i class="fas fa-question-circle"></i>
@@ -52,319 +64,321 @@
             </div>
         </nav>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Top Bar (Unchanged) -->
-            <header class="top-bar">
-               <div class="top-icons">
-        <!-- Search -->
-                
-
-        <!-- Notification Icon (links to notification.html) -->
-                 <div class="notification-dropdown">
-                    <a href="notifications.html">
-                    <i class="fas fa-bell notification-icon"></i>
-                    </a>
-                    <span class="notification-badge">3</span>
-                 </div>
-
-        <!-- Profile Icon (links to profile.html) -->
-                 <div class="profile-dropdown">
-                    <a href="profile.html">
-                    <i class="fas fa-user-circle profile-icon"></i>
-                    </a>
-                 </div>
+       <!-- Main Content -->
+       <main class="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="top-icons">
+                <div class="search-container">
+                    <input type="text" placeholder="Search..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
                 </div>
-            </header>
-  
-</head>
-<body>
-  <div class="breadcrumbs">
-    <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="english.html">English</a> > <a href="grammar.html">Grammar</a>
-</div>
+                
+                <!-- Simple Notification Link -->
+                <a href="notifications.html" class="notification-link">
+                    <i class="fas fa-bell notification-icon"></i>
+                </a>
+                
+                <!-- Simple Profile Link -->
+                <a href="profile.html" class="profile-link">
+                    <i class="fas fa-user-circle profile-icon"></i>
+                </a>
+            </div>
+        </header>
 
-  <h1>English Skills Quiz</h1>
-  <p>This quiz tests your knowledge on Essay Writing, Literature, Punctuation, and Grammar. Submit each chapter to get your result.</p>
+            <!-- Updated Breadcrumbs to match courses.html style -->
+            <div class="dashboard-content">
+                <div class="welcome-section">
+                    <div class="breadcrumbs">
+                        <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="english.html">English</a> > <a href="grammar.html">Grammar Quiz</a>
+                    </div>
+                    <h1><i class="fas fa-question-circle"></i> English <span class="student-name">Skills Quiz</span></h1>
+                </div>
 
-  <div id="quizContainer"></div>
+                <!-- All the original body content remains exactly the same -->
+                <p>This quiz tests your knowledge on Essay Writing, Literature, Punctuation, and Grammar. Submit each chapter to get your result.</p>
 
-  <div class="final-score" id="finalScoreContainer"></div>
+                <div id="quizContainer"></div>
 
-  <script>
-    const chapters = [
-      {
-        title: "Chapter 1: Essay Writing",
-        questions: [
-          {
-            q: "What is the main purpose of an essay?",
-            options: ["To entertain", "To analyze and argue a point", "To describe an image", "To summarize a book"],
-            answer: 1
-          },
-          {
-            q: "Which part of an essay presents the thesis statement?",
-            options: ["Body", "Conclusion", "Introduction", "Reference"],
-            answer: 2
-          },
-          {
-            q: "What is a good hook in an introduction?",
-            options: ["A boring fact", "A quote or question", "A conclusion", "A reference"],
-            answer: 1
-          },
-          {
-            q: "Which of the following is NOT a step in essay writing?",
-            options: ["Cooking", "Planning", "Drafting", "Proofreading"],
-            answer: 0
-          },
-          {
-            q: "A thesis statement should be:",
-            options: ["A question", "A vague idea", "A clear and concise argument", "A list of topics"],
-            answer: 2
-          },
-          {
-            q: "Which is true about body paragraphs?",
-            options: ["They introduce the essay", "They contain the conclusion", "They develop the main ideas", "They are not necessary"],
-            answer: 2
-          },
-          {
-            q: "The conclusion of an essay should:",
-            options: ["Introduce a new idea", "Restate the thesis", "Be longer than the body", "Contain statistics"],
-            answer: 1
-          },
-          {
-            q: "Which is best to avoid in formal essay writing?",
-            options: ["Formal tone", "Clear structure", "Slang and contractions", "Supporting evidence"],
-            answer: 2
-          },
-          {
-            q: "An essay is said to be coherent when:",
-            options: ["It’s full of difficult words", "Ideas flow logically", "It has short paragraphs", "It ends abruptly"],
-            answer: 1
-          },
-          {
-            q: "What is the last step before submitting an essay?",
-            options: ["Writing a new introduction", "Editing and proofreading", "Adding jokes", "Changing the topic"],
-            answer: 1
-          }
-        ]
-      },
-      {
-        title: "Chapter 2: Literature in English (Rwanda)",
-        questions: [
-          {
-            q: "Which of these is a theme in Rwandan literature?",
-            options: ["Space travel", "Unity and reconciliation", "Fantasy magic", "Time machines"],
-            answer: 1
-          },
-          {
-            q: "Oral literature in Rwanda includes:",
-            options: ["Novels", "Poems", "Folktales and proverbs", "Textbooks"],
-            answer: 2
-          },
-          {
-            q: "What is the purpose of Imigani?",
-            options: ["To explain science", "To entertain only", "To convey moral lessons", "To describe animals"],
-            answer: 2
-          },
-          {
-            q: "A poem with 14 lines is called:",
-            options: ["Limerick", "Haiku", "Sonnet", "Ballad"],
-            answer: 2
-          },
-          {
-            q: "Characters in literature are:",
-            options: ["The fonts used", "The people in the story", "The endings", "The settings"],
-            answer: 1
-          },
-          {
-            q: "In literature, 'conflict' refers to:",
-            options: ["Peace", "A type of writing", "Struggle between forces", "A dialogue"],
-            answer: 2
-          },
-          {
-            q: "Authors use symbolism to:",
-            options: ["Write long paragraphs", "Confuse readers", "Represent ideas through objects", "Make stories shorter"],
-            answer: 2
-          },
-          {
-            q: "The setting of a story is:",
-            options: ["Time and place", "Tone and theme", "Characters and plot", "Rhythm and rhyme"],
-            answer: 0
-          },
-          {
-            q: "A tragedy usually ends in:",
-            options: ["Success", "Laughter", "Sadness or death", "Mystery"],
-            answer: 2
-          },
-          {
-            q: "What is the purpose of a literary theme?",
-            options: ["To confuse the reader", "To add color", "To express the central idea", "To list vocabulary"],
-            answer: 2
-          }
-        ]
-      },
-      {
-        title: "Chapter 3: Punctuation",
-        questions: [
-          {
-            q: "Which punctuation ends a statement?",
-            options: ["Exclamation mark", "Comma", "Period (.)", "Question mark"],
-            answer: 2
-          },
-          {
-            q: "Use a comma to:",
-            options: ["End a sentence", "Separate ideas in a list", "Show excitement", "Start a question"],
-            answer: 1
-          },
-          {
-            q: "The apostrophe (') shows:",
-            options: ["Plural", "Capitalization", "Possession or contraction", "Spacing"],
-            answer: 2
-          },
-          {
-            q: "Which is correct?",
-            options: ["Its raining", "It's raining", "Its' raining", "It rains'"],
-            answer: 1
-          },
-          {
-            q: "Use a colon (:) to:",
-            options: ["End a sentence", "Start a sentence", "Introduce a list", "Separate clauses"],
-            answer: 2
-          },
-          {
-            q: "Which sentence uses punctuation correctly?",
-            options: ["I saw a lion; a big one!", "I saw a lion. a big one!", "I saw a lion, a big one!", "I saw a lion! a big one!"],
-            answer: 0
-          },
-          {
-            q: "Which sentence uses quotation marks properly?",
-            options: ["He said, “Hello.”", "He said, “Hello”.", "He said “Hello.”", "He said, Hello.”"],
-            answer: 0
-          },
-          {
-            q: "What punctuation ends a direct question?",
-            options: ["Period", "Exclamation mark", "Comma", "Question mark (?)"],
-            answer: 3
-          },
-          {
-            q: "Which symbol is used for parentheses?",
-            options: ["[ ]", "{ }", "( )", "< >"],
-            answer: 2
-          },
-          {
-            q: "Ellipses (...) are used to:",
-            options: ["End all sentences", "Replace commas", "Indicate a pause or omission", "Show possession"],
-            answer: 2
-          }
-        ]
-      },
-      {
-        title: "Chapter 4: Grammar",
-        questions: [
-          {
-            q: "Which is a correct sentence?",
-            options: ["She go to school", "She goes to school", "She going to school", "She gone to school"],
-            answer: 1
-          },
-          {
-            q: "Which word is a noun?",
-            options: ["Run", "Beautiful", "Happiness", "Quickly"],
-            answer: 2
-          },
-          {
-            q: "Which is an adjective?",
-            options: ["Swim", "Fast", "Slowly", "Run"],
-            answer: 1
-          },
-          {
-            q: "Which sentence is in past tense?",
-            options: ["He eats", "He ate", "He will eat", "He eating"],
-            answer: 1
-          },
-          {
-            q: "What is a pronoun?",
-            options: ["A type of punctuation", "A word that replaces a noun", "An action", "A question word"],
-            answer: 1
-          },
-          {
-            q: "Identify the verb: 'They are running late.'",
-            options: ["They", "Running", "Are", "Late"],
-            answer: 2
-          },
-          {
-            q: "Which sentence uses subject-verb agreement?",
-            options: ["The dogs barks", "The dog bark", "The dog barks", "Dogs barks"],
-            answer: 2
-          },
-          {
-            q: "Choose the correct article: '___ apple a day keeps the doctor away.'",
-            options: ["A", "An", "The", "No article"],
-            answer: 1
-          },
-          {
-            q: "Which is an interjection?",
-            options: ["Happy", "Run", "Wow!", "Because"],
-            answer: 2
-          },
-          {
-            q: "What is the plural of 'child'?",
-            options: ["Childs", "Childes", "Children", "Childrens"],
-            answer: 2
-          }
-        ]
-      }
-    ];
+                <div class="final-score" id="finalScoreContainer"></div>
 
-    const quizDiv = document.getElementById("quizContainer");
-    let totalScore = 0;
-    let totalQuestions = 0;
+                <script>
+                    const chapters = [
+                      {
+                        title: "Chapter 1: Essay Writing",
+                        questions: [
+                          {
+                            q: "What is the main purpose of an essay?",
+                            options: ["To entertain", "To analyze and argue a point", "To describe an image", "To summarize a book"],
+                            answer: 1
+                          },
+                          {
+                            q: "Which part of an essay presents the thesis statement?",
+                            options: ["Body", "Conclusion", "Introduction", "Reference"],
+                            answer: 2
+                          },
+                          {
+                            q: "What is a good hook in an introduction?",
+                            options: ["A boring fact", "A quote or question", "A conclusion", "A reference"],
+                            answer: 1
+                          },
+                          {
+                            q: "Which of the following is NOT a step in essay writing?",
+                            options: ["Cooking", "Planning", "Drafting", "Proofreading"],
+                            answer: 0
+                          },
+                          {
+                            q: "A thesis statement should be:",
+                            options: ["A question", "A vague idea", "A clear and concise argument", "A list of topics"],
+                            answer: 2
+                          },
+                          {
+                            q: "Which is true about body paragraphs?",
+                            options: ["They introduce the essay", "They contain the conclusion", "They develop the main ideas", "They are not necessary"],
+                            answer: 2
+                          },
+                          {
+                            q: "The conclusion of an essay should:",
+                            options: ["Introduce a new idea", "Restate the thesis", "Be longer than the body", "Contain statistics"],
+                            answer: 1
+                          },
+                          {
+                            q: "Which is best to avoid in formal essay writing?",
+                            options: ["Formal tone", "Clear structure", "Slang and contractions", "Supporting evidence"],
+                            answer: 2
+                          },
+                          {
+                            q: "An essay is said to be coherent when:",
+                            options: ["It's full of difficult words", "Ideas flow logically", "It has short paragraphs", "It ends abruptly"],
+                            answer: 1
+                          },
+                          {
+                            q: "What is the last step before submitting an essay?",
+                            options: ["Writing a new introduction", "Editing and proofreading", "Adding jokes", "Changing the topic"],
+                            answer: 1
+                          }
+                        ]
+                      },
+                      {
+                        title: "Chapter 2: Literature in English (Rwanda)",
+                        questions: [
+                          {
+                            q: "Which of these is a theme in Rwandan literature?",
+                            options: ["Space travel", "Unity and reconciliation", "Fantasy magic", "Time machines"],
+                            answer: 1
+                          },
+                          {
+                            q: "Oral literature in Rwanda includes:",
+                            options: ["Novels", "Poems", "Folktales and proverbs", "Textbooks"],
+                            answer: 2
+                          },
+                          {
+                            q: "What is the purpose of Imigani?",
+                            options: ["To explain science", "To entertain only", "To convey moral lessons", "To describe animals"],
+                            answer: 2
+                          },
+                          {
+                            q: "A poem with 14 lines is called:",
+                            options: ["Limerick", "Haiku", "Sonnet", "Ballad"],
+                            answer: 2
+                          },
+                          {
+                            q: "Characters in literature are:",
+                            options: ["The fonts used", "The people in the story", "The endings", "The settings"],
+                            answer: 1
+                          },
+                          {
+                            q: "In literature, 'conflict' refers to:",
+                            options: ["Peace", "A type of writing", "Struggle between forces", "A dialogue"],
+                            answer: 2
+                          },
+                          {
+                            q: "Authors use symbolism to:",
+                            options: ["Write long paragraphs", "Confuse readers", "Represent ideas through objects", "Make stories shorter"],
+                            answer: 2
+                          },
+                          {
+                            q: "The setting of a story is:",
+                            options: ["Time and place", "Tone and theme", "Characters and plot", "Rhythm and rhyme"],
+                            answer: 0
+                          },
+                          {
+                            q: "A tragedy usually ends in:",
+                            options: ["Success", "Laughter", "Sadness or death", "Mystery"],
+                            answer: 2
+                          },
+                          {
+                            q: "What is the purpose of a literary theme?",
+                            options: ["To confuse the reader", "To add color", "To express the central idea", "To list vocabulary"],
+                            answer: 2
+                          }
+                        ]
+                      },
+                      {
+                        title: "Chapter 3: Punctuation",
+                        questions: [
+                          {
+                            q: "Which punctuation ends a statement?",
+                            options: ["Exclamation mark", "Comma", "Period (.)", "Question mark"],
+                            answer: 2
+                          },
+                          {
+                            q: "Use a comma to:",
+                            options: ["End a sentence", "Separate ideas in a list", "Show excitement", "Start a question"],
+                            answer: 1
+                          },
+                          {
+                            q: "The apostrophe (') shows:",
+                            options: ["Plural", "Capitalization", "Possession or contraction", "Spacing"],
+                            answer: 2
+                          },
+                          {
+                            q: "Which is correct?",
+                            options: ["Its raining", "It's raining", "Its' raining", "It rains'"],
+                            answer: 1
+                          },
+                          {
+                            q: "Use a colon (:) to:",
+                            options: ["End a sentence", "Start a sentence", "Introduce a list", "Separate clauses"],
+                            answer: 2
+                          },
+                          {
+                            q: "Which sentence uses punctuation correctly?",
+                            options: ["I saw a lion; a big one!", "I saw a lion. a big one!", "I saw a lion, a big one!", "I saw a lion! a big one!"],
+                            answer: 0
+                          },
+                          {
+                            q: "Which sentence uses quotation marks properly?",
+                            options: ["He said, \"Hello.\"", "He said, \"Hello\".", "He said \"Hello.\"", "He said, Hello.\""],
+                            answer: 0
+                          },
+                          {
+                            q: "What punctuation ends a direct question?",
+                            options: ["Period", "Exclamation mark", "Comma", "Question mark (?)"],
+                            answer: 3
+                          },
+                          {
+                            q: "Which symbol is used for parentheses?",
+                            options: ["[ ]", "{ }", "( )", "< >"],
+                            answer: 2
+                          },
+                          {
+                            q: "Ellipses (...) are used to:",
+                            options: ["End all sentences", "Replace commas", "Indicate a pause or omission", "Show possession"],
+                            answer: 2
+                          }
+                        ]
+                      },
+                      {
+                        title: "Chapter 4: Grammar",
+                        questions: [
+                          {
+                            q: "Which is a correct sentence?",
+                            options: ["She go to school", "She goes to school", "She going to school", "She gone to school"],
+                            answer: 1
+                          },
+                          {
+                            q: "Which word is a noun?",
+                            options: ["Run", "Beautiful", "Happiness", "Quickly"],
+                            answer: 2
+                          },
+                          {
+                            q: "Which is an adjective?",
+                            options: ["Swim", "Fast", "Slowly", "Run"],
+                            answer: 1
+                          },
+                          {
+                            q: "Which sentence is in past tense?",
+                            options: ["He eats", "He ate", "He will eat", "He eating"],
+                            answer: 1
+                          },
+                          {
+                            q: "What is a pronoun?",
+                            options: ["A type of punctuation", "A word that replaces a noun", "An action", "A question word"],
+                            answer: 1
+                          },
+                          {
+                            q: "Identify the verb: 'They are running late.'",
+                            options: ["They", "Running", "Are", "Late"],
+                            answer: 2
+                          },
+                          {
+                            q: "Which sentence uses subject-verb agreement?",
+                            options: ["The dogs barks", "The dog bark", "The dog barks", "Dogs barks"],
+                            answer: 2
+                          },
+                          {
+                            q: "Choose the correct article: '___ apple a day keeps the doctor away.'",
+                            options: ["A", "An", "The", "No article"],
+                            answer: 1
+                          },
+                          {
+                            q: "Which is an interjection?",
+                            options: ["Happy", "Run", "Wow!", "Because"],
+                            answer: 2
+                          },
+                          {
+                            q: "What is the plural of 'child'?",
+                            options: ["Childs", "Childes", "Children", "Childrens"],
+                            answer: 2
+                          }
+                        ]
+                      }
+                    ];
 
-    chapters.forEach((chapter, chapIndex) => {
-      const div = document.createElement("div");
-      div.className = "chapter";
-      div.innerHTML = `<h2>${chapter.title}</h2>`;
-      chapter.questions.forEach((qObj, qIndex) => {
-        const qDiv = document.createElement("div");
-        qDiv.className = "question";
-        qDiv.innerHTML = `<p>${qIndex + 1}. ${qObj.q}</p>`;
-        qObj.options.forEach((opt, i) => {
-          const id = `chap${chapIndex}q${qIndex}opt${i}`;
-          qDiv.innerHTML += `
-            <label>
-              <input type="radio" name="chap${chapIndex}q${qIndex}" value="${i}" id="${id}" />
-              ${opt}
-            </label><br/>
-          `;
-        });
-        div.appendChild(qDiv);
-      });
+                    const quizDiv = document.getElementById("quizContainer");
+                    let totalScore = 0;
+                    let totalQuestions = 0;
 
-      const submitBtn = document.createElement("button");
-      submitBtn.textContent = "Submit Chapter";
-      submitBtn.onclick = () => {
-        let score = 0;
-        chapter.questions.forEach((q, qi) => {
-          const selected = document.querySelector(`input[name="chap${chapIndex}q${qi}"]:checked`);
-          if (selected && parseInt(selected.value) === q.answer) {
-            score++;
-          }
-        });
-        const percent = Math.round((score / chapter.questions.length) * 100);
-        totalScore += score;
-        totalQuestions += chapter.questions.length;
-        submitBtn.disabled = true;
-        const result = document.createElement("div");
-        result.className = "result";
-        result.textContent = `Chapter Score: ${score} / ${chapter.questions.length} → ${percent}%`;
-        div.appendChild(result);
-        if (chapIndex === chapters.length - 1) {
-          document.getElementById("finalScoreContainer").innerText =
-            `🎓 Final Score: ${totalScore} / ${totalQuestions} → ${Math.round((totalScore / totalQuestions) * 100)}%`;
-        }
-      };
-      div.appendChild(submitBtn);
-      quizDiv.appendChild(div);
-    });
-  </script>
+                    chapters.forEach((chapter, chapIndex) => {
+                      const div = document.createElement("div");
+                      div.className = "chapter";
+                      div.innerHTML = `<h2>${chapter.title}</h2>`;
+                      chapter.questions.forEach((qObj, qIndex) => {
+                        const qDiv = document.createElement("div");
+                        qDiv.className = "question";
+                        qDiv.innerHTML = `<p>${qIndex + 1}. ${qObj.q}</p>`;
+                        qObj.options.forEach((opt, i) => {
+                          const id = `chap${chapIndex}q${qIndex}opt${i}`;
+                          qDiv.innerHTML += `
+                            <label>
+                              <input type="radio" name="chap${chapIndex}q${qIndex}" value="${i}" id="${id}" />
+                              ${opt}
+                            </label><br/>
+                          `;
+                        });
+                        div.appendChild(qDiv);
+                      });
 
+                      const submitBtn = document.createElement("button");
+                      submitBtn.textContent = "Submit Chapter";
+                      submitBtn.onclick = () => {
+                        let score = 0;
+                        chapter.questions.forEach((q, qi) => {
+                          const selected = document.querySelector(`input[name="chap${chapIndex}q${qi}"]:checked`);
+                          if (selected && parseInt(selected.value) === q.answer) {
+                            score++;
+                          }
+                        });
+                        const percent = Math.round((score / chapter.questions.length) * 100);
+                        totalScore += score;
+                        totalQuestions += chapter.questions.length;
+                        submitBtn.disabled = true;
+                        const result = document.createElement("div");
+                        result.className = "result";
+                        result.textContent = `Chapter Score: ${score} / ${chapter.questions.length} → ${percent}%`;
+                        div.appendChild(result);
+                        if (chapIndex === chapters.length - 1) {
+                          document.getElementById("finalScoreContainer").innerText =
+                            `🎓 Final Score: ${totalScore} / ${totalQuestions} → ${Math.round((totalScore / totalQuestions) * 100)}%`;
+                        }
+                      };
+                      div.appendChild(submitBtn);
+                      quizDiv.appendChild(div);
+                    });
+                </script>
+            </div>
+        </main>
+    </div>
 </body>
 </html>
