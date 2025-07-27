@@ -86,13 +86,13 @@
                 <div class="resources-header">
                     <h1><i class="fas fa-book"></i> LEARNING RESOURCES</h1>
                     <div class="resources-filter">
-                        <select class="filter-select">
+                        <select class="filter-select" id="subject-filter">
                             <option value="all">All Subjects</option>
                             <option value="math">Mathematics</option>
                             <option value="english">English</option>
                             <option value="history">History</option>
                         </select>
-                        <select class="filter-select">
+                        <select class="filter-select" id="type-filter">
                             <option value="all">All Types</option>
                             <option value="books">Textbooks</option>
                             <option value="videos">Videos</option>
@@ -101,111 +101,19 @@
                     </div>
                 </div>
 
-                        <!-- All Resources -->
-                        <div class="resources-section">
-                            <h2><i class="fas fa-th-list"></i> All Resources</h2>
-                            <div class="resources-grid">
-                                <!-- Math Resources -->
-                                <div class="resource-card math">
-                                    <div class="resource-icon">
-                                        <i class="fas fa-calculator"></i>
-                                    </div>
-                                    <div class="resource-content">
-                                        <h3>Geometry Formulas</h3>
-                                        <p class="resource-description">Printable cheat sheet with all essential geometry formulas</p>
-                                        <div class="resource-meta">
-                                            <span class="resource-type">Reference Sheet</span>
-                                            <span class="resource-pages">2 pages</span>
-                                        </div>
-                                        <a href="#" class="resource-link">Download</a>
-                                    </div>
-                                </div>
-        
-                                <!-- English Resources -->
-                                <div class="resource-card english">
-                                    <div class="resource-icon">
-                                        <i class="fas fa-pen-fancy"></i>
-                                    </div>
-                                    <div class="resource-content">
-                                        <h3>Essay Writing Guide</h3>
-                                        <p class="resource-description">Step-by-step guide to writing academic essays</p>
-                                        <div class="resource-meta">
-                                            <span class="resource-type">Guide</span>
-                                            <span class="resource-pages">15 pages</span>
-                                        </div>
-                                        <a href="#" class="resource-link">View</a>
-                                    </div>
-                                </div>
-        
-                                <!-- History Resources -->
-                                <div class="resource-card history">
-                                    <div class="resource-icon">
-                                        <i class="fas fa-timeline"></i>
-                                    </div>
-                                    <div class="resource-content">
-                                        <h3>World History Timeline</h3>
-                                        <p class="resource-description">Interactive timeline of major world history events</p>
-                                        <div class="resource-meta">
-                                            <span class="resource-type">Interactive</span>
-                                            <span class="resource-duration">5000 BCE - Present</span>
-                                        </div>
-                                        <a href="#" class="resource-link">Explore</a>
-                                    </div>
-                                </div>
-        
-                                <!-- Math Resources 2 -->
-                                <div class="resource-card math">
-                                    <div class="resource-icon">
-                                        <i class="fas fa-square-root-alt"></i>
-                                    </div>
-                                    <div class="resource-content">
-                                        <h3>Algebra Practice Problems</h3>
-                                        <p class="resource-description">300+ practice problems with solutions</p>
-                                        <div class="resource-meta">
-                                            
-                                            <span class="resource-pages">85 pages</span>
-                                        </div>
-                                        <a href="#" class="resource-link">Download</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>       
-                
+                <!-- All Resources -->
+                <div class="resources-section">
+                    <h2><i class="fas fa-th-list"></i> All Resources</h2>
+                    <div class="resources-grid" id="resources-grid">
+                        <!-- Resources will be populated by JavaScript -->
+                    </div>
+                </div>       
 
                 <!-- Featured Resources -->
                 <div class="resources-section">
                     <h2><i class="fas fa-star"></i> Featured Resources</h2>
-                    <div class="resources-grid">
-                        <div class="resource-card featured">
-                            <div class="resource-badge">Recommended</div>
-                            <div class="resource-icon">
-                                <i class="fas fa-video"></i>
-                            </div>
-                            <div class="resource-content">
-                                <h3>Algebra Fundamentals</h3>
-                                <p class="resource-description">Comprehensive video series covering all basic algebra concepts</p>
-                                <div class="resource-meta">
-                                    <span class="resource-type">Video Series</span>
-                                    <span class="resource-duration">3h 45m</span>
-                                </div>
-                                <a href="#" class="resource-link">View Resource</a>
-                            </div>
-                        </div>
-
-                        <div class="resource-card featured">
-                            <div class="resource-icon">
-                                <i class="fas fa-book-open"></i>
-                            </div>
-                            <div class="resource-content">
-                                <h3>Grammar Handbook</h3>
-                                <p class="resource-description">Complete reference for English grammar rules and usage</p>
-                                <div class="resource-meta">
-                                    <span class="resource-type">E-book</span>
-                                    <span class="resource-pages">245 pages</span>
-                                </div>
-                                <a href="#" class="resource-link">Download</a>
-                            </div>
-                        </div>
+                    <div class="resources-grid" id="featured-grid">
+                        <!-- Featured resources will be populated by JavaScript -->
                     </div>
                 </div>
 
@@ -221,6 +129,229 @@
         </main>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // JSON structure for resources including books
+        const resourcesData = {
+            "resources": [
+                // Math Resources
+                {
+                    "title": "Mathematics Textbook",
+                    "description": "Comprehensive mathematics textbook covering various topics",
+                    "subject": "math",
+                    "type": "books",
+                    "url": "https://elearning.reb.rw/course/view.php?id=1189",
+                    "icon": "calculator",
+                    "pages": "Full Course",
+                    "featured": false
+                },
+                {
+                    "title": "Advanced Mathematics",
+                    "description": "In-depth mathematics course for advanced learners",
+                    "subject": "math",
+                    "type": "books",
+                    "url": "https://elearning.reb.rw/course/view.php?id=517",
+                    "icon": "square-root-alt",
+                    "pages": "Full Course",
+                    "featured": false
+                },
+                {
+                    "title": "Mathematics Fundamentals",
+                    "description": "Comprehensive mathematics course covering all basic concepts",
+                    "subject": "math",
+                    "type": "books",
+                    "url": "https://elearning.reb.rw/course/view.php?id=1189",
+                    "icon": "calculator",
+                    "duration": "Complete",
+                    "featured": true
+                },
+                
+                // English Resources
+                {
+                    "title": "English Grammar Guide",
+                    "description": "Complete reference for English grammar rules and usage",
+                    "subject": "english",
+                    "type": "books",
+                    "url": "https://www.bbau.ac.in/Docs/FoundationCourse/TM/AECC105/Grammar.pdf",
+                    "icon": "pen-fancy",
+                    "pages": "Comprehensive",
+                    "featured": false
+                },
+                {
+                    "title": "English Grammar Exercises",
+                    "description": "Interactive grammar exercises and tutorials",
+                    "subject": "english",
+                    "type": "exercises",
+                    "url": "https://www.englishpage.com/grammar/",
+                    "icon": "language",
+                    "duration": "Various Topics",
+                    "featured": false
+                },
+                
+                // History Resources
+                {
+                    "title": "History Course Materials",
+                    "description": "Comprehensive history course resources",
+                    "subject": "history",
+                    "type": "books",
+                    "url": "https://elearning.reb.rw/course/section.php?id=3962",
+                    "icon": "landmark",
+                    "pages": "Various",
+                    "featured": false
+                },
+                {
+                    "title": "World History Course",
+                    "description": "Complete world history course materials",
+                    "subject": "history",
+                    "type": "books",
+                    "url": "https://elearning.reb.rw/course/view.php?id=1287",
+                    "icon": "monument",
+                    "pages": "Comprehensive",
+                    "featured": false
+                },
+                {
+                    "title": "History Section Materials",
+                    "description": "Detailed history learning materials",
+                    "subject": "history",
+                    "type": "books",
+                    "url": "https://elearning.reb.rw/course/section.php?id=12633",
+                    "icon": "scroll",
+                    "pages": "Various",
+                    "featured": false
+                },
+                {
+                    "title": "History Section 7",
+                    "description": "History course section with specific materials",
+                    "subject": "history",
+                    "type": "books",
+                    "url": "https://elearning.reb.rw/course/view.php?id=538&section=7",
+                    "icon": "history",
+                    "pages": "Section 7",
+                    "featured": false
+                },
+                {
+                    "title": "History Course Section 1",
+                    "description": "Introductory history course materials",
+                    "subject": "history",
+                    "type": "books",
+                    "url": "https://elearning.reb.rw/course/view.php?id=538&section=1",
+                    "icon": "book",
+                    "pages": "Section 1",
+                    "featured": false
+                },
+                {
+                    "title": "African History Course",
+                    "description": "Comprehensive African history materials",
+                    "subject": "history",
+                    "type": "books",
+                    "url": "https://elearning.reb.rw/course/view.php?id=65",
+                    "icon": "globe-africa",
+                    "pages": "Comprehensive",
+                    "featured": true
+                },
+                
+                // Additional Book Resources
+                {
+                    "title": "Mathematics Problem Solving",
+                    "description": "Collection of challenging math problems with solutions",
+                    "subject": "math",
+                    "type": "books",
+                    "url": "https://elearning.reb.rw/course/view.php?id=538&section=1",
+                    "icon": "brain",
+                    "problems": "300+",
+                    "featured": false
+                },
+                {
+                    "title": "English Composition Handbook",
+                    "description": "Guide to effective writing and composition",
+                    "subject": "english",
+                    "type": "books",
+                    "url": "https://www.example.com/english-composition",
+                    "icon": "pen",
+                    "pages": "200 pages",
+                    "featured": false
+                },
+                {
+                    "title": "Modern History Textbook",
+                    "description": "Comprehensive textbook covering modern historical events",
+                    "subject": "history",
+                    "type": "books",
+                    "url": "https://elearning.reb.rw/course/view.php?id=538&section=7",
+                    "icon": "clock",
+                    "pages": "350 pages",
+                    "featured": false
+                }
+            ]
+        };
+
+        // Function to create resource cards
+        function createResourceCard(resource) {
+            const card = document.createElement('div');
+            card.className = `resource-card ${resource.subject} ${resource.featured ? 'featured' : ''}`;
+            
+            if (resource.featured) {
+                card.innerHTML += `<div class="resource-badge">Recommended</div>`;
+            }
+            
+            card.innerHTML += `
+                <div class="resource-icon">
+                    <i class="fas fa-${resource.icon}"></i>
+                </div>
+                <div class="resource-content">
+                    <h3>${resource.title}</h3>
+                    <p class="resource-description">${resource.description}</p>
+                    <div class="resource-meta">
+                        ${resource.type ? `<span class="resource-type">${resource.type.charAt(0).toUpperCase() + resource.type.slice(1)}</span>` : ''}
+                        ${resource.pages ? `<span class="resource-pages">${resource.pages}</span>` : ''}
+                        ${resource.duration ? `<span class="resource-duration">${resource.duration}</span>` : ''}
+                        ${resource.problems ? `<span class="resource-problems">${resource.problems}</span>` : ''}
+                    </div>
+                    <a href="${resource.url}" target="_blank" class="resource-link">
+                        ${resource.type === 'exercises' ? 'Practice Now' : 
+                         resource.type === 'videos' ? 'Watch Now' : 'View Resource'}
+                    </a>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Function to filter and display resources
+        function displayResources() {
+            const subjectFilter = document.getElementById('subject-filter').value;
+            const typeFilter = document.getElementById('type-filter').value;
+            
+            const resourcesGrid = document.getElementById('resources-grid');
+            const featuredGrid = document.getElementById('featured-grid');
+            
+            // Clear existing content
+            resourcesGrid.innerHTML = '';
+            featuredGrid.innerHTML = '';
+            
+            // Filter and display regular resources
+            resourcesData.resources.forEach(resource => {
+                if (!resource.featured && 
+                    (subjectFilter === 'all' || resource.subject === subjectFilter) &&
+                    (typeFilter === 'all' || resource.type === typeFilter)) {
+                    resourcesGrid.appendChild(createResourceCard(resource));
+                }
+            });
+            
+            // Filter and display featured resources
+            resourcesData.resources.forEach(resource => {
+                if (resource.featured && 
+                    (subjectFilter === 'all' || resource.subject === subjectFilter) &&
+                    (typeFilter === 'all' || resource.type === typeFilter)) {
+                    featuredGrid.appendChild(createResourceCard(resource));
+                }
+            });
+        }
+
+        // Initial display
+        document.addEventListener('DOMContentLoaded', displayResources);
+        
+        // Add event listeners for filters
+        document.getElementById('subject-filter').addEventListener('change', displayResources);
+        document.getElementById('type-filter').addEventListener('change', displayResources);
+    </script>
 </body>
 </html>
