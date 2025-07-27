@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRIGHTLEARN - Shakespeare Quiz</title>
+    <title>BRIGHTLEARN - Courses</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="app-container">
-        <!-- Left Navigation (Unchanged) -->
+        <!-- Left Navigation -->
         <nav class="left-nav">
             <div class="nav-header">
                 <div class="logo-container">
@@ -31,9 +31,21 @@
                     </a>
                 </li>
                 <li>
+                    <a href="grades.html">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>GRADES</span>
+                    </a>
+                </li>
+                <li>
                     <a href="history.html">
                         <i class="fas fa-history"></i>
                         <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>SETTINGS</span>
                     </a>
                 </li>
                 <li>
@@ -54,32 +66,26 @@
 
         <!-- Main Content -->
         <main class="main-content">
+            <!-- Top Bar -->
             <header class="top-bar">
-               <div class="top-icons">
-        <!-- Search -->
-            
-
-        <!-- Notification Icon (links to notification.html) -->
-                 <div class="notification-dropdown">
-                    <a href="notifications.html">
-                    <i class="fas fa-bell notification-icon"></i>
+                <div class="top-icons">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <!-- Simple Notification Link -->
+                    <a href="notifications.html" class="notification-link">
+                        <i class="fas fa-bell notification-icon"></i>
                     </a>
-                    <span class="notification-badge">3</span>
-                 </div>
-
-        <!-- Profile Icon (links to profile.html) -->
-                 <div class="profile-dropdown">
-                    <a href="profile.html">
-                    <i class="fas fa-user-circle profile-icon"></i>
+                    
+                    <!-- Simple Profile Link -->
+                    <a href="profile.html" class="profile-link">
+                        <i class="fas fa-user-circle profile-icon"></i>
                     </a>
-                 </div>
                 </div>
             </header>
 
-            <!-- Top Bar (Unchanged) -->
-
-    
-</head>
             <!-- Courses-Specific Content -->
             <div class="dashboard-content">
                 <!-- Welcome Section -->
@@ -233,7 +239,7 @@
                             </li>
                             
                             <li class="activity-item">
-                                <a href="grammar.html" class="activity-link">
+                                <a href="essay-writing.html" class="activity-link">
                                     <div class="activity-date">
                                         <span class="day">18</span>
                                         <span class="month">Jun</span>
@@ -280,14 +286,14 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="reading-assignment.html">
+                                <a href="shakespeare-quiz.html">
                                     <span class="due-date">Jun 30</span>
                                     <span class="assignment">Shakespeare Reading</span>
                                     <span class="course-tag english">English</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="essay.html">
+                                <a href="early-civilization.html">
                                     <span class="due-date">Jul 3</span>
                                     <span class="assignment">Ancient Rome Essay</span>
                                     <span class="course-tag history">History</span>
