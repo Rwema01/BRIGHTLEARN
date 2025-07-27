@@ -3,13 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRIGHTLEARN - Shakespeare Quiz</title>
+    <title>BRIGHTLEARN - Early civilization</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .progress-bar-container {
+            background-color: #ddd;
+            border-radius: 20px;
+            margin: 10px 0;
+            height: 20px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #3498db;
+            transition: width 0.4s ease-in-out;
+        }
+        .section {
+            background-color: #fff;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .section h2 {
+            margin-top: 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .section h2:after {
+            content: "−";
+            font-size: 1.5em;
+        }
+        .section.collapsed h2:after {
+            content: "+";
+        }
+        .section-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+        .section.collapsed .section-content {
+            max-height: 0 !important;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .complete-btn {
+            background: #008437;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .complete-btn:disabled {
+            background: #038dc8;
+            cursor: not-allowed;
+        }
+        .unread-btn {
+            background: #b51904;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .unread-btn:disabled {
+            background: #616002;
+            cursor: not-allowed;
+        }
+        .breadcrumbs {
+            padding: 10px 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .breadcrumbs a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+        .history-content {
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="app-container">
-        <!-- Left Navigation (Unchanged) -->
+        <!-- Left Navigation -->
         <nav class="left-nav">
             <div class="nav-header">
                 <div class="logo-container">
@@ -25,15 +112,27 @@
                     </a>
                 </li>
                 <li>
-                    <a href="courses.html" class="active">
+                    <a href="courses.html">
                         <i class="fas fa-book-open"></i>
                         <span>COURSES</span>
                     </a>
                 </li>
                 <li>
-                    <a href="history.html">
+                    <a href="grades.html">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>GRADES</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="history.html" class="active">
                         <i class="fas fa-history"></i>
                         <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>SETTINGS</span>
                     </a>
                 </li>
                 <li>
@@ -54,127 +153,58 @@
 
         <!-- Main Content -->
         <main class="main-content">
+            <!-- Top Bar -->
             <header class="top-bar">
-               <div class="top-icons">
-        <!-- Search -->
-            
-
-        <!-- Notification Icon (links to notification.html) -->
-                 <div class="notification-dropdown">
-                    <a href="notifications.html">
-                    <i class="fas fa-bell notification-icon"></i>
+                <div class="top-icons">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <!-- Simple Notification Link -->
+                    <a href="notifications.html" class="notification-link">
+                        <i class="fas fa-bell notification-icon"></i>
                     </a>
-                    <span class="notification-badge">3</span>
-                 </div>
-
-        <!-- Profile Icon (links to profile.html) -->
-                 <div class="profile-dropdown">
-                    <a href="profile.html">
-                    <i class="fas fa-user-circle profile-icon"></i>
+                    
+                    <!-- Simple Profile Link -->
+                    <a href="profile.html" class="profile-link">
+                        <i class="fas fa-user-circle profile-icon"></i>
                     </a>
-                 </div>
                 </div>
             </header>
 
-            <!-- Top Bar (Unchanged) -->
+            <!-- Course Content with Updated Breadcrumbs Structure -->
+            <div class="dashboard-content">
+                <!-- Welcome Section with Breadcrumbs -->
+                <div class="welcome-section">
+                    <div class="breadcrumbs">
+                        <a href="index.html">Home</a> > 
+                        <a href="courses.html">Courses</a> > 
+                        <a href="historycourse.html">History</a> > 
+                        <a href="early-civilization.html">Early Civilization</a>
+                    </div>
+                    <h1><i class="fas fa-landmark"></i> <span class="student-name">HISTORICAL SOURCES OF INFORMATION</span></h1>
+                    <div>Progress:</div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                </div>
 
-    
-</head>
-  <style>
-    
-    .progress-bar-container {
-      background-color: #ddd;
-      border-radius: 20px;
-      margin: 10px 0;
-      height: 20px;
-      overflow: hidden;
-    }
-    .progress-bar {
-      height: 100%;
-      width: 0%;
-      background-color: #3498db;
-      transition: width 0.4s ease-in-out;
-    }
-    .section {
-      background-color: #fff;
-      padding: 20px;
-      margin: 15px 0;
-      border-left: 5px solid #3498db;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .section h2 {
-      margin-top: 0;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .section h2:after {
-      content: "−";
-      font-size: 1.5em;
-    }
-    .section.collapsed h2:after {
-      content: "+";
-    }
-    .section-content {
-      overflow: hidden;
-      transition: max-height 0.3s ease-in-out;
-    }
-    .section.collapsed .section-content {
-      max-height: 0 !important;
-    }
-    .button-group {
-      display: flex;
-      gap: 10px;
-      margin: 10px 0;
-    }
-    .complete-btn {
-      background: #2ecc71;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    .complete-btn:disabled {
-      background: #aaa;
-      cursor: not-allowed;
-    }
-    .unread-btn {
-      background: #e74c3c;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    .unread-btn:disabled {
-      background: #aaa;
-      cursor: not-allowed;
-    }
-  </style>
-</head>
-<body>
-<header>
-     <div class="breadcrumbs">
-    <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="historycourse.html">History</a> > <a href="early-civilization.html">Early Civilization</a>
-</div>
-  <h1>Historical Sources of Information</h1>
-  <div>Progress:</div>
-  <div class="progress-bar-container">
-    <div class="progress-bar" id="progressBar"></div>
-  </div>
-</header>
-<main id="content"></main>
-<script>
-const historyData = {
-  "Definition of History": {
-    title: "What is History?",
-    content: `History is the study of past events, particularly in human affairs. It involves the systematic collection, organization, and analysis of information about past events to understand how they have shaped our present. Historians use various sources of evidence to reconstruct and interpret the past, including written documents, oral traditions, artifacts, and more.`
-  },
-  "Oral Tradition": {
-    title: "Oral Tradition as a Historical Source",
-    content: `1. Definition
+                <!-- History Content Section -->
+                <div class="history-content">
+                    <main id="content"></main>
+                </div>
+            </div>
+
+    <script>
+        const historyData = {
+            "Definition of History": {
+                title: "What is History?",
+                content: `History is the study of past events, particularly in human affairs. It involves the systematic collection, organization, and analysis of information about past events to understand how they have shaped our present. Historians use various sources of evidence to reconstruct and interpret the past, including written documents, oral traditions, artifacts, and more.`
+            },
+            "Oral Tradition": {
+                title: "Oral Tradition as a Historical Source",
+                content: `1. Definition
 - Oral tradition refers to information passed by word of mouth from one generation to another
 - Includes songs, stories, legends, poems, folktales and proverbs
 - Based on eyewitness accounts about past events
@@ -189,10 +219,10 @@ const historyData = {
 - Provides indigenous perspectives
 - Complements written records
 - Accessible to non-literate societies`
-  },
-  "Written Sources": {
-    title: "Written Historical Sources",
-    content: `1. Types of Written Sources
+            },
+            "Written Sources": {
+                title: "Written Historical Sources",
+                content: `1. Types of Written Sources
 - Books, diaries, newspapers, magazines
 - Journals, unpublished documents, letters
 - Inscriptions on coins, monuments
@@ -208,10 +238,10 @@ const historyData = {
 - Can be preserved for long periods
 - Allow for verification and analysis
 - Offer direct accounts from past periods`
-  },
-  "Electronic Sources": {
-    title: "Audio-Visual Historical Sources",
-    content: `1. Definition
+            },
+            "Electronic Sources": {
+                title: "Audio-Visual Historical Sources",
+                content: `1. Definition
 - Information obtained through seeing and hearing
 - Includes digital databases and online publications
 - Modern source utilizing technology
@@ -227,10 +257,10 @@ const historyData = {
 - Preserves visual and auditory elements
 - Provides multimedia perspectives
 - Enables global access to information`
-  },
-  "Archaeology": {
-    title: "Archaeological Sources",
-    content: `1. Definition
+            },
+            "Archaeology": {
+                title: "Archaeological Sources",
+                content: `1. Definition
 - Study of material remains from past societies
 - Includes artifacts, buildings, tools, pottery
 - Examines sites like Ryamurari in Rwanda
@@ -245,10 +275,10 @@ const historyData = {
 - Reveals daily life and technologies
 - Helps reconstruct ancient environments
 - Supports conservation and tourism`
-  },
-  "Linguistics": {
-    title: "Linguistic Historical Sources",
-    content: `1. Definition
+            },
+            "Linguistics": {
+                title: "Linguistic Historical Sources",
+                content: `1. Definition
 - Study of languages, their evolution and relationships
 - Examines sound systems, structures and formations
 - Traces connections between related languages
@@ -263,10 +293,10 @@ const historyData = {
 - Preserves cultural knowledge
 - Promotes unity through shared language
 - Helps reconstruct unwritten histories`
-  },
-  "Anthropology": {
-    title: "Anthropological Sources",
-    content: `1. Definition
+            },
+            "Anthropology": {
+                title: "Anthropological Sources",
+                content: `1. Definition
 - Study of social institutions and cultural practices
 - Examines traditions, norms, values and attitudes
 - Investigates societal organization and transformation
@@ -281,10 +311,10 @@ const historyData = {
 - Promotes cultural appreciation
 - Supports heritage tourism
 - Provides holistic view of societies`
-  },
-  "Genetics": {
-    title: "Genetic Historical Sources",
-    content: `1. Definition
+            },
+            "Genetics": {
+                title: "Genetic Historical Sources",
+                content: `1. Definition
 - Study of genes, heredity and genetic variation
 - Examines DNA to trace human origins and migrations
 - Helps categorize different populations
@@ -299,90 +329,91 @@ const historyData = {
 - Complements other historical sources
 - Helps reconstruct ancient migrations
 - Contributes to understanding human evolution`
-  }
-};
+            }
+        };
 
-const progressKey = "historyProgress";
-function getProgress() {
-  const saved = localStorage.getItem(progressKey);
-  return saved ? JSON.parse(saved) : {};
-}
+        const progressKey = "historyProgress";
+        function getProgress() {
+            const saved = localStorage.getItem(progressKey);
+            return saved ? JSON.parse(saved) : {};
+        }
 
-function updateProgressBar(progress) {
-  const total = Object.keys(historyData).length;
-  const completed = Object.values(progress).filter(v => v === true).length;
-  const percent = (completed / total) * 100;
-  document.getElementById("progressBar").style.width = percent + "%";
-}
+        function updateProgressBar(progress) {
+            const total = Object.keys(historyData).length;
+            const completed = Object.values(progress).filter(v => v === true).length;
+            const percent = (completed / total) * 100;
+            document.getElementById("progressBar").style.width = percent + "%";
+        }
 
-function renderContent() {
-  const container = document.getElementById("content");
-  const progress = getProgress();
-  updateProgressBar(progress);
-  
-  Object.entries(historyData).forEach(([section, data]) => {
-    const div = document.createElement("div");
-    div.className = "section";
-    
-    const contentDiv = document.createElement("div");
-    contentDiv.className = "section-content";
-    contentDiv.innerHTML = `<p>${data.content.replace(/\n/g, "<br>")}</p>`;
-    
-    const header = document.createElement("h2");
-    header.innerHTML = `${section}: ${data.title}`;
-    
-    // Create button group
-    const buttonGroup = document.createElement("div");
-    buttonGroup.className = "button-group";
-    
-    const completeBtn = document.createElement("button");
-    completeBtn.className = "complete-btn";
-    completeBtn.textContent = progress[section] ? "Completed" : "Mark as Complete";
-    completeBtn.disabled = progress[section];
-    completeBtn.onclick = () => markComplete(section);
-    
-    const unreadBtn = document.createElement("button");
-    unreadBtn.className = "unread-btn";
-    unreadBtn.textContent = "Mark as Unread";
-    unreadBtn.disabled = !progress[section];
-    unreadBtn.onclick = () => markUnread(section);
-    
-    buttonGroup.appendChild(completeBtn);
-    buttonGroup.appendChild(unreadBtn);
-    
-    header.addEventListener("click", function() {
-      div.classList.toggle("collapsed");
-      if (!div.classList.contains("collapsed")) {
-        contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
-      }
-    });
-    
-    div.appendChild(header);
-    div.appendChild(buttonGroup); // Buttons now appear below title
-    div.appendChild(contentDiv);
-    container.appendChild(div);
-    
-    contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
-  });
-}
+        function renderContent() {
+            const container = document.getElementById("content");
+            const progress = getProgress();
+            updateProgressBar(progress);
+            
+            Object.entries(historyData).forEach(([section, data]) => {
+                const div = document.createElement("div");
+                div.className = "section";
+                
+                const contentDiv = document.createElement("div");
+                contentDiv.className = "section-content";
+                contentDiv.innerHTML = `<p>${data.content.replace(/\n/g, "<br>")}</p>`;
+                
+                const header = document.createElement("h2");
+                header.innerHTML = `${section}: ${data.title}`;
+                
+                // Create button group
+                const buttonGroup = document.createElement("div");
+                buttonGroup.className = "button-group";
+                
+                const completeBtn = document.createElement("button");
+                completeBtn.className = "complete-btn";
+                completeBtn.textContent = progress[section] ? "Completed" : "Mark as Complete";
+                completeBtn.disabled = progress[section];
+                completeBtn.onclick = () => markComplete(section);
+                
+                const unreadBtn = document.createElement("button");
+                unreadBtn.className = "unread-btn";
+                unreadBtn.textContent = "Mark as Unread";
+                unreadBtn.disabled = !progress[section];
+                unreadBtn.onclick = () => markUnread(section);
+                
+                buttonGroup.appendChild(completeBtn);
+                buttonGroup.appendChild(unreadBtn);
+                
+                header.addEventListener("click", function() {
+                    div.classList.toggle("collapsed");
+                    if (!div.classList.contains("collapsed")) {
+                        contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
+                    }
+                });
+                
+                div.appendChild(header);
+                div.appendChild(buttonGroup);
+                div.appendChild(contentDiv);
+                container.appendChild(div);
+                
+                contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
+            });
+        }
 
-function markComplete(section) {
-  const progress = getProgress();
-  progress[section] = true;
-  localStorage.setItem(progressKey, JSON.stringify(progress));
-  document.getElementById("content").innerHTML = "";
-  renderContent();
-}
+        function markComplete(section) {
+            const progress = getProgress();
+            progress[section] = true;
+            localStorage.setItem(progressKey, JSON.stringify(progress));
+            document.getElementById("content").innerHTML = "";
+            renderContent();
+        }
 
-function markUnread(section) {
-  const progress = getProgress();
-  progress[section] = false;
-  localStorage.setItem(progressKey, JSON.stringify(progress));
-  document.getElementById("content").innerHTML = "";
-  renderContent();
-}
+        function markUnread(section) {
+            const progress = getProgress();
+            progress[section] = false;
+            localStorage.setItem(progressKey, JSON.stringify(progress));
+            document.getElementById("content").innerHTML = "";
+            renderContent();
+        }
 
-renderContent();
-</script>
+        // Initialize the page
+        renderContent();
+    </script>
 </body>
 </html>
