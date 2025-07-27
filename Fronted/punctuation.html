@@ -6,10 +6,142 @@
     <title>BRIGHTLEARN - Punctuation</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Main app styling (unchanged) */
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .left-nav {
+            width: 250px;
+            background-color:#001833;
+;
+            color: white;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Add the new quiz styling */
+        .progress-bar-container {
+            background-color: #ddd;
+            border-radius: 20px;
+            margin: 10px 0;
+            height: 20px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #3498db;
+            transition: width 0.4s ease-in-out;
+        }
+        
+        .section {
+            background-color: #fff;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section h2 {
+            margin-top: 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section h2:after {
+            content: "−";
+            font-size: 1.5em;
+        }
+        
+        .section.collapsed h2:after {
+            content: "+";
+        }
+        
+        .section-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+        
+        .section.collapsed .section-content {
+            max-height: 0 !important;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        .complete-btn {
+            background: #2ecc71;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        .complete-btn:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+        }
+        
+        .unread-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        
+        .unread-btn:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+        }
+        
+        /* Punctuation specific styling */
+        .rule {
+            background-color: #f8f9fa;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .example {
+            background-color: #e8f4f8;
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 3px solid #3498db;
+        }
+        
+        .example span {
+            font-weight: bold;
+            color: #2980b9;
+        }
+        
+        .important {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .quiz-question {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
     <div class="app-container">
-        <!-- Left Navigation (Unchanged) -->
+        <!-- Left Navigation -->
         <nav class="left-nav">
             <div class="nav-header">
                 <div class="logo-container">
@@ -54,559 +186,348 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Top Bar (Unchanged) -->
+            <!-- Top Bar -->
             <header class="top-bar">
                <div class="top-icons">
-        <!-- Search -->
-                 
+                    <div class="notification-dropdown">
+                        <a href="notifications.html">
+                            <i class="fas fa-bell notification-icon"></i>
+                        </a>
+                        <span class="notification-badge">3</span>
+                    </div>
 
-        <!-- Notification Icon (links to notification.html) -->
-                 <div class="notification-dropdown">
-                    <a href="notifications.html">
-                    <i class="fas fa-bell notification-icon"></i>
-                    </a>
-                    <span class="notification-badge">3</span>
-                 </div>
-
-        <!-- Profile Icon (links to profile.html) -->
-                 <div class="profile-dropdown">
-                    <a href="profile.html">
-                    <i class="fas fa-user-circle profile-icon"></i>
-                    </a>
-                 </div>
+                    <div class="profile-dropdown">
+                        <a href="profile.html">
+                            <i class="fas fa-user-circle profile-icon"></i>
+                        </a>
+                    </div>
                 </div>
             </header>
-    
-</head>
-<body>
-    <div class="breadcrumbs">
-        <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="english.html">English</a> > <a href="punctuation.html">Punctuation rules</a>
+
+            <div class="breadcrumbs">
+                <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="english.html">English</a> > <a href="punctuation.html">Punctuation rules</a>
+            </div>
+
+            <h1>Punctuation Rules Mastery</h1>
+            
+            <div>Progress:</div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <main id="content"></main>
+        </main>
     </div>
 
-    <h1>Punctuation Rules Mastery</h1>
-    
-    <div class="level-tabs" id="levelTabs"></div>
-    
-    <div id="contentContainer"></div>
-    
-    <div class="progress-container">
-        <h3>Your Progress</h3>
-        <div class="progress-bar">
-            <div class="progress" id="progressBar"></div>
-        </div>
-        <p id="progressText">Complete lessons to track your progress</p>
-    </div>
-
-<script>
-    // Punctuation content in JSON format for easy management
-    const punctuationContent = {
-        levels: [
-            {
-                level: 1,
-                title: "Basic Punctuation",
-                pages: [
-                    {
-                        title: "Introduction to Punctuation",
-                        content: `
-                            <h2>Introduction to Punctuation</h2>
-                            <p>Punctuation marks are symbols that help organize written language and make its meaning clear. They indicate pauses, stops, questions, exclamations, and relationships between parts of sentences.</p>
-                            
-                            <div class="rule">
-                                <h3>Why Punctuation Matters</h3>
-                                <p>Proper punctuation:</p>
-                                <ul>
-                                    <li>Clarifies meaning</li>
-                                    <li>Indicates pauses and intonation</li>
-                                    <li>Shows relationships between ideas</li>
-                                    <li>Makes writing easier to read</li>
-                                    <li>Conveys the writer's tone</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="example">
-                                <p><strong>Example of punctuation changing meaning:</strong></p>
-                                <p>"Let's eat, Grandma!" vs "Let's eat Grandma!"</p>
-                                <p>The comma makes the difference between a friendly suggestion and cannibalism!</p>
-                            </div>
-                        `
-                    },
-                    {
-                        title: "End Punctuation Marks",
-                        content: `
-                            <h2>End Punctuation Marks</h2>
-                            
-                            <div class="rule">
-                                <h3>Period (.)</h3>
-                                <p>Used to:</p>
-                                <ul>
-                                    <li>End declarative sentences <span class="example">The sun is shining.</span></li>
-                                    <li>End imperative sentences <span class="example">Close the door.</span></li>
-                                    <li>Indicate abbreviations <span class="example">Dr. Smith, U.S.A., etc.</span></li>
-                                </ul>
-                            </div>
-                            
-                            <div class="rule">
-                                <h3>Question Mark (?)</h3>
-                                <p>Used to:</p>
-                                <ul>
-                                    <li>End direct questions <span class="example">What time is it?</span></li>
-                                    <li>Show uncertainty <span class="example">He was 45(?) years old.</span></li>
-                                </ul>
-                                <p class="important">Do not use for indirect questions: <span class="example">She asked what time it was.</span></p>
-                            </div>
-                            
-                            <div class="rule">
-                                <h3>Exclamation Point (!)</h3>
-                                <p>Used to:</p>
-                                <ul>
-                                    <li>Express strong emotion <span class="example">Watch out!</span></li>
-                                    <li>Show emphasis <span class="example">That's amazing!</span></li>
-                                    <li>After interjections <span class="example">Wow! That's incredible.</span></li>
-                                </ul>
-                                <p class="important">Use sparingly in formal writing. Multiple exclamation points (!! or !!!) are generally inappropriate in professional contexts.</p>
-                            </div>
-                        `
-                    }
-                ],
-                quiz: {
-                    title: "Basic Punctuation Quiz",
-                    questions: [
-                        {
-                            question: "Which sentence uses the exclamation point correctly?",
-                            options: [
-                                "a) Help! I need assistance!",
-                                "b) Help!! I need assistance!!",
-                                "c) Help! I need assistance.",
-                                "d) Both a and c"
-                            ],
-                            answer: "d",
-                            feedback: "Both a and c are correct. While a single exclamation point is sufficient, using it only where needed (as in option c) is preferred in formal writing."
-                        },
-                        {
-                            question: "Select the correctly punctuated sentence:",
-                            options: [
-                                "a) What time is it.",
-                                "b) What time is it?",
-                                "c) what time is it?",
-                                "d) What time is it!"
-                            ],
-                            answer: "b",
-                            feedback: "The correct answer is b) What time is it? Questions require question marks and should begin with capital letters."
-                        }
-                    ]
-                }
+    <script>
+        // Punctuation content in JSON format with levels
+        const punctuationData = {
+            "Basic Punctuation": {
+                title: "Basic Punctuation Marks",
+                content: `
+                    <div class="rule">
+                        <h3>Period (.)</h3>
+                        <p>Used to:</p>
+                        <ul>
+                            <li>End declarative sentences <span class="example">The sun is shining.</span></li><br>
+                            <li>End imperative sentences <span class="example">Close the door.</span></li><br>
+                            <li>Indicate abbreviations <span class="example">Dr. Smith, U.S.A., etc.</span></li><br>
+                        </ul>
+                    </div>
+                    
+                    <div class="rule">
+                        <h3>Question Mark (?)</h3>
+                        <p>Used to:</p>
+                        <ul>
+                            <li>End direct questions <span class="example">What time is it?</span></li><br>
+                            <li>Show uncertainty <span class="example">He was 45(?) years old.</span></li><br>
+                        </ul>
+                        <p class="important">Do not use for indirect questions: <span class="example">She asked what time it was.</span></p>
+<br>                    </div>
+                    
+                    <div class="rule">
+                        <h3>Exclamation Point (!)</h3>
+                        <p>Used to:</p>
+                        <ul>
+                            <li>Express strong emotion <span class="example">Watch out!</span></li><br>
+                            <li>Show emphasis <span class="example">That's amazing!</span></li><br>
+                            <li>After interjections <span class="example">Wow! That's incredible.</span></li><br>
+                        </ul>
+                        <p class="important">Use sparingly in formal writing. Multiple exclamation points (!! or !!!) are generally inappropriate in professional contexts.</p>
+                    </div>
+                    
+                    <div class="quiz">
+                        <h3>Basic Punctuation Quiz</h3>
+                        <div class="quiz-question">
+                            <p>Which sentence uses the exclamation point correctly?</p>
+                            <input type="radio" name="q1" id="q1a"><label for="q1a">a) Help! I need assistance!</label><br>
+                            <input type="radio" name="q1" id="q1b"><label for="q1b">b) Help!! I need assistance!!</label><br>
+                            <input type="radio" name="q1" id="q1c"><label for="q1c">c) Help! I need assistance.</label><br>
+                            <input type="radio" name="q1" id="q1d"><label for="q1d">d) Both a and c</label>
+                        </div>
+                        <div class="quiz-question">
+                            <p>Select the correctly punctuated sentence:</p>
+                            <input type="radio" name="q2" id="q2a"><label for="q2a">a) What time is it.</label><br>
+                            <input type="radio" name="q2" id="q2b"><label for="q2b">b) What time is it?</label><br>
+                            <input type="radio" name="q2" id="q2c"><label for="q2c">c) what time is it?</label><br>
+                            <input type="radio" name="q2" id="q2d"><label for="q2d">d) What time is it!</label>
+                        </div>
+                        <button class="complete-btn" onclick="checkQuiz('Basic Punctuation')">Submit Quiz</button>
+                        <div id="quiz-feedback-basic" style="margin-top: 15px;"></div>
+                    </div>
+                `
             },
-            {
-                level: 2,
-                title: "Intermediate Punctuation",
-                pages: [
-                    {
-                        title: "Commas and Semicolons",
-                        content: `
-                            <h2>Commas and Semicolons</h2>
-                            
-                            <div class="rule">
-                                <h3>Comma (,)</h3>
-                                <p>Main uses:</p>
-                                <ol>
-                                    <li>Separate items in a list <span class="example">We bought apples, oranges, and bananas.</span></li>
-                                    <li>Set off introductory elements <span class="example">After the movie, we went home.</span></li>
-                                    <li>Separate coordinate adjectives <span class="example">It was a cold, windy day.</span></li>
-                                    <li>Set off nonessential clauses <span class="example">My brother, who lives in Paris, is visiting.</span></li>
-                                    <li>Before coordinating conjunctions in compound sentences <span class="example">I wanted to go, but I was too tired.</span></li>
-                                </ol>
-                            </div>
-                            
-                            <div class="rule">
-                                <h3>Semicolon (;)</h3>
-                                <p>Main uses:</p>
-                                <ol>
-                                    <li>Join closely related independent clauses <span class="example">The rain stopped; the sun came out.</span></li>
-                                    <li>Separate items in a complex list <span class="example">We visited Paris, France; Rome, Italy; and Madrid, Spain.</span></li>
-                                </ol>
-                                <p class="important">A semicolon connects two complete sentences that could stand alone but are closely related.</p>
-                            </div>
-                            
-                            <div class="example">
-                                <p><strong>Common comma mistake:</strong> The "Oxford comma" (comma before 'and' in a list) is preferred in formal writing.</p>
-                                <p>With Oxford comma: <span class="example">I love my parents, Lady Gaga, and Humpty Dumpty.</span></p>
-                                <p>Without Oxford comma: <span class="example">I love my parents, Lady Gaga and Humpty Dumpty.</span> (This suggests your parents are Lady Gaga and Humpty Dumpty!)</p>
-                            </div>
-                        `
-                    },
-                    {
-                        title: "Apostrophes and Quotation Marks",
-                        content: `
-                            <h2>Apostrophes and Quotation Marks</h2>
-                            
-                            <div class="rule">
-                                <h3>Apostrophe (')</h3>
-                                <p>Used to:</p>
-                                <ol>
-                                    <li>Show possession <span class="example">Sarah's book, the dogs' leashes</span></li>
-                                    <li>Form contractions <span class="example">don't, can't, it's</span></li>
-                                </ol>
-                                <p class="important">Common mistakes:</p>
-                                <ul>
-                                    <li>Its (possessive) vs. it's (contraction for "it is")</li>
-                                    <li>Plurals don't need apostrophes (NOT: banana's for sale)</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="rule">
-                                <h3>Quotation Marks (" " or ' ')</h3>
-                                <p>Used to:</p>
-                                <ul>
-                                    <li>Enclose direct speech <span class="example">She said, "Hello."</span></li>
-                                    <li>Indicate titles of short works <span class="example">"The Raven" (poem), "Yesterday" (song)</span></li>
-                                    <li>Show irony or special usage <span class="example">His "help" made things worse.</span></li>
-                                </ul>
-                                <p>Single quotation marks are used for quotes within quotes: <span class="example">He said, "I heard her say 'no' clearly."</span></p>
-                            </div>
-                        `
-                    }
-                ],
-                quiz: {
-                    title: "Intermediate Punctuation Quiz",
-                    questions: [
-                        {
-                            question: "Which sentence uses commas correctly?",
-                            options: [
-                                "a) After the game we went to dinner, and then saw a movie.",
-                                "b) After the game, we went to dinner, and then saw a movie.",
-                                "c) After the game we went to dinner and then saw a movie.",
-                                "d) After the game, we went to dinner and then saw a movie."
-                            ],
-                            answer: "d",
-                            feedback: "Correct answer is d) After the game, we went to dinner and then saw a movie. A comma is needed after introductory phrases but not before 'and' in a simple compound predicate."
-                        },
-                        {
-                            question: "Which sentence uses the apostrophe correctly?",
-                            options: [
-                                "a) The dogs' bowl is empty.",
-                                "b) The dog's bowl's are empty.",
-                                "c) The dogs bowl's are empty.",
-                                "d) The dogs's bowls are empty."
-                            ],
-                            answer: "a",
-                            feedback: "Correct answer is a) The dogs' bowl is empty. For plural nouns ending in s, add only an apostrophe for possession."
-                        }
-                    ]
-                }
+            "Intermediate Punctuation": {
+                title: "Intermediate Punctuation Marks",
+                content: `
+                    <div class="rule">
+                        <h3>Comma (,)</h3>
+                        <p>Main uses:</p>
+                        <ol>
+                            <li>Separate items in a list <span class="example">We bought apples, oranges, and bananas.</span></li><br>
+                            <li>Set off introductory elements <span class="example">After the movie, we went home.</span></li><br>
+                            <li>Separate coordinate adjectives <span class="example">It was a cold, windy day.</span></li><br>
+                            <li>Set off nonessential clauses <span class="example">My brother, who lives in Paris, is visiting.</span></li><br>
+                            <li>Before coordinating conjunctions in compound sentences <span class="example">I wanted to go, but I was too tired.</span></li><br>
+                        </ol>
+                    </div>
+                    
+                    <div class="rule">
+                        <h3>Semicolon (;)</h3>
+                        <p>Main uses:</p>
+                        <ol>
+                            <li>Join closely related independent clauses <span class="example">The rain stopped; the sun came out.</span></li><br>
+                            <li>Separate items in a complex list <span class="example">We visited Paris, France; Rome, Italy; and Madrid, Spain.</span></li><br>
+                        </ol>
+                        <p class="important">A semicolon connects two complete sentences that could stand alone but are closely related.</p><br>
+                    </div>
+                    
+                    <div class="example">
+                        <p><strong>Common comma mistake:</strong> The "Oxford comma" (comma before 'and' in a list) is preferred in formal writing.</p><br>
+                        <p>With Oxford comma: <span class="example">I love my parents, Lady Gaga, and Humpty Dumpty.</span></p><br>
+                        <p>Without Oxford comma: <span class="example">I love my parents, Lady Gaga and Humpty Dumpty.</span> (This suggests your parents are Lady Gaga and Humpty Dumpty!)</p><br>
+                    </div>
+                    
+                    <div class="quiz">
+                        <h3>Intermediate Punctuation Quiz</h3>
+                        <div class="quiz-question">
+                            <p>Which sentence uses commas correctly?</p>
+                            <input type="radio" name="q3" id="q3a"><label for="q3a">a) After the game we went to dinner, and then saw a movie.</label><br>
+                            <input type="radio" name="q3" id="q3b"><label for="q3b">b) After the game, we went to dinner, and then saw a movie.</label><br>
+                            <input type="radio" name="q3" id="q3c"><label for="q3c">c) After the game we went to dinner and then saw a movie.</label><br>
+                            <input type="radio" name="q3" id="q3d"><label for="q3d">d) After the game, we went to dinner and then saw a movie.</label>
+                        </div>
+                        <div class="quiz-question">
+                            <p>Which sentence uses the apostrophe correctly?</p>
+                            <input type="radio" name="q4" id="q4a"><label for="q4a">a) The dogs' bowl is empty.</label><br>
+                            <input type="radio" name="q4" id="q4b"><label for="q4b">b) The dog's bowl's are empty.</label><br>
+                            <input type="radio" name="q4" id="q4c"><label for="q4c">c) The dogs bowl's are empty.</label><br>
+                            <input type="radio" name="q4" id="q4d"><label for="q4d">d) The dogs's bowls are empty.</label>
+                        </div>
+                        <button class="complete-btn" onclick="checkQuiz('Intermediate Punctuation')">Submit Quiz</button>
+                        <div id="quiz-feedback-intermediate" style="margin-top: 15px;"></div>
+                    </div>
+                `
             },
-            {
-                level: 3,
-                title: "Advanced Punctuation",
-                pages: [
-                    {
-                        title: "Colons, Dashes, and Hyphens",
-                        content: `
-                            <h2>Colons, Dashes, and Hyphens</h2>
-                            
-                            <div class="rule">
-                                <h3>Colon (:)</h3>
-                                <p>Used to:</p>
-                                <ul>
-                                    <li>Introduce a list <span class="example">Bring these items: a pen, paper, and your ID.</span></li>
-                                    <li>Introduce an explanation or example <span class="example">She had one goal: to win.</span></li>
-                                    <li>Separate hours from minutes <span class="example">3:30 PM</span></li>
-                                    <li>After the salutation in business letters <span class="example">Dear Sir:</span></li>
-                                </ul>
-                            </div>
-                            
-                            <div class="rule">
-                                <h3>Dash (— or --)</h3>
-                                <p>Used to:</p>
-                                <ul>
-                                    <li>Indicate a sudden break or change in thought <span class="example">I was going to—wait, what was that noise?</span></li>
-                                    <li>Set off parenthetical information <span class="example">Three countries—France, Italy, and Spain—border the Mediterranean.</span></li>
-                                    <li>Emphasize what follows <span class="example">There's only one person who can help—you.</span></li>
-                                </ul>
-                            </div>
-                            
-                            <div class="rule">
-                                <h3>Hyphen (-)</h3>
-                                <p>Used to:</p>
-                                <ul>
-                                    <li>Join compound words <span class="example">mother-in-law, well-known</span></li>
-                                    <li>Connect prefixes in some cases <span class="example">ex-president, self-esteem</span></li>
-                                    <li>Write out numbers 21-99 <span class="example">twenty-one, forty-two</span></li>
-                                </ul>
-                            </div>
-                        `
-                    },
-                    {
-                        title: "Advanced Usage",
-                        content: `
-                            <h2>Advanced Punctuation Usage</h2>
-                            
-                            <div class="rule">
-                                <h3>Punctuation with Quotation Marks</h3>
-                                <p>In American English:</p>
-                                <ul>
-                                    <li>Commas and periods always go inside quotation marks <span class="example">She said, "Come here."</span></li>
-                                    <li>Colons and semicolons go outside <span class="example">He called her "friend"; she disagreed.</span></li>
-                                    <li>Question marks and exclamation points go inside if part of the quote, outside if not <span class="example">Did she say "I'm coming"? vs. She asked, "Are you coming?"</span></li>
-                                </ul>
-                            </div>
-                            
-                            <div class="rule">
-                                <h3>Ellipsis (...)</h3>
-                                <p>Used to:</p>
-                                <ul>
-                                    <li>Indicate omitted words <span class="example">"To be or not...that is the question."</span></li>
-                                    <li>Show a pause or trailing off <span class="example">I was thinking...maybe we should leave.</span></li>
-                                </ul>
-                                <p class="important">In formal writing, use three dots with spaces between them ( . . . ) when omitting words from a quotation.</p>
-                            </div>
-                        `
-                    }
-                ],
-                quiz: {
-                    title: "Advanced Punctuation Quiz",
-                    questions: [
-                        {
-                            question: "Which sentence uses the semicolon correctly?",
-                            options: [
-                                "a) I have one goal; to win.",
-                                "b) I have been to Paris, France; Rome, Italy and Madrid, Spain.",
-                                "c) The weather was terrible; we stayed inside.",
-                                "d) Both b and c are correct"
-                            ],
-                            answer: "c",
-                            feedback: "Correct answer is c) The weather was terrible; we stayed inside. Semicolons join closely related independent clauses. Option a should use a colon, and option b is missing a semicolon before 'and'."
-                        },
-                        {
-                            question: "Which sentence uses the dash correctly?",
-                            options: [
-                                "a) She bought three items - milk, eggs, and bread.",
-                                "b) The solution was simple—just add water.",
-                                "c) He was—in my opinion—the best candidate.",
-                                "d) Both b and c"
-                            ],
-                            answer: "d",
-                            feedback: "Correct answer is d) Both b and c. Dashes can emphasize information (b) or set off parenthetical information (c). A hyphen (as in a) is not correct for these uses."
-                        }
-                    ]
-                }
+            "Advanced Punctuation": {
+                title: "Advanced Punctuation Marks",
+                content: `
+                    <div class="rule">
+                        <h3>Colon (:)</h3>
+                        <p>Used to:</p>
+                        <ul>
+                            <li>Introduce a list <span class="example">Bring these items: a pen, paper, and your ID.</span></li><br>
+                            <li>Introduce an explanation or example <span class="example">She had one goal: to win.</span></li><br>
+                            <li>Separate hours from minutes <span class="example">3:30 PM</span></li><br>
+                            <li>After the salutation in business letters <span class="example">Dear Sir:</span></li><br>
+                        </ul>
+                    </div>
+                    
+                    <div class="rule">
+                        <h3>Dash (— or --)</h3>
+                        <p>Used to:</p>
+                        <ul>
+                            <li>Indicate a sudden break or change in thought <span class="example">I was going to—wait, what was that noise?</span></li><br>
+                            <li>Set off parenthetical information <span class="example">Three countries—France, Italy, and Spain—border the Mediterranean.</span></li>
+<br>                            <li>Emphasize what follows <span class="example">There's only one person who can help—you.</span></li><br>
+                        </ul>
+                    </div>
+                    
+                    <div class="rule">
+                        <h3>Hyphen (-)</h3>
+                        <p>Used to:</p>
+                        <ul>
+                            <li>Join compound words <span class="example">mother-in-law, well-known</span></li>
+                            <li>Connect prefixes in some cases <span class="example">ex-president, self-esteem</span></li>
+                            <li>Write out numbers 21-99 <span class="example">twenty-one, forty-two</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="quiz">
+                        <h3>Advanced Punctuation Quiz</h3>
+                        <div class="quiz-question">
+                            <p>Which sentence uses the semicolon correctly?</p>
+                            <input type="radio" name="q5" id="q5a"><label for="q5a">a) I have one goal; to win.</label><br>
+                            <input type="radio" name="q5" id="q5b"><label for="q5b">b) I have been to Paris, France; Rome, Italy and Madrid, Spain.</label><br>
+                            <input type="radio" name="q5" id="q5c"><label for="q5c">c) The weather was terrible; we stayed inside.</label><br>
+                            <input type="radio" name="q5" id="q5d"><label for="q5d">d) Both b and c are correct</label>
+                        </div>
+                        <div class="quiz-question">
+                            <p>Which sentence uses the dash correctly?</p>
+                            <input type="radio" name="q6" id="q6a"><label for="q6a">a) She bought three items - milk, eggs, and bread.</label><br>
+                            <input type="radio" name="q6" id="q6b"><label for="q6b">b) The solution was simple—just add water.</label><br>
+                            <input type="radio" name="q6" id="q6c"><label for="q6c">c) He was—in my opinion—the best candidate.</label><br>
+                            <input type="radio" name="q6" id="q6d"><label for="q6d">d) Both b and c</label>
+                        </div>
+                        <button class="complete-btn" onclick="checkQuiz('Advanced Punctuation')">Submit Quiz</button>
+                        <div id="quiz-feedback-advanced" style="margin-top: 15px;"></div>
+                    </div>
+                `
             }
-        ]
-    };
+        };
 
-    // User progress tracking
-    let userProgress = {};
-    
-    // Initialize the page
-    document.addEventListener('DOMContentLoaded', function() {
-        initializeProgress();
-        createLevelTabs();
-        showLevel(1);
-    });
-    
-    // Initialize progress tracking
-    function initializeProgress() {
-        // Load from localStorage if available
-        const savedProgress = localStorage.getItem('punctuationProgress');
-        if (savedProgress) {
-            userProgress = JSON.parse(savedProgress);
+        // Progress tracking
+        const progressKey = "punctuationProgress";
+        
+        function getProgress() {
+            const saved = localStorage.getItem(progressKey);
+            return saved ? JSON.parse(saved) : {};
         }
         
-        // Initialize any missing levels
-        punctuationContent.levels.forEach(level => {
-            if (!userProgress[`level${level.level}`]) {
-                userProgress[`level${level.level}`] = {
-                    pagesRead: 0,
-                    quizCompleted: false,
-                    quizScore: 0
-                };
-            }
-        });
+        function updateProgressBar(progress) {
+            const total = Object.keys(punctuationData).length;
+            const completed = Object.values(progress).filter(v => v === true).length;
+            const percent = (completed / total) * 100;
+            document.getElementById("progressBar").style.width = percent + "%";
+        }
         
-        updateProgressDisplay();
-    }
-    
-    // Create the level tabs
-    function createLevelTabs() {
-        const levelTabs = document.getElementById('levelTabs');
-        punctuationContent.levels.forEach(level => {
-            const tab = document.createElement('div');
-            tab.className = 'level-tab';
-            tab.textContent = `Level ${level.level}: ${level.title}`;
-            tab.onclick = () => showLevel(level.level);
-            levelTabs.appendChild(tab);
-        });
-    }
-    
-    // Show content for a specific level
-    function showLevel(levelNum) {
-        // Update active tab
-        document.querySelectorAll('.level-tab').forEach(tab => {
-            tab.classList.remove('active');
-        });
-        document.querySelectorAll('.level-tab')[levelNum-1].classList.add('active');
-        
-        // Get level content
-        const level = punctuationContent.levels.find(l => l.level === levelNum);
-        if (!level) return;
-        
-        // Build HTML content
-        let html = `<h2>Level ${level.level}: ${level.title}</h2>`;
-        
-        // Add pages
-        level.pages.forEach((page, index) => {
-            html += `
-                <div class="page">
-                    ${page.content}
-                </div>
-            `;
+        function renderContent() {
+            const container = document.getElementById("content");
+            const progress = getProgress();
+            updateProgressBar(progress);
             
-            // Mark as read in progress
-            if (index < userProgress[`level${levelNum}`].pagesRead) {
-                // Already read
-            } else if (index === userProgress[`level${levelNum}`].pagesRead) {
-                // Current page to read
-                userProgress[`level${levelNum}`].pagesRead++;
-                localStorage.setItem('punctuationProgress', JSON.stringify(userProgress));
-                updateProgressDisplay();
-            }
-        });
-        
-        // Add quiz if all pages read
-        if (userProgress[`level${levelNum}`].pagesRead >= level.pages.length) {
-            html += `<div class="page" id="quizPage">`;
-            html += `<h2>${level.quiz.title}</h2>`;
-            html += `<p>Test your knowledge with this interactive quiz. Your score will be calculated at the end!</p>`;
-            
-            level.quiz.questions.forEach((q, qIndex) => {
-                html += `
-                    <div class="quiz-question" id="q${qIndex}">
-                        <h3>${qIndex + 1}. ${q.question}</h3>
-                `;
+            Object.entries(punctuationData).forEach(([section, data]) => {
+                const div = document.createElement("div");
+                div.className = "section";
                 
-                q.options.forEach((option, oIndex) => {
-                    const optionLetter = String.fromCharCode(97 + oIndex);
-                    html += `
-                        <input type="radio" name="q${qIndex}" value="${optionLetter}" id="q${qIndex}_${optionLetter}">
-                        <label for="q${qIndex}_${optionLetter}">${option}</label><br>
-                    `;
+                const contentDiv = document.createElement("div");
+                contentDiv.className = "section-content";
+                contentDiv.innerHTML = data.content;
+                
+                const header = document.createElement("h2");
+                header.innerHTML = `${section}: ${data.title}`;
+                
+                // Create button group
+                const buttonGroup = document.createElement("div");
+                buttonGroup.className = "button-group";
+                
+                const completeBtn = document.createElement("button");
+                completeBtn.className = "complete-btn";
+                completeBtn.textContent = progress[section] ? "Completed" : "Mark as Complete";
+                completeBtn.disabled = progress[section];
+                completeBtn.onclick = () => markComplete(section);
+                
+                const unreadBtn = document.createElement("button");
+                unreadBtn.className = "unread-btn";
+                unreadBtn.textContent = "Mark as Unread";
+                unreadBtn.disabled = !progress[section];
+                unreadBtn.onclick = () => markUnread(section);
+                
+                buttonGroup.appendChild(completeBtn);
+                buttonGroup.appendChild(unreadBtn);
+                
+                header.addEventListener("click", function() {
+                    div.classList.toggle("collapsed");
+                    if (!div.classList.contains("collapsed")) {
+                        contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
+                    }
                 });
                 
-                html += `</div>`;
+                div.appendChild(header);
+                div.appendChild(buttonGroup);
+                div.appendChild(contentDiv);
+                container.appendChild(div);
+                
+                contentDiv.style.maxHeight = contentDiv.scrollHeight + "px";
             });
-            
-            html += `
-                <button onclick="calculateScore(${levelNum})">Submit Quiz</button>
-                <div id="results">
-                    <h3>Quiz Results</h3>
-                    <p id="score"></p>
-                    <p id="feedback"></p>
-                </div>
-            </div>`;
         }
         
-        document.getElementById('contentContainer').innerHTML = html;
-        updateProgressDisplay();
-    }
-    
-    // Calculate quiz score
-    function calculateScore(levelNum) {
-        const level = punctuationContent.levels.find(l => l.level === levelNum);
-        let score = 0;
-        let feedbackHTML = "<h4>Question Feedback:</h4><ol>";
-        
-        level.quiz.questions.forEach((q, qIndex) => {
-            const selectedOption = document.querySelector(`input[name="q${qIndex}"]:checked`);
-            
-            if (selectedOption && selectedOption.value === q.answer) {
-                score++;
-                feedbackHTML += `<li class="correct">Q${qIndex + 1}: Correct! ${q.feedback}</li>`;
-            } else {
-                feedbackHTML += `<li class="incorrect">Q${qIndex + 1}: ${q.feedback}</li>`;
-            }
-        });
-        
-        feedbackHTML += "</ol>";
-        
-        // Update progress
-        userProgress[`level${levelNum}`].quizCompleted = true;
-        userProgress[`level${levelNum}`].quizScore = score / level.quiz.questions.length * 100;
-        localStorage.setItem('punctuationProgress', JSON.stringify(userProgress));
-        
-        // Display results
-        document.getElementById('score').innerHTML = `You scored ${score} out of ${level.quiz.questions.length} (${Math.round(score/level.quiz.questions.length*100)}%)`;
-        document.getElementById('feedback').innerHTML = feedbackHTML;
-        document.getElementById('results').style.display = 'block';
-        
-        updateProgressDisplay();
-    }
-    
-    // Update progress display
-    function updateProgressDisplay() {
-        let totalPages = 0;
-        let pagesRead = 0;
-        let quizzesCompleted = 0;
-        let totalQuizzes = punctuationContent.levels.length;
-        let totalScore = 0;
-        
-        punctuationContent.levels.forEach(level => {
-            totalPages += level.pages.length;
-            pagesRead += userProgress[`level${level.level}`].pagesRead;
-            
-            if (userProgress[`level${level.level}`].quizCompleted) {
-                quizzesCompleted++;
-                totalScore += userProgress[`level${level.level}`].quizScore;
-            }
-        });
-        
-        const pagesPercent = Math.round((pagesRead / totalPages) * 100);
-        const quizzesPercent = quizzesCompleted > 0 ? Math.round((totalScore / quizzesCompleted)) : 0;
-        const overallPercent = Math.round((pagesPercent + (quizzesCompleted / totalQuizzes * 100)) / 2);
-        
-        document.getElementById('progressBar').style.width = `${overallPercent}%`;
-        document.getElementById('progressText').innerHTML = `
-            Progress: ${overallPercent}%<br>
-            Pages read: ${pagesRead} of ${totalPages} (${pagesPercent}%)<br>
-            Quizzes completed: ${quizzesCompleted} of ${totalQuizzes}<br>
-            Average quiz score: ${quizzesCompleted > 0 ? quizzesPercent : 'N/A'}%
-        `;
-    }
-
-    // This JSON structure makes it easy to add new levels or content:
-    /*
-    To add a new level:
-    1. Add a new object to the levels array
-    2. Follow the same structure with level number, title, and pages
-    3. Each page has a title and content (HTML formatted)
-    4. Include a quiz with questions and feedback
-    
-    Example of adding a new level:
-    {
-        level: 4,
-        title: "Expert Punctuation",
-        pages: [
-            {
-                title: "Specialized Usage",
-                content: "<h2>Special Cases</h2><p>Content here...</p>"
-            },
-            {
-                title: "Stylistic Choices",
-                content: "<h2>Style Guides</h2><ul><li>Item 1</li></ul>"
-            }
-        ],
-        quiz: {
-            title: "Expert Quiz",
-            questions: [
-                {
-                    question: "Sample question?",
-                    options: ["a) Option 1", "b) Option 2"],
-                    answer: "a",
-                    feedback: "Explanation of correct answer"
-                }
-            ]
+        function markComplete(section) {
+            const progress = getProgress();
+            progress[section] = true;
+            localStorage.setItem(progressKey, JSON.stringify(progress));
+            document.getElementById("content").innerHTML = "";
+            renderContent();
         }
-    }
-    */
-</script>
+        
+        function markUnread(section) {
+            const progress = getProgress();
+            progress[section] = false;
+            localStorage.setItem(progressKey, JSON.stringify(progress));
+            document.getElementById("content").innerHTML = "";
+            renderContent();
+        }
+        
+        function checkQuiz(level) {
+            let correctAnswers = 0;
+            let feedback = "";
+            
+            if (level === "Basic Punctuation") {
+                const q1Answer = document.querySelector('input[name="q1"]:checked');
+                const q2Answer = document.querySelector('input[name="q2"]:checked');
+                
+                if (q1Answer && q1Answer.id === "q1d") correctAnswers++;
+                if (q2Answer && q2Answer.id === "q2b") correctAnswers++;
+                
+                feedback = `
+                    <p>You scored ${correctAnswers}/2 on the Basic Punctuation quiz.</p>
+                    <p><strong>Question 1 Feedback:</strong> Both a and c are correct. While a single exclamation point is sufficient, using it only where needed (as in option c) is preferred in formal writing.</p>
+                    <p><strong>Question 2 Feedback:</strong> The correct answer is b) What time is it? Questions require question marks and should begin with capital letters.</p>
+                `;
+                
+                document.getElementById("quiz-feedback-basic").innerHTML = feedback;
+            }
+            else if (level === "Intermediate Punctuation") {
+                const q3Answer = document.querySelector('input[name="q3"]:checked');
+                const q4Answer = document.querySelector('input[name="q4"]:checked');
+                
+                if (q3Answer && q3Answer.id === "q3d") correctAnswers++;
+                if (q4Answer && q4Answer.id === "q4a") correctAnswers++;
+                
+                feedback = `
+                    <p>You scored ${correctAnswers}/2 on the Intermediate Punctuation quiz.</p>
+                    <p><strong>Question 3 Feedback:</strong> Correct answer is d) After the game, we went to dinner and then saw a movie. A comma is needed after introductory phrases but not before 'and' in a simple compound predicate.</p>
+                    <p><strong>Question 4 Feedback:</strong> Correct answer is a) The dogs' bowl is empty. For plural nouns ending in s, add only an apostrophe for possession.</p>
+                `;
+                
+                document.getElementById("quiz-feedback-intermediate").innerHTML = feedback;
+            }
+            else if (level === "Advanced Punctuation") {
+                const q5Answer = document.querySelector('input[name="q5"]:checked');
+                const q6Answer = document.querySelector('input[name="q6"]:checked');
+                
+                if (q5Answer && q5Answer.id === "q5c") correctAnswers++;
+                if (q6Answer && q6Answer.id === "q6d") correctAnswers++;
+                
+                feedback = `
+                    <p>You scored ${correctAnswers}/2 on the Advanced Punctuation quiz.</p>
+                    <p><strong>Question 5 Feedback:</strong> Correct answer is c) The weather was terrible; we stayed inside. Semicolons join closely related independent clauses. Option a should use a colon, and option b is missing a semicolon before 'and'.</p>
+                    <p><strong>Question 6 Feedback:</strong> Correct answer is d) Both b and c. Dashes can emphasize information (b) or set off parenthetical information (c). A hyphen (as in a) is not correct for these uses.</p>
+                `;
+                
+                document.getElementById("quiz-feedback-advanced").innerHTML = feedback;
+            }
+            
+            // Mark as complete if they got at least half right
+            if (correctAnswers >= 1) {
+                markComplete(level);
+            }
+        }
 
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderContent();
+        });
+    </script>
 </body>
 </html>
