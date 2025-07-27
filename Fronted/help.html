@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- Left Navigation (Unchanged) -->
+        <!-- Left Navigation -->
         <nav class="left-nav">
             <div class="nav-header">
                 <div class="logo-container">
@@ -31,9 +31,21 @@
                     </a>
                 </li>
                 <li>
+                    <a href="grades.html">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>GRADES</span>
+                    </a>
+                </li>
+                <li>
                     <a href="history.html">
                         <i class="fas fa-history"></i>
                         <span>HISTORY</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="settings.html">
+                        <i class="fas fa-cog"></i>
+                        <span>SETTINGS</span>
                     </a>
                 </li>
                 <li>
@@ -54,113 +66,113 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Top Bar (Unchanged) -->
+            <!-- Top Bar -->
             <header class="top-bar">
-               <div class="top-icons">
-        <!-- Search -->
-
-
-        <!-- Notification Icon (links to notification.html) -->
-                 <div class="notification-dropdown">
-                    <a href="notifications.html">
-                    <i class="fas fa-bell notification-icon"></i>
+                <div class="top-icons">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <!-- Simple Notification Link -->
+                    <a href="notification.html" class="notification-link">
+                        <i class="fas fa-bell notification-icon"></i>
                     </a>
-                    <span class="notification-badge">3</span>
-                 </div>
-
-        <!-- Profile Icon (links to profile.html) -->
-                 <div class="profile-dropdown">
-                    <a href="profile.html">
-                    <i class="fas fa-user-circle profile-icon"></i>
+                    
+                    <!-- Simple Profile Link -->
+                    <a href="profile.html" class="profile-link">
+                        <i class="fas fa-user-circle profile-icon"></i>
                     </a>
-                 </div>
                 </div>
             </header>
+
             <!-- Help Center Content -->
-<div class="dashboard-content">
-    <div class="welcome-section">
-      <div class="breadcrumbs">
-        <a href="index.html">Home</a> > <a href="help.html">Help</a>
-      </div>
-      <h1>HELP</h1>
-      <p>Find answers to your questions</p>
-      
-      <div class="help-search">
-        <input type="text" placeholder="Search help articles..." id="help-search-input">
-        <button id="help-search-btn">
-          <i class="fas fa-search"></i>
-        </button>
-      </div>
+            <div class="dashboard-content">
+                <div class="welcome-section">
+                    <div class="breadcrumbs">
+                        <a href="index.html">Home</a> > <a href="help.html">Help</a>
+                    </div>
+                    <h1>HELP</h1>
+                    <p>Find answers to your questions</p>
+                    
+                    <div class="help-search">
+                        <input type="text" placeholder="Search help articles..." id="help-search-input">
+                        <button id="help-search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            
+                <!-- Help Content Sections -->
+                <div class="help-sections">
+                    <!-- Getting Started Section -->
+                    <div class="help-section">
+                        <h2><i class="fas fa-rocket"></i> Getting Started</h2>
+                        
+                        <div class="help-article">
+                            <h3>How to navigate the platform</h3>
+                            <p>Learn the basics of BRIGHTLEARN's interface and features</p>
+                            <a href="/help/navigate-platform" class="read-more">Read More <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                        
+                        <div class="help-article">
+                            <h3>Setting up your profile</h3>
+                            <p>Complete guide to personalizing your learning experience</p>
+                            <a href="/help/setup-profile" class="read-more">Read More <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Courses Section -->
+                    <div class="help-section">
+                        <h2><i class="fas fa-book-open"></i> Courses</h2>
+                        
+                        <div class="help-article">
+                            <h3>Enrolling in courses</h3>
+                            <p>Step-by-step guide to finding and joining courses</p>
+                            <a href="/help/enroll-courses" class="read-more">Read More <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                        
+                        <div class="help-article">
+                            <h3>Tracking your progress</h3>
+                            <p>How to monitor your learning journey and achievements</p>
+                            <a href="/help/track-progress" class="read-more">Read More <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Technical Support Section -->
+                    <div class="help-section">
+                        <h2><i class="fas fa-tools"></i> Technical Support</h2>
+                        
+                        <div class="help-article">
+                            <h3>System requirements</h3>
+                            <p>Check if your device meets our platform specifications</p>
+                            <a href="/help/system-requirements" class="read-more">Read More <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                        
+                        <div class="help-article">
+                            <h3>Troubleshooting common issues</h3>
+                            <p>Solutions for frequent technical problems</p>
+                            <a href="/help/troubleshooting" class="read-more">Read More <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Still Need Help Section -->
+                <div class="still-need-help">
+                    <div class="support-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Still need help?</h3>
+                    <p>Our support team is available 24/7 to assist you</p>
+                    <div class="contact-options">
+                        <button class="contact-btn email-btn">
+                            <i class="fas fa-envelope"></i> Email Us
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
-  
-    <!-- Help Content Sections -->
-    <div class="help-sections">
-      <!-- Getting Started Section -->
-      <div class="help-section">
-        <h2><i class="fas fa-rocket"></i> Getting Started</h2>
-        
-        <div class="help-article">
-          <h3>How to navigate the platform</h3>
-          <p>Learn the basics of BRIGHTLEARN's interface and features</p>
-          <a href="/help/navigate-platform" class="read-more">Read More <i class="fas fa-chevron-right"></i></a>
-        </div>
-        
-        <div class="help-article">
-          <h3>Setting up your profile</h3>
-          <p>Complete guide to personalizing your learning experience</p>
-          <a href="/help/setup-profile" class="read-more">Read More <i class="fas fa-chevron-right"></i></a>
-        </div>
-      </div>
-      
-      <!-- Courses Section -->
-      <div class="help-section">
-        <h2><i class="fas fa-book-open"></i> Courses</h2>
-        
-        <div class="help-article">
-          <h3>Enrolling in courses</h3>
-          <p>Step-by-step guide to finding and joining courses</p>
-          <a href="/help/enroll-courses" class="read-more">Read More <i class="fas fa-chevron-right"></i></a>
-        </div>
-        
-        <div class="help-article">
-          <h3>Tracking your progress</h3>
-          <p>How to monitor your learning journey and achievements</p>
-          <a href="/help/track-progress" class="read-more">Read More <i class="fas fa-chevron-right"></i></a>
-        </div>
-      </div>
-      
-      <!-- Technical Support Section -->
-      <div class="help-section">
-        <h2><i class="fas fa-tools"></i> Technical Support</h2>
-        
-        <div class="help-article">
-          <h3>System requirements</h3>
-          <p>Check if your device meets our platform specifications</p>
-          <a href="/help/system-requirements" class="read-more">Read More <i class="fas fa-chevron-right"></i></a>
-        </div>
-        
-        <div class="help-article">
-          <h3>Troubleshooting common issues</h3>
-          <p>Solutions for frequent technical problems</p>
-          <a href="/help/troubleshooting" class="read-more">Read More <i class="fas fa-chevron-right"></i></a>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Still Need Help Section -->
-    <div class="still-need-help">
-      <div class="support-icon">
-        <i class="fas fa-headset"></i>
-      </div>
-      <h3>Still need help?</h3>
-      <p>Our support team is available 24/7 to assist you</p>
-      <div class="contact-options">
-        <button class="contact-btn email-btn">
-          <i class="fas fa-envelope"></i> Email Us
-        </button>
-      </div>
-    </div>
-  </div>
 
     <script src="script.js"></script>
 </body>
