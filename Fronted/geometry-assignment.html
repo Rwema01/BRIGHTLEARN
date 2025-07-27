@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRIGHTLEARN - HELP</title>
+    <title>BRIGHTLEARN - Geometry Assignment</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="app-container">
-        <!-- Left Navigation (Unchanged) -->
+        <!-- Left Navigation -->
         <nav class="left-nav">
             <div class="nav-header">
                 <div class="logo-container">
@@ -31,17 +31,23 @@
                     </a>
                 </li>
                 <li>
-                  <a href="grades.html">
-                      <i class="fas fa-graduation-cap"></i>
-                      <span>GRADES</span>
-                  </a>
-              </li>
+                    <a href="grades.html">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>GRADES</span>
+                    </a>
+                </li>
                 <li>
                     <a href="history.html">
                         <i class="fas fa-history"></i>
                         <span>HISTORY</span>
                     </a>
                 </li>
+                <li>
+                  <a href="settings.html">
+                      <i class="fas fa-cog"></i>
+                      <span>SETTINGS</span>
+                  </a>
+              </li>
                 <li>
                     <a href="help.html">
                         <i class="fas fa-question-circle"></i>
@@ -60,55 +66,60 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <!-- Top Bar (Unchanged) -->
-            <header class="top-bar">
-               <div class="top-icons">
-        <!-- Search -->
-              
-        <!-- Notification Icon (links to notification.html) -->
-                 <div class="notification-dropdown">
-                    <a href="notifications.html">
-                    <i class="fas fa-bell notification-icon"></i>
-                    </a>
-                    <span class="notification-badge">3</span>
-                 </div>
+          <!-- Top Bar -->
+          <header class="top-bar">
+              <div class="top-icons">
+                  <div class="search-container">
+                      <input type="text" placeholder="Search..." class="search-input">
+                      <i class="fas fa-search search-icon"></i>
+                  </div>
+                  
+                  <!-- Simple Notification Link -->
+                  <a href="notifications.html" class="notification-link">
+                      <i class="fas fa-bell notification-icon"></i>
+                  </a>
+                  
+                  <!-- Simple Profile Link -->
+                  <a href="profile.html" class="profile-link">
+                      <i class="fas fa-user-circle profile-icon"></i>
+                  </a>
+              </div>
+          </header>
 
-        <!-- Profile Icon (links to profile.html) -->
-                 <div class="profile-dropdown">
-                    <a href="profile.html">
-                    <i class="fas fa-user-circle profile-icon"></i>
-                    </a>
-                 </div>
+            <!-- Course Content with Updated Breadcrumbs Structure -->
+            <div class="dashboard-content">
+                <!-- Welcome Section with Breadcrumbs -->
+                <div class="welcome-section">
+                    <div class="breadcrumbs">
+                        <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="math.html">Mathematics</a> > <a href="geometry-assignment.html">Geometry Assignment</a>
+                    </div>
+                    <h1><i class="fas fa-shapes"></i> <span class="student-name">GEOMETRY ASSIGNMENT QUIZ</span></h1>
                 </div>
-            </header>
-        <main class="main-content">
-          <div class="breadcrumbs">
-            <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="math.html">Mathematics</a> > <a href="geometry-assignment.html">Geometry Assignment</a>
-        </div>
-            <div class="course-header geometry">
-                <h1><i class="fas fa-shapes"></i> Geometry Assignment Quiz</h1>
+
+                <!-- Progress Section -->
+                <div class="progress-container">
+                    <div class="progress-header">
+                        <h3>YOUR PROGRESS</h3>
+                        <div class="progress-text" id="progress-text">17% (1/6 questions answered)</div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill" style="width: 17%"></div>
+                    </div>
+                </div>
+                
+                <!-- Level Selector -->
+                <select id="level-selector" class="level-selector">
+                    <option value="">Select a level</option>
+                </select>
+                
+                <!-- Quiz Container -->
+                <div id="quiz-container">
+                    <p>Please select a level to begin.</p>
+                </div>
             </div>
-            
-            <!-- Progress Section -->
-            <div class="progress-container">
-                <div class="progress-header">
-                    <h3>Your Progress</h3>
-                    <div class="progress-text" id="progress-text">0% (0/3 levels completed)</div>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progress-fill"></div>
-                </div>
-            </div>
-            
-            <!-- Level Selector -->
-            <select id="level-selector" class="level-selector">
-                <option value="">Select a level</option>
-            </select>
-            
-            <!-- Quiz Container -->
-            <div id="quiz-container"></div>
         </main>
     </div>
+
     <script>
       // Quiz data with multiple levels
       const geometryQuizData = {
