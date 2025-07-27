@@ -55,27 +55,24 @@
         <!-- Main Content -->
         <main class="main-content">
             <!-- Top Bar -->
-            <header class="top-bar">
-               <div class="top-icons">
-        <!-- Search -->
-                
-
-        <!-- Notification Icon (links to notification.html) -->
-                 <div class="notification-dropdown">
-                    <a href="notifications.html">
-                    <i class="fas fa-bell notification-icon"></i>
-                    </a>
-                    <span class="notification-badge">3</span>
-                 </div>
-
-        <!-- Profile Icon (links to profile.html) -->
-                 <div class="profile-dropdown">
-                    <a href="profile.html">
-                    <i class="fas fa-user-circle profile-icon"></i>
-                    </a>
-                 </div>
+             <header class="top-bar">
+            <div class="top-icons">
+                <div class="search-container">
+                    <input type="text" placeholder="Search..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
                 </div>
-            </header>
+                
+                <!-- Simple Notification Link -->
+                <a href="notifications.html" class="notification-link">
+                    <i class="fas fa-bell notification-icon"></i>
+                </a>
+                
+                <!-- Simple Profile Link -->
+                <a href="profile.html" class="profile-link">
+                    <i class="fas fa-user-circle profile-icon"></i>
+                </a>
+            </div>
+        </header>
 
             <!-- Resources Content -->
             <div class="resources-container">

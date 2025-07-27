@@ -176,22 +176,23 @@
         <main class="main-content">
             <!-- Top Bar (Unchanged) -->
             <header class="top-bar">
-               <div class="top-icons">
-                    <div class="notification-dropdown">
-                        <a href="notifications.html">
-                            <i class="fas fa-bell notification-icon"></i>
-                        </a>
-                        <span class="notification-badge">3</span>
-                    </div>
-
-                    <div class="profile-dropdown">
-                        <a href="profile.html">
-                            <i class="fas fa-user-circle profile-icon"></i>
-                        </a>
-                    </div>
+            <div class="top-icons">
+                <div class="search-container">
+                    <input type="text" placeholder="Search..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
                 </div>
-            </header>
-
+                
+                <!-- Simple Notification Link -->
+                <a href="notifications.html" class="notification-link">
+                    <i class="fas fa-bell notification-icon"></i>
+                </a>
+                
+                <!-- Simple Profile Link -->
+                <a href="profile.html" class="profile-link">
+                    <i class="fas fa-user-circle profile-icon"></i>
+                </a>
+            </div>
+        </header>
             <div class="geometry-notes-content">
                 <div class="breadcrumbs">
                     <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="math.html">Math</a> > <a href="creative-writing.html">Writing skills</a>
