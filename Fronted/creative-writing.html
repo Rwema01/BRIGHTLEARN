@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRIGHTLEARN - Shakespeare Quiz</title>
+    <title>BRIGHTLEARN - Writing Skills</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="app-container">
-        <!-- Left Navigation (Unchanged) -->
+        <!-- Left Navigation -->
         <nav class="left-nav">
             <div class="nav-header">
                 <div class="logo-container">
@@ -31,11 +31,23 @@
                     </a>
                 </li>
                 <li>
+                    <a href="grades.html">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>GRADES</span>
+                    </a>
+                </li>
+                <li>
                     <a href="history.html">
                         <i class="fas fa-history"></i>
                         <span>HISTORY</span>
                     </a>
                 </li>
+                <li>
+                  <a href="settings.html">
+                      <i class="fas fa-cog"></i>
+                      <span>SETTINGS</span>
+                  </a>
+              </li>
                 <li>
                     <a href="help.html">
                         <i class="fas fa-question-circle"></i>
@@ -54,210 +66,222 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <header class="top-bar">
-               <div class="top-icons">
-        <!-- Search -->
-               
-
-        <!-- Notification Icon (links to notification.html) -->
-                 <div class="notification-dropdown">
-                    <a href="notifications.html">
-                    <i class="fas fa-bell notification-icon"></i>
-                    </a>
-                    <span class="notification-badge">3</span>
-                 </div>
-
-        <!-- Profile Icon (links to profile.html) -->
-                 <div class="profile-dropdown">
-                    <a href="profile.html">
-                    <i class="fas fa-user-circle profile-icon"></i>
-                    </a>
-                 </div>
+          <!-- Top Bar -->
+          <header class="top-bar">
+              <div class="top-icons">
+                  <div class="search-container">
+                      <input type="text" placeholder="Search..." class="search-input">
+                      <i class="fas fa-search search-icon"></i>
+                  </div>
+                  
+                  <!-- Simple Notification Link -->
+                  <a href="notifications.html" class="notification-link">
+                      <i class="fas fa-bell notification-icon"></i>
+                  </a>
+                  
+                  <!-- Simple Profile Link -->
+                  <a href="profile.html" class="profile-link">
+                      <i class="fas fa-user-circle profile-icon"></i>
+                  </a>
+              </div>
+          </header>
+            <!-- Course Content with Updated Breadcrumbs Structure -->
+            <div class="dashboard-content">
+                <!-- Welcome Section with Breadcrumbs -->
+                <div class="welcome-section">
+                    <div class="breadcrumbs">
+                        <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="english.html">English</a> > <a href="creative-writing.html">Writing Skills</a>
+                    </div>
+                    <h1><i class="fas fa-pen-fancy"></i> <span class="student-name">WRITING SKILLS</span></h1>
                 </div>
-            </header>
 
-            <!-- Top Bar (Unchanged) -->
+                <!-- Main Content Container with updated styling -->
+                <div class="level-tabs" id="levelTabs"></div>
 
-    
-</head>
-<body>
-  <div class="breadcrumbs">
-    <a href="index.html">Home</a> > <a href="courses.html">Courses</a> > <a href="english.html">English</a> > <a href="creative-writing.html">Writing skills</a>
-</div>
-  <header>
-    <h1>Writing Skills: Everything You Need to Know</h1>
-  </header>
+                <div id="contentContainer"></div>
+            </div>
+        </main>
+    </div>
 
-  <nav id="navLinks">
-    <!-- Navigation links will be generated automatically -->
-  </nav>
+    <script>
+        // JSON data structure for all content with updated styling
+        const courseData = {
+          levels: [
+            {
+              level: 1,
+              title: "Understanding the Purpose of Writing",
+              sections: [
+                {
+                  title: "Writing Purposes",
+                  content: `
+                    <p>Good writing begins with a clear understanding of why you're writing. Every piece of writing has a purpose — whether it's to inform, persuade, entertain, or explain something.</p>
+                    <ul>
+                      <li><strong>Inform:</strong> Share knowledge or facts (e.g., news articles, reports).</li>
+                      <li><strong>Persuade:</strong> Influence the reader's thoughts or actions (e.g., opinion essays, advertisements).</li>
+                      <li><strong>Entertain:</strong> Amuse the reader (e.g., stories, poems).</li>
+                      <li><strong>Explain:</strong> Break down complex ideas (e.g., instructions, manuals).</li>
+                    </ul>
+                  `,
+                  quiz: {
+                    title: "Quiz: Understanding Purpose",
+                    questions: [
+                      {
+                        text: "1. What is the main purpose of a persuasive essay?",
+                        options: [
+                          { text: "To explain a process", value: "a" },
+                          { text: "To share facts", value: "b" },
+                          { text: "To influence opinions", value: "c", correct: true }
+                        ]
+                      },
+                      {
+                        text: "2. Which type of writing is used to amuse the reader?",
+                        options: [
+                          { text: "Instruction manuals", value: "a" },
+                          { text: "Fiction stories", value: "b", correct: true },
+                          { text: "Reports", value: "c" }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              level: 2,
+              title: "Grammar and Mechanics",
+              sections: [
+                {
+                  title: "Essential Grammar Rules",
+                  content: `
+                    <p>Correct grammar and punctuation are the foundation of clear communication.</p>
+                    <ul>
+                      <li><strong>Subject-Verb Agreement:</strong> Ensure subjects match their verbs in number.</li>
+                      <li><strong>Tenses:</strong> Maintain consistent tense throughout.</li>
+                      <li><strong>Punctuation:</strong> Use commas, periods, colons, and semicolons correctly.</li>
+                      <li><strong>Capitalization:</strong> Capitalize names, places, and titles correctly.</li>
+                      <li><strong>Spelling:</strong> Use a spell checker or dictionary to avoid errors.</li>
+                    </ul>
+                  `,
+                  quiz: {
+                    title: "Quiz: Grammar Basics",
+                    questions: [
+                      {
+                        text: "1. Which sentence has correct subject-verb agreement?",
+                        options: [
+                          { text: "The dogs barks loudly.", value: "a" },
+                          { text: "The dog bark loudly.", value: "b" },
+                          { text: "The dogs bark loudly.", value: "c", correct: true }
+                        ]
+                      },
+                      {
+                        text: "2. Which punctuation mark ends a declarative sentence?",
+                        options: [
+                          { text: "?", value: "a" },
+                          { text: ".", value: "b", correct: true },
+                          { text: ",", value: "c" }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        };
 
-  <div id="contentContainer">
-    <!-- Content will be generated automatically -->
-  </div>
-
-  <script>
-    // JSON data structure for all content
-    const courseData = {
-      levels: [
-        {
-          id: "page1",
-          title: "1. Understanding the Purpose of Writing",
-          content: `
-            <p>Good writing begins with a clear understanding of why you're writing. Every piece of writing has a purpose — whether it's to inform, persuade, entertain, or explain something.</p>
-            <ul>
-              <li><strong>Inform:</strong> Share knowledge or facts (e.g., news articles, reports).</li>
-              <li><strong>Persuade:</strong> Influence the reader's thoughts or actions (e.g., opinion essays, advertisements).</li>
-              <li><strong>Entertain:</strong> Amuse the reader (e.g., stories, poems).</li>
-              <li><strong>Explain:</strong> Break down complex ideas (e.g., instructions, manuals).</li>
-            </ul>
-          `,
-          quiz: {
-            title: "Quiz: Understanding Purpose",
-            questions: [
-              {
-                text: "1. What is the main purpose of a persuasive essay?",
-                options: [
-                  { text: "To explain a process", value: "a" },
-                  { text: "To share facts", value: "b" },
-                  { text: "To influence opinions", value: "c", correct: true }
-                ]
-              },
-              {
-                text: "2. Which type of writing is used to amuse the reader?",
-                options: [
-                  { text: "Instruction manuals", value: "a" },
-                  { text: "Fiction stories", value: "b", correct: true },
-                  { text: "Reports", value: "c" }
-                ]
-              }
-            ]
-          }
-        },
-        {
-          id: "page2",
-          title: "2. Grammar and Mechanics",
-          content: `
-            <p>Correct grammar and punctuation are the foundation of clear communication.</p>
-            <ul>
-              <li><strong>Subject-Verb Agreement:</strong> Ensure subjects match their verbs in number.</li>
-              <li><strong>Tenses:</strong> Maintain consistent tense throughout.</li>
-              <li><strong>Punctuation:</strong> Use commas, periods, colons, and semicolons correctly.</li>
-              <li><strong>Capitalization:</strong> Capitalize names, places, and titles correctly.</li>
-              <li><strong>Spelling:</strong> Use a spell checker or dictionary to avoid errors.</li>
-            </ul>
-          `,
-          quiz: {
-            title: "Quiz: Grammar Basics",
-            questions: [
-              {
-                text: "1. Which sentence has correct subject-verb agreement?",
-                options: [
-                  { text: "The dogs barks loudly.", value: "a" },
-                  { text: "The dog bark loudly.", value: "b" },
-                  { text: "The dogs bark loudly.", value: "c", correct: true }
-                ]
-              },
-              {
-                text: "2. Which punctuation mark ends a declarative sentence?",
-                options: [
-                  { text: "?", value: "a" },
-                  { text: ".", value: "b", correct: true },
-                  { text: ",", value: "c" }
-                ]
-              }
-            ]
-          }
-        }
-        // Add more levels here by following the same structure
-      ]
-    };
-
-    // Generate navigation links
-    function generateNavigation() {
-      const nav = document.getElementById('navLinks');
-      courseData.levels.forEach((level, index) => {
-        const link = document.createElement('a');
-        link.href = `#${level.id}`;
-        link.textContent = `${index + 1}. ${level.title.split(' ').slice(1).join(' ')}`;
-        nav.appendChild(link);
-      });
-    }
-
-    // Generate content sections
-    function generateContent() {
-      const container = document.getElementById('contentContainer');
-      
-      courseData.levels.forEach((level, levelIndex) => {
-        const section = document.createElement('section');
-        section.id = level.id;
-        
-        // Add title and content
-        section.innerHTML = `
-          <h2>${level.title}</h2>
-          ${level.content}
-        `;
-        
-        // Add quiz if it exists
-        if (level.quiz) {
-          const quizDiv = document.createElement('div');
-          quizDiv.className = 'quiz';
-          
-          let quizHTML = `<h3>${level.quiz.title}</h3>`;
-          
-          level.quiz.questions.forEach((question, qIndex) => {
-            quizHTML += `<div class="question">${question.text}<br>`;
-            
-            question.options.forEach(option => {
-              quizHTML += `
-                <label>
-                  <input type="radio" name="q${levelIndex}${qIndex}" value="${option.value}">
-                  ${option.text}
-                </label><br>
-              `;
-            });
-            
-            quizHTML += `</div>`;
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+          // Create level tabs
+          const levelTabs = document.getElementById('levelTabs');
+          courseData.levels.forEach(level => {
+            const tab = document.createElement('div');
+            tab.className = 'level-tab';
+            if (level.level === 1) tab.classList.add('active');
+            tab.textContent = `Section ${level.level}: ${level.title}`;
+            tab.onclick = () => showLevel(level.level);
+            levelTabs.appendChild(tab);
           });
           
-          quizHTML += `
-            <button onclick="checkQuiz(${levelIndex})">Check Answers</button>
-            <div class="feedback" id="feedback${levelIndex}"></div>
-          `;
+          // Show first level by default
+          showLevel(1);
+        });
+
+        // Show selected level content
+        function showLevel(levelNum) {
+          // Update active tab
+          document.querySelectorAll('.level-tab').forEach(tab => {
+            tab.classList.remove('active');
+          });
+          document.querySelectorAll('.level-tab')[levelNum-1].classList.add('active');
           
-          quizDiv.innerHTML = quizHTML;
-          section.appendChild(quizDiv);
+          // Get level content
+          const level = courseData.levels.find(l => l.level === levelNum);
+          if (!level) return;
+          
+          // Build HTML content
+          let html = `<h2>Section ${level.level}: ${level.title}</h2>`;
+          
+          level.sections.forEach(section => {
+            html += `
+              <div class="section">
+                <h3>${section.title}</h3>
+                ${section.content}
+            `;
+            
+            // Add quiz if it exists
+            if (section.quiz) {
+              let quizHTML = `<div class="quiz"><h4>${section.quiz.title}</h4>`;
+              
+              section.quiz.questions.forEach((question, qIndex) => {
+                quizHTML += `<div class="question">${question.text}<br>`;
+                
+                question.options.forEach(option => {
+                  quizHTML += `
+                    <label>
+                      <input type="radio" name="q${levelNum}${qIndex}" value="${option.value}">
+                      ${option.text}
+                    </label><br>
+                  `;
+                });
+                
+                quizHTML += `</div>`;
+              });
+              
+              quizHTML += `
+                <button onclick="checkQuiz(${levelNum}, ${0})">Check Answers</button>
+                <div class="feedback" id="feedback${levelNum}${0}"></div>
+              </div>`;
+              
+              html += quizHTML;
+            }
+            
+            html += `</div>`;
+          });
+          
+          document.getElementById('contentContainer').innerHTML = html;
         }
-        
-        container.appendChild(section);
-      });
-    }
 
-    // Check quiz answers
-    function checkQuiz(levelIndex) {
-      const level = courseData.levels[levelIndex];
-      let score = 0;
-      
-      level.quiz.questions.forEach((question, qIndex) => {
-        const selectedOption = document.querySelector(`input[name="q${levelIndex}${qIndex}"]:checked`);
-        
-        if (selectedOption) {
-          const selectedValue = selectedOption.value;
-          const isCorrect = question.options.some(opt => opt.value === selectedValue && opt.correct);
-          if (isCorrect) score++;
+        // Check quiz answers
+        function checkQuiz(levelNum, sectionNum) {
+          const level = courseData.levels.find(l => l.level === levelNum);
+          if (!level || !level.sections[sectionNum] || !level.sections[sectionNum].quiz) return;
+          
+          const quiz = level.sections[sectionNum].quiz;
+          let score = 0;
+          
+          quiz.questions.forEach((question, qIndex) => {
+            const selectedOption = document.querySelector(`input[name="q${levelNum}${qIndex}"]:checked`);
+            
+            if (selectedOption) {
+              const selectedValue = selectedOption.value;
+              const isCorrect = question.options.some(opt => opt.value === selectedValue && opt.correct);
+              if (isCorrect) score++;
+            }
+          });
+          
+          document.getElementById(`feedback${levelNum}${sectionNum}`).innerText = 
+            `You got ${score}/${quiz.questions.length} correct.`;
         }
-      });
-      
-      document.getElementById(`feedback${levelIndex}`).innerText = 
-        `You got ${score}/${level.quiz.questions.length} correct.`;
-    }
-
-    // Initialize the page
-    window.onload = function() {
-      generateNavigation();
-      generateContent();
-    };
-  </script>
-
+    </script>
 </body>
 </html>
