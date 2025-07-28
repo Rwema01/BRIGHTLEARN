@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    const BASE_URL = 'http://localhost:3000/api';
+    const BASE_URL = 'https://brightlearnbackend.onrender.com/api';
 
     // Form submission with validation
     const loginForm = document.getElementById('loginForm');

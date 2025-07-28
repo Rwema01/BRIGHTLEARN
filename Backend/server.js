@@ -9,11 +9,19 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
+// CORS Middleware
 app.use(cors({
-  origin: 'https://brightlearn-du1d.onrender.com,http://localhost:3000',
-  credentials: true
+  origin: [
+    'http://localhost:5500',
+    'http://127.0.0.1:5500',
+    'https://brightlearn-du1d.onrender.com',
+    'https://brightlearnbackend.onrender.com'
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'X-Requested-With', 'Accept']
 }));
+
 app.use(express.json());
 
 // Database paths

@@ -15,6 +15,13 @@
       "password": "$2a$10$l26lmjQX7PIDmYWM1gThuuoRBHromfLnYM/nQy/6aLFyRPx8FKifS",
       "createdAt": "2025-07-27T20:31:53.605Z",
       "bio": "Dedicated learner focused on academic excellence and personal growth. Interested in science and innovation."
+    },
+    {
+      "id": "1753671748856",
+      "fullName": "loic mugisha",
+      "email": "loic@gmail.com",
+      "password": "$2a$10$sApkWIQ6tOT.QJcD4x5KseK8wZh23yJKkafWiHH6ItVbdJHcwWoxO",
+      "createdAt": "2025-07-28T03:02:28.856Z"
     }
   ]
 }

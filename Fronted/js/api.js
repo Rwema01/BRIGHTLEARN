@@ -5,25 +5,49 @@ const BASE_URL = 'https://brightlearnbackend.onrender.com/api';
 const api = {
     // Authentication
     async login(email, password) {
-        const response = await fetch(`${BASE_URL}/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-        });
-        return await response.json();
+        try {
+            const response = await fetch(`${BASE_URL}/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+                // Remove credentials mode when using file:// protocol
+                // credentials: 'include'
+            });
+
+            if (!response.ok) {
+                throw new Error(`Login failed: ${response.status} ${response.statusText}`);
+            }
+
+            return await response.json();
+        } catch (error) {
+            console.error('Login error:', error);
+            throw error;
+        }
     },
 
     async register(userData) {
-        const response = await fetch(`${BASE_URL}/register`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(userData),
-        });
-        return await response.json();
+        try {
+            const response = await fetch(`${BASE_URL}/register`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData),
+                // Remove credentials mode when using file:// protocol
+                // credentials: 'include'
+            });
+
+            if (!response.ok) {
+                throw new Error(`Registration failed: ${response.status} ${response.statusText}`);
+            }
+
+            return await response.json();
+        } catch (error) {
+            console.error('Registration error:', error);
+            throw error;
+        }
     },
 
     // User Profile
@@ -32,7 +56,9 @@ const api = {
         const response = await fetch(`${BASE_URL}/users/${userId}`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
-            },
+            }
+            // Remove credentials mode when using file:// protocol
+            // credentials: 'include'
         });
         return await response.json();
     },
@@ -43,7 +69,9 @@ const api = {
         const response = await fetch(`${BASE_URL}/courses`, {
             headers: {
                 'Authorization': `Bearer ${token}`,
-            },
+            }
+            // Remove credentials mode when using file:// protocol
+            // credentials: 'include'
         });
         return await response.json();
     },
