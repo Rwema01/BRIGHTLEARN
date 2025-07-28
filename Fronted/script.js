@@ -1,5 +1,5 @@
 // API Base URL
-const BASE_URL = 'http://localhost:3000/api';
+const BASE_URL = 'https://brightlearnbackend.onrender.com/api';
 
 // Helper function to safely handle DOM elements that might not exist
 function safeAddEventListener(selector, event, handler) {
@@ -875,7 +875,7 @@ if (profileIcon && profileDropdown && notificationIcon && notificationDropdown) 
         if (!token || !userId) return;
 
         try {
-            const response = await fetch(`http://localhost:3000/api/notifications/user/${userId}`, {
+            const response = await fetch(`https://brightlearnbackend.onrender.com/api/notifications/user/${userId}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
