@@ -1,5 +1,5 @@
 // Base URL for API endpoints
-const BASE_URL = 'http://localhost:3000/api';
+const BASE_URL = 'https://brightlearnbackend.onrender.com/api';
 
 // Auth API calls
 const api = {
