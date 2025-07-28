@@ -1,10 +1,132 @@
-# BrightLearn - Interactive Learning Platform
+# 📚 B## 🌟 Features
+
+### 📖 Learning Experience
+- **Interactive Courses**:## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v14 or higher)
+- Git
+- Modern web browser (Chrome, Firefox, Safari, or Edge)
+
+### Installation
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/Rwema01/BRIGHTLEARN.git
+   cd BRIGHTLEARN
+   ```
+
+2. **Set Up Backend**
+   ```bash
+   cd Backend
+   npm install
+   ```
+
+3. **Set Up Frontend**
+   ```bash
+   cd ../Fronted
+   # No installation needed for frontend as it uses vanilla JavaScript
+   ```
+
+### Running the Application
+
+1. **Start the Backend Server**
+   ```bash
+   cd Backend
+   npm start
+   # Server will start on http://localhost:3000
+   ```
+
+2. **Launch the Frontend**
+   - Option 1: Using VS Code Live Server
+     - Install Live Server extension in VS Code
+     - Right-click on `index.html` in the Fronted folder
+     - Select "Open with Live Server"
+
+   - Option 2: Using any HTTP server
+     ```bash
+     cd Fronted
+     python -m http.server 8080  # If you have Python installed
+     # Or use any other HTTP server of your choice
+     ```
+
+3. **Access the Application**
+   - Open your browser and navigate to:
+     - Frontend: `http://localhost:8080` (or the port shown by your server)
+     - Backend API: `http://localhost:3000`
+
+### Default Credentials
+```
+Username: admin@brightlearn.com
+Password: admin123
+```
+
+## 🔧 Configuration
+
+### Backend Configuration
+1. Create a `.env` file in the Backend directory:
+   ```env
+   PORT=3000
+   JWT_SECRET=your_jwt_secret_here
+   CORS_ORIGIN=http://localhost:8080
+   ```
+
+2. Modify database settings in `Backend/db/lowdb.js` if needed
+
+### Frontend Configuration
+1. Update API endpoint in `Fronted/js/api.js` if needed:
+   ```javascript
+   const BASE_URL = 'http://localhost:3000/api';
+   ```
+
+## 👥 Team Members
+
+| Role               | Team Member                     |
+|--------------------|---------------------------------|
+| Frontend Developer | Gisa Rwema                      |
+| Frontend Developer | Deng Akol                       |
+| Backend Developer  | Kelly Nshuti Dushimimana        |
+| Backend Developer  | Christian Ntwali Ishimwe        |
+| UI/UX Designer     | Vestine Umukundwa               |
+| UI/UX Designer     | Tabitha Kuir                    |
+
+## 📁 Project Structureons in Math, English, and History with multimedia content
+- **Structured Learning Path**: Progressive curriculum with clear learning objectives
+- **Quiz System**: 
+  - Immediate scoring and feedback
+  - Pass/fail indicators (75% threshold)
+  - Multiple question types
+  - Progress tracking
+
+### 📊 Progress & Analytics
+- **Visual Progress Tracking**: Interactive charts and progress bars
+- **Performance Analytics**: Detailed insights into learning patterns
+- **Learning History**: Comprehensive record of completed activities
+- **Achievement System**: Badges and rewards for completing milestones
+
+### 🛠 User Features
+- **Responsive Design**: Seamless experience across all devices
+- **User Authentication**: Secure JWT-based login system
+- **Profile Management**: Customizable user profiles
+- **Notification System**: Real-time alerts for:
+  - New assignments
+  - Graded work
+  - Course updates
+  - Achievement unlocks
+
+### 💡 Support & Resources
+- **Help Center**: Comprehensive documentation
+- **Interactive Tutorials**: Platform navigation guides
+- **FAQ Section**: Common questions and answers
+- **Support System**: Direct assistance channels
+
+## 🛠️ Tech Stack Interactive Learning Platform
 
 ![BrightLearn Logo](Fronted/BRIGHTLEARN.jpg)
 
-BrightLearn is a web-based interactive learning platform designed to help students study core subjects (Math, English, History) through structured lessons and quizzes. The application tracks progress, provides performance feedback, and offers a personalized learning experience.
+BrightLearn is a comprehensive web-based learning platform that empowers students to master core subjects (Math, English, History) through interactive lessons, quizzes, and personalized learning experiences. With real-time progress tracking and performance analytics, students can monitor their growth while engaging with structured educational content.
 
-## Features
+## ✨ Key Features
 
 - **Interactive Courses**: Engaging lessons in Math, English, and History
 - **Progress Tracking**: Visual progress indicators for each course
@@ -17,15 +139,30 @@ BrightLearn is a web-based interactive learning platform designed to help studen
 
 ## Technologies Used
 
-### Frontend
-- HTML5, CSS3, JavaScript
-- [Font Awesome](https://fontawesome.com/) - Icons
-- [Chart.js](https://www.chartjs.org/) - Progress visualization
+### 🌐 Frontend
+- **Core Technologies**:
+  - HTML5
+  - CSS3 (Flexbox, Grid, Animations)
+  - JavaScript (ES6+)
+- **Libraries**:
+  - [Font Awesome](https://fontawesome.com/) - Icons and visual elements
+  - [Chart.js](https://www.chartjs.org/) - Interactive data visualization
+- **State Management**: LocalStorage & SessionStorage
+- **API Integration**: Fetch API
 
-### Backend
-- (To be implemented by backend team)
+### ⚙️ Backend
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Database**: lowdb (JSON-based)
+- **Authentication**: 
+  - JWT (JSON Web Tokens)
+  - bcrypt for password hashing
+- **API Security**:
+  - CORS configuration
+  - Rate limiting
+  - Error handling middleware
 
-## Team Members
+## 👥 Team Members
 
 | Role               | Team Member                     |
 |--------------------|---------------------------------|
@@ -40,36 +177,123 @@ BrightLearn is a web-based interactive learning platform designed to help studen
 
 # Learning Management System (LMS) - Frontend
 
-A responsive frontend for an LMS built with **HTML5, CSS3, and vanilla JavaScript**, designed to interact with a Node.js/Express.js backend. Features dynamic content loading, user authentication, and interactive quizzes.
+```
+BRIGHTLEARN/
+│
+├── Backend/                 # Backend server code
+│   ├── controllers/        # Route controllers
+│   ├── data/              # JSON database files
+│   ├── db/                # Database configuration
+│   ├── middleware/        # Express middleware
+│   ├── routes/           # API routes
+│   ├── server.js         # Main server file
+│   └── package.json      # Backend dependencies
+│
+├── Fronted/               # Frontend code
+│   ├── css/              # Stylesheets
+│   ├── js/               # JavaScript modules
+│   │   ├── api.js        # API integration
+│   │   ├── grades.js     # Grades functionality
+│   │   └── profile.js    # Profile management
+│   ├── index.html        # Main entry point
+│   ├── courses.html      # Course listing
+│   ├── grades.html       # Grades view
+│   └── profile.html      # User profile
+│
+└── README.md             # Project documentation
+```
+
+## 🌐 Live Demo
+Frontend: [https://brightlearn-du1d.onrender.com](https://brightlearn-du1d.onrender.com)
+API: [https://brightlearnbackend.onrender.com](https://brightlearnbackend.onrender.com)
 
 ---
 
-## 🖥️ Live Demo  
-🔗 [https://your-deployment-link.com](https://your-deployment-link.com) *(if deployed)*  
+## 📝 API Documentation
+
+### Authentication Endpoints
+```
+POST /api/auth/login
+POST /api/auth/register
+POST /api/auth/logout
+```
+
+### User Endpoints
+```
+GET    /api/user/:id/profile
+PUT    /api/user/:id/profile
+POST   /api/user/:id/avatar
+```
+
+### Course Endpoints
+```
+GET    /api/courses
+GET    /api/courses/:id
+GET    /api/courses/:id/lessons
+POST   /api/courses/:id/enroll
+```
+
+### Grades Endpoints
+```
+GET    /api/grades/user/:id
+GET    /api/grades/course/:id
+POST   /api/grades/submit
+```
+
+## ⚡ Performance Optimization
+
+- Minified CSS and JavaScript files
+- Optimized image loading with lazy loading
+- Efficient DOM manipulation
+- Local storage for caching when appropriate
+
+## 🔒 Security Features
+
+- JWT token-based authentication
+- Password hashing with bcrypt
+- CORS protection
+- Rate limiting
+- XSS protection
+- CSRF protection
+
+## 🔧 Troubleshooting
+
+### Common Issues
+
+1. **CORS Errors**
+   - Ensure backend CORS settings match frontend origin
+   - Check if the API URL is correct in `api.js`
+
+2. **Authentication Issues**
+   - Clear browser cache and local storage
+   - Check if token is being sent in requests
+   - Verify token expiration
+
+3. **Loading Issues**
+   - Check network connection
+   - Verify API endpoints are accessible
+   - Look for console errors
+
+### Debug Mode
+Enable debug mode by adding to your browser's console:
+```javascript
+localStorage.setItem('debug', 'true');
+```
+
+## 📮 Support
+
+For support, please:
+1. Check the [FAQ section](#) in the Help Center
+2. Open an issue on GitHub
+3. Contact the development team
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## ✨ Features  
-
-- **User Authentication**  
-  - Login/register forms with JWT token handling.  
-  - Protected routes for authenticated users.  
-
-- **Course Dashboard**  
-  - Browse courses by subject/level.  
-  - Responsive grid/card layout.  
-
-- **Lesson Viewer**  
-  - Dynamic loading of lesson content (text, videos).  
-  - Navigation between lessons.  
-
-- **Quiz System**  
-  - Interactive multiple-choice quizzes.  
-  - Real-time feedback on answers.  
-
-- **No Frameworks**  
-  - Pure JavaScript DOM manipulation.  
-  - CSS Flexbox/Grid for layouts.  
+Made with ❤️ by the BrightLearn Team  
 
 ---
 

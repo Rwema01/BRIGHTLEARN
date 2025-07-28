@@ -166,23 +166,72 @@
 
     <script src="script.js"></script>
     <script>
-        // Grades page specific functionality
-        document.addEventListener('DOMContentLoaded', async function() {
-            const token = localStorage.getItem('token');
-            const userId = localStorage.getItem('userId');
-            
-            if (!token || !userId) {
-                window.location.href = 'login.html';
-                return;
+        // Helper functions
+        function getStatusClass(score) {
+            if (score >= 90) return 'excellent';
+            if (score >= 80) return 'good';
+            if (score >= 70) return 'satisfactory';
+            return 'needs-improvement';
+        }
+
+        function getStatusText(score) {
+            if (score >= 90) return 'Excellent';
+            if (score >= 80) return 'Good';
+            if (score >= 70) return 'Satisfactory';
+            return 'Needs Improvement';
+        }
+
+        function getGradeClass(score) {
+            if (score >= 90) return 'grade-a';
+            if (score >= 80) return 'grade-b';
+            if (score >= 70) return 'grade-c';
+            return 'grade-d';
+        }
+
+        function calculateCourseAverages(grades) {
+            const courseGrades = {};
+            grades.forEach(grade => {
+                if (!courseGrades[grade.course]) {
+                    courseGrades[grade.course] = {
+                        total: 0,
+                        count: 0
+                    };
+                }
+                courseGrades[grade.course].total += grade.score;
+                courseGrades[grade.course].count++;
+            });
+
+            const averages = {};
+            for (const [course, data] of Object.entries(courseGrades)) {
+                averages[course] = data.total / data.count;
             }
+            return averages;
+        }
 
-            let grades = [];
-            let progress = [];
+        function calculateOverallAverage(grades) {
+            if (!grades.length) return 0;
+            return grades.reduce((sum, grade) => sum + grade.score, 0) / grades.length;
+        }
 
-            // Fetch grades and progress data
-            async function fetchGradesData() {
-                try {
-                    const [gradesResponse, progressResponse] = await Promise.all([
+            <script src="script.js"></script>
+    <script type="module" src="js/grades.js"></script>
+    <script>
+        // View grade details function
+        function viewGradeDetails(gradeId) {
+            try {
+                const token = localStorage.getItem('token');
+                const userId = localStorage.getItem('userId');
+                
+                if (!token || !userId) {
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                let grades = [];
+                let progress = [];
+
+                // Fetch grades and progress data
+                const [gradesResponse, progressResponse] = await Promise.all([
                         fetch(`http://localhost:3000/api/grades/user/${userId}`, {
                             headers: {
                                 'Authorization': `Bearer ${token}`,
@@ -198,6 +247,76 @@
                     ]);
 
                     if (gradesResponse.ok) {
+                    const gradesData = await gradesResponse.json();
+                    const progressData = await progressResponse.json();
+                    
+                    // Update grades table
+                    const gradesTableBody = document.getElementById('grades-table-body');
+                    gradesTableBody.innerHTML = gradesData.map(grade => `
+                        <tr>
+                            <td>${grade.course}</td>
+                            <td>${grade.type}</td>
+                            <td>${grade.assignment}</td>
+                            <td>${grade.score}%</td>
+                            <td><span class="status ${getStatusClass(grade.score)}">${getStatusText(grade.score)}</span></td>
+                            <td>${new Date().toLocaleDateString()}</td>
+                            <td>
+                                <button class="view-details-btn" data-id="${grade.assignmentId}">
+                                    <i class="fas fa-eye"></i> View
+                                </button>
+                            </td>
+                        </tr>
+                    `).join('');
+
+                    // Update course performance cards
+                    const courseGradesCards = document.getElementById('course-grades-cards');
+                    const courseAverages = calculateCourseAverages(gradesData);
+                    courseGradesCards.innerHTML = Object.entries(courseAverages).map(([course, avg]) => `
+                        <div class="course-card">
+                            <div class="course-grade ${getGradeClass(avg)}">
+                                <span class="grade-value">${avg.toFixed(1)}%</span>
+                            </div>
+                            <h3>${course}</h3>
+                            <div class="grade-progress">
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: ${avg}%"></div>
+                                </div>
+                            </div>
+                            <p>Based on ${gradesData.filter(g => g.course === course).length} assessments</p>
+                        </div>
+                    `).join('');
+
+                    // Calculate and update overall average
+                    const overallAvg = calculateOverallAverage(gradesData);
+                    document.querySelector('.grade-circle .grade').textContent = `${overallAvg.toFixed(1)}%`;
+
+                    // Update completed courses count
+                    const completedCourses = progressData?.completedCourses || 0;
+                    document.querySelector('.completed-courses span').textContent = completedCourses;
+
+                    // Update total assessments count
+                    document.querySelector('.assessment-count span').textContent = gradesData.length;
+
+                    // Update academic status
+                    const statusIndicator = document.querySelector('.status-indicator span');
+                    statusIndicator.className = getStatusClass(overallAvg);
+                    statusIndicator.textContent = getStatusText(overallAvg);
+
+                    // Update recent assessments
+                    const recentAssessments = document.getElementById('recent-assessments-list');
+                    const sortedGrades = [...gradesData].sort((a, b) => new Date(b.date) - new Date(a.date));
+                    recentAssessments.innerHTML = sortedGrades.slice(0, 5).map(grade => `
+                        <div class="assessment-item">
+                            <div class="assessment-info">
+                                <h4>${grade.assignment}</h4>
+                                <p>${grade.course}</p>
+                            </div>
+                            <div class="assessment-score ${getGradeClass(grade.score)}">
+                                ${grade.score}%
+                            </div>
+                        </div>
+                    `).join('');
+                }
                         grades = await gradesResponse.json();
                     }
 

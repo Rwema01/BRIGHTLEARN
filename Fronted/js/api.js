@@ -1,5 +1,5 @@
-// Base URL for API endpoints
-const BASE_URL = 'https://brightlearnbackend.onrender.com/api';
+// API Base URL
+export const BASE_URL = 'https://brightlearnbackend.onrender.com/api';
 
 // Auth API calls
 const api = {

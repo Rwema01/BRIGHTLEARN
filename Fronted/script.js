@@ -1,6 +1,31 @@
 // API Base URL
 const BASE_URL = 'https://brightlearnbackend.onrender.com/api';
 
+// Helper function to safely get DOM element
+function getElement(selector) {
+    const element = document.querySelector(selector);
+    if (!element) {
+        console.warn(`Element not found: ${selector}`);
+    }
+    return element;
+}
+
+// Helper function to safely update element text
+function updateElementText(selector, text) {
+    const element = getElement(selector);
+    if (element) {
+        element.textContent = text;
+    }
+}
+
+// Helper function to safely update element HTML
+function updateElementHTML(selector, html) {
+    const element = getElement(selector);
+    if (element) {
+        element.innerHTML = html;
+    }
+}
+
 // Helper function to safely handle DOM elements that might not exist
 function safeAddEventListener(selector, event, handler) {
     const element = document.querySelector(selector);
@@ -9,10 +34,58 @@ function safeAddEventListener(selector, event, handler) {
     }
 }
 
+// Initialize profile dropdown functionality
+const initializeProfileDropdown = () => {
+    const profileDropdown = document.querySelector('.action-dropdown');
+    if (profileDropdown) {
+        const dropdownToggle = profileDropdown.querySelector('.dropdown-toggle');
+        const dropdownMenu = profileDropdown.querySelector('.dropdown-menu');
+        
+        dropdownToggle?.addEventListener('click', () => {
+            dropdownMenu?.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!profileDropdown.contains(e.target)) {
+                dropdownMenu?.classList.remove('show');
+            }
+        });
+    }
+};
+
+// Initialize dropdown functionality
+function initializeDropdowns() {
+    document.querySelectorAll('.action-dropdown').forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+        const menu = dropdown.querySelector('.dropdown-menu');
+        
+        if (toggle && menu) {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                menu.classList.toggle('show');
+            });
+
+            // Close on outside click
+            document.addEventListener('click', (e) => {
+                if (!dropdown.contains(e.target)) {
+                    menu.classList.remove('show');
+                }
+            });
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize dropdowns
+    initializeDropdowns();
+    
     // Check authentication
     const token = localStorage.getItem('token');
     const userId = localStorage.getItem('userId');
+    
+    // Initialize profile dropdown
+    initializeProfileDropdown();
     
     if (!token || !userId) {
         window.location.replace('login.html');
@@ -48,6 +121,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // === DASHBOARD INITIALIZATION ===
     async function initializeDashboard() {
+        // Only run on dashboard page
+        if (!document.querySelector('.dashboard-content')) {
+            return; // Not on dashboard page
+        }
+
         const token = localStorage.getItem('token');
         const userId = localStorage.getItem('userId');
 
@@ -66,7 +144,34 @@ document.addEventListener('DOMContentLoaded', function() {
             const dashboard = await dashboardResponse.json();
 
             // Update welcome name
-            document.querySelector('.student-name').textContent = dashboard.name;
+            const studentNameElement = document.querySelector('.student-name');
+            if (studentNameElement) {
+                studentNameElement.textContent = dashboard.name || 'Student';
+            }
+
+            // Update learning overview
+            const progressDetailsEl = document.querySelector('.progress-details');
+            if (progressDetailsEl) {
+                progressDetailsEl.innerHTML = `
+                    <p>• Overall: ${dashboard.overallProgress || 0}%</p>
+                    <p>• Trend: ↗ ${dashboard.progressTrend || 0}%</p>
+                `;
+            }
+
+            // Update quick stats
+            const quickStatsEl = document.querySelector('.quick-stats ul');
+            if (quickStatsEl) {
+                const completionPercentage = dashboard.totalCourses > 0 
+                    ? Math.round((dashboard.completedCourses / dashboard.totalCourses) * 100) 
+                    : 0;
+                
+                quickStatsEl.innerHTML = `
+                    <li>• Total Courses: ${dashboard.totalCourses || 0}</li>
+                    <li>• Completed: ${dashboard.completedCourses || 0}/${dashboard.totalCourses || 0} (${completionPercentage}%)</li>
+                    <li>• Avg. Score: ${dashboard.avgScore || 0}% (${dashboard.passing ? 'Passing' : 'Not Passing'})</li>
+                    <li>• Streak: ${dashboard.streak || 0} days 🔥</li>
+                `;
+            }
 
             // Update learning overview
             document.querySelector('.progress-details').innerHTML = `
