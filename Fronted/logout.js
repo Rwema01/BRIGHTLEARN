@@ -3,6 +3,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const cancelLogoutBtn = document.getElementById('cancelLogout');
     const appContainer = document.querySelector('.app-container');
 
+    // Exit early if elements don't exist (wrong page)
+    if (!confirmLogoutBtn || !cancelLogoutBtn || !appContainer) {
+        console.log('Logout page elements not found - likely on a different page');
+        return;
+    }
+
     // 1. Confirm Logout - Immediate redirect to login.html with cleanup
     confirmLogoutBtn.addEventListener('click', function() {
         // Visual feedback

@@ -1,6 +1,14 @@
 // API Base URL
 const BASE_URL = 'http://localhost:3000/api';
 
+// Helper function to safely handle DOM elements that might not exist
+function safeAddEventListener(selector, event, handler) {
+    const element = document.querySelector(selector);
+    if (element) {
+        element.addEventListener(event, handler);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Check authentication
     const token = localStorage.getItem('token');
@@ -12,14 +20,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // === LOGOUT FUNCTIONALITY ===
-    const logoutBtn = document.querySelector('.logout-btn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            localStorage.clear();
-            sessionStorage.clear();
-            window.location.replace("login.html");
-        });
+    // Use safer method with try-catch to prevent errors in production
+    try {
+        const logoutBtn = document.querySelector('.logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.clear();
+                sessionStorage.clear();
+                window.location.replace("login.html");
+            });
+        }
+    } catch (err) {
+        console.warn('Logout button not available on this page');
     }
 
     // === NAVIGATION HIGHLIGHT ===
@@ -296,29 +309,20 @@ document.addEventListener('DOMContentLoaded', function() {
 // PROFILE DROPDOWN
 // Profile dropdown functionality
     // Profile and Notification Links
-    const profileLink = document.querySelector('.profile-link');
-    const notificationLink = document.querySelector('.notification-link');
-
-    if (profileLink) {
-        profileLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.location.href = 'profile.html';
-        });
-    }
-
-    if (notificationLink) {
-        notificationLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.location.href = 'notifications.html';
-        });
-    }
-    const profileDropdown = document.querySelector('.profile-dropdown');
-if (profileDropdown) {
-    profileDropdown.addEventListener('click', (e) => {
+    safeAddEventListener('.profile-link', 'click', (e) => {
         e.preventDefault();
         window.location.href = 'profile.html';
     });
-    }
+
+    safeAddEventListener('.notification-link', 'click', (e) => {
+        e.preventDefault();
+        window.location.href = 'notifications.html';
+    });
+
+    safeAddEventListener('.profile-dropdown', 'click', (e) => {
+        e.preventDefault();
+        window.location.href = 'profile.html';
+    });
 const profileIcon = document.querySelector('.profile-icon');
 
 // NOTIFICATION DROPDOWN
